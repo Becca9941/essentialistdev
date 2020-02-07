@@ -1,3 +1,8 @@
-import {MDCRipple} from '@material/ripple/index';
+// Import
+// Top App Bar
+import {MDCTopAppBar} from '@material/top-app-bar';
 
-const ripple = new MDCRipple(document.querySelector('.foo-button'));
+// Instantiate
+// Top App Bar
+const topAppBarElement = document.querySelector('.mdc-top-app-bar');
+const topAppBar = new MDCTopAppBar(topAppBarElement);

@@ -6,9 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- import the Material stylesheet -->
     <link rel="stylesheet" href="dist/bundle.css">
+    <!-- import Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
   <body class="mdc-typography">
-    <h1>Hi</h1>
+    <header class="mdc-top-app-bar">
+      <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+          <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
+          <span class="mdc-top-app-bar__title">Title</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+          <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Search">search</button>
+        </section>
+      </div>
+    </header>
 
     <!-- import the Material javascript file -->
     <script src="dist/bundle.js" async></script>

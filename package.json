@@ -25,6 +25,7 @@
   "dependencies": {
     "@material/button": "^4.0.0",
     "@material/ripple": "^4.0.0",
+    "@material/top-app-bar": "^4.0.0",
     "@material/typography": "^4.0.0"
   },
   "engines": {
