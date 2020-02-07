@@ -1,4 +1,4 @@
-@import 'my-sass';
+@import 'reset';
 
 // MDC Theming
 $mdc-theme-primary: #FF186E;
@@ -16,6 +16,7 @@ $mdc-theme-on-surface: #000000;
 // Top App Bar
 @import "@material/top-app-bar/mdc-top-app-bar";
 @import "@material/icon-button/mdc-icon-button";
+
 
 .navigation {
   @extend .mdc-top-app-bar;
@@ -45,5 +46,24 @@ $mdc-theme-on-surface: #000000;
       @extend .mdc-top-app-bar__action-item;
       @extend .mdc-icon-button;
     }
+  }
+}
+
+main {
+   padding-top: 6rem;
+}
+
+.landing-intro {
+  text-align: center;
+  &__logo {
+    width: 13rem;
+  }
+  &__tagline {
+    @extend .mdc-typography--caption;
+    text-transform: capitalize;
+    letter-spacing: .1rem;
+    margin-left: .3rem;
+    font-weight: 500;
+    color: $mdc-theme-secondary;
   }
 }
