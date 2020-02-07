@@ -55,6 +55,9 @@ main {
 
 .landing-intro {
   text-align: center;
+  &__link {
+    text-decoration: none;
+  }
   &__logo {
     width: 13rem;
   }
