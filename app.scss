@@ -1,7 +1,15 @@
 @import 'my-sass';
 
-// MDC Components
+// MDC Theming
+$mdc-theme-primary: #FF186E;
+$mdc-theme-secondary: #00BCD4;
+$mdc-theme-error: #b00020;
+$text: #1D243A;
 
+$mdc-theme-surface: #ffffff;
+$mdc-theme-on-surface: #000000;
+
+// MDC Components
 // Button
 @import "@material/typography/mdc-typography";
 @import "@material/button/mdc-button";
@@ -12,8 +20,8 @@
 .navigation {
   @extend .mdc-top-app-bar;
   @include mdc-top-app-bar-fill-color(white);
-  @include mdc-top-app-bar-icon-ink-color($mdc-theme-primary);
-  @include mdc-top-app-bar-ink-color($mdc-theme-primary);
+  @include mdc-top-app-bar-icon-ink-color($mdc-theme-secondary);
+  @include mdc-top-app-bar-ink-color($text);
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
   &__wrapper {
     @extend .mdc-top-app-bar__row;
@@ -21,6 +29,7 @@
   &__menu {
     @extend .mdc-top-app-bar__section;
     @extend .mdc-top-app-bar__section--align-start;
+    @include mdc-top-app-bar-icon-ink-color($text);
     &__open {
       @extend .mdc-top-app-bar__navigation-icon;
       @extend .mdc-icon-button;
