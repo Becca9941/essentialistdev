@@ -105,3 +105,20 @@ main {
     font-size: 1rem !important;
   }
 }
+
+.ask-audience {
+  padding: 0 1rem;
+  margin-bottom: 2rem;
+  &__question {
+    @extend .mdc-typography--headline5;
+    font-weight: 500;
+  }
+  &__to-ponder {
+    @extend .mdc-typography--body1;
+    margin: 2rem 0;
+  }
+  &__my-example {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}
