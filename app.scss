@@ -70,3 +70,34 @@ main {
     color: $mdc-theme-secondary;
   }
 }
+
+.categories {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+
+.category {
+  flex-basis: 45%;
+  margin-bottom: 3%;
+  &__cover {
+    width: 100%;
+  }
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: $text;
+    font-size: .8rem;
+    font-weight: 500;
+    padding: .2rem 0;
+    margin-top: -.2rem;
+    letter-spacing: .1rem;
+  }
+  &__icon {
+    margin-right: .5rem;
+    font-size: 1rem !important;
+  }
+}
