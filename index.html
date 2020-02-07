@@ -10,17 +10,17 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
   <body class="mdc-typography">
-    <header class="mdc-top-app-bar">
-      <div class="mdc-top-app-bar__row">
-        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-          <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
-          <span class="mdc-top-app-bar__title">Title</span>
+    <nav class="navigation">
+      <div class="navigation__wrapper">
+        <section class="navigation__menu">
+          <button class="navigation__menu__open material-icons">menu</button>
+          <h1 class="navigation__menu__title">Title</h1>
         </section>
-        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-          <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Search">search</button>
+        <section class="navigation__icons" role="toolbar">
+          <button class="navigation__icons__icon material-icons" aria-label="Search">search</button>
         </section>
       </div>
-    </header>
+    </nav>
 
     <!-- import the Material javascript file -->
     <script src="dist/bundle.js" async></script>

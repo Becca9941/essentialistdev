@@ -1,0 +1,25 @@
+.navigation {
+  @extend .mdc-top-app-bar;
+  &__wrapper {
+    @extend .mdc-top-app-bar__row;
+  }
+  &__menu {
+    @extend .mdc-top-app-bar__section;
+    @extend .mdc-top-app-bar__section--align-start;
+    &__open {
+      @extend .mdc-top-app-bar__navigation-icon;
+      @extend .mdc-icon-button;
+    }
+    &__title {
+      @extend .mdc-top-app-bar__title;
+    }
+  }
+  &__icons {
+    @extend .mdc-top-app-bar__section;
+    @extend .mdc-top-app-bar__section--align-end;
+    &__icon {
+      @extend .mdc-top-app-bar__action-item;
+      @extend .mdc-icon-button;
+    }
+  }
+}
