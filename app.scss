@@ -284,6 +284,7 @@ main {
     }
     &__title {
       @extend .mdc-typography--headline6;
+      margin-bottom: 1rem;
     }
     &__author {
       @extend .mdc-typography--subtitle2;
@@ -321,5 +322,17 @@ main {
         @extend .mdc-card__action--icon;
       }
     }
+  }
+}
+
+.full-cta-link {
+  @extend .mdc-button;
+  @extend .mdc-button--raised;
+  width: 250px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 2rem;
+  &__label {
+    @extend .mdc-button__label;
   }
 }
