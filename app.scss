@@ -98,7 +98,8 @@ main {
     align-items: center;
     justify-content: center;
     color: white;
-    background-color: $text;
+    background-color: #1d243a;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='charlie-brown' fill='%232b3555' fill-opacity='0.81'%3E%3Cpath d='M9.8 12L0 2.2V.8l10 10 10-10v1.4L10.2 12h-.4zm-4 0L0 6.2V4.8L7.2 12H5.8zm8.4 0L20 6.2V4.8L12.8 12h1.4zM9.8 0l.2.2.2-.2h-.4zm-4 0L10 4.2 14.2 0h-1.4L10 2.8 7.2 0H5.8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     font-size: .8rem;
     font-weight: 500;
     padding: .2rem 0;
@@ -130,14 +131,16 @@ main {
 .download-cta {
   text-align: center;
   color: white;
-  background-color: $text;
+  background-color: #1d243a;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='charlie-brown' fill='%232b3555' fill-opacity='0.81'%3E%3Cpath d='M9.8 12L0 2.2V.8l10 10 10-10v1.4L10.2 12h-.4zm-4 0L0 6.2V4.8L7.2 12H5.8zm8.4 0L20 6.2V4.8L12.8 12h1.4zM9.8 0l.2.2.2-.2h-.4zm-4 0L10 4.2 14.2 0h-1.4L10 2.8 7.2 0H5.8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   position: relative;
   margin: 3rem 0;
   padding: 2.5rem 1rem;
   &__scroll-down {
     @extend .mdc-fab;
     color: white;
-    background-color: $text;
+    background-color: #1d243a;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='charlie-brown' fill='%232b3555' fill-opacity='0.81'%3E%3Cpath d='M9.8 12L0 2.2V.8l10 10 10-10v1.4L10.2 12h-.4zm-4 0L0 6.2V4.8L7.2 12H5.8zm8.4 0L20 6.2V4.8L12.8 12h1.4zM9.8 0l.2.2.2-.2h-.4zm-4 0L10 4.2 14.2 0h-1.4L10 2.8 7.2 0H5.8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     position: absolute;
     top: -1.7rem;
     left: 50%;
@@ -166,7 +169,8 @@ main {
   &__continue {
     position: absolute;
     bottom: -2rem;
-    background-color: $text;
+    background-color: #1d243a;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='charlie-brown' fill='%232b3555' fill-opacity='0.81'%3E%3Cpath d='M9.8 12L0 2.2V.8l10 10 10-10v1.4L10.2 12h-.4zm-4 0L0 6.2V4.8L7.2 12H5.8zm8.4 0L20 6.2V4.8L12.8 12h1.4zM9.8 0l.2.2.2-.2h-.4zm-4 0L10 4.2 14.2 0h-1.4L10 2.8 7.2 0H5.8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     left: 50%;
     transform: translateX(-50%);
     clip-path: polygon(49% 53%, 0 0, 100% 0);
@@ -334,5 +338,24 @@ main {
   margin-top: 2rem;
   &__label {
     @extend .mdc-button__label;
+  }
+}
+
+.learn-more2 {
+  @extend .mdc-elevation--z3;
+  width: 300px;
+  display: block;
+  margin: 0 auto;
+  border: solid $text 3px;
+  border-radius: .2rem;
+  padding-top: 4rem;
+  margin-bottom: 3rem;
+  background-image: url("/assets/images/rainbow-background.svg");
+  background-size: 100%;
+  &__about-link {
+    @extend .mdc-button;
+    @extend .mdc-button--raised;
+    @include mdc-button-filled-accessible($mdc-theme-secondary)
+    margin-top: 1rem;
   }
 }
