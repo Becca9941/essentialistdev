@@ -20,6 +20,8 @@ $mdc-theme-on-surface: #000000;
 @import "@material/elevation/mdc-elevation";
 // Fab
 @import "@material/fab/mdc-fab";
+// Card
+@import "@material/card/mdc-card";
 
 .navigation {
   @extend .mdc-top-app-bar;
@@ -193,6 +195,28 @@ main {
     }
     &:active {
       @include mdc-button-container-fill-color(rgba($mdc-theme-secondary, .2));
+    }
+  }
+}
+
+.horizontal-article {
+  @extend .mdc-card;
+  margin: 1rem;
+  border-radius: 0;
+  &__wrapper {
+    @extend .mdc-card__primary-action;
+  }
+  &__content {
+    @extend .mdc-card__media;
+    display: flex;
+    flex-direction: row;
+    &-cover {
+      width: 100px;
+      height: 100px;
+    }
+    &-title {
+      @extend .mdc-typography--headline6;
+      padding: 1rem;
     }
   }
 }
