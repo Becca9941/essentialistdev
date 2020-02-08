@@ -11,3 +11,5 @@ const topAppBarElement = document.querySelector('.mdc-top-app-bar');
 const topAppBar = new MDCTopAppBar(topAppBarElement);
 // Fab
 const fabRipple = new MDCRipple(document.querySelector('.mdc-fab'));
+// Button
+const buttonRipple = new MDCRipple(document.querySelector('.mdc-button'));

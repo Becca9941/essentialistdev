@@ -127,15 +127,49 @@ main {
 
 .download-cta {
   text-align: center;
+  color: white;
+  background-color: $text;
+  position: relative;
+  margin: 3rem 0;
+  padding: 2.5rem 1rem;
   &__scroll-down {
     @extend .mdc-fab;
     color: white;
     background-color: $text;
+    position: absolute;
+    top: -1.7rem;
+    left: 50%;
+    transform: translateX(-50%);
   }
   &__wrapper {
     @extend .mdc-fab__ripple;
   }
   &__icon {
     @extend .mdc-fab__icon;
+  }
+
+  &__title {
+    @extend .mdc-typography--headline3;
+    margin-bottom: 1rem;
+  }
+  &__tagline {
+    @extend .mdc-typography--body1;
+    margin-bottom: 1rem;
+    padding: 0 3rem;
+  }
+  &__additional-info {
+    @extend .mdc-typography--caption;
+    margin-top: .5rem;
+  }
+  &__continue {
+    position: absolute;
+    bottom: -2rem;
+    background-color: $text;
+    left: 50%;
+    transform: translateX(-50%);
+    clip-path: polygon(49% 53%, 0 0, 100% 0);
+    display: block;
+    width: 2rem;
+    height: 2rem;
   }
 }
