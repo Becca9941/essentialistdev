@@ -240,3 +240,86 @@ main {
     }
   }
 }
+
+.action-plans {
+  margin: 2rem 0;
+  padding: 2rem 0;
+  &__title {
+    @extend .mdc-typography--headline5;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  &__description {
+    @extend .mdc-typography--body1;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+}
+
+.article-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.article-card {
+  @extend .mdc-card;
+  border-radius: 0;
+  color: $text;
+  &__wrapper {
+    @extend .mdc-card__primary-action;
+  }
+  &__content {
+    @extend .mdc-card__media;
+    &__wrapper {
+      padding: 1rem;
+    }
+    &__cover {
+      width: 350px;
+      height: 200px;
+    }
+    &__category {
+      @extend .mdc-typography--overline;
+      color: $mdc-theme-secondary;
+    }
+    &__title {
+      @extend .mdc-typography--headline6;
+    }
+    &__author {
+      @extend .mdc-typography--subtitle2;
+      margin-bottom: 1rem;
+      &__link {
+        color: $text;
+        text-decoration: none;
+        font-weight: 500;
+      }
+    }
+    &__description {
+      @extend .mdc-typography--body2;
+    }
+  }
+  &__ctas {
+    @extend .mdc-card__actions;
+    &__links {
+      @extend .mdc-card__action-buttons;
+      &__link {
+        @extend .mdc-button;
+        @extend .mdc-button--outlined;
+        @extend .mdc-card__action;
+        @extend .mdc-card__action--button;
+        padding: 0 3rem;
+        &__label {
+          @extend .mdc-button__label;
+        }
+      }
+    }
+    &__icons {
+      @extend .mdc-card__action-icons;
+      &__icon {
+        @extend .mdc-icon-button;
+        @extend .mdc-card__action;
+        @extend .mdc-card__action--icon;
+      }
+    }
+  }
+}
