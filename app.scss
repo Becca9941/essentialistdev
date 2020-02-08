@@ -124,3 +124,18 @@ main {
     margin-bottom: 2rem;
   }
 }
+
+.download-cta {
+  text-align: center;
+  &__scroll-down {
+    @extend .mdc-fab;
+    color: white;
+    background-color: $text;
+  }
+  &__wrapper {
+    @extend .mdc-fab__ripple;
+  }
+  &__icon {
+    @extend .mdc-fab__icon;
+  }
+}
