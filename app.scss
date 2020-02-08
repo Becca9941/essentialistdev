@@ -18,6 +18,8 @@ $mdc-theme-on-surface: #000000;
 @import "@material/icon-button/mdc-icon-button";
 // Elevation
 @import "@material/elevation/mdc-elevation";
+// Fab
+@import "@material/fab/mdc-fab";
 
 .navigation {
   @extend .mdc-top-app-bar;
