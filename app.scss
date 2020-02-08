@@ -173,3 +173,26 @@ main {
     height: 2rem;
   }
 }
+
+.learn-more {
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+  &__logo {
+    width: 10rem;
+    margin-bottom: .5rem;
+  }
+  &__welcome {
+    @extend .mdc-typography--body1;
+    margin: 1rem 0;
+  }
+  &__about-link {
+    @include mdc-button-ink-color($mdc-theme-secondary);
+    &:hover {
+      @include mdc-button-container-fill-color(rgba($mdc-theme-secondary, .12));
+    }
+    &:active {
+      @include mdc-button-container-fill-color(rgba($mdc-theme-secondary, .2));
+    }
+  }
+}
