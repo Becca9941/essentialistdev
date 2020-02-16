@@ -135,6 +135,8 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 .ask-audience {
   padding: 0 1rem;
   margin-bottom: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
   &__question {
     @extend .mdc-typography--headline5;
     font-weight: 500;
