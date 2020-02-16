@@ -23,6 +23,21 @@ $mdc-theme-on-surface: #000000;
 // Card
 @import "@material/card/mdc-card";
 
+strong {
+  font-weight: bold;
+  color: $mdc-theme-primary;
+}
+q {
+  font-style: italic;
+  quotes: "“" "”" "‘" "’";
+}
+q:before {
+    content: open-quote;
+}
+q:after {
+    content: close-quote;
+}
+
 .navigation {
   @extend .mdc-top-app-bar;
   @include mdc-top-app-bar-fill-color(white);
