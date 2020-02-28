@@ -53,11 +53,13 @@ title: Essentialist Dev | Action Plans for Developers
       <article class="article-card">
         <div class="article-card__wrapper" tabindex="0">
           <section class="article-card__content">
+            <a class="article-card-link" href="{{ post.url }}">
             <img class="article-card__content__cover" src="/assets/images/{{ post.featured_image }}" alt="">
-            <a class="article-card__content__wrapper" href="{{ post.url }}">
+            <div class="article-card__content__wrapper">
               <p class="article-card__content__category">{{ post.category }}</p>
               <h2 class="article-card__content__title">{{ post.title }}</h2>
               <p class="article-card__content__description">Description</p>
+            </div>
             </a>
           </section>
         </div>

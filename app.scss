@@ -406,6 +406,10 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   text-align: left;
   display: inline-block;
   margin: 1rem;
+  &-link {
+    text-decoration: none;
+    color: unset;
+  }
   &__wrapper {
     @extend .mdc-card__primary-action;
   }
@@ -417,6 +421,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     &__cover {
       width: 350px;
       height: 200px;
+      object-fit: cover;
     }
     &__category {
       @extend .mdc-typography--overline;
