@@ -53,6 +53,12 @@ q:after {
     @extend .mdc-top-app-bar__section;
     @extend .mdc-top-app-bar__section--align-start;
     @include mdc-top-app-bar-icon-ink-color($text);
+    &__title {
+      a {
+        text-decoration: none;
+        color: $text;
+      }
+    }
     &__open {
       @extend .mdc-top-app-bar__navigation-icon;
       @extend .mdc-icon-button;
