@@ -179,9 +179,12 @@ main {
 }
 
 .category {
-  @extend .mdc-elevation--z5;
   flex-basis: 45%;
   margin-bottom: 3%;
+  transition: box-shadow 0.2s linear;
+  &:hover {
+    @extend .mdc-elevation--z5;
+  }
   & a { text-decoration: none; }
   &__cover {
     width: 100%;
