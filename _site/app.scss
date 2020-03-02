@@ -565,7 +565,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         font-size: .8rem;
         letter-spacing: .1rem;
       }
-      &__category { color: $mdc-theme-primary; }
+      &__category { color: $mdc-theme-secondary; }
     }
   }
 
@@ -588,7 +588,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
       margin-right: .5rem;
     }
     &-name {
-      color: $mdc-theme-secondary;
+      color: $mdc-theme-primary;
       text-decoration: none;
     }
   }
