@@ -399,7 +399,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 
 .action-plans {
   margin: 2rem 0;
-  padding: 2rem 0;
+  padding-top: 2rem;
   &__title {
     @extend .mdc-typography--headline5;
     margin-bottom: 1rem;
