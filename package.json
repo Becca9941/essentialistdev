@@ -27,6 +27,7 @@
     "@material/card": "^4.0.0",
     "@material/elevation": "^4.0.0",
     "@material/fab": "^4.0.0",
+    "@material/list": "^5.1.0",
     "@material/ripple": "^4.0.0",
     "@material/top-app-bar": "^4.0.0",
     "@material/typography": "^4.0.0"
