@@ -17,13 +17,21 @@
   </head>
   <body class="mdc-typography">
 
-    {% include navigation-drawer.html %}
+    <div class="site">
 
-    {% include navigation.html %}
+      <div class="mobile-nav">
+        {% include navigation-drawer.html %}
+      </div>
 
-    {{ content }}
+      <div class="main-content">
+        {% include navigation.html %}
 
-    {% include footer.html %}
+        {{ content }}
+
+        {% include footer.html %}
+      </div>
+
+    </div>
 
     <!-- import the Material javascript file -->
     <script src="/dist/bundle.js" async></script>
