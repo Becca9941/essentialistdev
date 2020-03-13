@@ -226,7 +226,7 @@ q:after {
   height: 100vh;
   overflow: scroll;
   left: -230px;
-  transition: left .3s ease-in-out;
+  transition: left .3s ease-out;
   & header {
     position: sticky;
     top: 0;
@@ -243,7 +243,7 @@ q:after {
   min-width: 340px;
   height: 100vh;
   overflow: scroll;
-  transition: left .3s ease-in-out;
+  transition: left .3s ease-out;
   &.open {
     left: 231px;
   }
