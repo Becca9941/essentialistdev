@@ -14,16 +14,17 @@
 
     <!-- Progress Bar -->
     <script type="text/javascript" src="/assets/js/progress-bar.js"></script>
+    <script type="text/javascript" src="/assets/js/openMobileNav.js"></script>
   </head>
   <body class="mdc-typography">
 
     <div class="site">
 
-      <div class="mobile-nav">
+      <div class="mobile-nav" id="mobile-nav">
         {% include navigation-drawer.html %}
       </div>
 
-      <div class="main-content">
+      <div class="main-content" id="main-content">
         {% include navigation.html %}
 
         {{ content }}

@@ -225,23 +225,38 @@ q:after {
   position: absolute;
   height: 100vh;
   overflow: scroll;
+  left: -230px;
+  transition: left .3s ease-in-out;
+  & header {
+    position: sticky;
+    top: 0;
+  }
+  &.open {
+    display: block;
+    left: 0;
+  }
 }
 .main-content {
   position: absolute;
-  left: 231px;
+  left: 0;
   right: 0;
   min-width: 340px;
   height: 100vh;
   overflow: scroll;
+  transition: left .3s ease-in-out;
+  &.open {
+    left: 231px;
+  }
 }
+
 
 @media only screen and (min-width: 900px) {
   .nav-banner,
   .site-page-links { display: flex; }
   .nav-logo { display: block; width: 6rem; }
   .navigation__menu__open { display: none !important; }
-  .mobile-nav { display: none; }
-  .main-content { left: 0; }
+  .mobile-nav.open { display: none; transition: none; }
+  .main-content.open { left: 0; transition: none; }
 }
 
 
