@@ -264,19 +264,23 @@ q:after {
   left: 0;
   background-color: white;
   width: 100%;
-  display: flex;
   align-items: center;
+  display: none;
+  &.open {
+    display: flex;
+  }
   & #search-input {
     width: 100%;
-    padding: 1rem;
+    padding: .5rem;
     margin: .5rem;
     margin-right: 0;
     border: solid 2px $mdc-theme-secondary;
     border-radius: .3rem;
+    font-family: roboto;
+    font-size: 1rem;
+    color: $mdc-theme-primary;
     &::placeholder {
-      color: $mdc-theme-primary;
-      font-family: roboto;
-      font-size: 1.5rem;
+      color: $text;
     }
   }
   & #close-search {
@@ -286,6 +290,26 @@ q:after {
     background-color: white;
     color: $text;
     border: none;
+  }
+  & #results-container {
+    position: absolute;
+    top: 3.5rem;
+    background-color: white;
+    width: 100%;
+    & li {
+      padding: 1rem;
+      &:last-of-type {
+        border-bottom: solid 2px lightgray;
+      }
+      & a {
+        color: $text;
+        text-decoration: none;
+        &:hover {
+          color: $mdc-theme-primary;
+          text-decoration: underline;
+        }
+      }
+    }
   }
 }
 
