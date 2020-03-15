@@ -259,6 +259,36 @@ q:after {
   .main-content.open { left: 0; transition: none; }
 }
 
+#search-container {
+  position: absolute;
+  left: 0;
+  background-color: white;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  & #search-input {
+    width: 100%;
+    padding: 1rem;
+    margin: .5rem;
+    margin-right: 0;
+    border: solid 2px $mdc-theme-secondary;
+    border-radius: .3rem;
+    &::placeholder {
+      color: $mdc-theme-primary;
+      font-family: roboto;
+      font-size: 1.5rem;
+    }
+  }
+  & #close-search {
+    padding: .5rem;
+    margin-left: 0;
+    cursor: pointer;
+    background-color: white;
+    color: $text;
+    border: none;
+  }
+}
+
 
 main {
   padding: 4rem 0;
