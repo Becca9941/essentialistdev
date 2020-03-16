@@ -39,6 +39,10 @@ q:after {
     content: close-quote;
 }
 
+.contact-form {
+  margin-top: 2rem;
+}
+
 .navigation {
   @extend .mdc-top-app-bar;
   @include mdc-top-app-bar-fill-color(white);
