@@ -3,5 +3,8 @@ layout: default
 ---
 
 <main>
-{{ content }}
+  <article class="article">
+    {% include article-header.html %}
+    {{ content }}
+  </article>
 </main>
