@@ -754,6 +754,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   margin: 0 auto;
   padding: 0 1.2rem;
   &__intro {
+    margin-top: -3rem;
     &__metadata {
       display: flex;
       justify-content: space-between;
@@ -805,5 +806,9 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   & h2 {
     @extend .mdc-typography--headline4;
     margin-top: 4rem;
+  }
+  a {
+    color: $mdc-theme-secondary;
+    font-weight: bold;
   }
 }
