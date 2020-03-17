@@ -23,7 +23,6 @@ $mdc-theme-on-surface: #000000;
 @import "@material/fab/mdc-fab";
 // Card
 @import "@material/card/mdc-card";
-
 strong {
   font-weight: bold;
   color: $mdc-theme-primary;
@@ -532,6 +531,12 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   max-width: 430px;
   display: inline-block;
   text-align: left;
+  &--pillar {
+    width: 100%;
+    max-width: 900px;
+    margin: 0;
+    margin-top: 2rem;
+  }
   &__wrapper {
     @extend .mdc-card__primary-action;
   }
@@ -793,5 +798,12 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     &-caption {
       @extend .mdc-typography--caption;
     }
+  }
+  & p {
+    margin: 2rem 0;
+  }
+  & h2 {
+    @extend .mdc-typography--headline4;
+    margin-top: 4rem;
   }
 }
