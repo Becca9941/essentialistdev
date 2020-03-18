@@ -600,6 +600,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   display: inline-block;
   width: 100%;
   max-width: 350px;
+  margin-bottom: 2rem;
   &-link {
     text-decoration: none;
     color: unset;
@@ -661,6 +662,12 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         @extend .mdc-card__action--icon;
       }
     }
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .article-card {
+    margin: 1rem;
   }
 }
 
