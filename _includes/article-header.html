@@ -1,7 +1,7 @@
 <header class="article__intro">
   <section class="article__intro__metadata">
     <p class="article__intro__metadata__category">{{ page.categories }}</p>
-    <p class="article__intro__metadata__published">4 days ago</p>
+    <p class="article__intro__metadata__published">{{ page.date }}</p>
   </section>
   <h1 class="article__title">{{ page.title }}</h1>
   <p class="article__leading">{{ page.leading }}</p>
@@ -10,7 +10,7 @@
     <a class="article__author-name" href="#" target="_blank">{{ page.author }}</a>
   </section>
   <figure class="article__hero">
-    <img class="article__hero-img"src="/assets/images/kittens.jpg" alt="hero image">
+    <img class="article__hero-img"src="/assets/images/article-images/{{ page.featured_image }}" alt="hero image">
     <figcaption class="article__hero-caption">{{ page.hero_caption }}</figcaption>
   </figure>
 
