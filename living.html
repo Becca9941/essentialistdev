@@ -11,28 +11,7 @@ title: Live By Design
 
   {% for post in site.posts %}
   {% if post.category contains "Living" %}
-  <article class="article-card">
-    <div class="article-card__wrapper" tabindex="0">
-      <section class="article-card__content">
-        <a class="article-card-link" href="{{ post.url }}">
-          <img class="article-card__content__cover" src="/assets/images/{{ post.featured_image }}" alt="">
-          <div class="article-card__content__wrapper">
-            <p class="article-card__content__category">{{ post.category }}</p>
-            <h2 class="article-card__content__title">{{ post.title }}</h2>
-            <p class="article-card__content__description">Description</p>
-          </div>
-        </a>
-      </section>
-    </div>
-    <div class="article-card__ctas">
-      <section class="article-card__ctas__links">
-        <a class="article-card__ctas__links__link" href="{{ post.url }}"><span class="mdc-button__ripple"></span><span class="article-card__ctas__links__link__lable">Read</span></a>
-      </section>
-      <section class="article-card__ctas__icons">
-        <button class="article-card__ctas__icons__icon material-icons" title="share">share</button>
-      </section>
-    </div>
-  </article>
+    {% include article-card.html %}
   {% endif %}
   {% endfor %}
 
