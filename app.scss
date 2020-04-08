@@ -824,3 +824,17 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   }
   & img { max-width: 100%; }
 }
+
+.rating-table {
+  width: 100%;
+  margin-bottom: 2rem;
+  &__scale-explanation {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    & th,td {
+      width: 33%;
+      text-align: center;
+    }
+  }
+}
