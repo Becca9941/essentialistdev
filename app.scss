@@ -52,6 +52,10 @@ q:after {
   margin-top: 2rem;
 }
 
+.contents {
+  margin-top: 2rem;
+}
+
 .navigation {
   @extend .mdc-top-app-bar;
   @include mdc-top-app-bar-fill-color(white);
