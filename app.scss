@@ -48,6 +48,20 @@ q:after {
   margin-top: 2rem;
 }
 
+.cv {
+  display: block;
+  width: 90%;
+  max-width: 900px;
+  margin: 2rem auto;
+  margin-top: 4.5rem;
+  @extend .mdc-elevation--z6;
+  &__download {
+    position: absolute;
+    right: 0;
+    margin: 1rem;
+  }
+}
+
 .contact-form {
   margin-top: 2rem;
 }
