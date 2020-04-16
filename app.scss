@@ -27,6 +27,9 @@ strong {
   font-weight: bold;
   color: $mdc-theme-primary;
 }
+em {
+  font-style: italic;
+}
 q {
   font-style: italic;
   quotes: "“" "”" "‘" "’";
@@ -36,6 +39,9 @@ q:before {
 }
 q:after {
     content: close-quote;
+}
+ul, ol {
+  margin: 2rem 0;
 }
 
 .award {
@@ -854,11 +860,23 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     @extend .mdc-typography--headline5;
     margin-bottom: 1rem;
   }
+  & h4 {
+    @extend .mdc-typography--headline6;
+    margin-bottom: 1rem;
+  }
   & a {
     color: $mdc-theme-secondary;
     font-weight: bold;
   }
   & img { max-width: 100%; }
+  & .list {
+      li {
+        margin: 1rem 0;
+        margin-left: 1.5rem;
+        list-style-image: url('/assets/images/heart-bulletpoint.svg');
+        list-style-type: inside;
+      }
+    }
 }
 
 .rating-table {

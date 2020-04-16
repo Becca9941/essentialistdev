@@ -15,7 +15,7 @@ leading: Using a single brand color, you can generate a complete and semantic co
   <li class="contents__topic"><a class="contents__topic__link" href="#why">Why should you use a color palette for web design?</a></li>
   <li class="contents__topic"><a class="contents__topic__link" href="#how">How to create a color palette from a single brand color?</a></li>
   <li class="contents__topic"><a class="contents__topic__link" href="#examples">Examples of how to use a color palette</a></li>
-  <li class="contents__topic"><a class="contents__topic__link" href="#action">User persona action plan</a></li>
+  <li class="contents__topic"><a class="contents__topic__link" href="#action">Color Palette action plan</a></li>
   <li class="contents__topic"><a class="contents__topic__link" href="#nextSteps">Next Steps</a></li>
 </ul>
 
@@ -23,9 +23,106 @@ leading: Using a single brand color, you can generate a complete and semantic co
 
 <h2 id="what">What Is A Color Palette?</h2>
 
+<p>A color palette in web design contains all of the colors that are used in a specific project, or over a series of projects if you are working from a brand-specific palette.</p>
+
+<p>Color palettes are often referred to as color schemes, though there is a subtle difference in their meanings. A color scheme is more of a plan or a blueprint for the kind of colors you want to go for (usually for semantic or mood-related reasons), like planning to use reds for warning messages and green for confirmation messages (<a href="https://www.shutterstock.com/blog/color-scheme-definitions-types-examples" target="_blank">Alex Clem, 2019</a> and <a href="https://refactoringui.com/book/" target="_blank">Refactoring UI [Book]</a>).</p>
+
+<p>Whereas the color palette itself is more of a subset of the color scheme, which contains the actual color values you want to use from the range that your blueprint maps out. Kind of like how a database schema describes how data is organised in it's tables, whilst a database itself is a solid instance of that schema containing real values in it's table cells.</p>
+
 <h2 id="why">Why Should You Use A Color Palette For Web Design?</h2>
 
+<p>There are many reasons why you should use a color palette for your web design projects. Here is a quick list, then we'll go through each of them in more detail.</p>
+
+<ul class="list">
+  <li>Accessibility</li>
+  <li>Maintaining a strong brand identity</li>
+  <li>Clear semantics</li>
+  <li>Reduce decision fatigue</li>
+</ul>
+
+<h3>Accessibility</h3>
+
+<blockquote cite="https://medium.com/envoy-design/how-to-design-an-accessible-color-scheme-4a13ca12c92b">Designing for web accessibility means intentionally building an experience for all users, regardless of their visual, hearing, motor, or cognitive ability. Organizations like the <a href="https://www.w3.org/Consortium/mission" target="_blank">World Wide Web Consortium</a> (W3C) have created accessibility standards that anyone can follow to build a more inclusive web - <cite><a href="https://medium.com/envoy-design/how-to-design-an-accessible-color-scheme-4a13ca12c92b" target="_blank">Katie Riley, 2019</a></cite>.</blockquote>
+
+<p>An accessibible color palette makes your website more usable for everyone, but more importantly, for the 1.3 billion globaly who have some form of vision impairment. If you are lucky enough to not have some form of vision impairment, here is an example of a design trend that was happening in the twenty-tens.</p>
+
+<figure>
+  <img src="/assets/images/article-images/low-contrast-copy.png" alt="Example of a website with medium gray text on a light gray background.">
+  <figcaption>Figure 1: Low contrast text copy example by <a href="https://www.nngroup.com/articles/low-contrast/" target="_blank">Katie Sherwin, 2015.</a></figcaption>
+</figure>
+
+<p>It's a bit of a nightmare to read, isn't it? Chances are, if you came across this website you would bounce, bounce, bounce away nursing a headache and a vendetta. This is what happens when you overlay a background color with another color of a similar tone. This is a common, usually less drastic mistake that happens when you want to make other elments on the page stand out more.</p>
+
+<p>There are a number of ways to make sure your color palette is accessible (meets the <a href="https://webaim.org/articles/contrast/#ratio" target="_blank">4.5.1 contrast ratio</a> standard). Personally, I prefer using an inbuilt brower usability auditor tool like <a href="https://developer.mozilla.org/en-US/docs/Tools/Accessibility_inspector" target="_blank">Firefox's Accessibility Inspector</a> and <a href="https://developers.google.com/web/tools/lighthouse" target="_blank">Chrome's Lighthouse</a>. They both provide detailed reports and allow me to catch any problems in the development environment before publishing.</p>
+
+<h3>Maintaining A Strong Brand Identity</h3>
+
+<blockquote cite="https://usabilitygeek.com/how-to-ensure-colour-consistency-in-digital-design/">Retaining a uniform or recognisable look across your branding increases recognition among customers after updates or changes happen... You implement this consistency through colour choices, image design, typeface, message branding, and how you deliver the advertising to consumers - <cite><a href="https://usabilitygeek.com/how-to-ensure-colour-consistency-in-digital-design/ target=_blank">Alan Smith, N/A</a></cite>.</blockquote>
+
+<p>Consistency is key for maintaining a strong brand identity across multiple web pages or even multiple web projects. Color is a great tool for helping you do this, because you can assign each color a specific use-case, which is something I do with all of my own color palettes. If you do this, be sure to write down the rules somewhere so that you can easily refer to them when building out your projects.</p>
+
+<p>TIP: To make it easier to assign use-case labels to each of your colors, you can look through this <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element" target="_blank">HTML elements reference</a> and assign the appropriate elements to one of the colors in your color palette.</p>
+
+<h3>Clear Semantics</h3>
+
+<p>Colors are a powerful tool for evoking emotions or conveying meaning (semantics). The meaning that someone takes away from a color can be influenced by lots of different factors, like their culture, prior associations (blue tends to be corporate, like Facebook and Twitter), or even just personal preference (<a href="https://www.smashingmagazine.com/2010/01/color-theory-for-designers-part-1-the-meaning-of-color/" target="_blank">Cameran Chapman, 2010</a>).</p>
+
+<p>It can be difficult to anticipate how your audience will react to the colors you choose. If you have chosen your brand color to evoke a specific feeling, it's worth testing it with a sample of your real audience to double check how they react to it.</p>
+
+<p>Besides your brand color, you can follow a few universally accepted web conventions for conveying meaning, like using reds for warning messages, green for confirmation messages, yellow for warning messages and blue for information notices (<a href="https://refactoringui.com/previews/building-your-color-palette/" target="_blank">Refactoring UI [Book]</a>). By following these conventions, you already have most of your color scheme planned for you!</p>
+
+<h3>Reduce Decision Fatigue</h3>
+
+<p>Building a website takes a lot of effort. You have to make a lot of decisions at every step of the way. Picking a new color every time you make a new element is exhausting, and unecessary. A flexible set of colors with well-defined purposes will make your build process run far more smoothly, and that's saying something.</p>
+
+<p>A well-designed color palette is also a massive help when you have more than one developer working on the same web-project. Without a color palette, you could end up with fifty different color values for essentially one shade of gray. Let's not go there.</p>
+
+<p>A strong branded color palette can also be repurposed for use across other business-related projects, like social media posts, ebooks and posters. This is a great help for helping all members of the team (sales, marketing, product, technical etc) create content that is immediately recognisable as belonging to the same company.</p>
+
+<p>Tools like <a href="https://www.canva.com/" target="_blank">Canva</a> (templates for social media posts, ebooks and more) even let you add a 'Brand Kit', including your logos and color palette to make this even easier.</p>
+
 <h2 id="how">How To Create A Color Palette From A Single Brand Color</h2>
+
+<p>Crafting a color palette from scratch is a huge skill. Many color theorists spend much of their career learning about the science of color and it's impact on psychology, perception, accessibility and user experience etc (<a href="https://www.smashingmagazine.com/category/color-theory" target="_blank">Smashing Magazine, Color Theory article set</a>). For this reason, it's actually pretty difficult to find an online color palette generator that accounts for even a tiny subset of these factors.</p>
+
+<p>This is why I was rediculously happy to come across the book <a href="https://refactoringui.com/book/" target="_blank">Refactoring UI</a> by Adam Wathan and Steve Schoger. In this book, they break down how to drastically improve your User Interface design skills, by making tiny tweeks that have a massive impact. In one of the chapters, which they released for free <a href="https://refactoringui.com/previews/building-your-color-palette/" target="_blank">here</a>, they talk about three color groups to include in your color scheme and palette.</p>
+
+<ul class="list">
+  <li><strong>Primary colors:</strong> Your brand colors, at most one or two which are used for primary actions or emphasizing navigation elements.</li>
+  <li><strong>Greys:</strong> 8-10 shades ranging from dark to light, which you use for text, backgrounds, panels and pretty much everything on your site. If you look on the <a href="/">Home Page</a> of The Essentialist Dev, you will see that I use a very light gray as the background for all of my article card images, so they stand out a little from the white background, and look consistent.</li>
+  <li><strong>Accent colors:</strong> These are semantic colors, which are used to <em>communicate</em> some kind of message to the user. Like teal for highlighting a new feature, reds for destructive actions, yellow for warning messages and greens to highlight positive information like confirmation messages.</li>
+</ul>
+
+<h3>Step 1: Choose A Single Brand Color</h3>
+
+<p>Inspired by this process, I came up with a one-step solution to help you create your own color palette, all you need is a single brand color. More specifically, you need a HSL value for your chosen brand color. You can convert your Hex or RGB value into HSL by using this <a href="https://www.w3schools.com/colors/colors_converter.asp" target="_blank">color converter</a>. Just enter your color code and it will convert it into HSL for you.</p>
+
+<h4>What is a HSL color value?</h4>
+
+<p>If your interested in exactly how Hex and RGB color values are calculated, <a href="https://www.maketecheasier.com/difference-between-hex-rgb-hsl/" target="_blank">Andrew Braun, 2020</a> wrote an excellent article about it.</p>
+
+<p>HSL stands for Hue, Saturation and Lightness.</p>
+
+
+<ul class="list">
+
+  <li><strong>Hue:</strong> accepts a value between 0 and 360, where each color is a degree on a 360° color wheel. 0° is red, 120° is green and 240° is blue.</li>
+
+  <li><strong>Saturation:</strong> accepts a value between 0% (fully gray), and 100% (no gray at all).</li>
+
+  <li><strong>Lightness:</strong> accepts a value between 0% (fully black) and 100% (fully white).</li>
+
+</ul>
+
+<h4>Why is it better to use HSL colors for your color palette?</h4>
+
+<p>Our color palette needs to be flexible enough to account for all possible use cases, so we need a variety of shades for each of our main color groups. Using HSL values, the only value we need to change to get a different shade is the Lightness value (how close to black or white our color is). If we wanted 100 shades (we don't, pls), it's easy to get 100 different shades just by adjusting the lightness percentage between 0% and 100%. It's much harder to do this using Hex and RGB color values.</p>
+
+<p><strong>The best part about only needing to adjust the lightness value of our Hsl code to get a new shade, is that instead of storing 50 shades of gray as individual values in our CSS color palette, we only need to store the hue for each of our colors. Then we only need one function to call any shade we can imagine for all of our colors!</strong></p>
+
+<h3>Step 2: Auto Generate Your Brand's Complimentary Color</h3>
+
+<p>
 
 <h2 id="examples">Examples Of How To Use A Color Palette</h2>
 
