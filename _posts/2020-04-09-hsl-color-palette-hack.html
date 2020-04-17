@@ -14,7 +14,6 @@ leading: Using a single brand color, you can generate a complete and semantic co
   <li class="contents__topic"><a class="contents__topic__link" href="#what">What is a color palette?</a></li>
   <li class="contents__topic"><a class="contents__topic__link" href="#why">Why should you use a color palette for web design?</a></li>
   <li class="contents__topic"><a class="contents__topic__link" href="#how">How to create a color palette from a single brand color?</a></li>
-  <li class="contents__topic"><a class="contents__topic__link" href="#examples">Examples of how to use a color palette</a></li>
   <li class="contents__topic"><a class="contents__topic__link" href="#action">Color Palette action plan</a></li>
   <li class="contents__topic"><a class="contents__topic__link" href="#nextSteps">Next Steps</a></li>
 </ul>
@@ -93,9 +92,11 @@ leading: Using a single brand color, you can generate a complete and semantic co
   <li><strong>Accent colors:</strong> These are semantic colors, which are used to <em>communicate</em> some kind of message to the user. Like teal for highlighting a new feature, reds for destructive actions, yellow for warning messages and greens to highlight positive information like confirmation messages.</li>
 </ul>
 
-<h3>Step 1: Choose A Single Brand Color</h3>
+<h3>Step 1: Choose One Accessible Brand Color</h3>
 
-<p>Inspired by this process, I came up with a one-step solution to help you create your own color palette, all you need is a single brand color. More specifically, you need a HSL value for your chosen brand color. You can convert your Hex or RGB value into HSL by using this <a href="https://www.w3schools.com/colors/colors_converter.asp" target="_blank">color converter</a>. Just enter your color code and it will convert it into HSL for you.</p>
+<p>Inspired by this process, I came up with a one-step solution to help you create your own color palette, all you need is a single brand color. More specifically, you need a HSL value for your chosen brand color.</p>
+
+<p>Before you convert your Hex or RGB value into a HSL value using this <a href="https://www.w3schools.com/colors/colors_converter.asp" target="_blank">color converter</a>, enter your color code into this <a href="https://webaim.org/resources/contrastchecker/" target="_blank">Web Accessibility Contrast Checker</a>. Set the foreground to white, and the background to your brand color. You will get a contrast ratio, and a rating for whether this color combination passes the accessibility standards for normal text, large text and user interface components. If it fails, adjust the lightness value scale until you get a pass mark. As soon as it passes, you have an accessible brand color.</p>
 
 <h4>What is a HSL color value?</h4>
 
@@ -118,13 +119,35 @@ leading: Using a single brand color, you can generate a complete and semantic co
 
 <p>Our color palette needs to be flexible enough to account for all possible use cases, so we need a variety of shades for each of our main color groups. Using HSL values, the only value we need to change to get a different shade is the Lightness value (how close to black or white our color is). If we wanted 100 shades (we don't, pls), it's easy to get 100 different shades just by adjusting the lightness percentage between 0% and 100%. It's much harder to do this using Hex and RGB color values.</p>
 
-<p><strong>The best part about only needing to adjust the lightness value of our Hsl code to get a new shade, is that instead of storing 50 shades of gray as individual values in our CSS color palette, we only need to store the hue for each of our colors. Then we only need one function to call any shade we can imagine for all of our colors!</strong></p>
+<p><strong>The best part about only needing to adjust the lightness value of our Hsl code to get a new shade, is that instead of storing 10 shades of pink as individual values in our CSS color palette, we only need to store the hue for each of our colors. Then we only need one function to call any shade we can imagine for all of our colors!</strong></p>
 
 <h3>Step 2: Auto Generate Your Brand's Complimentary Color</h3>
 
-<p>
+<p>A complimentary color for you brand is one that offers the strongest contrast when placed next to your primary brand color. On a color wheel, a complimentary color is one that is directly opposite the color on the other side of the wheel. Therefore, to choose a good complimentary color for your brand, all you need to do is find your color on the color wheel (or one that is close to it), then look for the color directly opposite it.</p>
 
-<h2 id="examples">Examples Of How To Use A Color Palette</h2>
+<p>Or, you can use Canva's <a href="https://www.canva.com/colors/color-wheel/" target="_blank">Color Wheel Tool</a> which auto generates your complementary color based on your brand color. You can also generate other color combinations that work well together, based on the following combination types:</p>
+
+<ul class="list">
+  <li><strong>Complementary:</strong> Two colors that are on opposite sides of the color wheel, which provides a high contrast and high impact color combination.</li>
+  <li><strong>Monochromatic:</strong>Three shades, tones and tints of a single color, which provides more of a subtle combination that helps you create harmonious design looks.</li>
+  <li><strong>Analogous:</strong> Three colors that are side-by-side on the color wheel. This combination can be a little overwhelming though as the shades are all too similar.</li>
+  <li><strong>Triadic:</strong> Three colors that are evenly spaced on the color wheel. Also provides a high contrast color scheme, but not as strongly as the complimentary color combination. This is a great way to choose a different complimentary color if the one you have clashes with one of your other semantic color groups.</li>
+  <li><strong>Tetradic:</strong> Four colors that are spaced evenly on the color wheel. Can be difficult to balance and can be overwhelming in practice unless one color is dominant and the rest are used as accents.</li>
+</ul>
+
+<p>In my case, my primary brand color is a <strong>Razzmataz</strong>, which is a hot pink color. I found out the name of it by entering it's color value into this <a href="http://chir.ag/projects/name-that-color/#E60054" target="_blank">Name That Color tool</a> by Chirag Mehta, 2007.</p>
+
+<p>The complimentary color for my brand color is called Jade (after making it darker with the <a href="https://webaim.org/resources/contrastchecker/" target="_blank">Web Accessibility Contrast Checker</a> tool. However, this shade was a bit close to my semantic green color for confirmation messages, so I ended up choosing a <strong class="tropical-rain-forest">Tropical Rain Forest</strong> color instead, using the Triadic complimentary color wheel to help me choose a color that contrasts well with my brand color.</p>
+
+<h3>Step 3: Tweak Your Semantic Colors</h3>
+
+<p>We mentioned earlier that there are a few universally accepted web-conventions for conveying meaning, like using reds for warning messages, green for confirmation messages, yellow for warning messages and blue for information notices (<a href="https://refactoringui.com/previews/building-your-color-palette/" target="_blank">Refactoring UI [Book]</a>). We also need grays for things like text, backgrounds, panels and pretty much everything else on your site.</p>
+
+<p>All you need to do to generate a shade palette for each of these colors is to find the HSL code for each of them, and then adjust the Lightness value in increments from 0% - 100% until you have all of the shades you want.<p>
+
+<p>I personally like having 10 shade options for each of my colors. All you need to do is change the hue value to the color you want, and keep the rest of the values the same.</p>
+
+<img src="/assets/images/article-images/medium/color-palette-generator.svg" alt="color palette">
 
 <h2 id="action">Color Palette Action Plan</h2>
 
