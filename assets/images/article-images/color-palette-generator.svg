@@ -31,78 +31,7 @@
                 <feMergeNode in="shadowMatrixOuter2"></feMergeNode>
             </feMerge>
         </filter>
-        <path d="M479.655,269.835625 C479.655,276.918677 473.913052,282.660625 466.83,282.660625 L352.6875,282.660625 C345.604448,282.660625 339.8625,276.918677 339.8625,269.835625 L339.8625,31.931875 C339.8625,28.390349 342.733474,25.519375 346.275,25.519375 L473.2425,25.519375 C476.784026,25.519375 479.655,28.390349 479.655,31.931875 L479.655,269.835625 Z" id="path-7"></path>
-        <filter x="-5.4%" y="-2.1%" width="109.3%" height="105.1%" filterUnits="objectBoundingBox" id="filter-8">
-            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.371940559 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-        <path d="M307.8,269.835625 C307.8,276.918677 302.058052,282.660625 294.975,282.660625 L180.8325,282.660625 C173.749448,282.660625 168.0075,276.918677 168.0075,269.835625 L168.0075,31.931875 C168.0075,28.390349 170.878474,25.519375 174.42,25.519375 L301.3875,25.519375 C304.929026,25.519375 307.8,28.390349 307.8,31.931875 L307.8,269.835625 Z" id="path-9"></path>
-        <filter x="-5.4%" y="-2.1%" width="109.3%" height="105.1%" filterUnits="objectBoundingBox" id="filter-10">
-            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.371940559 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-        <path d="M140.7425,269.835625 C140.7425,276.918677 135.000552,282.660625 127.9175,282.660625 L13.775,282.660625 C6.69194808,282.660625 0.95,276.918677 0.95,269.835625 L0.95,31.931875 C0.95,28.390349 3.82097404,25.519375 7.3625,25.519375 L134.33,25.519375 C137.871526,25.519375 140.7425,28.390349 140.7425,31.931875 L140.7425,269.835625 Z" id="path-11"></path>
-        <filter x="-5.4%" y="-2.1%" width="109.3%" height="105.1%" filterUnits="objectBoundingBox" id="filter-12">
-            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.371940559 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-        <path d="M69.4271477,25.65 L126.9675,25.65 C134.050552,25.65 139.7925,31.3919481 139.7925,38.475 L139.7925,70.6497187 L139.7925,70.6497187 L69.4271477,70.6497187 L69.4271477,25.65 Z" id="path-13"></path>
-        <filter x="-12.8%" y="-15.6%" width="122.7%" height="135.6%" filterUnits="objectBoundingBox" id="filter-14">
-            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
-            <feOffset dx="-1" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.240466565 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-        <rect id="path-15" x="69.4271477" y="69.3640125" width="70.3653523" height="44.9997187"></rect>
-        <filter x="-12.8%" y="-15.6%" width="122.7%" height="135.6%" filterUnits="objectBoundingBox" id="filter-16">
-            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
-            <feOffset dx="-1" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.240466565 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-        <rect id="path-17" x="69.4271477" y="113.078025" width="70.3653523" height="44.9997187"></rect>
-        <filter x="-12.8%" y="-15.6%" width="122.7%" height="135.6%" filterUnits="objectBoundingBox" id="filter-18">
-            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
-            <feOffset dx="-1" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.240466565 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-        <rect id="path-19" x="69.4271477" y="156.792037" width="70.3653523" height="44.9997188"></rect>
-        <filter x="-12.8%" y="-15.6%" width="122.7%" height="135.6%" filterUnits="objectBoundingBox" id="filter-20">
-            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
-            <feOffset dx="-1" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.240466565 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-        <path d="M139.7925,244.31625 C139.7925,251.399302 134.050552,257.14125 126.9675,257.14125 L12.825,257.14125 C5.74194808,257.14125 1.86309921e-14,251.399302 1.42108547e-14,244.31625 L0,12.825 C-8.67423686e-16,5.74194808 5.74194808,-2.25157815e-15 12.825,0 L126.9675,0 C134.050552,4.75221311e-16 139.7925,5.74194808 139.7925,12.825 L139.7925,244.31625 Z" id="path-21"></path>
-        <filter x="-14.7%" y="-6.4%" width="127.9%" height="115.2%" filterUnits="objectBoundingBox" id="filter-22">
-            <feMorphology radius="2" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
-            <feOffset dx="-1" dy="3" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.0362762238 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-        <path d="M139.7925,244.31625 C139.7925,251.399302 134.050552,257.14125 126.9675,257.14125 L12.825,257.14125 C5.74194808,257.14125 4.42013736e-15,251.399302 0,244.31625 L0,6.4125 C-4.33711843e-16,2.87097404 2.87097404,1.53874618e-15 6.4125,0 L133.38,0 C136.921526,3.38311758e-15 139.7925,2.87097404 139.7925,6.4125 L139.7925,244.31625 Z" id="path-23"></path>
-        <filter x="-5.4%" y="-2.1%" width="109.3%" height="105.1%" filterUnits="objectBoundingBox" id="filter-24">
-            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.371940559 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-        <path d="M310.584145,244.31625 C310.584145,251.399302 304.842197,257.14125 297.759145,257.14125 L183.616645,257.14125 C176.533594,257.14125 170.791645,251.399302 170.791645,244.31625 L170.791645,6.4125 C170.791645,2.87097404 173.662619,1.53874618e-15 177.204145,0 L304.171645,0 C307.713171,2.49493916e-15 310.584145,2.87097404 310.584145,6.4125 L310.584145,244.31625 Z" id="path-25"></path>
-        <filter x="-5.4%" y="-2.1%" width="109.3%" height="105.1%" filterUnits="objectBoundingBox" id="filter-26">
-            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.371940559 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-        <path d="M482.534145,244.31625 C482.534145,251.399302 476.792197,257.14125 469.709145,257.14125 L355.566645,257.14125 C348.483594,257.14125 342.741645,251.399302 342.741645,244.31625 L342.741645,6.4125 C342.741645,2.87097404 345.612619,1.53874618e-15 349.154145,0 L476.121645,0 C479.663171,2.49493916e-15 482.534145,2.87097404 482.534145,6.4125 L482.534145,244.31625 Z" id="path-27"></path>
-        <filter x="-5.4%" y="-2.1%" width="109.3%" height="105.1%" filterUnits="objectBoundingBox" id="filter-28">
-            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.371940559 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-        <filter x="-13.7%" y="-13.9%" width="127.4%" height="127.8%" filterUnits="objectBoundingBox" id="filter-29">
+        <filter x="-13.7%" y="-13.9%" width="127.4%" height="127.8%" filterUnits="objectBoundingBox" id="filter-7">
             <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
             <feGaussianBlur stdDeviation="3.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
             <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.286358173 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
@@ -111,8 +40,8 @@
                 <feMergeNode in="SourceGraphic"></feMergeNode>
             </feMerge>
         </filter>
-        <ellipse id="path-30" cx="58.5" cy="57.5" rx="39.5" ry="38"></ellipse>
-        <filter x="-32.9%" y="-31.6%" width="165.8%" height="168.4%" filterUnits="objectBoundingBox" id="filter-31">
+        <ellipse id="path-8" cx="58.5" cy="57.5" rx="39.5" ry="38"></ellipse>
+        <filter x="-32.9%" y="-31.6%" width="165.8%" height="168.4%" filterUnits="objectBoundingBox" id="filter-9">
             <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
             <feOffset dx="0" dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
             <feGaussianBlur stdDeviation="8" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
@@ -128,682 +57,749 @@
                 <feMergeNode in="shadowMatrixOuter2"></feMergeNode>
             </feMerge>
         </filter>
-        <rect id="path-32" x="0.202556208" y="0" width="100.939227" height="23.2810984" rx="3"></rect>
-        <filter x="-8.4%" y="-27.9%" width="116.8%" height="173.0%" filterUnits="objectBoundingBox" id="filter-33">
+        <rect id="path-10" x="0.202556208" y="0" width="100.939227" height="23.2810984" rx="3"></rect>
+        <filter x="-8.4%" y="-27.9%" width="116.8%" height="173.0%" filterUnits="objectBoundingBox" id="filter-11">
             <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
             <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
             <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
             <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.429906031 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
-        <text id="text-34" font-family="LibreFranklin-Bold, Libre Franklin" font-size="12" font-weight="bold" fill="#FFFFFF">
+        <text id="text-12" font-family="LibreFranklin-Bold, Libre Franklin" font-size="12" font-weight="bold" fill="#FFFFFF">
             <tspan x="35.3469667" y="15.3575424">Share  </tspan>
         </text>
-        <filter x="-12.6%" y="-33.3%" width="125.2%" height="193.3%" filterUnits="objectBoundingBox" id="filter-35">
+        <filter x="-12.6%" y="-33.3%" width="125.2%" height="193.3%" filterUnits="objectBoundingBox" id="filter-13">
             <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
             <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
             <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.283216783 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
-        <path d="M9.10413368,7.7323471 C8.45277863,7.7323471 7.8782435,8.06376914 7.50287992,8.57129717 L4.02129485,6.66972773 C4.06687404,6.48817072 4.09963408,6.30057956 4.09963408,6.10315121 C4.09963408,5.88822888 4.06072559,5.68588194 4.00643414,5.48898601 L7.47265997,3.59618891 C7.84595825,4.12668728 8.43535409,4.47342288 9.1046322,4.47342288 C10.238367,4.47342288 11.1554819,3.49393791 11.1554819,2.28419169 C11.1554819,1.07553567 10.238367,0.0954929177 9.10465594,0.0954929177 C7.97348501,0.0954929177 7.05534929,1.07553567 7.05534929,2.28416633 C7.05534929,2.48215246 7.08813307,2.67027605 7.13421078,2.85239084 L3.65312423,4.75396028 C3.27726213,4.24589983 2.70168248,3.91338759 2.04930665,3.91338759 C0.916592671,3.91338759 0,4.89396277 0,6.10315121 C0,7.31233965 0.91661641,8.2923824 2.04930665,8.2923824 C2.71960554,8.2923824 3.30850286,7.94455659 3.68332044,7.4135258 L7.14800323,9.3063229 C7.09371177,9.50266105 7.05430477,9.70665598 7.05430477,9.92213608 C7.05430477,11.1313245 7.97244049,12.1113673 9.10361142,12.1113673 C10.2373462,12.1113673 11.1544611,11.1313245 11.1544611,9.92213608 C11.1549834,8.71185743 10.2378684,7.7323471 9.10413368,7.7323471 Z" id="path-36"></path>
-        <filter x="-62.7%" y="-41.6%" width="225.5%" height="216.5%" filterUnits="objectBoundingBox" id="filter-37">
+        <path d="M9.10413368,7.7323471 C8.45277863,7.7323471 7.8782435,8.06376914 7.50287992,8.57129717 L4.02129485,6.66972773 C4.06687404,6.48817072 4.09963408,6.30057956 4.09963408,6.10315121 C4.09963408,5.88822888 4.06072559,5.68588194 4.00643414,5.48898601 L7.47265997,3.59618891 C7.84595825,4.12668728 8.43535409,4.47342288 9.1046322,4.47342288 C10.238367,4.47342288 11.1554819,3.49393791 11.1554819,2.28419169 C11.1554819,1.07553567 10.238367,0.0954929177 9.10465594,0.0954929177 C7.97348501,0.0954929177 7.05534929,1.07553567 7.05534929,2.28416633 C7.05534929,2.48215246 7.08813307,2.67027605 7.13421078,2.85239084 L3.65312423,4.75396028 C3.27726213,4.24589983 2.70168248,3.91338759 2.04930665,3.91338759 C0.916592671,3.91338759 0,4.89396277 0,6.10315121 C0,7.31233965 0.91661641,8.2923824 2.04930665,8.2923824 C2.71960554,8.2923824 3.30850286,7.94455659 3.68332044,7.4135258 L7.14800323,9.3063229 C7.09371177,9.50266105 7.05430477,9.70665598 7.05430477,9.92213608 C7.05430477,11.1313245 7.97244049,12.1113673 9.10361142,12.1113673 C10.2373462,12.1113673 11.1544611,11.1313245 11.1544611,9.92213608 C11.1549834,8.71185743 10.2378684,7.7323471 9.10413368,7.7323471 Z" id="path-14"></path>
+        <filter x="-62.7%" y="-41.6%" width="225.5%" height="216.5%" filterUnits="objectBoundingBox" id="filter-15">
             <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
             <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
             <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.243635271 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
-        <rect id="path-38" x="0" y="0" width="1201.21932" height="18"></rect>
-        <filter x="-0.6%" y="-27.8%" width="101.2%" height="177.8%" filterUnits="objectBoundingBox" id="filter-39">
+        <rect id="path-16" x="0" y="0" width="1201.21932" height="18"></rect>
+        <filter x="-0.6%" y="-27.8%" width="101.2%" height="177.8%" filterUnits="objectBoundingBox" id="filter-17">
             <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
             <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
             <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
-        <text id="text-40" font-family="LibreFranklin-SemiBold, Libre Franklin" font-size="12" font-weight="500" fill="#F5FFFC">
+        <text id="text-18" font-family="LibreFranklin-SemiBold, Libre Franklin" font-size="12" font-weight="500" fill="#F5FFFC">
             <tspan x="46.5193206" y="378">CREATING YOUR COLOR PALETTE</tspan>
         </text>
-        <filter x="-2.6%" y="-33.3%" width="105.2%" height="193.3%" filterUnits="objectBoundingBox" id="filter-41">
+        <filter x="-2.6%" y="-33.3%" width="105.2%" height="193.3%" filterUnits="objectBoundingBox" id="filter-19">
             <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
             <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
             <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.178021198 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
-        <rect id="path-42" x="0" y="0" width="557" height="70"></rect>
-        <filter x="-1.3%" y="-7.1%" width="102.5%" height="120.0%" filterUnits="objectBoundingBox" id="filter-43">
+        <rect id="path-20" x="0" y="0" width="557" height="70"></rect>
+        <filter x="-1.3%" y="-7.1%" width="102.5%" height="120.0%" filterUnits="objectBoundingBox" id="filter-21">
             <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
             <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
             <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.152671547 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
-        <rect id="path-44" x="0" y="0" width="557" height="70"></rect>
-        <filter x="-1.3%" y="-7.1%" width="102.5%" height="120.0%" filterUnits="objectBoundingBox" id="filter-45">
+        <rect id="path-22" x="0" y="0" width="557" height="70"></rect>
+        <filter x="-1.3%" y="-7.1%" width="102.5%" height="120.0%" filterUnits="objectBoundingBox" id="filter-23">
             <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
             <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
             <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.152671547 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
-        <rect id="path-46" x="0" y="0" width="557" height="70"></rect>
-        <filter x="-1.3%" y="-7.1%" width="102.5%" height="120.0%" filterUnits="objectBoundingBox" id="filter-47">
+        <rect id="path-24" x="0" y="0" width="557" height="70"></rect>
+        <filter x="-1.3%" y="-7.1%" width="102.5%" height="120.0%" filterUnits="objectBoundingBox" id="filter-25">
             <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
             <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
             <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
             <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.152671547 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
-        <rect id="path-48" x="0" y="0.0871373563" width="94.8254994" height="17.9128626" rx="3"></rect>
-        <filter x="-1.6%" y="-8.4%" width="103.2%" height="116.7%" filterUnits="objectBoundingBox" id="filter-49">
+        <rect id="path-26" x="0" y="0.0871373563" width="94.8254994" height="17.9128626" rx="3"></rect>
+        <filter x="-1.6%" y="-8.4%" width="103.2%" height="116.7%" filterUnits="objectBoundingBox" id="filter-27">
             <feMorphology radius="1" operator="erode" in="SourceAlpha" result="shadowSpreadInner1"></feMorphology>
             <feGaussianBlur stdDeviation="0.5" in="shadowSpreadInner1" result="shadowBlurInner1"></feGaussianBlur>
             <feOffset dx="1" dy="1" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
             <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
             <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.376092657 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
         </filter>
-        <rect id="path-50" x="0" y="0.0871373563" width="94.8254994" height="17.9128626" rx="3"></rect>
-        <filter x="-1.6%" y="-8.4%" width="103.2%" height="116.7%" filterUnits="objectBoundingBox" id="filter-51">
+        <rect id="path-28" x="0" y="0.0871373563" width="94.8254994" height="17.9128626" rx="3"></rect>
+        <filter x="-1.6%" y="-8.4%" width="103.2%" height="116.7%" filterUnits="objectBoundingBox" id="filter-29">
             <feMorphology radius="1" operator="erode" in="SourceAlpha" result="shadowSpreadInner1"></feMorphology>
             <feGaussianBlur stdDeviation="0.5" in="shadowSpreadInner1" result="shadowBlurInner1"></feGaussianBlur>
             <feOffset dx="1" dy="1" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
             <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
             <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.376092657 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
         </filter>
-        <rect id="path-52" x="0" y="0.0871373563" width="94.8254994" height="17.9128626" rx="3"></rect>
-        <filter x="-1.6%" y="-8.4%" width="103.2%" height="116.7%" filterUnits="objectBoundingBox" id="filter-53">
+        <rect id="path-30" x="0" y="0.0871373563" width="94.8254994" height="17.9128626" rx="3"></rect>
+        <filter x="-1.6%" y="-8.4%" width="103.2%" height="116.7%" filterUnits="objectBoundingBox" id="filter-31">
             <feMorphology radius="1" operator="erode" in="SourceAlpha" result="shadowSpreadInner1"></feMorphology>
             <feGaussianBlur stdDeviation="0.5" in="shadowSpreadInner1" result="shadowBlurInner1"></feGaussianBlur>
             <feOffset dx="1" dy="1" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
             <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
             <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.376092657 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
         </filter>
-        <rect id="path-54" x="0" y="0.0871373563" width="94.8254994" height="17.9128626" rx="3"></rect>
-        <filter x="-1.6%" y="-8.4%" width="103.2%" height="116.7%" filterUnits="objectBoundingBox" id="filter-55">
+        <rect id="path-32" x="0" y="0.0871373563" width="94.8254994" height="17.9128626" rx="3"></rect>
+        <filter x="-1.6%" y="-8.4%" width="103.2%" height="116.7%" filterUnits="objectBoundingBox" id="filter-33">
             <feMorphology radius="1" operator="erode" in="SourceAlpha" result="shadowSpreadInner1"></feMorphology>
             <feGaussianBlur stdDeviation="0.5" in="shadowSpreadInner1" result="shadowBlurInner1"></feGaussianBlur>
             <feOffset dx="1" dy="1" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
             <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
             <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.376092657 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+        <path d="M470.0619,264.438912 C470.0619,271.380303 464.434791,277.007412 457.4934,277.007412 L345.63375,277.007412 C338.692359,277.007412 333.06525,271.380303 333.06525,264.438912 L333.06525,31.2932375 C333.06525,27.8225421 335.878805,25.0089875 339.3495,25.0089875 L463.77765,25.0089875 C467.248345,25.0089875 470.0619,27.8225421 470.0619,31.2932375 L470.0619,264.438912 Z" id="path-34"></path>
+        <filter x="-5.5%" y="-2.2%" width="109.5%" height="105.2%" filterUnits="objectBoundingBox" id="filter-35">
+            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.371940559 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M301.644,264.438912 C301.644,271.380303 296.016891,277.007412 289.0755,277.007412 L177.21585,277.007412 C170.274459,277.007412 164.64735,271.380303 164.64735,264.438912 L164.64735,31.2932375 C164.64735,27.8225421 167.460905,25.0089875 170.9316,25.0089875 L295.35975,25.0089875 C298.830445,25.0089875 301.644,27.8225421 301.644,31.2932375 L301.644,264.438912 Z" id="path-36"></path>
+        <filter x="-5.5%" y="-2.2%" width="109.5%" height="105.2%" filterUnits="objectBoundingBox" id="filter-37">
+            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.371940559 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M137.92765,264.438912 C137.92765,271.380303 132.300541,277.007412 125.35915,277.007412 L13.4995,277.007412 C6.55810912,277.007412 0.931,271.380303 0.931,264.438912 L0.931,31.2932375 C0.931,27.8225421 3.74455456,25.0089875 7.21525,25.0089875 L131.6434,25.0089875 C135.114095,25.0089875 137.92765,27.8225421 137.92765,31.2932375 L137.92765,264.438912 Z" id="path-38"></path>
+        <filter x="-5.5%" y="-2.2%" width="109.5%" height="105.2%" filterUnits="objectBoundingBox" id="filter-39">
+            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.371940559 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M68.0386047,25.137 L124.42815,25.137 C131.369541,25.137 136.99665,30.7641091 136.99665,37.7055 L136.99665,69.2367244 L136.99665,69.2367244 L68.0386047,69.2367244 L68.0386047,25.137 Z" id="path-40"></path>
+        <filter x="-13.1%" y="-15.9%" width="123.2%" height="136.3%" filterUnits="objectBoundingBox" id="filter-41">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="-1" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.240466565 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-42" x="68.0386047" y="67.9767322" width="68.9580453" height="44.0997244"></rect>
+        <filter x="-13.1%" y="-15.9%" width="123.2%" height="136.3%" filterUnits="objectBoundingBox" id="filter-43">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="-1" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.240466565 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-44" x="68.0386047" y="110.816464" width="68.9580453" height="44.0997244"></rect>
+        <filter x="-13.1%" y="-15.9%" width="123.2%" height="136.3%" filterUnits="objectBoundingBox" id="filter-45">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="-1" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.240466565 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-46" x="68.0386047" y="153.656197" width="68.9580453" height="44.0997244"></rect>
+        <filter x="-13.1%" y="-15.9%" width="123.2%" height="136.3%" filterUnits="objectBoundingBox" id="filter-47">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="-1" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.240466565 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M136.99665,239.429925 C136.99665,246.371316 131.369541,251.998425 124.42815,251.998425 L12.5685,251.998425 C5.62710912,251.998425 1.86136436e-14,246.371316 1.42108547e-14,239.429925 L0,12.5685 C-8.50075212e-16,5.62710912 5.62710912,-2.27760086e-15 12.5685,0 L124.42815,0 C131.369541,5.01244021e-16 136.99665,5.62710912 136.99665,12.5685 L136.99665,239.429925 Z" id="path-48"></path>
+        <filter x="-15.0%" y="-6.5%" width="128.5%" height="115.5%" filterUnits="objectBoundingBox" id="filter-49">
+            <feMorphology radius="2" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="-1" dy="3" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.0362762238 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M136.99665,239.429925 C136.99665,246.371316 131.369541,251.998425 124.42815,251.998425 L12.5685,251.998425 C5.62710912,251.998425 4.40278889e-15,246.371316 0,239.429925 L0,6.28425 C-4.25037606e-16,2.81355456 2.81355456,1.52573483e-15 6.28425,0 L130.7124,0 C134.183095,2.50622011e-16 136.99665,2.81355456 136.99665,6.28425 L136.99665,239.429925 Z" id="path-50"></path>
+        <filter x="-5.5%" y="-2.2%" width="109.5%" height="105.2%" filterUnits="objectBoundingBox" id="filter-51">
+            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.371940559 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M304.372463,239.429925 C304.372463,246.371316 298.745353,251.998425 291.803963,251.998425 L179.944313,251.998425 C173.002922,251.998425 167.375813,246.371316 167.375813,239.429925 L167.375813,6.28425 C167.375813,2.81355456 170.189367,1.52573483e-15 173.660063,0 L298.088213,0 C301.558908,-6.37556409e-16 304.372463,2.81355456 304.372463,6.28425 L304.372463,239.429925 Z" id="path-52"></path>
+        <filter x="-5.5%" y="-2.2%" width="109.5%" height="105.2%" filterUnits="objectBoundingBox" id="filter-53">
+            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.371940559 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M472.883463,239.429925 C472.883463,246.371316 467.256353,251.998425 460.314963,251.998425 L348.455313,251.998425 C341.513922,251.998425 335.886813,246.371316 335.886813,239.429925 L335.886813,6.28425 C335.886813,2.81355456 338.700367,1.52573483e-15 342.171063,0 L466.599213,0 C470.069908,-6.37556409e-16 472.883463,2.81355456 472.883463,6.28425 L472.883463,239.429925 Z" id="path-54"></path>
+        <filter x="-5.5%" y="-2.2%" width="109.5%" height="105.2%" filterUnits="objectBoundingBox" id="filter-55">
+            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.371940559 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
     </defs>
     <g id="Concept-screens" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Group-40" transform="translate(5.000000, 25.000000)">
-            <g id="Group-29">
-                <rect id="Rectangle" fill="#F5FFFC" x="0" y="1.33143132" width="627" height="675"></rect>
-                <g id="Rectangle">
-                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
-                    <use fill="#FAFAFA" fill-rule="evenodd" xlink:href="#path-1"></use>
-                </g>
-                <g id="Rectangle" opacity="0.576753162">
-                    <use fill="#F2F2F2" fill-rule="evenodd" xlink:href="#path-3"></use>
-                    <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
-                </g>
-                <g id="Rectangle">
-                    <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
-                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-5"></use>
-                </g>
-                <g id="Group-28" transform="translate(673.233696, 71.965000)">
-                    <g id="Combined-Shape">
-                        <use fill="black" fill-opacity="1" filter="url(#filter-8)" xlink:href="#path-7"></use>
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-7"></use>
-                    </g>
-                    <g id="Combined-Shape">
-                        <use fill="black" fill-opacity="1" filter="url(#filter-10)" xlink:href="#path-9"></use>
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-9"></use>
-                    </g>
-                    <g id="Combined-Shape">
-                        <use fill="black" fill-opacity="1" filter="url(#filter-12)" xlink:href="#path-11"></use>
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-11"></use>
-                    </g>
-                    <g id="Rectangle">
-                        <use fill="black" fill-opacity="1" filter="url(#filter-14)" xlink:href="#path-13"></use>
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-13"></use>
-                    </g>
-                    <g id="Rectangle">
-                        <use fill="black" fill-opacity="1" filter="url(#filter-16)" xlink:href="#path-15"></use>
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-15"></use>
-                    </g>
-                    <g id="Rectangle">
-                        <use fill="black" fill-opacity="1" filter="url(#filter-18)" xlink:href="#path-17"></use>
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-17"></use>
-                    </g>
-                    <g id="Rectangle">
-                        <use fill="black" fill-opacity="1" filter="url(#filter-20)" xlink:href="#path-19"></use>
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-19"></use>
-                    </g>
-                    <path d="M3.96035235,25.519375 L70.3653523,25.519375 L70.3653523,25.519375 L70.3653523,70.406875 L1.11035235,70.406875 L1.11035235,28.369375 C1.11035235,26.7953635 2.38634081,25.519375 3.96035235,25.519375 Z" id="Rectangle" fill="#80004F"></path>
-                    <rect id="Rectangle" fill="#B3006E" x="0.95" y="69.255" width="69.255" height="44.8875"></rect>
-                    <polygon id="Rectangle" fill="#C8047D" points="0.95 112.86 70.205 112.86 70.205 157.7475 36.9536489 157.7475 0.95 157.7475"></polygon>
-                    <rect id="Rectangle" fill="#E6008E" x="0.95" y="156.465" width="69.255" height="44.8875"></rect>
-                    <rect id="Rectangle" fill="#FA1FA5" x="0.95" y="200.07" width="70.5375" height="44.8875"></rect>
-                    <path d="M70.205,25.65 L137.8925,25.65 C139.466512,25.65 140.7425,26.9259885 140.7425,28.5 L140.7425,70.5375 L140.7425,70.5375 L70.205,70.5375 L70.205,25.65 Z" id="Rectangle" fill="#FF4DBB"></path>
-                    <rect id="Rectangle" fill="#FF80CE" x="70.205" y="69.255" width="70.5375" height="44.8875"></rect>
-                    <rect id="Rectangle" fill="#FFB3E2" x="70.205" y="112.86" width="70.5375" height="44.8875"></rect>
-                    <rect id="Rectangle" fill="#FFE5F5" x="70.205" y="156.465" width="70.5375" height="44.8875"></rect>
-                    <rect id="Rectangle" fill="#FFF5FB" x="70.205" y="200.07" width="70.5375" height="44.8875"></rect>
-                    <text id="BRAND" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="15.39" font-weight="normal" fill="#D20074">
-                        <tspan x="41.04" y="263.805">BRAND</tspan>
-                    </text>
-                    <text id="hsl(323,-100%,-__-%)" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="8.9775" font-weight="normal" fill="#191919">
-                        <tspan x="27.3125" y="275.3775">hsl(323, 100%, __ %)</tspan>
-                    </text>
-                    <text id="25" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                        <tspan x="58.6625" y="64.296647">25</tspan>
-                    </text>
-                    <text id="35" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                        <tspan x="58.6625" y="108.035">35</tspan>
-                    </text>
-                    <text id="40" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                        <tspan x="58.6625" y="151.64">40</tspan>
-                    </text>
-                    <text id="45" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                        <tspan x="58.6625" y="195.245">45</tspan>
-                    </text>
-                    <text id="55" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                        <tspan x="58.6625" y="238.20875">55</tspan>
-                    </text>
-                    <text id="65" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                        <tspan x="128.209496" y="64.296647">65</tspan>
-                    </text>
-                    <text id="75" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                        <tspan x="128.209496" y="108.035">75</tspan>
-                    </text>
-                    <text id="85" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                        <tspan x="128.209496" y="150.3575">85</tspan>
-                    </text>
-                    <text id="95" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                        <tspan x="128.209496" y="195.245">95</tspan>
-                    </text>
-                    <text id="98" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                        <tspan x="128.209496" y="239.49125">98</tspan>
-                    </text>
-                    <path d="M170.8575,25.65 L237.2625,25.65 L237.2625,25.65 L237.2625,70.5375 L168.0075,70.5375 L168.0075,28.5 C168.0075,26.9259885 169.283488,25.65 170.8575,25.65 Z" id="Rectangle" fill="#006F80"></path>
-                    <rect id="Rectangle" fill="#009BB3" x="168.0075" y="69.255" width="69.255" height="44.8875"></rect>
-                    <rect id="Rectangle" fill="#00B1CC" x="168.0075" y="112.86" width="69.255" height="44.8875"></rect>
-                    <rect id="Rectangle" fill="#00C7E6" x="168.0075" y="156.465" width="69.255" height="44.8875"></rect>
-                    <rect id="Rectangle" fill="#1AE0FF" x="168.0075" y="200.07" width="69.255" height="44.8875"></rect>
-                    <path d="M237.2625,25.65 L304.95,25.65 C306.524012,25.65 307.8,26.9259885 307.8,28.5 L307.8,70.5375 L307.8,70.5375 L237.2625,70.5375 L237.2625,25.65 Z" id="Rectangle" fill="#4DE7FF"></path>
-                    <rect id="Rectangle" fill="#80EEFF" x="237.2625" y="69.255" width="70.5375" height="44.8875"></rect>
-                    <rect id="Rectangle" fill="#B3F5FF" x="237.2625" y="112.86" width="70.5375" height="44.8875"></rect>
-                    <rect id="Rectangle" fill="#E5FCFF" x="237.2625" y="156.465" width="70.5375" height="44.8875"></rect>
-                    <rect id="Rectangle" fill="#F5FEFF" x="237.2625" y="200.07" width="70.5375" height="44.8875"></rect>
-                    <text id="ACCENT" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="15.39" font-weight="normal" fill="#00C7E6">
-                        <tspan x="203.27625" y="262.5225">ACCENT</tspan>
-                    </text>
-                    <text id="ACCENT" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="15.39" font-weight="normal" fill="#00C7E6">
-                        <tspan x="203.27625" y="262.5225">ACCENT</tspan>
-                    </text>
-                    <text id="hsl(118,-100%,-__%-)" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="8.9775" font-weight="normal" fill="#191919">
-                        <tspan x="193.72875" y="273.4775">hsl(118, 100%, __% )</tspan>
-                    </text>
-                    <text id="25" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                        <tspan x="225.07875" y="64.296647">25</tspan>
-                    </text>
-                    <text id="35" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                        <tspan x="225.07875" y="108.035">35</tspan>
-                    </text>
-                    <text id="40" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                        <tspan x="225.07875" y="151.64">40</tspan>
-                    </text>
-                    <text id="45" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                        <tspan x="225.07875" y="195.245">45</tspan>
-                    </text>
-                    <text id="55" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                        <tspan x="225.07875" y="238.20875">55</tspan>
-                    </text>
-                    <text id="65" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                        <tspan x="294.625746" y="64.296647">65</tspan>
-                    </text>
-                    <text id="75" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                        <tspan x="294.625746" y="108.035">75</tspan>
-                    </text>
-                    <text id="85" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                        <tspan x="294.625746" y="150.3575">85</tspan>
-                    </text>
-                    <text id="95" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                        <tspan x="294.625746" y="195.245">95</tspan>
-                    </text>
-                    <text id="98" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                        <tspan x="294.625746" y="239.49125">98</tspan>
-                    </text>
-                    <path d="M342.7125,25.65 L409.1175,25.65 L409.1175,25.65 L409.1175,70.5375 L339.8625,70.5375 L339.8625,28.5 C339.8625,26.9259885 341.138488,25.65 342.7125,25.65 Z" id="Rectangle" fill="#404040"></path>
-                    <rect id="Rectangle" fill="#595959" x="339.8625" y="69.255" width="69.255" height="44.8875"></rect>
-                    <rect id="Rectangle" fill="#666666" x="339.8625" y="112.86" width="69.255" height="44.8875"></rect>
-                    <rect id="Rectangle" fill="#737373" x="339.8625" y="156.465" width="69.255" height="44.8875"></rect>
-                    <rect id="Rectangle" fill="#8C8C8C" x="339.8625" y="200.07" width="69.255" height="44.8875"></rect>
-                    <path d="M409.1175,25.65 L476.805,25.65 C478.379012,25.65 479.655,26.9259885 479.655,28.5 L479.655,70.5375 L479.655,70.5375 L409.1175,70.5375 L409.1175,25.65 Z" id="Rectangle" fill="#A6A6A6"></path>
-                    <rect id="Rectangle" fill="#BFBFBF" x="409.1175" y="69.255" width="70.5375" height="44.8875"></rect>
-                    <rect id="Rectangle" fill="#D9D9D9" x="409.1175" y="112.86" width="70.5375" height="44.8875"></rect>
-                    <rect id="Rectangle" fill="#F2F2F2" x="409.1175" y="156.465" width="70.5375" height="44.8875"></rect>
-                    <rect id="Rectangle" fill="#FAFAFA" x="409.2125" y="199.975" width="70.5375" height="45.0775"></rect>
-                    <text id="GRAYS" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="15.39" font-weight="normal" fill="#666666">
-                        <tspan x="382.185" y="262.5225">GRAYS</tspan>
-                    </text>
-                    <text id="hsl(0,-0%,-__-%)" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="8.9775" font-weight="normal" fill="#191919">
-                        <tspan x="375.7125" y="274.805">hsl(0, 0%, __ %)</tspan>
-                    </text>
-                    <text id="25" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                        <tspan x="396.93375" y="64.296647">25</tspan>
-                    </text>
-                    <text id="35" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                        <tspan x="396.93375" y="108.035">35</tspan>
-                    </text>
-                    <text id="40" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                        <tspan x="396.93375" y="151.64">40</tspan>
-                    </text>
-                    <text id="45" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                        <tspan x="396.93375" y="195.245">45</tspan>
-                    </text>
-                    <text id="55" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                        <tspan x="396.93375" y="238.20875">55</tspan>
-                    </text>
-                    <text id="65" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                        <tspan x="466.480746" y="64.296647">65</tspan>
-                    </text>
-                    <text id="75" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                        <tspan x="466.480746" y="108.035">75</tspan>
-                    </text>
-                    <text id="85" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                        <tspan x="466.480746" y="150.3575">85</tspan>
-                    </text>
-                    <text id="95" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                        <tspan x="466.480746" y="195.245">95</tspan>
-                    </text>
-                    <text id="98" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                        <tspan x="466.480746" y="239.49125">98</tspan>
-                    </text>
-                    <text id="MAIN-COLORS" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="12.825" font-weight="normal" fill="#595959">
-                        <tspan x="0" y="12">MAIN COLORS</tspan>
-                    </text>
-                </g>
-                <g id="Group-26" transform="translate(674.219321, 367.500000)">
-                    <text id="SEMANTIC-COLORS" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="12.825" font-weight="normal" fill="#595959">
-                        <tspan x="0" y="12">SEMANTIC COLORS</tspan>
-                    </text>
-                    <g id="warning" transform="translate(0.000000, 22.280228)">
-                        <g id="Group-18" transform="translate(0.000000, 0.641250)">
-                            <g id="Combined-Shape">
-                                <use fill="black" fill-opacity="1" filter="url(#filter-22)" xlink:href="#path-21"></use>
-                                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-21"></use>
-                            </g>
-                            <g id="Combined-Shape">
-                                <use fill="black" fill-opacity="1" filter="url(#filter-24)" xlink:href="#path-23"></use>
-                                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-23"></use>
-                            </g>
-                            <g id="Combined-Shape">
-                                <use fill="black" fill-opacity="1" filter="url(#filter-26)" xlink:href="#path-25"></use>
-                                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-25"></use>
-                            </g>
-                            <g id="Combined-Shape">
-                                <use fill="black" fill-opacity="1" filter="url(#filter-28)" xlink:href="#path-27"></use>
-                                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-27"></use>
-                            </g>
-                        </g>
-                        <path d="M2.85,0 L69.255,0 L69.255,0 L69.255,44.8875 L0,44.8875 L0,2.85 C-1.92760819e-16,1.27598846 1.27598846,2.06549807e-15 2.85,0 Z" id="Rectangle" fill="#806000"></path>
-                        <rect id="Rectangle" fill="#B38600" x="0" y="43.605" width="69.255" height="44.8875"></rect>
-                        <rect id="Rectangle" fill="#CC9900" x="0" y="87.21" width="69.255" height="44.8875"></rect>
-                        <rect id="Rectangle" fill="#E6AC00" x="0" y="130.815" width="69.255" height="44.8875"></rect>
-                        <rect id="Rectangle" fill="#FFC61A" x="0" y="174.42" width="69.255" height="44.8875"></rect>
-                        <path d="M69.255,0 L136.9425,0 C138.516512,8.54296646e-15 139.7925,1.27598846 139.7925,2.85 L139.7925,44.8875 L139.7925,44.8875 L69.255,44.8875 L69.255,0 Z" id="Rectangle" fill="#FFD24D"></path>
-                        <rect id="Rectangle" fill="#FFDF80" x="69.255" y="43.605" width="70.5375" height="44.8875"></rect>
-                        <rect id="Rectangle" fill="#FFECB3" x="69.255" y="87.21" width="70.5375" height="44.8875"></rect>
-                        <rect id="Rectangle" fill="#FFF9E5" x="69.255" y="130.815" width="70.5375" height="44.8875"></rect>
-                        <rect id="Rectangle" fill="#FFFCF5" x="69.255" y="174.42" width="70.5375" height="44.8875"></rect>
-                        <text id="WARNING" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="15.39" font-weight="normal" fill="#E6AC00">
-                            <tspan x="30.13875" y="237.8225">WARNING</tspan>
-                        </text>
-                        <text id="hsl(45,-100%,-__%-)" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="8.9775" font-weight="normal" fill="#191919">
-                            <tspan x="27.76375" y="249.480853">hsl(45, 100%, __% )</tspan>
-                        </text>
-                        <text id="25" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                            <tspan x="57.07125" y="38.646647">25</tspan>
-                        </text>
-                        <text id="35" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                            <tspan x="57.07125" y="82.385">35</tspan>
-                        </text>
-                        <text id="40" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                            <tspan x="57.07125" y="125.99">40</tspan>
-                        </text>
-                        <text id="45" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                            <tspan x="57.07125" y="169.595">45</tspan>
-                        </text>
-                        <text id="55" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                            <tspan x="57.07125" y="212.55875">55</tspan>
-                        </text>
-                        <text id="65" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                            <tspan x="126.618246" y="38.646647">65</tspan>
-                        </text>
-                        <text id="75" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                            <tspan x="126.618246" y="82.385">75</tspan>
-                        </text>
-                        <text id="85" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                            <tspan x="126.618246" y="124.7075">85</tspan>
-                        </text>
-                        <text id="95" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                            <tspan x="126.618246" y="169.595">95</tspan>
-                        </text>
-                        <text id="98" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                            <tspan x="126.618246" y="213.84125">98</tspan>
-                        </text>
-                    </g>
-                    <g id="destruct" transform="translate(170.921754, 24.180228)">
-                        <path d="M2.85,0 L69.255,0 L69.255,0 L69.255,44.8875 L0,44.8875 L0,2.85 C-1.92760819e-16,1.27598846 1.27598846,2.06549807e-15 2.85,0 Z" id="Rectangle" fill="#800024"></path>
-                        <rect id="Rectangle" fill="#B30033" x="0" y="43.605" width="69.255" height="44.8875"></rect>
-                        <rect id="Rectangle" fill="#CC003A" x="0" y="87.21" width="69.255" height="44.8875"></rect>
-                        <rect id="Rectangle" fill="#E60041" x="0" y="130.815" width="69.255" height="44.8875"></rect>
-                        <rect id="Rectangle" fill="#FF1A5B" x="0" y="174.42" width="69.255" height="44.8875"></rect>
-                        <path d="M69.255,0 L136.9425,0 C138.516512,8.54296646e-15 139.7925,1.27598846 139.7925,2.85 L139.7925,44.8875 L139.7925,44.8875 L69.255,44.8875 L69.255,0 Z" id="Rectangle" fill="#FF4D7F"></path>
-                        <rect id="Rectangle" fill="#FF80A4" x="69.255" y="43.605" width="70.5375" height="44.8875"></rect>
-                        <rect id="Rectangle" fill="#FFB3C8" x="69.255" y="87.21" width="70.5375" height="44.8875"></rect>
-                        <rect id="Rectangle" fill="#FFE5ED" x="69.255" y="130.815" width="70.5375" height="44.8875"></rect>
-                        <rect id="Rectangle" fill="#FFF5F8" x="69.255" y="174.42" width="70.5375" height="44.8875"></rect>
-                        <text id="DESTRUCT" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="15.39" font-weight="normal" fill="#E60041">
-                            <tspan x="26.29125" y="237.955853">DESTRUCT</tspan>
-                        </text>
-                        <text id="25" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                            <tspan x="57.07125" y="38.646647">25</tspan>
-                        </text>
-                        <text id="35" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                            <tspan x="57.07125" y="82.385">35</tspan>
-                        </text>
-                        <text id="40" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                            <tspan x="57.07125" y="125.99">40</tspan>
-                        </text>
-                        <text id="45" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                            <tspan x="57.07125" y="169.595">45</tspan>
-                        </text>
-                        <text id="55" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                            <tspan x="57.07125" y="212.55875">55</tspan>
-                        </text>
-                        <text id="65" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                            <tspan x="126.618246" y="38.646647">65</tspan>
-                        </text>
-                        <text id="75" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                            <tspan x="126.618246" y="82.385">75</tspan>
-                        </text>
-                        <text id="85" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                            <tspan x="126.618246" y="124.7075">85</tspan>
-                        </text>
-                        <text id="95" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                            <tspan x="126.618246" y="169.595">95</tspan>
-                        </text>
-                        <text id="98" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                            <tspan x="126.618246" y="213.84125">98</tspan>
-                        </text>
-                        <text id="hsl(343,-100%,-__%-)" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="8.9775" font-weight="normal" fill="#191919">
-                            <tspan x="26.29125" y="250.430853">hsl(343, 100%, __% )</tspan>
-                        </text>
-                    </g>
-                    <g id="positive" transform="translate(342.776754, 21.935853)">
-                        <path d="M2.85,0 L69.255,0 L69.255,0 L69.255,44.8875 L0,44.8875 L0,2.85 C-1.92760819e-16,1.27598846 1.27598846,2.06549807e-15 2.85,0 Z" id="Rectangle" fill="#00805B"></path>
-                        <rect id="Rectangle" fill="#00B380" x="0" y="43.605" width="69.255" height="44.8875"></rect>
-                        <rect id="Rectangle" fill="#00CC92" x="0" y="87.21" width="69.255" height="44.8875"></rect>
-                        <rect id="Rectangle" fill="#00E6A4" x="0" y="130.815" width="69.255" height="44.8875"></rect>
-                        <rect id="Rectangle" fill="#1AFFBE" x="0" y="174.42" width="69.255" height="44.8875"></rect>
-                        <path d="M69.255,0 L136.9425,0 C138.516512,8.54296646e-15 139.7925,1.27598846 139.7925,2.85 L139.7925,44.8875 L139.7925,44.8875 L69.255,44.8875 L69.255,0 Z" id="Rectangle" fill="#4DFFCC"></path>
-                        <rect id="Rectangle" fill="#80FFDB" x="69.255" y="43.605" width="70.5375" height="44.8875"></rect>
-                        <rect id="Rectangle" fill="#B3FFE9" x="69.255" y="87.21" width="70.5375" height="44.8875"></rect>
-                        <rect id="Rectangle" fill="#E5FFF8" x="69.255" y="130.815" width="70.5375" height="44.8875"></rect>
-                        <rect id="Rectangle" fill="#F5FFFC" x="69.255" y="174.42" width="70.5375" height="44.8875"></rect>
-                        <text id="POSITIVE" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="15.39" font-weight="normal" fill="#00CC92">
-                            <tspan x="32.70375" y="238.7725">POSITIVE</tspan>
-                        </text>
-                        <text id="hsl(163,-100%,-__-%)" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="8.9775" font-weight="normal" fill="#191919">
-                            <tspan x="25.08" y="252.1975">hsl(163, 100%, __ %)</tspan>
-                        </text>
-                        <text id="25" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                            <tspan x="57.07125" y="38.646647">25</tspan>
-                        </text>
-                        <text id="35" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                            <tspan x="57.07125" y="82.385">35</tspan>
-                        </text>
-                        <text id="40" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                            <tspan x="57.07125" y="125.99">40</tspan>
-                        </text>
-                        <text id="45" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                            <tspan x="57.07125" y="169.595">45</tspan>
-                        </text>
-                        <text id="55" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#FFFFFF">
-                            <tspan x="57.07125" y="212.55875">55</tspan>
-                        </text>
-                        <text id="65" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                            <tspan x="126.618246" y="38.646647">65</tspan>
-                        </text>
-                        <text id="75" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                            <tspan x="126.618246" y="82.385">75</tspan>
-                        </text>
-                        <text id="85" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                            <tspan x="126.618246" y="124.7075">85</tspan>
-                        </text>
-                        <text id="95" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                            <tspan x="126.618246" y="169.595">95</tspan>
-                        </text>
-                        <text id="98" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.9775" font-weight="bold" fill="#191919">
-                            <tspan x="126.618246" y="213.84125">98</tspan>
-                        </text>
-                    </g>
-                </g>
-                <g id="Group-27" transform="translate(38.985458, 38.000000)">
-                    <text id="COLOR-PALETTE-HACK" font-family="LibreFranklin-Medium, Libre Franklin" font-size="24" font-weight="400" fill="#222428">
-                        <tspan x="150.780679" y="53.2078925">COLOR PALETTE HACK</tspan>
-                    </text>
-                    <text id="All-you-need-is-a-si" font-family="LibreFranklin-Medium, Libre Franklin" font-size="14" font-weight="400" fill="#404040">
-                        <tspan x="150.780679" y="81.5690726">All you need is a single brand color, and a passion for </tspan>
-                        <tspan x="150.780679" y="98.5690726">learning how to create beautiful and accessible designs.</tspan>
-                    </text>
-                    <g id="Group-20">
-                        <g id="color-wheel(1)" filter="url(#filter-29)" fill-rule="nonzero">
-                            <path d="M0,57.5 C0,25.7432174 26.1617272,0 58.4347826,0 C90.707838,0 116.869565,25.7432174 116.869565,57.5 C116.869565,89.2567826 90.707838,115 58.4347826,115 C26.1617272,115 0,89.2567826 0,57.5 Z M58.4347826,91.8845369 C77.7335258,91.8845369 93.3783119,76.4900208 93.3783119,57.5 C93.3783119,38.5099792 77.7335258,23.1154631 58.4347826,23.1154631 C39.1360394,23.1154631 23.4912533,38.5099792 23.4912533,57.5 C23.4912533,76.4900208 39.1360394,91.8845369 58.4347826,91.8845369 Z" id="Shape" fill="#83D9FF"></path>
-                            <path d="M58.4347826,115 L58.4347826,91.8845369 C62.8956777,91.8845369 67.1586277,91.0633088 71.0809698,89.5638656 L79.1182489,111.293068 C72.6868207,113.688316 65.717731,115 58.4347826,115 L58.4347826,115 Z" id="Path" fill="#3FEFEF"></path>
-                            <path d="M71.0809698,89.5638656 C75.118334,88.0205535 78.7936905,85.7595443 81.9447606,82.9387664 L97.0536685,100.653953 C91.8215014,105.189133 85.7592136,108.819733 79.1182489,111.293068 L71.0809698,89.5638656 Z" id="Path" fill="#1DD1D9"></path>
-                            <path d="M81.9447606,82.9387664 C85.0628397,80.1460648 87.6664402,76.806755 89.5986329,73.0726242 L109.960216,84.6417618 C106.652216,90.713234 102.264436,96.1345671 97.0527769,100.653953 L81.9447606,82.9387664 Z" id="Path" fill="#17B5BA"></path>
-                            <path d="M92.4206861,49.472847 L115.582923,45.4535676 C116.42731,49.3386077 116.869565,53.3675383 116.869565,57.5 C116.869565,60.1839066 116.681428,62.8239441 116.319421,65.4113387 L93.1571842,61.3946915 C93.302522,60.1172257 93.3783119,58.8169479 93.3783119,57.5 C93.3783119,54.7344971 93.0466201,52.0488358 92.4206861,49.472847 L92.4206861,49.472847 Z" id="Path" fill="#9BE058"></path>
-                            <path d="M87.7208304,38.7319564 L108.084197,27.162819 C111.585683,32.7025985 114.158076,38.8688278 115.582923,45.4535676 L92.4206861,49.472847 C91.4782185,45.5948258 89.8696927,41.973877 87.7208304,38.7319564 L87.7208304,38.7319564 Z" id="Path" fill="#C0FF66"></path>
-                            <path d="M79.8119481,30.3003312 L94.920856,12.5825118 C100.103091,16.6640853 104.563986,21.5958406 108.084197,27.162819 L87.7208304,38.7319564 C85.5782098,35.504074 82.8997114,32.6534652 79.8119481,30.3003312 L79.8119481,30.3003312 Z" id="Path" fill="#FFDF46"></path>
-                            <path d="M39.1431726,3.20945729 C45.1840609,1.12918859 51.6743375,0 58.4347826,0 L58.4347826,23.1154631 C54.4954994,23.1154631 50.7104704,23.7568283 47.1777769,24.9386597 L39.1431726,3.20945729 Z" id="Path" fill="#FC3E81"></path>
-                            <path d="M21.9487092,12.5825118 C27.0498046,8.56586462 32.8499489,5.37307739 39.1404976,3.20945729 L39.1431726,3.20945729 L47.1777769,24.9386597 C43.4881538,26.1722566 40.0767239,27.9980851 37.0576171,30.3003312 L21.9487092,12.5825118 Z" id="Path" fill="#F01054"></path>
-                            <path d="M8.78536849,27.162819 C12.3055791,21.5958406 16.7664742,16.6649627 21.9487092,12.5825118 L37.0576171,30.3003312 C33.9698538,32.6534652 31.2913554,35.504074 29.1496264,38.7319564 L8.78536849,27.162819 Z" id="Path" fill="#7884EA"></path>
-                            <path d="M0.550144304,65.4113388 L23.712381,61.3946915 C24.1903022,65.556984 25.4216628,69.4955444 27.2709323,73.0726242 L6.90845788,84.6417618 C3.70567255,78.7668229 1.50955327,72.2829818 0.550144304,65.4113388 Z" id="Path" fill="#1685FB"></path>
-                            <path d="M6.90845788,84.6417618 L27.2700408,73.0726242 C29.203125,76.806755 31.8067255,80.1460648 34.9248046,82.9387664 L19.8158967,100.653953 C14.6051291,96.1345671 10.2173489,90.713234 6.90845788,84.6417618 Z" id="Path" fill="#43A3F9"></path>
-                            <path d="M19.8158967,100.653953 L34.9248046,82.9387664 C38.0749831,85.7595443 41.7503397,88.0205535 45.7885954,89.5638656 L37.7504245,111.293068 C31.1103516,108.819733 25.0480639,105.189133 19.8158967,100.653953 L19.8158967,100.653953 Z" id="Path" fill="#64BDFF"></path>
-                            <path d="M1.28664238,45.4535676 C2.71148941,38.8688278 5.28388259,32.7025985 8.78536849,27.162819 L29.1487348,38.7319564 C26.9998726,41.973877 25.3913468,45.5948258 24.4488791,49.472847 L1.28664238,45.4535676 Z" id="Path" fill="#4A5BE5"></path>
-                            <path d="M89.5995245,73.0726242 C91.4479025,69.4946671 92.679263,65.556984 93.1571842,61.3946915 L116.319421,65.4113388 C115.360012,72.2829818 113.163893,78.7668229 109.961107,84.6417618 L89.5995245,73.0726242 Z" id="Path" fill="#1CC939"></path>
-                            <path d="M0,57.5 C0,53.3675383 0.442255435,49.3386077 1.28664238,45.4535676 L24.4488791,49.472847 C23.8229451,52.0488358 23.4912533,54.7344971 23.4912533,57.5 C23.4912533,58.8169479 23.5670432,60.1172257 23.712381,61.3946915 L0.550144304,65.4113387 C0.188136946,62.8239441 0,60.1839066 0,57.5 L0,57.5 Z" id="Path" fill="#364EC6"></path>
-                            <path d="M69.6917883,24.9386597 L77.7290677,3.20945729 C84.0196163,5.37307739 89.8206522,8.56586462 94.920856,12.5833894 L79.8128397,30.3003312 C76.7928413,27.9980851 73.3805196,26.1722566 69.6917883,24.9386597 L69.6917883,24.9386597 Z" id="Path" fill="#F9B200"></path>
-                            <path d="M58.4347826,23.1154631 L58.4347826,0 C65.1952277,0 71.6881793,1.12918859 77.7290677,3.20945729 L69.6908967,24.9386597 C66.1590948,23.7568283 62.3740658,23.1154631 58.4347826,23.1154631 Z" id="Path" fill="#FD6096"></path>
-                        </g>
-                        <g id="Oval">
-                            <use fill="black" fill-opacity="1" filter="url(#filter-31)" xlink:href="#path-30"></use>
-                            <use stroke="#FFFFFF" stroke-width="2" fill="#404040" fill-rule="evenodd" xlink:href="#path-30"></use>
-                        </g>
-                        <g id="question-mark" transform="translate(42.500000, 36.738651)" fill="#FFFFFF" fill-rule="nonzero">
-                            <path d="M15.3825,0 C23.5185,0 31.5285,3.5128125 31.5285,11.9151563 C31.5285,19.6635938 22.0575,22.6434375 20.0235,25.4432813 C18.4965,27.5259375 19.0065,30.4523438 14.811,30.4523438 C12.078,30.4523438 10.743,28.3682813 10.743,26.4614063 C10.743,19.3654688 21.864,17.7595313 21.864,11.9165625 C21.864,8.70046875 19.581,6.79359375 15.765,6.79359375 C7.629,6.79359375 10.806,14.6573438 4.644,14.6573438 C2.4195,14.6573438 0.509999763,13.4057813 0.509999763,11.0235938 C0.5085,5.17921875 7.626,0 15.3825,0 Z M15.066,34.3209375 C17.922,34.3209375 20.2785,36.523125 20.2785,39.2090625 C20.2785,41.895 17.9265,44.0971875 15.066,44.0971875 C12.2055,44.0971875 9.852,41.8978125 9.852,39.2090625 C9.852,36.5245313 12.2055,34.3209375 15.066,34.3209375 Z" id="Shape"></path>
-                        </g>
-                    </g>
-                </g>
-                <g id="Group-25" transform="translate(367.219321, 640.500000)">
-                    <g id="Group-24" transform="translate(125.700000, 0.000000)">
-                        <g id="Group-6">
-                            <g id="Group-5" transform="translate(0.500000, 0.000000)">
-                                <g id="Rectangle">
-                                    <use fill="black" fill-opacity="1" filter="url(#filter-33)" xlink:href="#path-32"></use>
-                                    <rect stroke="#FFFFFF" stroke-width="2" stroke-linejoin="square" fill="#FF186E" fill-rule="evenodd" x="1.20255621" y="1" width="98.9392265" height="21.2810984" rx="3"></rect>
-                                </g>
-                                <g id="Share" fill="#FFFFFF" fill-opacity="1">
-                                    <use filter="url(#filter-35)" xlink:href="#text-34"></use>
-                                    <use xlink:href="#text-34"></use>
-                                </g>
-                            </g>
-                        </g>
-                        <g id="share" transform="translate(7.080679, 5.500000)" fill-rule="nonzero">
-                            <g id="Path">
-                                <use fill="black" fill-opacity="1" filter="url(#filter-37)" xlink:href="#path-36"></use>
-                                <use fill="#FFFFFF" xlink:href="#path-36"></use>
-                            </g>
-                        </g>
-                    </g>
-                    <text id="Did-this-help-you?" font-family="LibreFranklin-Regular, Libre Franklin" font-size="12" font-weight="normal" fill="#C8047D">
-                        <tspan x="0.780679422" y="16.5">Did this help you?</tspan>
-                    </text>
-                </g>
-                <g id="Group-19" transform="translate(38.219321, 194.000000)" font-family="LibreFranklin-SemiBold, Libre Franklin" font-size="16" font-weight="500">
-                    <text id="Hue-Each-color-is-a">
-                        <tspan x="0" y="15" fill="#C8047D">Hue</tspan>
-                        <tspan x="30.688" y="15" fill="#222428">  </tspan>
-                        <tspan x="0" y="34" font-family="LibreFranklin-Regular, Libre Franklin" font-size="14" font-weight="normal" fill="#595959">Each color is a degree on a 360° color wheel. 0° is red, 120° is green, 240° is blue.</tspan>
-                    </text>
-                    <text id="Saturation-The-inten">
-                        <tspan x="0" y="68.5" fill="#C8047D">Saturation</tspan>
-                        <tspan x="80.88" y="68.5" fill="#222428">  </tspan>
-                        <tspan x="0" y="87.5" font-family="LibreFranklin-Regular, Libre Franklin" font-size="14" font-weight="normal" fill="#595959">The intensity and vibrance of a color. 0% is fully grey, 100% is no grey at all.</tspan>
-                    </text>
-                    <text id="Lightness-How-light">
-                        <tspan x="0" y="122" fill="#C8047D">Lightness</tspan>
-                        <tspan x="75.68" y="122" fill="#222428"> </tspan>
-                        <tspan x="0" y="141" font-family="LibreFranklin-Regular, Libre Franklin" font-size="14" font-weight="normal" fill="#595959">How light or dark a color is. 0% is completely black, 100% is completely white.</tspan>
-                    </text>
-                </g>
-                <text id="HSL" font-family="LibreFranklin-SemiBold, Libre Franklin" font-size="10" font-weight="500" fill="#D4067F">
-                    <tspan x="190" y="62"> HSL</tspan>
+            <rect id="Rectangle" fill="#F5FFFC" x="0" y="1.33143132" width="627" height="675"></rect>
+            <g id="Rectangle">
+                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                <use fill="#FAFAFA" fill-rule="evenodd" xlink:href="#path-1"></use>
+            </g>
+            <g id="Rectangle" opacity="0.576753162">
+                <use fill="#F2F2F2" fill-rule="evenodd" xlink:href="#path-3"></use>
+                <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+            </g>
+            <g id="Rectangle">
+                <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-5"></use>
+            </g>
+            <g id="Group-27" transform="translate(38.985458, 38.000000)">
+                <text id="COLOR-PALETTE-HACK" font-family="LibreFranklin-Medium, Libre Franklin" font-size="24" font-weight="400" fill="#222428">
+                    <tspan x="150.780679" y="53.2078925">COLOR PALETTE HACK</tspan>
                 </text>
-                <g id="Group-7" transform="translate(38.219321, 361.000000)" fill="#404040">
-                    <rect id="Rectangle" x="0" y="0" width="557" height="25"></rect>
-                </g>
-                <g id="Group-7">
-                    <g id="Rectangle">
-                        <use fill="black" fill-opacity="1" filter="url(#filter-39)" xlink:href="#path-38"></use>
-                        <use fill="#404040" fill-rule="evenodd" xlink:href="#path-38"></use>
+                <text id="All-you-need-is-a-si" font-family="LibreFranklin-Medium, Libre Franklin" font-size="14" font-weight="400" fill="#404040">
+                    <tspan x="150.780679" y="81.5690726">All you need is a single brand color, and a passion for </tspan>
+                    <tspan x="150.780679" y="98.5690726">learning how to create beautiful and accessible designs.</tspan>
+                </text>
+                <g id="Group-20">
+                    <g id="color-wheel(1)" filter="url(#filter-7)" fill-rule="nonzero">
+                        <path d="M0,57.5 C0,25.7432174 26.1617272,0 58.4347826,0 C90.707838,0 116.869565,25.7432174 116.869565,57.5 C116.869565,89.2567826 90.707838,115 58.4347826,115 C26.1617272,115 0,89.2567826 0,57.5 Z M58.4347826,91.8845369 C77.7335258,91.8845369 93.3783119,76.4900208 93.3783119,57.5 C93.3783119,38.5099792 77.7335258,23.1154631 58.4347826,23.1154631 C39.1360394,23.1154631 23.4912533,38.5099792 23.4912533,57.5 C23.4912533,76.4900208 39.1360394,91.8845369 58.4347826,91.8845369 Z" id="Shape" fill="#83D9FF"></path>
+                        <path d="M58.4347826,115 L58.4347826,91.8845369 C62.8956777,91.8845369 67.1586277,91.0633088 71.0809698,89.5638656 L79.1182489,111.293068 C72.6868207,113.688316 65.717731,115 58.4347826,115 L58.4347826,115 Z" id="Path" fill="#3FEFEF"></path>
+                        <path d="M71.0809698,89.5638656 C75.118334,88.0205535 78.7936905,85.7595443 81.9447606,82.9387664 L97.0536685,100.653953 C91.8215014,105.189133 85.7592136,108.819733 79.1182489,111.293068 L71.0809698,89.5638656 Z" id="Path" fill="#1DD1D9"></path>
+                        <path d="M81.9447606,82.9387664 C85.0628397,80.1460648 87.6664402,76.806755 89.5986329,73.0726242 L109.960216,84.6417618 C106.652216,90.713234 102.264436,96.1345671 97.0527769,100.653953 L81.9447606,82.9387664 Z" id="Path" fill="#17B5BA"></path>
+                        <path d="M92.4206861,49.472847 L115.582923,45.4535676 C116.42731,49.3386077 116.869565,53.3675383 116.869565,57.5 C116.869565,60.1839066 116.681428,62.8239441 116.319421,65.4113387 L93.1571842,61.3946915 C93.302522,60.1172257 93.3783119,58.8169479 93.3783119,57.5 C93.3783119,54.7344971 93.0466201,52.0488358 92.4206861,49.472847 L92.4206861,49.472847 Z" id="Path" fill="#9BE058"></path>
+                        <path d="M87.7208304,38.7319564 L108.084197,27.162819 C111.585683,32.7025985 114.158076,38.8688278 115.582923,45.4535676 L92.4206861,49.472847 C91.4782185,45.5948258 89.8696927,41.973877 87.7208304,38.7319564 L87.7208304,38.7319564 Z" id="Path" fill="#C0FF66"></path>
+                        <path d="M79.8119481,30.3003312 L94.920856,12.5825118 C100.103091,16.6640853 104.563986,21.5958406 108.084197,27.162819 L87.7208304,38.7319564 C85.5782098,35.504074 82.8997114,32.6534652 79.8119481,30.3003312 L79.8119481,30.3003312 Z" id="Path" fill="#FFDF46"></path>
+                        <path d="M39.1431726,3.20945729 C45.1840609,1.12918859 51.6743375,0 58.4347826,0 L58.4347826,23.1154631 C54.4954994,23.1154631 50.7104704,23.7568283 47.1777769,24.9386597 L39.1431726,3.20945729 Z" id="Path" fill="#FC3E81"></path>
+                        <path d="M21.9487092,12.5825118 C27.0498046,8.56586462 32.8499489,5.37307739 39.1404976,3.20945729 L39.1431726,3.20945729 L47.1777769,24.9386597 C43.4881538,26.1722566 40.0767239,27.9980851 37.0576171,30.3003312 L21.9487092,12.5825118 Z" id="Path" fill="#F01054"></path>
+                        <path d="M8.78536849,27.162819 C12.3055791,21.5958406 16.7664742,16.6649627 21.9487092,12.5825118 L37.0576171,30.3003312 C33.9698538,32.6534652 31.2913554,35.504074 29.1496264,38.7319564 L8.78536849,27.162819 Z" id="Path" fill="#7884EA"></path>
+                        <path d="M0.550144304,65.4113388 L23.712381,61.3946915 C24.1903022,65.556984 25.4216628,69.4955444 27.2709323,73.0726242 L6.90845788,84.6417618 C3.70567255,78.7668229 1.50955327,72.2829818 0.550144304,65.4113388 Z" id="Path" fill="#1685FB"></path>
+                        <path d="M6.90845788,84.6417618 L27.2700408,73.0726242 C29.203125,76.806755 31.8067255,80.1460648 34.9248046,82.9387664 L19.8158967,100.653953 C14.6051291,96.1345671 10.2173489,90.713234 6.90845788,84.6417618 Z" id="Path" fill="#43A3F9"></path>
+                        <path d="M19.8158967,100.653953 L34.9248046,82.9387664 C38.0749831,85.7595443 41.7503397,88.0205535 45.7885954,89.5638656 L37.7504245,111.293068 C31.1103516,108.819733 25.0480639,105.189133 19.8158967,100.653953 L19.8158967,100.653953 Z" id="Path" fill="#64BDFF"></path>
+                        <path d="M1.28664238,45.4535676 C2.71148941,38.8688278 5.28388259,32.7025985 8.78536849,27.162819 L29.1487348,38.7319564 C26.9998726,41.973877 25.3913468,45.5948258 24.4488791,49.472847 L1.28664238,45.4535676 Z" id="Path" fill="#4A5BE5"></path>
+                        <path d="M89.5995245,73.0726242 C91.4479025,69.4946671 92.679263,65.556984 93.1571842,61.3946915 L116.319421,65.4113388 C115.360012,72.2829818 113.163893,78.7668229 109.961107,84.6417618 L89.5995245,73.0726242 Z" id="Path" fill="#1CC939"></path>
+                        <path d="M0,57.5 C0,53.3675383 0.442255435,49.3386077 1.28664238,45.4535676 L24.4488791,49.472847 C23.8229451,52.0488358 23.4912533,54.7344971 23.4912533,57.5 C23.4912533,58.8169479 23.5670432,60.1172257 23.712381,61.3946915 L0.550144304,65.4113387 C0.188136946,62.8239441 0,60.1839066 0,57.5 L0,57.5 Z" id="Path" fill="#364EC6"></path>
+                        <path d="M69.6917883,24.9386597 L77.7290677,3.20945729 C84.0196163,5.37307739 89.8206522,8.56586462 94.920856,12.5833894 L79.8128397,30.3003312 C76.7928413,27.9980851 73.3805196,26.1722566 69.6917883,24.9386597 L69.6917883,24.9386597 Z" id="Path" fill="#F9B200"></path>
+                        <path d="M58.4347826,23.1154631 L58.4347826,0 C65.1952277,0 71.6881793,1.12918859 77.7290677,3.20945729 L69.6908967,24.9386597 C66.1590948,23.7568283 62.3740658,23.1154631 58.4347826,23.1154631 Z" id="Path" fill="#FD6096"></path>
                     </g>
-                </g>
-                <g id="CREATING-YOUR-COLOR" fill="#F5FFFC" fill-opacity="1">
-                    <use filter="url(#filter-41)" xlink:href="#text-40"></use>
-                    <use xlink:href="#text-40"></use>
-                </g>
-                <g id="Group-21" transform="translate(38.219321, 397.500000)">
-                    <g id="Rectangle">
-                        <use fill="black" fill-opacity="1" filter="url(#filter-43)" xlink:href="#path-42"></use>
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-42"></use>
+                    <g id="Oval">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-9)" xlink:href="#path-8"></use>
+                        <use stroke="#FFFFFF" stroke-width="2" fill="#404040" fill-rule="evenodd" xlink:href="#path-8"></use>
                     </g>
-                    <g id="Group-14" transform="translate(14.780679, 24.990372)" fill="#757575" fill-rule="nonzero">
-                        <g id="Group-13" transform="translate(0.000000, 0.990024)">
-                            <g id="good-mood-emoticon" transform="translate(0.000000, 0.391405)">
-                                <path d="M9.05670388,0.302449079 C4.24728182,0.302449079 0.312300134,4.11330748 0.312300134,8.7710233 C0.312300134,13.4287391 4.24728182,17.2395975 9.05670388,17.2395975 C13.8661259,17.2395975 17.8011076,13.4287391 17.8011076,8.7710233 C17.8011076,4.11330748 13.8661259,0.302449079 9.05670388,0.302449079 Z M12.1172452,5.38359361 C12.8167975,5.38359361 13.4289058,5.97639381 13.4289058,6.65387974 C13.4289058,7.33136568 12.8167975,7.92416588 12.1172452,7.92416588 C11.4176929,7.92416588 10.8055846,7.33136568 10.8055846,6.65387974 C10.8055846,5.97639381 11.4176929,5.38359361 12.1172452,5.38359361 Z M5.99616257,5.38359361 C6.69571487,5.38359361 7.30782313,5.97639381 7.30782313,6.65387974 C7.30782313,7.33136568 6.69571487,7.92416588 5.99616257,7.92416588 C5.29661027,7.92416588 4.68450201,7.33136568 4.68450201,6.65387974 C4.68450201,5.97639381 5.29661027,5.38359361 5.99616257,5.38359361 Z M9.05670388,13.8521678 C6.7831589,13.8521678 4.85939008,12.4125102 4.15983778,10.4647381 L13.95357,10.4647381 C13.2540177,12.4125102 11.3302489,13.8521678 9.05670388,13.8521678 Z" id="Shape"></path>
-                            </g>
-                        </g>
+                    <g id="question-mark" transform="translate(42.500000, 36.738651)" fill="#FFFFFF" fill-rule="nonzero">
+                        <path d="M15.3825,0 C23.5185,0 31.5285,3.5128125 31.5285,11.9151563 C31.5285,19.6635938 22.0575,22.6434375 20.0235,25.4432813 C18.4965,27.5259375 19.0065,30.4523438 14.811,30.4523438 C12.078,30.4523438 10.743,28.3682813 10.743,26.4614063 C10.743,19.3654688 21.864,17.7595313 21.864,11.9165625 C21.864,8.70046875 19.581,6.79359375 15.765,6.79359375 C7.629,6.79359375 10.806,14.6573438 4.644,14.6573438 C2.4195,14.6573438 0.509999763,13.4057813 0.509999763,11.0235938 C0.5085,5.17921875 7.626,0 15.3825,0 Z M15.066,34.3209375 C17.922,34.3209375 20.2785,36.523125 20.2785,39.2090625 C20.2785,41.895 17.9265,44.0971875 15.066,44.0971875 C12.2055,44.0971875 9.852,41.8978125 9.852,39.2090625 C9.852,36.5245313 12.2055,34.3209375 15.066,34.3209375 Z" id="Shape"></path>
                     </g>
-                    <text id="Hue-value-Find-out-w" font-family="LibreFranklin-Regular, Libre Franklin" font-size="16" font-weight="normal">
-                        <tspan x="54.2806794" y="25.4903716" fill="#212121">Hue value</tspan>
-                        <tspan x="127.944679" y="25.4903716" fill="#222428"> </tspan>
-                        <tspan x="54.2806794" y="44.4903716" font-size="12" fill="#595959">Find out what the hue value for your brand color is. </tspan>
-                        <tspan x="336.532679" y="44.4903716" font-size="12" fill="#009BB3" text-decoration="underline">hslpicker.com</tspan>
-                        <tspan x="412.816679" y="44.4903716" font-size="12" fill="#595959"> converts hex and rgb</tspan>
-                        <tspan x="54.2806794" y="59.4903716" font-size="12" fill="#595959">codes to hsl for you.</tspan>
-                    </text>
-                </g>
-                <g id="Group-21" transform="translate(38.219321, 559.000000)">
-                    <g id="Rectangle">
-                        <use fill="black" fill-opacity="1" filter="url(#filter-45)" xlink:href="#path-44"></use>
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-44"></use>
-                    </g>
-                    <g id="Group-14" transform="translate(14.780679, 24.990372)" fill="#757575" fill-rule="nonzero">
-                        <g id="Group-13" transform="translate(0.000000, 0.990024)">
-                            <g id="good-mood-emoticon" transform="translate(0.000000, 0.391405)">
-                                <path d="M9.05670388,0.302449079 C4.24728182,0.302449079 0.312300134,4.11330748 0.312300134,8.7710233 C0.312300134,13.4287391 4.24728182,17.2395975 9.05670388,17.2395975 C13.8661259,17.2395975 17.8011076,13.4287391 17.8011076,8.7710233 C17.8011076,4.11330748 13.8661259,0.302449079 9.05670388,0.302449079 Z M12.1172452,5.38359361 C12.8167975,5.38359361 13.4289058,5.97639381 13.4289058,6.65387974 C13.4289058,7.33136568 12.8167975,7.92416588 12.1172452,7.92416588 C11.4176929,7.92416588 10.8055846,7.33136568 10.8055846,6.65387974 C10.8055846,5.97639381 11.4176929,5.38359361 12.1172452,5.38359361 Z M5.99616257,5.38359361 C6.69571487,5.38359361 7.30782313,5.97639381 7.30782313,6.65387974 C7.30782313,7.33136568 6.69571487,7.92416588 5.99616257,7.92416588 C5.29661027,7.92416588 4.68450201,7.33136568 4.68450201,6.65387974 C4.68450201,5.97639381 5.29661027,5.38359361 5.99616257,5.38359361 Z M9.05670388,13.8521678 C6.7831589,13.8521678 4.85939008,12.4125102 4.15983778,10.4647381 L13.95357,10.4647381 C13.2540177,12.4125102 11.3302489,13.8521678 9.05670388,13.8521678 Z" id="Shape"></path>
-                            </g>
-                        </g>
-                    </g>
-                    <text id="Accent-Find-the-colo" font-family="LibreFranklin-Regular, Libre Franklin" font-size="16" font-weight="normal">
-                        <tspan x="54.2806794" y="24.4903716" fill="#212121">Accent</tspan>
-                        <tspan x="108.088679" y="24.4903716" fill="#222428"> </tspan>
-                        <tspan x="54.2806794" y="43.4903716" font-size="12" fill="#595959">Find the color that is closest to your brand color in the wheel at the top of this page. </tspan>
-                        <tspan x="54.2806794" y="58.4903716" font-size="12" fill="#595959">A good accent color is one of the two or three colors directly opposite it on the wheel.</tspan>
-                    </text>
-                </g>
-                <g id="Group-22" transform="translate(38.219321, 479.000000)">
-                    <g id="Group-21">
-                        <g id="Rectangle">
-                            <use fill="black" fill-opacity="1" filter="url(#filter-47)" xlink:href="#path-46"></use>
-                            <rect stroke="#00B380" stroke-width="1" stroke-linejoin="square" fill="#E5FFF8" fill-rule="evenodd" x="0.5" y="0.5" width="556" height="69"></rect>
-                        </g>
-                        <text id="Lightness-Keep-your" font-family="LibreFranklin-Medium, Libre Franklin" font-size="16" font-weight="400">
-                            <tspan x="52.7806794" y="24.5" fill="#00805B">Lightness</tspan>
-                            <tspan x="127.388679" y="24.5" font-family="LibreFranklin-SemiBold, Libre Franklin" font-weight="500" fill="#222428"> </tspan>
-                            <tspan x="52.7806794" y="43.5" font-family="LibreFranklin-Regular, Libre Franklin" font-size="12" font-weight="normal" fill="#109573">Keep your hue value the same, and the saturation level at 100% (except grey, S = 0%).</tspan>
-                            <tspan x="52.7806794" y="58.5" font-family="LibreFranklin-Regular, Libre Franklin" font-size="12" font-weight="normal" fill="#109573">Then change the lightness value to match the shades shown in the palettes on the right.</tspan>
-                        </text>
-                    </g>
-                    <g id="Group-14" transform="translate(15.280679, 25.000000)" fill="#00B380" fill-rule="nonzero">
-                        <g id="Group-13" transform="translate(0.000000, 0.990024)">
-                            <g id="good-mood-emoticon" transform="translate(0.000000, 0.391405)">
-                                <path d="M9.05670388,0.302449079 C4.24728182,0.302449079 0.312300134,4.11330748 0.312300134,8.7710233 C0.312300134,13.4287391 4.24728182,17.2395975 9.05670388,17.2395975 C13.8661259,17.2395975 17.8011076,13.4287391 17.8011076,8.7710233 C17.8011076,4.11330748 13.8661259,0.302449079 9.05670388,0.302449079 Z M12.1172452,5.38359361 C12.8167975,5.38359361 13.4289058,5.97639381 13.4289058,6.65387974 C13.4289058,7.33136568 12.8167975,7.92416588 12.1172452,7.92416588 C11.4176929,7.92416588 10.8055846,7.33136568 10.8055846,6.65387974 C10.8055846,5.97639381 11.4176929,5.38359361 12.1172452,5.38359361 Z M5.99616257,5.38359361 C6.69571487,5.38359361 7.30782313,5.97639381 7.30782313,6.65387974 C7.30782313,7.33136568 6.69571487,7.92416588 5.99616257,7.92416588 C5.29661027,7.92416588 4.68450201,7.33136568 4.68450201,6.65387974 C4.68450201,5.97639381 5.29661027,5.38359361 5.99616257,5.38359361 Z M9.05670388,13.8521678 C6.7831589,13.8521678 4.85939008,12.4125102 4.15983778,10.4647381 L13.95357,10.4647381 C13.2540177,12.4125102 11.3302489,13.8521678 9.05670388,13.8521678 Z" id="Shape"></path>
-                            </g>
-                        </g>
-                    </g>
-                </g>
-                <g id="Group-23" transform="translate(575.500000, 486.000000)">
-                    <ellipse id="Oval" stroke="#00B380" fill="#00B380" cx="5.76923077" cy="5.75" rx="5.76923077" ry="5.75"></ellipse>
-                    <path d="M9.01650454,2.78423265 L9.89892161,4.20405253 L3.73570524,8.71576735 L3.71353993,8.68023265 L3.66401284,8.71576735 L1.63953993,5.33246044 L2.96297809,4.39970497 L4.13353993,6.35723265 L9.01650454,2.78423265 Z" id="Combined-Shape" fill="#FFFFFF" transform="translate(5.769231, 5.750000) rotate(-12.000000) translate(-5.769231, -5.750000) "></path>
-                </g>
-                <g id="right-arrow" transform="translate(469.787380, 649.500000)" fill="#C6037C" fill-rule="nonzero">
-                    <path d="M4.65043437,3.02313553 L1.49668435,0.932608712 C1.42374197,0.884218302 1.32637021,0.857559655 1.22254542,0.857559655 C1.11872063,0.857559655 1.02134888,0.884218302 0.948406495,0.932608712 L0.716154704,1.08652612 C0.565026833,1.18682068 0.565026833,1.349828 0.716154704,1.4499698 L3.36443586,3.20546846 L0.713216267,4.96291496 C0.640273878,5.01130537 0.6,5.07581319 0.6,5.14459861 C0.6,5.21346041 0.640273878,5.27796823 0.713216267,5.32639683 L0.945468058,5.48027604 C1.01846806,5.52866645 1.1157822,5.5553251 1.21960699,5.5553251 C1.32343178,5.5553251 1.42080353,5.52866645 1.49374592,5.48027604 L4.65043437,3.38783958 C4.72354961,3.3392964 4.76370825,3.27448304 4.76347877,3.20558304 C4.76370825,3.13641569 4.72354961,3.07164052 4.65043437,3.02313553 Z" id="Path"></path>
-                </g>
-                <g id="right-arrow" transform="translate(473.884275, 649.500000)" fill="#C6037C" fill-rule="nonzero">
-                    <path d="M4.65043437,3.02313553 L1.49668435,0.932608712 C1.42374197,0.884218302 1.32637021,0.857559655 1.22254542,0.857559655 C1.11872063,0.857559655 1.02134888,0.884218302 0.948406495,0.932608712 L0.716154704,1.08652612 C0.565026833,1.18682068 0.565026833,1.349828 0.716154704,1.4499698 L3.36443586,3.20546846 L0.713216267,4.96291496 C0.640273878,5.01130537 0.6,5.07581319 0.6,5.14459861 C0.6,5.21346041 0.640273878,5.27796823 0.713216267,5.32639683 L0.945468058,5.48027604 C1.01846806,5.52866645 1.1157822,5.5553251 1.21960699,5.5553251 C1.32343178,5.5553251 1.42080353,5.52866645 1.49374592,5.48027604 L4.65043437,3.38783958 C4.72354961,3.3392964 4.76370825,3.27448304 4.76347877,3.20558304 C4.76370825,3.13641569 4.72354961,3.07164052 4.65043437,3.02313553 Z" id="Path"></path>
-                </g>
-                <g id="Group-4" transform="translate(116.043625, 164.000000)">
-                    <g id="Rectangle">
-                        <use fill="#E5FFF8" fill-rule="evenodd" xlink:href="#path-48"></use>
-                        <use fill="black" fill-opacity="1" filter="url(#filter-49)" xlink:href="#path-48"></use>
-                        <rect stroke="#00B380" stroke-width="1" stroke-linejoin="square" x="0.5" y="0.587137356" width="93.8254994" height="16.9128626" rx="3"></rect>
-                    </g>
-                    <text id="HIGH-CONTRAST" font-family="RobotoMono-Medium, Roboto Mono" font-size="10" font-weight="400" fill="#00B380">
-                        <tspan x="8.40640207" y="12.5435687">HIGH CONTRAST</tspan>
-                    </text>
-                </g>
-                <g id="Group-4" transform="translate(315.927291, 164.000000)">
-                    <g id="Rectangle">
-                        <use fill="#E5FFF8" fill-rule="evenodd" xlink:href="#path-50"></use>
-                        <use fill="black" fill-opacity="1" filter="url(#filter-51)" xlink:href="#path-50"></use>
-                        <rect stroke="#00B380" stroke-width="1" stroke-linejoin="square" x="0.5" y="0.587137356" width="93.8254994" height="16.9128626" rx="3"></rect>
-                    </g>
-                    <text id="COMPLIMENTARY" font-family="RobotoMono-Medium, Roboto Mono" font-size="10" font-weight="400" fill="#00B380">
-                        <tspan x="8.40640207" y="12.5435687">COMPLIMENTARY</tspan>
-                    </text>
-                </g>
-                <g id="Group-4" transform="translate(215.985458, 164.000000)">
-                    <g id="Rectangle">
-                        <use fill="#E5FFF8" fill-rule="evenodd" xlink:href="#path-52"></use>
-                        <use fill="black" fill-opacity="1" filter="url(#filter-53)" xlink:href="#path-52"></use>
-                        <rect stroke="#00B380" stroke-width="1" stroke-linejoin="square" x="0.5" y="0.587137356" width="93.8254994" height="16.9128626" rx="3"></rect>
-                    </g>
-                    <text id="SEMANTIC" font-family="RobotoMono-Medium, Roboto Mono" font-size="10" font-weight="400" fill="#00B380">
-                        <tspan x="23.4088435" y="12.5435687">SEMANTIC</tspan>
-                    </text>
-                </g>
-                <g id="Group-4" transform="translate(415.956375, 164.000000)">
-                    <g id="Rectangle">
-                        <use fill="#E5FFF8" fill-rule="evenodd" xlink:href="#path-54"></use>
-                        <use fill="black" fill-opacity="1" filter="url(#filter-55)" xlink:href="#path-54"></use>
-                        <rect stroke="#00B380" stroke-width="1" stroke-linejoin="square" x="0.5" y="0.587137356" width="93.8254994" height="16.9128626" rx="3"></rect>
-                    </g>
-                    <text id="CONSISTENT" font-family="RobotoMono-Medium, Roboto Mono" font-size="10" font-weight="400" fill="#00B380">
-                        <tspan x="17.4078669" y="12.5435687">CONSISTENT</tspan>
-                    </text>
                 </g>
             </g>
-            <g id="Group-10" transform="translate(830.000000, 32.000000)">
-                <g id="Group-9">
-                    <g id="Group-8">
-                        <path d="M120.411479,36.6437811 C121.948601,37.4846575 123.451117,37.9050958 124.919029,37.9050958 C126.386941,37.9050958 128.113521,38.057822 130.098769,38.3632744 C130.752591,39.2778672 130.916047,39.885047 130.589136,40.1848139 C130.098769,40.6344642 128.63772,42.0548768 127.109877,42.0548768 C126.091316,42.0548768 124.909814,42.0548768 123.565372,42.0548768 C121.462777,41.3651582 120.411479,40.7418039 120.411479,40.1848139 C120.411479,39.6278239 119.867657,38.4474797 118.780015,36.6437811 L118.101156,35.2486595 L120.411479,36.6437811 Z" id="Path-6" fill="#D4067F"></path>
-                        <path d="M99.1266792,6.22118181 C104.310933,6.78076278 107.749156,6.78076278 109.441347,6.22118181 C111.979634,5.38181036 118.577256,3.65638856 120.80673,3.65638856 C123.036205,3.65638856 128.513231,3.19384311 132.176717,6.22118181 C134.61904,8.23940761 136.808065,10.4365692 138.743792,12.8126665 C141.097963,13.2005257 143.089482,13.2005257 144.718349,12.8126665 C146.347215,12.4248073 148.636249,11.3883943 151.585449,9.70342759 C151.983529,10.3379777 151.983529,11.0148217 151.585449,11.7339596 C150.988328,12.8126665 150.979193,13.6052184 149.872825,14.3546269 C148.766456,15.1040353 145.310867,19.2751478 138.743792,21.1155694 C132.176717,22.955991 132.107673,22.669128 131.052773,23.6672077 C129.997874,24.6652874 128.166863,26.7157641 126.836104,27.362479 C125.505344,28.0091939 119.537587,33.0072308 119.537587,33.611086 C119.537587,34.2149412 117.877197,36.7169301 120.80673,39.4404316 C123.736264,42.1639331 128.087673,45.5069909 128.087673,46.135883 C128.087673,46.764775 127.627802,47.9317475 126.836104,47.9317475 C126.044406,47.9317475 120.705885,45.88509 119.537587,45.0766963 C118.369289,44.2683027 116.872093,43.1348542 116.006748,42.1304092 C115.141404,41.1259642 99.1266792,42.1304092 93.5881419,38.2331456 C88.1360832,40.208936 84.3506907,43.1689439 82.2319644,47.1131693 C81.1194588,47.7646936 80.3472884,47.7646936 79.9154532,47.1131693 C79.2677004,46.135883 79.1141311,44.9252021 79.9154532,43.5278056 C80.7167753,42.1304092 82.2319644,41.0266654 82.2319644,40.2335485 C82.2319644,39.7048039 82.2319644,39.0380029 82.2319644,38.2331456 C79.4900342,39.0380029 77.2632096,39.0380029 75.5514908,38.2331456 C74.8691466,38.2331456 72.9456946,39.7772269 69.781135,42.8653896 C68.2063872,43.0314534 67.4190132,42.502143 67.4190132,41.2774584 C67.4190132,39.4404316 71.2758203,35.1909545 72.270464,35.1909545 C73.2651076,35.1909545 75.5514908,34.3074503 75.5514908,33.611086 C75.5514908,32.9147217 77.0492832,30.8591528 79.2015861,29.1108159 C80.6364547,27.9452579 81.6465808,27.362479 82.2319644,27.362479 C82.9126349,25.4262949 83.5192406,24.1945378 84.0517815,23.6672077 C84.5843224,23.1398776 85.0029069,22.2893315 85.3075348,21.1155694 C77.5716035,20.8100348 71.9574672,21.6605809 68.4651256,23.6672077 C63.2266133,26.6771479 56.9662584,32.1538557 46.2808482,36.715657 C35.595438,41.2774584 17.5675743,40.2335485 17.5675743,40.2335485 C17.5675743,40.2335485 4.79328689,38.8353034 -3.09051598e-14,27.9786404 C8.42413371,29.7750707 15.5697786,27.4873804 21.4369347,21.1155694 C34.120559,11.8239226 46.0931059,6.85912675 57.3545753,6.22118181 C68.6160448,5.58323688 79.0269551,10.2921475 88.5873063,20.3479137 C93.6100405,19.9738761 98.5196551,20.7859475 103.31615,22.7841278 C108.45856,23.3728477 111.345272,22.8166616 111.976287,21.1155694 C112.901887,19.4405042 113.133287,17.3649907 112.670487,14.8890288 C107.507155,14.8890288 102.992553,11.9997465 99.1266792,6.22118181 Z" id="Path-4" fill="#FF88CE"></path>
-                        <path d="M117.198754,4.78103251 C110.781161,2.27958791 107.105147,0.714686287 106.170711,0.0863276472 C104.769056,-0.856210312 107.245454,6.23017268 109.871888,6.23017268 C111.622845,6.23017268 113.563744,6.0128336 115.694587,5.57815543 L117.198754,4.78103251 Z" id="Path-5" fill="#D4067F"></path>
-                        <path d="M132.170307,6.22118181 C134.61263,8.23940761 136.801655,10.4365692 138.737382,12.8126665 C139.376187,12.9179123 139.98829,12.9945996 140.573691,13.0427284 C138.161159,14.4295102 136.299393,15.2290164 134.987724,15.4417795 C132.246551,15.8864195 129.876677,16.32666 127.14857,16.32666 L121.103413,16.32666 L121.103413,16.32666 C120.287443,21.7294075 118.016533,25.5513756 114.290682,27.7925646 C108.701905,31.1543479 100.941129,25.7041257 100.219539,24.5445809 C99.8681259,23.9798844 99.5128032,22.9179469 99.1535707,21.3587684 C100.548462,21.7352925 101.933756,22.2109041 103.30974,22.7841278 C108.45215,23.3728477 111.338862,22.8166616 111.969877,21.1155694 C112.895477,19.4405042 113.126877,17.3649907 112.664077,14.8890288 C107.500745,14.8890288 102.986143,11.9997465 99.1202693,6.22118181 C104.304523,6.78076278 107.742746,6.78076278 109.434937,6.22118181 C111.973224,5.38181036 118.570846,3.65638856 120.800321,3.65638856 C123.029795,3.65638856 128.506821,3.19384311 132.170307,6.22118181 Z" id="Combined-Shape" fill="#FF186E"></path>
-                        <path d="M63.1757479,16.3989637 C67.760628,16.3989637 71.8024075,16.0696643 76.2957964,17.6073001 C79.291389,18.6323906 81.8220947,19.8368706 83.8879137,21.22074 L83.6625669,21.0736244 C76.8042948,20.9520246 71.7604226,21.8190185 68.5309505,23.6746059 C63.2924382,26.6845461 57.0320833,32.1612539 46.3466731,36.7230553 C35.768117,41.2392387 17.9932222,40.2612644 17.6387822,40.2412533 C17.6333992,40.2409468 11.1433392,39.5305592 5.67939283,35.1909299 C13.6293623,32.0283611 18.2962203,30.1118275 19.6809007,29.441269 C21.9388393,28.3478182 28.7163453,25.8489735 31.7824917,24.1464106 C34.8486381,22.4438477 42.5586131,18.7373811 48.4917362,17.247695 C53.5292037,16.3989637 58.5908678,16.3989637 63.1757479,16.3989637 Z" id="Combined-Shape" fill="#FF186E"></path>
-                        <path d="M20.9408539,21.62944 C21.1385821,25.2849513 21.7745933,28.770424 22.8488876,32.085858 C23.9442389,35.4662768 26.0097858,38.1511416 29.0455286,40.1404524 C22.6656998,40.5502226 17.5688,40.2545737 17.5688,40.2545737 C17.5688,40.2545737 4.79451264,38.853907 0.00122575218,27.9784422 C8.12977582,29.7148418 15.0679816,27.6421123 20.8158431,21.7602535 Z" id="Combined-Shape" fill="#FFFFFF"></path>
-                        <path d="M75.7474541,18.7654001 C77.814822,18.7654001 79.4395285,19.0443175 80.6215738,19.6021523 L80.6215738,19.6021523 L82.2186436,20.9394147 C76.9769496,21.1079477 73.0051932,21.9684186 70.3033745,23.5208274 C65.0648621,26.5307676 58.8045073,32.0074754 48.1190971,36.5692767 C43.0685197,38.7254626 36.3775759,39.6292851 30.7252823,39.9829208 C34.4865898,38.6518491 39.1754674,36.3509833 43.3303878,33.9273211 C50.9840328,29.462771 50.9854172,29.5957949 53.4721423,27.7526454 C55.9588674,25.9094959 61.6009819,20.4637517 65.8424317,19.6021523 C69.5537002,18.8482528 71.9795388,18.7730391 74.6054724,18.7660153 Z" id="Combined-Shape" fill="#D4067F"></path>
-                        <path d="M127.601335,4.09072607 L127.557064,4.15871916 C125.680767,6.88368025 122.377441,8.84025567 117.647086,10.0284454 C112.201165,11.396374 106.372842,10.6159472 100.162119,7.68716484 C99.8097143,7.2215051 99.4624505,6.73266165 99.1202693,6.22118181 C104.304523,6.78076278 107.742746,6.78076278 109.434937,6.22118181 C111.973224,5.38181036 118.570846,3.65638856 120.800321,3.65638856 C122.20247,3.65638856 124.889136,3.47343623 127.601335,4.09072607 Z" id="Combined-Shape" fill="#FF88CE"></path>
+            <g id="Group-25" transform="translate(367.219321, 640.500000)">
+                <g id="Group-24" transform="translate(125.700000, 0.000000)">
+                    <g id="Group-6">
+                        <g id="Group-5" transform="translate(0.500000, 0.000000)">
+                            <g id="Rectangle">
+                                <use fill="black" fill-opacity="1" filter="url(#filter-11)" xlink:href="#path-10"></use>
+                                <rect stroke="#FFFFFF" stroke-width="2" stroke-linejoin="square" fill="#FF186E" fill-rule="evenodd" x="1.20255621" y="1" width="98.9392265" height="21.2810984" rx="3"></rect>
+                            </g>
+                            <g id="Share" fill="#FFFFFF" fill-opacity="1">
+                                <use filter="url(#filter-13)" xlink:href="#text-12"></use>
+                                <use xlink:href="#text-12"></use>
+                            </g>
+                        </g>
                     </g>
-                    <path d="M148.616906,15.5813068 C147.510538,16.3307153 144.693985,19.9674258 138.12691,21.8078474 C131.559835,23.648269 131.490791,23.361406 130.435891,24.3594857 C129.380992,25.3575654 127.549981,27.4080421 126.219222,28.054757 C124.894833,28.6983759 120.696173,32.0022682 119.429895,33.8332439 L119.365601,33.8258134 L117.484274,33.8258134 C116.857165,32.4937798 116.857165,31.5599022 117.484274,31.0241804 C118.424937,30.2205979 122.709631,26.7221585 122.709631,24.7501781 C122.709631,22.7781976 121.644613,16.9990506 122.709631,16.9990506 C123.774649,16.9990506 126.405577,17.9051151 128.252972,17.9051151 L137.202137,17.9051151 C140.790497,17.8301002 143.142414,17.5280787 144.257888,16.9990506 C145.373361,16.4700225 146.89533,15.8019284 148.823795,14.9947682 L149.975557,14.13941 C149.602374,14.6950139 149.166089,15.2093129 148.616906,15.5813068 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+                    <g id="share" transform="translate(7.080679, 5.500000)" fill-rule="nonzero">
+                        <g id="Path">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-15)" xlink:href="#path-14"></use>
+                            <use fill="#FFFFFF" xlink:href="#path-14"></use>
+                        </g>
+                    </g>
                 </g>
-                <path d="M91.4777052,33.66534 C91.8078459,34.1571637 92.772202,34.9456983 94.3707736,36.0309438 C95.4193287,36.8058625 97.060004,37.4886164 99.2927993,38.0792055 C102.641992,38.965089 107.809398,39.5267175 109.05915,39.5267175 C109.892318,39.5267175 111.204174,39.231423 112.994717,38.6408339 L112.994717,38.6408339 L114.47364,40.5665218 L115.878984,42.016735 C114.008212,41.1821074 98.9508631,41.976556 93.615433,38.2222114 C88.1633743,40.1980018 84.3779818,43.1580097 82.2592555,47.1022351 C81.1467499,47.7537594 80.3745795,47.7537594 79.9427443,47.1022351 C79.2949915,46.1249488 79.1414222,44.9142679 79.9427443,43.5168714 C80.7440664,42.119475 82.2592555,41.0157312 82.2592555,40.2226143 L82.2592555,38.2222114 C79.5173252,39.0270687 77.2905007,39.0270687 75.5787819,38.2222114 C75.513625,38.2222114 75.4371513,38.2362908 75.3493608,38.2644496 L75.9692957,37.4717633 C76.3406008,37.4706338 76.6171676,37.4689397 76.798996,37.4666808 C83.5872399,37.3823495 89.4272039,35.8485777 91.4777052,33.66534 Z M69.8084261,42.8544554 C69.2606877,42.9122167 68.8082082,42.8858496 68.4509875,42.775354 L70.0222683,42.6462916 C69.9516286,42.714882 69.8803479,42.7842699 69.8084261,42.8544554 Z" id="Combined-Shape" fill="#D4067F"></path>
-                <path d="" id="Path-7" stroke="#979797" stroke-width="11.2586947"></path>
-                <path d="M128.133897,46.1696331 C128.133897,46.7985252 127.674026,47.9654976 126.882329,47.9654976 C126.243144,47.9654976 122.640208,46.6314268 120.660956,45.6920087 C121.694429,45.5834728 122.512117,45.4040298 123.116291,45.1541177 C123.98659,44.7941251 124.543138,44.0481828 124.785934,42.9162909 C126.624572,44.4874314 128.133897,45.7992488 128.133897,46.1696331 Z M73.1935115,35.0901835 L73.1939844,39.7947823 C72.296675,40.5497681 71.1744668,41.5845539 69.8273599,42.8991398 C68.2526121,43.0652035 67.4652381,42.5358931 67.4652381,41.3112086 C67.4652381,39.4741818 71.3220452,35.2247046 72.3166889,35.2247046 C72.5523241,35.2247046 72.8604565,35.1751192 73.1935115,35.0901835 Z" id="Combined-Shape" fill="#009BB3"></path>
-                <path d="M130.098769,38.3632744 C130.752591,39.2778672 130.916047,39.885047 130.589136,40.1848139 C130.098769,40.6344642 128.63772,42.0548768 127.109877,42.0548768 L124.786429,42.0544402 C124.985513,41.7070457 125.170841,41.4231397 125.342413,41.2027221 C125.493912,41.0080928 125.93908,39.9307611 126.677917,37.9707272 C127.716622,38.04093 128.857102,38.1722302 130.098769,38.3632744 Z" id="Combined-Shape" fill="#009BB3"></path>
-                <path d="M151.585449,9.70342759 C151.983529,10.3379777 151.983529,11.0148217 151.585449,11.7339596 C150.988328,12.8126665 150.979193,13.6052184 149.872825,14.3546269 C149.841206,14.3760443 149.807668,14.4002564 149.772194,14.4271289 C149.580717,14.6875147 149.372392,14.9337448 149.14167,15.1546773 L149.139257,11.0296271 C149.896771,10.6444256 150.712168,10.2023591 151.585449,9.70342759 Z" id="Combined-Shape" fill="#442E12"></path>
-                <path d="M135.86732,11.8603788 C136.696582,11.8603788 137.368832,12.8798204 137.368832,14.1373654 C137.368832,14.6986506 137.234911,15.2125023 137.01288,15.6094469 C136.801737,15.4604824 136.574388,15.3796427 136.337261,15.3796427 C135.893777,15.3796427 135.484495,15.6624018 135.155129,16.1396484 C134.684956,15.7572701 134.365808,15.0038371 134.365808,14.1373654 C134.365808,12.8798204 135.038058,11.8603788 135.86732,11.8603788 Z" id="Combined-Shape" fill="#442E12"></path>
-                <ellipse id="Oval" fill="#FFFFFF" cx="136.614765" cy="12.729065" rx="1" ry="1"></ellipse>
-                <path d="M133.107917,18.6854458 C133.365744,20.6443354 134.701054,21.6237802 137.113847,21.6237802" id="Path-18" stroke="#442E12" stroke-width="1.26" stroke-linecap="round"></path>
-                <path d="M83.4605918,39.6082085 C83.4605918,40.2156456 83.6622831,41.8266158 84.0656655,44.4411191 C83.3676564,45.2724547 82.7658197,46.1592142 82.2592555,47.1022351 C81.1467499,47.7537594 80.3745795,47.7537594 79.9427443,47.1022351 C79.2949915,46.1249488 79.1414222,44.9142679 79.9427443,43.5168714 C80.7440664,42.119475 82.2592555,41.0157312 82.2592555,40.2226143 L82.2604347,39.089815 C83.0605394,38.8712386 83.4605918,39.0440364 83.4605918,39.6082085 Z" id="Combined-Shape" fill="#009BB3"></path>
-                <path d="M117.267958,33.2038931 L119.712359,33.4587104 C119.646303,33.5403177 119.584479,33.61993 119.527279,33.6972684 C119.469244,34.0558443 119.093048,34.8281734 119.070002,35.833302 C118.572337,35.5922274 117.969993,34.7142914 117.267958,33.2038931 L117.267958,33.2038931 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+                <text id="Did-this-help-you?" font-family="LibreFranklin-Regular, Libre Franklin" font-size="12" font-weight="normal" fill="#C8047D">
+                    <tspan x="0.780679422" y="16.5">Did this help you?</tspan>
+                </text>
+            </g>
+            <g id="Group-19" transform="translate(38.219321, 194.000000)" font-family="LibreFranklin-SemiBold, Libre Franklin" font-size="16" font-weight="500">
+                <text id="Hue-Each-color-is-a">
+                    <tspan x="0" y="15" fill="#C8047D">Hue</tspan>
+                    <tspan x="30.688" y="15" fill="#222428">  </tspan>
+                    <tspan x="0" y="34" font-family="LibreFranklin-Regular, Libre Franklin" font-size="14" font-weight="normal" fill="#595959">Each color is a degree on a 360° color wheel. 0° is red, 120° is green, 240° is blue.</tspan>
+                </text>
+                <text id="Saturation-The-inten">
+                    <tspan x="0" y="68.5" fill="#C8047D">Saturation</tspan>
+                    <tspan x="80.88" y="68.5" fill="#222428">  </tspan>
+                    <tspan x="0" y="87.5" font-family="LibreFranklin-Regular, Libre Franklin" font-size="14" font-weight="normal" fill="#595959">The intensity and vibrance of a color. 0% is fully grey, 100% is no grey at all.</tspan>
+                </text>
+                <text id="Lightness-How-light">
+                    <tspan x="0" y="122" fill="#C8047D">Lightness</tspan>
+                    <tspan x="75.68" y="122" fill="#222428"> </tspan>
+                    <tspan x="0" y="141" font-family="LibreFranklin-Regular, Libre Franklin" font-size="14" font-weight="normal" fill="#595959">How light or dark a color is. 0% is completely black, 100% is completely white.</tspan>
+                </text>
+            </g>
+            <text id="HSL" font-family="LibreFranklin-SemiBold, Libre Franklin" font-size="10" font-weight="500" fill="#D4067F">
+                <tspan x="190" y="62"> HSL</tspan>
+            </text>
+            <g id="Group-7" transform="translate(38.219321, 361.000000)" fill="#404040">
+                <rect id="Rectangle" x="0" y="0" width="557" height="25"></rect>
+            </g>
+            <g id="Group-7">
+                <g id="Rectangle">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-17)" xlink:href="#path-16"></use>
+                    <use fill="#404040" fill-rule="evenodd" xlink:href="#path-16"></use>
+                </g>
+            </g>
+            <g id="CREATING-YOUR-COLOR" fill="#F5FFFC" fill-opacity="1">
+                <use filter="url(#filter-19)" xlink:href="#text-18"></use>
+                <use xlink:href="#text-18"></use>
+            </g>
+            <g id="Group-21" transform="translate(38.219321, 397.500000)">
+                <g id="Rectangle">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-21)" xlink:href="#path-20"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-20"></use>
+                </g>
+                <g id="Group-14" transform="translate(14.780679, 24.990372)" fill="#757575" fill-rule="nonzero">
+                    <g id="Group-13" transform="translate(0.000000, 0.990024)">
+                        <g id="good-mood-emoticon" transform="translate(0.000000, 0.391405)">
+                            <path d="M9.05670388,0.302449079 C4.24728182,0.302449079 0.312300134,4.11330748 0.312300134,8.7710233 C0.312300134,13.4287391 4.24728182,17.2395975 9.05670388,17.2395975 C13.8661259,17.2395975 17.8011076,13.4287391 17.8011076,8.7710233 C17.8011076,4.11330748 13.8661259,0.302449079 9.05670388,0.302449079 Z M12.1172452,5.38359361 C12.8167975,5.38359361 13.4289058,5.97639381 13.4289058,6.65387974 C13.4289058,7.33136568 12.8167975,7.92416588 12.1172452,7.92416588 C11.4176929,7.92416588 10.8055846,7.33136568 10.8055846,6.65387974 C10.8055846,5.97639381 11.4176929,5.38359361 12.1172452,5.38359361 Z M5.99616257,5.38359361 C6.69571487,5.38359361 7.30782313,5.97639381 7.30782313,6.65387974 C7.30782313,7.33136568 6.69571487,7.92416588 5.99616257,7.92416588 C5.29661027,7.92416588 4.68450201,7.33136568 4.68450201,6.65387974 C4.68450201,5.97639381 5.29661027,5.38359361 5.99616257,5.38359361 Z M9.05670388,13.8521678 C6.7831589,13.8521678 4.85939008,12.4125102 4.15983778,10.4647381 L13.95357,10.4647381 C13.2540177,12.4125102 11.3302489,13.8521678 9.05670388,13.8521678 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </g>
+                <text id="Hue-value-Find-out-w" font-family="LibreFranklin-Regular, Libre Franklin" font-size="16" font-weight="normal">
+                    <tspan x="54.2806794" y="25.4903716" fill="#212121">Hue value</tspan>
+                    <tspan x="127.944679" y="25.4903716" fill="#222428"> </tspan>
+                    <tspan x="54.2806794" y="44.4903716" font-size="12" fill="#595959">Find out what the hue value for your brand color is. </tspan>
+                    <tspan x="336.532679" y="44.4903716" font-size="12" fill="#009BB3" text-decoration="underline">hslpicker.com</tspan>
+                    <tspan x="412.816679" y="44.4903716" font-size="12" fill="#595959"> converts hex and rgb</tspan>
+                    <tspan x="54.2806794" y="59.4903716" font-size="12" fill="#595959">codes to hsl for you.</tspan>
+                </text>
+            </g>
+            <g id="Group-21" transform="translate(38.219321, 559.000000)">
+                <g id="Rectangle">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-23)" xlink:href="#path-22"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-22"></use>
+                </g>
+                <g id="Group-14" transform="translate(14.780679, 24.990372)" fill="#757575" fill-rule="nonzero">
+                    <g id="Group-13" transform="translate(0.000000, 0.990024)">
+                        <g id="good-mood-emoticon" transform="translate(0.000000, 0.391405)">
+                            <path d="M9.05670388,0.302449079 C4.24728182,0.302449079 0.312300134,4.11330748 0.312300134,8.7710233 C0.312300134,13.4287391 4.24728182,17.2395975 9.05670388,17.2395975 C13.8661259,17.2395975 17.8011076,13.4287391 17.8011076,8.7710233 C17.8011076,4.11330748 13.8661259,0.302449079 9.05670388,0.302449079 Z M12.1172452,5.38359361 C12.8167975,5.38359361 13.4289058,5.97639381 13.4289058,6.65387974 C13.4289058,7.33136568 12.8167975,7.92416588 12.1172452,7.92416588 C11.4176929,7.92416588 10.8055846,7.33136568 10.8055846,6.65387974 C10.8055846,5.97639381 11.4176929,5.38359361 12.1172452,5.38359361 Z M5.99616257,5.38359361 C6.69571487,5.38359361 7.30782313,5.97639381 7.30782313,6.65387974 C7.30782313,7.33136568 6.69571487,7.92416588 5.99616257,7.92416588 C5.29661027,7.92416588 4.68450201,7.33136568 4.68450201,6.65387974 C4.68450201,5.97639381 5.29661027,5.38359361 5.99616257,5.38359361 Z M9.05670388,13.8521678 C6.7831589,13.8521678 4.85939008,12.4125102 4.15983778,10.4647381 L13.95357,10.4647381 C13.2540177,12.4125102 11.3302489,13.8521678 9.05670388,13.8521678 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </g>
+                <text id="Accent-Find-the-colo" font-family="LibreFranklin-Regular, Libre Franklin" font-size="16" font-weight="normal">
+                    <tspan x="54.2806794" y="24.4903716" fill="#212121">Accent</tspan>
+                    <tspan x="108.088679" y="24.4903716" fill="#222428"> </tspan>
+                    <tspan x="54.2806794" y="43.4903716" font-size="12" fill="#595959">Find the color that is closest to your brand color in the wheel at the top of this page. </tspan>
+                    <tspan x="54.2806794" y="58.4903716" font-size="12" fill="#595959">A good accent color is one of the two or three colors directly opposite it on the wheel.</tspan>
+                </text>
+            </g>
+            <g id="Group-22" transform="translate(38.219321, 479.000000)">
+                <g id="Group-21">
+                    <g id="Rectangle">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-25)" xlink:href="#path-24"></use>
+                        <rect stroke="#00B380" stroke-width="1" stroke-linejoin="square" fill="#E5FFF8" fill-rule="evenodd" x="0.5" y="0.5" width="556" height="69"></rect>
+                    </g>
+                    <text id="Lightness-Keep-your" font-family="LibreFranklin-Medium, Libre Franklin" font-size="16" font-weight="400">
+                        <tspan x="52.7806794" y="24.5" fill="#00805B">Lightness</tspan>
+                        <tspan x="127.388679" y="24.5" font-family="LibreFranklin-SemiBold, Libre Franklin" font-weight="500" fill="#222428"> </tspan>
+                        <tspan x="52.7806794" y="43.5" font-family="LibreFranklin-Regular, Libre Franklin" font-size="12" font-weight="normal" fill="#109573">Keep your hue value the same, and the saturation level at 100% (except grey, S = 0%).</tspan>
+                        <tspan x="52.7806794" y="58.5" font-family="LibreFranklin-Regular, Libre Franklin" font-size="12" font-weight="normal" fill="#109573">Then change the lightness value to match the shades shown in the palettes on the right.</tspan>
+                    </text>
+                </g>
+                <g id="Group-14" transform="translate(15.280679, 25.000000)" fill="#00B380" fill-rule="nonzero">
+                    <g id="Group-13" transform="translate(0.000000, 0.990024)">
+                        <g id="good-mood-emoticon" transform="translate(0.000000, 0.391405)">
+                            <path d="M9.05670388,0.302449079 C4.24728182,0.302449079 0.312300134,4.11330748 0.312300134,8.7710233 C0.312300134,13.4287391 4.24728182,17.2395975 9.05670388,17.2395975 C13.8661259,17.2395975 17.8011076,13.4287391 17.8011076,8.7710233 C17.8011076,4.11330748 13.8661259,0.302449079 9.05670388,0.302449079 Z M12.1172452,5.38359361 C12.8167975,5.38359361 13.4289058,5.97639381 13.4289058,6.65387974 C13.4289058,7.33136568 12.8167975,7.92416588 12.1172452,7.92416588 C11.4176929,7.92416588 10.8055846,7.33136568 10.8055846,6.65387974 C10.8055846,5.97639381 11.4176929,5.38359361 12.1172452,5.38359361 Z M5.99616257,5.38359361 C6.69571487,5.38359361 7.30782313,5.97639381 7.30782313,6.65387974 C7.30782313,7.33136568 6.69571487,7.92416588 5.99616257,7.92416588 C5.29661027,7.92416588 4.68450201,7.33136568 4.68450201,6.65387974 C4.68450201,5.97639381 5.29661027,5.38359361 5.99616257,5.38359361 Z M9.05670388,13.8521678 C6.7831589,13.8521678 4.85939008,12.4125102 4.15983778,10.4647381 L13.95357,10.4647381 C13.2540177,12.4125102 11.3302489,13.8521678 9.05670388,13.8521678 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-23" transform="translate(575.500000, 486.000000)">
+                <ellipse id="Oval" stroke="#00B380" fill="#00B380" cx="5.76923077" cy="5.75" rx="5.76923077" ry="5.75"></ellipse>
+                <path d="M9.01650454,2.78423265 L9.89892161,4.20405253 L3.73570524,8.71576735 L3.71353993,8.68023265 L3.66401284,8.71576735 L1.63953993,5.33246044 L2.96297809,4.39970497 L4.13353993,6.35723265 L9.01650454,2.78423265 Z" id="Combined-Shape" fill="#FFFFFF" transform="translate(5.769231, 5.750000) rotate(-12.000000) translate(-5.769231, -5.750000) "></path>
+            </g>
+            <g id="right-arrow" transform="translate(469.787380, 649.500000)" fill="#C6037C" fill-rule="nonzero">
+                <path d="M4.65043437,3.02313553 L1.49668435,0.932608712 C1.42374197,0.884218302 1.32637021,0.857559655 1.22254542,0.857559655 C1.11872063,0.857559655 1.02134888,0.884218302 0.948406495,0.932608712 L0.716154704,1.08652612 C0.565026833,1.18682068 0.565026833,1.349828 0.716154704,1.4499698 L3.36443586,3.20546846 L0.713216267,4.96291496 C0.640273878,5.01130537 0.6,5.07581319 0.6,5.14459861 C0.6,5.21346041 0.640273878,5.27796823 0.713216267,5.32639683 L0.945468058,5.48027604 C1.01846806,5.52866645 1.1157822,5.5553251 1.21960699,5.5553251 C1.32343178,5.5553251 1.42080353,5.52866645 1.49374592,5.48027604 L4.65043437,3.38783958 C4.72354961,3.3392964 4.76370825,3.27448304 4.76347877,3.20558304 C4.76370825,3.13641569 4.72354961,3.07164052 4.65043437,3.02313553 Z" id="Path"></path>
+            </g>
+            <g id="right-arrow" transform="translate(473.884275, 649.500000)" fill="#C6037C" fill-rule="nonzero">
+                <path d="M4.65043437,3.02313553 L1.49668435,0.932608712 C1.42374197,0.884218302 1.32637021,0.857559655 1.22254542,0.857559655 C1.11872063,0.857559655 1.02134888,0.884218302 0.948406495,0.932608712 L0.716154704,1.08652612 C0.565026833,1.18682068 0.565026833,1.349828 0.716154704,1.4499698 L3.36443586,3.20546846 L0.713216267,4.96291496 C0.640273878,5.01130537 0.6,5.07581319 0.6,5.14459861 C0.6,5.21346041 0.640273878,5.27796823 0.713216267,5.32639683 L0.945468058,5.48027604 C1.01846806,5.52866645 1.1157822,5.5553251 1.21960699,5.5553251 C1.32343178,5.5553251 1.42080353,5.52866645 1.49374592,5.48027604 L4.65043437,3.38783958 C4.72354961,3.3392964 4.76370825,3.27448304 4.76347877,3.20558304 C4.76370825,3.13641569 4.72354961,3.07164052 4.65043437,3.02313553 Z" id="Path"></path>
+            </g>
+            <g id="Group-4" transform="translate(116.043625, 164.000000)">
+                <g id="Rectangle">
+                    <use fill="#E5FFF8" fill-rule="evenodd" xlink:href="#path-26"></use>
+                    <use fill="black" fill-opacity="1" filter="url(#filter-27)" xlink:href="#path-26"></use>
+                    <rect stroke="#00B380" stroke-width="1" stroke-linejoin="square" x="0.5" y="0.587137356" width="93.8254994" height="16.9128626" rx="3"></rect>
+                </g>
+                <text id="HIGH-CONTRAST" font-family="RobotoMono-Medium, Roboto Mono" font-size="10" font-weight="400" fill="#00B380">
+                    <tspan x="8.40640207" y="12.5435687">HIGH CONTRAST</tspan>
+                </text>
+            </g>
+            <g id="Group-4" transform="translate(315.927291, 164.000000)">
+                <g id="Rectangle">
+                    <use fill="#E5FFF8" fill-rule="evenodd" xlink:href="#path-28"></use>
+                    <use fill="black" fill-opacity="1" filter="url(#filter-29)" xlink:href="#path-28"></use>
+                    <rect stroke="#00B380" stroke-width="1" stroke-linejoin="square" x="0.5" y="0.587137356" width="93.8254994" height="16.9128626" rx="3"></rect>
+                </g>
+                <text id="COMPLIMENTARY" font-family="RobotoMono-Medium, Roboto Mono" font-size="10" font-weight="400" fill="#00B380">
+                    <tspan x="8.40640207" y="12.5435687">COMPLIMENTARY</tspan>
+                </text>
+            </g>
+            <g id="Group-4" transform="translate(215.985458, 164.000000)">
+                <g id="Rectangle">
+                    <use fill="#E5FFF8" fill-rule="evenodd" xlink:href="#path-30"></use>
+                    <use fill="black" fill-opacity="1" filter="url(#filter-31)" xlink:href="#path-30"></use>
+                    <rect stroke="#00B380" stroke-width="1" stroke-linejoin="square" x="0.5" y="0.587137356" width="93.8254994" height="16.9128626" rx="3"></rect>
+                </g>
+                <text id="SEMANTIC" font-family="RobotoMono-Medium, Roboto Mono" font-size="10" font-weight="400" fill="#00B380">
+                    <tspan x="23.4088435" y="12.5435687">SEMANTIC</tspan>
+                </text>
+            </g>
+            <g id="Group-4" transform="translate(415.956375, 164.000000)">
+                <g id="Rectangle">
+                    <use fill="#E5FFF8" fill-rule="evenodd" xlink:href="#path-32"></use>
+                    <use fill="black" fill-opacity="1" filter="url(#filter-33)" xlink:href="#path-32"></use>
+                    <rect stroke="#00B380" stroke-width="1" stroke-linejoin="square" x="0.5" y="0.587137356" width="93.8254994" height="16.9128626" rx="3"></rect>
+                </g>
+                <text id="CONSISTENT" font-family="RobotoMono-Medium, Roboto Mono" font-size="10" font-weight="400" fill="#00B380">
+                    <tspan x="17.4078669" y="12.5435687">CONSISTENT</tspan>
+                </text>
+            </g>
+            <g id="Group-9" transform="translate(830.000000, 32.000000)">
+                <g id="Group-8">
+                    <path d="M120.411479,36.6437811 C121.948601,37.4846575 123.451117,37.9050958 124.919029,37.9050958 C126.386941,37.9050958 128.113521,38.057822 130.098769,38.3632744 C130.752591,39.2778672 130.916047,39.885047 130.589136,40.1848139 C130.098769,40.6344642 128.63772,42.0548768 127.109877,42.0548768 C126.091316,42.0548768 124.909814,42.0548768 123.565372,42.0548768 C121.462777,41.3651582 120.411479,40.7418039 120.411479,40.1848139 C120.411479,39.6278239 119.867657,38.4474797 118.780015,36.6437811 L118.101156,35.2486595 L120.411479,36.6437811 Z" id="Path-6" fill="#D4067F"></path>
+                    <path d="M99.1266792,6.22118181 C104.310933,6.78076278 107.749156,6.78076278 109.441347,6.22118181 C111.979634,5.38181036 118.577256,3.65638856 120.80673,3.65638856 C123.036205,3.65638856 128.513231,3.19384311 132.176717,6.22118181 C134.61904,8.23940761 136.808065,10.4365692 138.743792,12.8126665 C141.097963,13.2005257 143.089482,13.2005257 144.718349,12.8126665 C146.347215,12.4248073 148.636249,11.3883943 151.585449,9.70342759 C151.983529,10.3379777 151.983529,11.0148217 151.585449,11.7339596 C150.988328,12.8126665 150.979193,13.6052184 149.872825,14.3546269 C148.766456,15.1040353 145.310867,19.2751478 138.743792,21.1155694 C132.176717,22.955991 132.107673,22.669128 131.052773,23.6672077 C129.997874,24.6652874 128.166863,26.7157641 126.836104,27.362479 C125.505344,28.0091939 119.537587,33.0072308 119.537587,33.611086 C119.537587,34.2149412 117.877197,36.7169301 120.80673,39.4404316 C123.736264,42.1639331 128.087673,45.5069909 128.087673,46.135883 C128.087673,46.764775 127.627802,47.9317475 126.836104,47.9317475 C126.044406,47.9317475 120.705885,45.88509 119.537587,45.0766963 C118.369289,44.2683027 116.872093,43.1348542 116.006748,42.1304092 C115.141404,41.1259642 99.1266792,42.1304092 93.5881419,38.2331456 C88.1360832,40.208936 84.3506907,43.1689439 82.2319644,47.1131693 C81.1194588,47.7646936 80.3472884,47.7646936 79.9154532,47.1131693 C79.2677004,46.135883 79.1141311,44.9252021 79.9154532,43.5278056 C80.7167753,42.1304092 82.2319644,41.0266654 82.2319644,40.2335485 C82.2319644,39.7048039 82.2319644,39.0380029 82.2319644,38.2331456 C79.4900342,39.0380029 77.2632096,39.0380029 75.5514908,38.2331456 C74.8691466,38.2331456 72.9456946,39.7772269 69.781135,42.8653896 C68.2063872,43.0314534 67.4190132,42.502143 67.4190132,41.2774584 C67.4190132,39.4404316 71.2758203,35.1909545 72.270464,35.1909545 C73.2651076,35.1909545 75.5514908,34.3074503 75.5514908,33.611086 C75.5514908,32.9147217 77.0492832,30.8591528 79.2015861,29.1108159 C80.6364547,27.9452579 81.6465808,27.362479 82.2319644,27.362479 C82.9126349,25.4262949 83.5192406,24.1945378 84.0517815,23.6672077 C84.5843224,23.1398776 85.0029069,22.2893315 85.3075348,21.1155694 C77.5716035,20.8100348 71.9574672,21.6605809 68.4651256,23.6672077 C63.2266133,26.6771479 56.9662584,32.1538557 46.2808482,36.715657 C35.595438,41.2774584 17.5675743,40.2335485 17.5675743,40.2335485 C17.5675743,40.2335485 4.79328689,38.8353034 -3.09051598e-14,27.9786404 C8.42413371,29.7750707 15.5697786,27.4873804 21.4369347,21.1155694 C34.120559,11.8239226 46.0931059,6.85912675 57.3545753,6.22118181 C68.6160448,5.58323688 79.0269551,10.2921475 88.5873063,20.3479137 C93.6100405,19.9738761 98.5196551,20.7859475 103.31615,22.7841278 C108.45856,23.3728477 111.345272,22.8166616 111.976287,21.1155694 C112.901887,19.4405042 113.133287,17.3649907 112.670487,14.8890288 C107.507155,14.8890288 102.992553,11.9997465 99.1266792,6.22118181 Z" id="Path-4" fill="#FF88CE"></path>
+                    <path d="M117.198754,4.78103251 C110.781161,2.27958791 107.105147,0.714686287 106.170711,0.0863276472 C104.769056,-0.856210312 107.245454,6.23017268 109.871888,6.23017268 C111.622845,6.23017268 113.563744,6.0128336 115.694587,5.57815543 L117.198754,4.78103251 Z" id="Path-5" fill="#D4067F"></path>
+                    <path d="M132.170307,6.22118181 C134.61263,8.23940761 136.801655,10.4365692 138.737382,12.8126665 C139.376187,12.9179123 139.98829,12.9945996 140.573691,13.0427284 C138.161159,14.4295102 136.299393,15.2290164 134.987724,15.4417795 C132.246551,15.8864195 129.876677,16.32666 127.14857,16.32666 L121.103413,16.32666 L121.103413,16.32666 C120.287443,21.7294075 118.016533,25.5513756 114.290682,27.7925646 C108.701905,31.1543479 100.941129,25.7041257 100.219539,24.5445809 C99.8681259,23.9798844 99.5128032,22.9179469 99.1535707,21.3587684 C100.548462,21.7352925 101.933756,22.2109041 103.30974,22.7841278 C108.45215,23.3728477 111.338862,22.8166616 111.969877,21.1155694 C112.895477,19.4405042 113.126877,17.3649907 112.664077,14.8890288 C107.500745,14.8890288 102.986143,11.9997465 99.1202693,6.22118181 C104.304523,6.78076278 107.742746,6.78076278 109.434937,6.22118181 C111.973224,5.38181036 118.570846,3.65638856 120.800321,3.65638856 C123.029795,3.65638856 128.506821,3.19384311 132.170307,6.22118181 Z" id="Combined-Shape" fill="#FF186E"></path>
+                    <path d="M63.1757479,16.3989637 C67.760628,16.3989637 71.8024075,16.0696643 76.2957964,17.6073001 C79.291389,18.6323906 81.8220947,19.8368706 83.8879137,21.22074 L83.6625669,21.0736244 C76.8042948,20.9520246 71.7604226,21.8190185 68.5309505,23.6746059 C63.2924382,26.6845461 57.0320833,32.1612539 46.3466731,36.7230553 C35.768117,41.2392387 17.9932222,40.2612644 17.6387822,40.2412533 C17.6333992,40.2409468 11.1433392,39.5305592 5.67939283,35.1909299 C13.6293623,32.0283611 18.2962203,30.1118275 19.6809007,29.441269 C21.9388393,28.3478182 28.7163453,25.8489735 31.7824917,24.1464106 C34.8486381,22.4438477 42.5586131,18.7373811 48.4917362,17.247695 C53.5292037,16.3989637 58.5908678,16.3989637 63.1757479,16.3989637 Z" id="Combined-Shape" fill="#FF186E"></path>
+                    <path d="M20.9408539,21.62944 C21.1385821,25.2849513 21.7745933,28.770424 22.8488876,32.085858 C23.9442389,35.4662768 26.0097858,38.1511416 29.0455286,40.1404524 C22.6656998,40.5502226 17.5688,40.2545737 17.5688,40.2545737 C17.5688,40.2545737 4.79451264,38.853907 0.00122575218,27.9784422 C8.12977582,29.7148418 15.0679816,27.6421123 20.8158431,21.7602535 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+                    <path d="M75.7474541,18.7654001 C77.814822,18.7654001 79.4395285,19.0443175 80.6215738,19.6021523 L80.6215738,19.6021523 L82.2186436,20.9394147 C76.9769496,21.1079477 73.0051932,21.9684186 70.3033745,23.5208274 C65.0648621,26.5307676 58.8045073,32.0074754 48.1190971,36.5692767 C43.0685197,38.7254626 36.3775759,39.6292851 30.7252823,39.9829208 C34.4865898,38.6518491 39.1754674,36.3509833 43.3303878,33.9273211 C50.9840328,29.462771 50.9854172,29.5957949 53.4721423,27.7526454 C55.9588674,25.9094959 61.6009819,20.4637517 65.8424317,19.6021523 C69.5537002,18.8482528 71.9795388,18.7730391 74.6054724,18.7660153 Z" id="Combined-Shape" fill="#D4067F"></path>
+                    <path d="M127.601335,4.09072607 L127.557064,4.15871916 C125.680767,6.88368025 122.377441,8.84025567 117.647086,10.0284454 C112.201165,11.396374 106.372842,10.6159472 100.162119,7.68716484 C99.8097143,7.2215051 99.4624505,6.73266165 99.1202693,6.22118181 C104.304523,6.78076278 107.742746,6.78076278 109.434937,6.22118181 C111.973224,5.38181036 118.570846,3.65638856 120.800321,3.65638856 C122.20247,3.65638856 124.889136,3.47343623 127.601335,4.09072607 Z" id="Combined-Shape" fill="#FF88CE"></path>
+                </g>
+                <path d="M148.616906,15.5813068 C147.510538,16.3307153 144.693985,19.9674258 138.12691,21.8078474 C131.559835,23.648269 131.490791,23.361406 130.435891,24.3594857 C129.380992,25.3575654 127.549981,27.4080421 126.219222,28.054757 C124.894833,28.6983759 120.696173,32.0022682 119.429895,33.8332439 L119.365601,33.8258134 L117.484274,33.8258134 C116.857165,32.4937798 116.857165,31.5599022 117.484274,31.0241804 C118.424937,30.2205979 122.709631,26.7221585 122.709631,24.7501781 C122.709631,22.7781976 121.644613,16.9990506 122.709631,16.9990506 C123.774649,16.9990506 126.405577,17.9051151 128.252972,17.9051151 L137.202137,17.9051151 C140.790497,17.8301002 143.142414,17.5280787 144.257888,16.9990506 C145.373361,16.4700225 146.89533,15.8019284 148.823795,14.9947682 L149.975557,14.13941 C149.602374,14.6950139 149.166089,15.2093129 148.616906,15.5813068 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+            </g>
+            <path d="M921.477705,65.66534 C921.807846,66.1571637 922.772202,66.9456983 924.370774,68.0309438 C925.419329,68.8058625 927.060004,69.4886164 929.292799,70.0792055 C932.641992,70.965089 937.809398,71.5267175 939.05915,71.5267175 C939.892318,71.5267175 941.204174,71.231423 942.994717,70.6408339 L942.994717,70.6408339 L944.47364,72.5665218 L945.878984,74.016735 C944.008212,73.1821074 928.950863,73.976556 923.615433,70.2222114 C918.163374,72.1980018 914.377982,75.1580097 912.259256,79.1022351 C911.14675,79.7537594 910.374579,79.7537594 909.942744,79.1022351 C909.294991,78.1249488 909.141422,76.9142679 909.942744,75.5168714 C910.744066,74.119475 912.259256,73.0157312 912.259256,72.2226143 L912.259256,70.2222114 C909.517325,71.0270687 907.290501,71.0270687 905.578782,70.2222114 C905.513625,70.2222114 905.437151,70.2362908 905.349361,70.2644496 L905.969296,69.4717633 C906.340601,69.4706338 906.617168,69.4689397 906.798996,69.4666808 C913.58724,69.3823495 919.427204,67.8485777 921.477705,65.66534 Z M899.808426,74.8544554 C899.260688,74.9122167 898.808208,74.8858496 898.450987,74.775354 L900.022268,74.6462916 C899.951629,74.714882 899.880348,74.7842699 899.808426,74.8544554 Z" id="Combined-Shape" fill="#D4067F"></path>
+            <path d="" id="Path-7" stroke="#979797" stroke-width="11.2586947"></path>
+            <path d="M958.133897,78.1696331 C958.133897,78.7985252 957.674026,79.9654976 956.882329,79.9654976 C956.243144,79.9654976 952.640208,78.6314268 950.660956,77.6920087 C951.694429,77.5834728 952.512117,77.4040298 953.116291,77.1541177 C953.98659,76.7941251 954.543138,76.0481828 954.785934,74.9162909 C956.624572,76.4874314 958.133897,77.7992488 958.133897,78.1696331 Z M903.193511,67.0901835 L903.193984,71.7947823 C902.296675,72.5497681 901.174467,73.5845539 899.82736,74.8991398 C898.252612,75.0652035 897.465238,74.5358931 897.465238,73.3112086 C897.465238,71.4741818 901.322045,67.2247046 902.316689,67.2247046 C902.552324,67.2247046 902.860456,67.1751192 903.193511,67.0901835 Z" id="Combined-Shape" fill="#009BB3"></path>
+            <path d="M960.098769,70.3632744 C960.752591,71.2778672 960.916047,71.885047 960.589136,72.1848139 C960.098769,72.6344642 958.63772,74.0548768 957.109877,74.0548768 L954.786429,74.0544402 C954.985513,73.7070457 955.170841,73.4231397 955.342413,73.2027221 C955.493912,73.0080928 955.93908,71.9307611 956.677917,69.9707272 C957.716622,70.04093 958.857102,70.1722302 960.098769,70.3632744 Z" id="Combined-Shape" fill="#009BB3"></path>
+            <path d="M981.585449,41.7034276 C981.983529,42.3379777 981.983529,43.0148217 981.585449,43.7339596 C980.988328,44.8126665 980.979193,45.6052184 979.872825,46.3546269 C979.841206,46.3760443 979.807668,46.4002564 979.772194,46.4271289 C979.580717,46.6875147 979.372392,46.9337448 979.14167,47.1546773 L979.139257,43.0296271 C979.896771,42.6444256 980.712168,42.2023591 981.585449,41.7034276 Z" id="Combined-Shape" fill="#442E12"></path>
+            <path d="M965.86732,43.8603788 C966.696582,43.8603788 967.368832,44.8798204 967.368832,46.1373654 C967.368832,46.6986506 967.234911,47.2125023 967.01288,47.6094469 C966.801737,47.4604824 966.574388,47.3796427 966.337261,47.3796427 C965.893777,47.3796427 965.484495,47.6624018 965.155129,48.1396484 C964.684956,47.7572701 964.365808,47.0038371 964.365808,46.1373654 C964.365808,44.8798204 965.038058,43.8603788 965.86732,43.8603788 Z" id="Combined-Shape" fill="#442E12"></path>
+            <ellipse id="Oval" fill="#FFFFFF" cx="966.614765" cy="44.729065" rx="1" ry="1"></ellipse>
+            <path d="M963.107917,50.6854458 C963.365744,52.6443354 964.701054,53.6237802 967.113847,53.6237802" id="Path-18" stroke="#442E12" stroke-width="1.26" stroke-linecap="round"></path>
+            <path d="M913.460592,71.6082085 C913.460592,72.2156456 913.662283,73.8266158 914.065665,76.4411191 C913.367656,77.2724547 912.76582,78.1592142 912.259256,79.1022351 C911.14675,79.7537594 910.374579,79.7537594 909.942744,79.1022351 C909.294991,78.1249488 909.141422,76.9142679 909.942744,75.5168714 C910.744066,74.119475 912.259256,73.0157312 912.259256,72.2226143 L912.260435,71.089815 C913.060539,70.8712386 913.460592,71.0440364 913.460592,71.6082085 Z" id="Combined-Shape" fill="#009BB3"></path>
+            <path d="M947.267958,65.2038931 L949.712359,65.4587104 C949.646303,65.5403177 949.584479,65.61993 949.527279,65.6972684 C949.469244,66.0558443 949.093048,66.8281734 949.070002,67.833302 C948.572337,67.5922274 947.969993,66.7142914 947.267958,65.2038931 L947.267958,65.2038931 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+            <g id="Group-28" transform="translate(679.219321, 72.012802)">
+                <g id="Combined-Shape">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-35)" xlink:href="#path-34"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-34"></use>
+                </g>
+                <g id="Combined-Shape">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-37)" xlink:href="#path-36"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-36"></use>
+                </g>
+                <g id="Combined-Shape">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-39)" xlink:href="#path-38"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-38"></use>
+                </g>
+                <g id="Rectangle">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-41)" xlink:href="#path-40"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-40"></use>
+                </g>
+                <g id="Rectangle">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-43)" xlink:href="#path-42"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-42"></use>
+                </g>
+                <g id="Rectangle">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-45)" xlink:href="#path-44"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-44"></use>
+                </g>
+                <g id="Rectangle">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-47)" xlink:href="#path-46"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-46"></use>
+                </g>
+                <path d="M3.8811453,25.0089875 L68.9580453,25.0089875 L68.9580453,25.0089875 L68.9580453,68.9987375 L1.0881453,68.9987375 L1.0881453,27.8019875 C1.0881453,26.2594562 2.338614,25.0089875 3.8811453,25.0089875 Z" id="Rectangle" fill="#80002F"></path>
+                <rect id="Rectangle" fill="#B30041" x="0.931" y="67.8699" width="67.8699" height="43.98975"></rect>
+                <polygon id="Rectangle" fill="#CC004B" points="0.931 110.6028 68.8009 110.6028 68.8009 154.59255 36.2145759 154.59255 0.931 154.59255"></polygon>
+                <rect id="Rectangle" fill="#E60054" x="0.931" y="153.3357" width="67.8699" height="43.98975"></rect>
+                <rect id="Rectangle" fill="#FF1A6E" x="0.931" y="196.0686" width="69.12675" height="43.98975"></rect>
+                <path d="M68.8009,25.137 L135.13465,25.137 C136.677181,25.137 137.92765,26.3874687 137.92765,27.93 L137.92765,69.12675 L137.92765,69.12675 L68.8009,69.12675 L68.8009,25.137 Z" id="Rectangle" fill="#FF4D8E"></path>
+                <rect id="Rectangle" fill="#FF80AE" x="68.8009" y="67.8699" width="69.12675" height="43.98975"></rect>
+                <rect id="Rectangle" fill="#FFB3CF" x="68.8009" y="110.6028" width="69.12675" height="43.98975"></rect>
+                <rect id="Rectangle" fill="#FFE5F5" x="68.8009" y="153.3357" width="69.12675" height="43.98975"></rect>
+                <rect id="Rectangle" fill="#FFF5FB" x="68.8009" y="196.0686" width="69.12675" height="43.98975"></rect>
+                <text id="BRAND" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="15.0822" font-weight="normal" fill="#CC004B">
+                    <tspan x="40.2192" y="257.8289">BRAND</tspan>
+                </text>
+                <text id="hsl(338,-100%,-__-%)" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="8.79795" font-weight="normal" fill="#191919">
+                    <tspan x="26.76625" y="270.02995">hsl(338, 100%, __ %)</tspan>
+                </text>
+                <text id="25" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="57.48925" y="63.1707141">25</tspan>
+                </text>
+                <text id="35" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="57.48925" y="106.0343">35</tspan>
+                </text>
+                <text id="40" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="57.48925" y="148.7672">40</tspan>
+                </text>
+                <text id="45" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="57.48925" y="191.5001">45</tspan>
+                </text>
+                <text id="55" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="57.48925" y="233.604575">55</tspan>
+                </text>
+                <text id="65" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                    <tspan x="125.645306" y="63.1707141">65</tspan>
+                </text>
+                <text id="75" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                    <tspan x="125.645306" y="106.0343">75</tspan>
+                </text>
+                <text id="85" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                    <tspan x="125.645306" y="147.51035">85</tspan>
+                </text>
+                <text id="95" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                    <tspan x="125.645306" y="191.5001">95</tspan>
+                </text>
+                <text id="98" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                    <tspan x="125.645306" y="234.861425">98</tspan>
+                </text>
+                <path d="M167.44035,25.137 L232.51725,25.137 L232.51725,25.137 L232.51725,69.12675 L164.64735,69.12675 L164.64735,27.93 C164.64735,26.3874687 165.897819,25.137 167.44035,25.137 Z" id="Rectangle" fill="#006F80"></path>
+                <rect id="Rectangle" fill="#009BB3" x="164.64735" y="67.8699" width="67.8699" height="43.98975"></rect>
+                <rect id="Rectangle" fill="#00B1CC" x="164.64735" y="110.6028" width="67.8699" height="43.98975"></rect>
+                <rect id="Rectangle" fill="#00C7E6" x="164.64735" y="153.3357" width="67.8699" height="43.98975"></rect>
+                <rect id="Rectangle" fill="#1AE0FF" x="164.64735" y="196.0686" width="67.8699" height="43.98975"></rect>
+                <path d="M232.51725,25.137 L298.851,25.137 C300.393531,25.137 301.644,26.3874687 301.644,27.93 L301.644,69.12675 L301.644,69.12675 L232.51725,69.12675 L232.51725,25.137 Z" id="Rectangle" fill="#4DE7FF"></path>
+                <rect id="Rectangle" fill="#80EEFF" x="232.51725" y="67.8699" width="69.12675" height="43.98975"></rect>
+                <rect id="Rectangle" fill="#B3F5FF" x="232.51725" y="110.6028" width="69.12675" height="43.98975"></rect>
+                <rect id="Rectangle" fill="#E5FCFF" x="232.51725" y="153.3357" width="69.12675" height="43.98975"></rect>
+                <rect id="Rectangle" fill="#F5FEFF" x="232.51725" y="196.0686" width="69.12675" height="43.98975"></rect>
+                <text id="ACCENT" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="15.0822" font-weight="normal" fill="#00C7E6">
+                    <tspan x="199.210725" y="256.57205">ACCENT</tspan>
+                </text>
+                <text id="ACCENT" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="15.0822" font-weight="normal" fill="#00C7E6">
+                    <tspan x="199.210725" y="256.57205">ACCENT</tspan>
+                </text>
+                <text id="hsl(118,-100%,-__%-)" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="8.79795" font-weight="normal" fill="#191919">
+                    <tspan x="189.854175" y="268.16795">hsl(118, 100%, __% )</tspan>
+                </text>
+                <text id="25" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="220.577175" y="63.1707141">25</tspan>
+                </text>
+                <text id="35" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="220.577175" y="106.0343">35</tspan>
+                </text>
+                <text id="40" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="220.577175" y="148.7672">40</tspan>
+                </text>
+                <text id="45" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="220.577175" y="191.5001">45</tspan>
+                </text>
+                <text id="55" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="220.577175" y="233.604575">55</tspan>
+                </text>
+                <text id="65" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                    <tspan x="288.733231" y="63.1707141">65</tspan>
+                </text>
+                <text id="75" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                    <tspan x="288.733231" y="106.0343">75</tspan>
+                </text>
+                <text id="85" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                    <tspan x="288.733231" y="147.51035">85</tspan>
+                </text>
+                <text id="95" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                    <tspan x="288.733231" y="191.5001">95</tspan>
+                </text>
+                <text id="98" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                    <tspan x="288.733231" y="234.861425">98</tspan>
+                </text>
+                <path d="M335.85825,25.137 L400.93515,25.137 L400.93515,25.137 L400.93515,69.12675 L333.06525,69.12675 L333.06525,27.93 C333.06525,26.3874687 334.315719,25.137 335.85825,25.137 Z" id="Rectangle" fill="#404040"></path>
+                <rect id="Rectangle" fill="#595959" x="333.06525" y="67.8699" width="67.8699" height="43.98975"></rect>
+                <rect id="Rectangle" fill="#666666" x="333.06525" y="110.6028" width="67.8699" height="43.98975"></rect>
+                <rect id="Rectangle" fill="#737373" x="333.06525" y="153.3357" width="67.8699" height="43.98975"></rect>
+                <rect id="Rectangle" fill="#8C8C8C" x="333.06525" y="196.0686" width="67.8699" height="43.98975"></rect>
+                <path d="M400.93515,25.137 L467.2689,25.137 C468.811431,25.137 470.0619,26.3874687 470.0619,27.93 L470.0619,69.12675 L470.0619,69.12675 L400.93515,69.12675 L400.93515,25.137 Z" id="Rectangle" fill="#A6A6A6"></path>
+                <rect id="Rectangle" fill="#BFBFBF" x="400.93515" y="67.8699" width="69.12675" height="43.98975"></rect>
+                <rect id="Rectangle" fill="#D9D9D9" x="400.93515" y="110.6028" width="69.12675" height="43.98975"></rect>
+                <rect id="Rectangle" fill="#F2F2F2" x="400.93515" y="153.3357" width="69.12675" height="43.98975"></rect>
+                <rect id="Rectangle" fill="#FAFAFA" x="401.02825" y="195.9755" width="69.12675" height="44.17595"></rect>
+                <text id="GRAYS" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="15.0822" font-weight="normal" fill="#666666">
+                    <tspan x="374.5413" y="256.57205">GRAYS</tspan>
+                </text>
+                <text id="hsl(0,-0%,-__-%)" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="8.79795" font-weight="normal" fill="#191919">
+                    <tspan x="368.19825" y="269.4689">hsl(0, 0%, __ %)</tspan>
+                </text>
+                <text id="25" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="388.995075" y="63.1707141">25</tspan>
+                </text>
+                <text id="35" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="388.995075" y="106.0343">35</tspan>
+                </text>
+                <text id="40" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="388.995075" y="148.7672">40</tspan>
+                </text>
+                <text id="45" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="388.995075" y="191.5001">45</tspan>
+                </text>
+                <text id="55" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="388.995075" y="233.604575">55</tspan>
+                </text>
+                <text id="65" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                    <tspan x="457.151131" y="63.1707141">65</tspan>
+                </text>
+                <text id="75" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                    <tspan x="457.151131" y="106.0343">75</tspan>
+                </text>
+                <text id="85" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                    <tspan x="457.151131" y="147.51035">85</tspan>
+                </text>
+                <text id="95" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                    <tspan x="457.151131" y="191.5001">95</tspan>
+                </text>
+                <text id="98" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                    <tspan x="457.151131" y="234.861425">98</tspan>
+                </text>
+                <text id="MAIN-COLORS" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="12.5685" font-weight="normal" fill="#595959">
+                    <tspan x="0" y="12">MAIN COLORS</tspan>
+                </text>
+            </g>
+            <g id="Group-26" transform="translate(679.219321, 364.542802)">
+                <text id="SEMANTIC-COLORS" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="12.5685" font-weight="normal" fill="#595959">
+                    <tspan x="0" y="12">SEMANTIC COLORS</tspan>
+                </text>
+                <g id="warning" transform="translate(0.000000, 21.834623)">
+                    <g id="Group-18" transform="translate(0.000000, 2.028425)">
+                        <g id="Combined-Shape">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-49)" xlink:href="#path-48"></use>
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-48"></use>
+                        </g>
+                        <g id="Combined-Shape">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-51)" xlink:href="#path-50"></use>
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-50"></use>
+                        </g>
+                        <g id="Combined-Shape">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-53)" xlink:href="#path-52"></use>
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-52"></use>
+                        </g>
+                        <g id="Combined-Shape">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-55)" xlink:href="#path-54"></use>
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-54"></use>
+                        </g>
+                    </g>
+                    <path d="M2.793,0 L67.8699,0 L67.8699,0 L67.8699,43.98975 L0,43.98975 L0,2.793 C-6.32994813e-16,1.25046869 1.25046869,-6.04820016e-16 2.793,0 Z" id="Rectangle" fill="#806000"></path>
+                    <rect id="Rectangle" fill="#B38600" x="0" y="42.7329" width="67.8699" height="43.98975"></rect>
+                    <rect id="Rectangle" fill="#CC9900" x="0" y="85.4658" width="67.8699" height="43.98975"></rect>
+                    <rect id="Rectangle" fill="#E6AC00" x="0" y="128.1987" width="67.8699" height="43.98975"></rect>
+                    <rect id="Rectangle" fill="#FFC61A" x="0" y="170.9316" width="67.8699" height="43.98975"></rect>
+                    <path d="M67.8699,0 L134.20365,0 C135.746181,-2.83358404e-16 136.99665,1.25046869 136.99665,2.793 L136.99665,43.98975 L136.99665,43.98975 L67.8699,43.98975 L67.8699,0 Z" id="Rectangle" fill="#FFD24D"></path>
+                    <rect id="Rectangle" fill="#FFDF80" x="67.8699" y="42.7329" width="69.12675" height="43.98975"></rect>
+                    <rect id="Rectangle" fill="#FFECB3" x="67.8699" y="85.4658" width="69.12675" height="43.98975"></rect>
+                    <rect id="Rectangle" fill="#FFF9E5" x="67.8699" y="128.1987" width="69.12675" height="43.98975"></rect>
+                    <rect id="Rectangle" fill="#FFFCF5" x="67.8699" y="170.9316" width="69.12675" height="43.98975"></rect>
+                    <text id="WARNING" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="15.0822" font-weight="normal" fill="#E6AC00">
+                        <tspan x="29.535975" y="232.36605">WARNING</tspan>
+                    </text>
+                    <text id="hsl(45,-100%,-__%-)" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="8.79795" font-weight="normal" fill="#191919">
+                        <tspan x="27.208475" y="244.651236">hsl(45, 100%, __% )</tspan>
+                    </text>
+                    <text id="25" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="55.929825" y="38.0337141">25</tspan>
+                    </text>
+                    <text id="35" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="55.929825" y="80.8973">35</tspan>
+                    </text>
+                    <text id="40" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="55.929825" y="123.6302">40</tspan>
+                    </text>
+                    <text id="45" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="55.929825" y="166.3631">45</tspan>
+                    </text>
+                    <text id="55" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="55.929825" y="208.467575">55</tspan>
+                    </text>
+                    <text id="65" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                        <tspan x="124.085881" y="38.0337141">65</tspan>
+                    </text>
+                    <text id="75" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                        <tspan x="124.085881" y="80.8973">75</tspan>
+                    </text>
+                    <text id="85" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                        <tspan x="124.085881" y="122.37335">85</tspan>
+                    </text>
+                    <text id="95" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                        <tspan x="124.085881" y="166.3631">95</tspan>
+                    </text>
+                    <text id="98" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                        <tspan x="124.085881" y="209.724425">98</tspan>
+                    </text>
+                </g>
+                <g id="destruct" transform="translate(167.503319, 23.696623)">
+                    <path d="M2.793,0 L67.8699,0 L67.8699,0 L67.8699,43.98975 L0,43.98975 L0,2.793 C-6.32994813e-16,1.25046869 1.25046869,-6.04820016e-16 2.793,0 Z" id="Rectangle" fill="#800000"></path>
+                    <rect id="Rectangle" fill="#B30000" x="0" y="42.7329" width="67.8699" height="43.98975"></rect>
+                    <rect id="Rectangle" fill="#CC0000" x="0" y="85.4658" width="67.8699" height="43.98975"></rect>
+                    <rect id="Rectangle" fill="#E60000" x="0" y="128.1987" width="67.8699" height="43.98975"></rect>
+                    <rect id="Rectangle" fill="#FF1A1A" x="0" y="170.9316" width="67.8699" height="43.98975"></rect>
+                    <path d="M67.8699,0 L134.20365,0 C135.746181,-2.83358404e-16 136.99665,1.25046869 136.99665,2.793 L136.99665,43.98975 L136.99665,43.98975 L67.8699,43.98975 L67.8699,0 Z" id="Rectangle" fill="#FF4D4D"></path>
+                    <rect id="Rectangle" fill="#FF8080" x="67.8699" y="42.7329" width="69.12675" height="43.98975"></rect>
+                    <rect id="Rectangle" fill="#FFB3B3" x="67.8699" y="85.4658" width="69.12675" height="43.98975"></rect>
+                    <rect id="Rectangle" fill="#FFE5E5" x="67.8699" y="128.1987" width="69.12675" height="43.98975"></rect>
+                    <rect id="Rectangle" fill="#FFF5F5" x="67.8699" y="170.9316" width="69.12675" height="43.98975"></rect>
+                    <text id="DESTRUCT" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="15.0822" font-weight="normal" fill="#CC0000">
+                        <tspan x="25.765425" y="232.496736">DESTRUCT</tspan>
+                    </text>
+                    <text id="25" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="55.929825" y="38.0337141">25</tspan>
+                    </text>
+                    <text id="35" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="55.929825" y="80.8973">35</tspan>
+                    </text>
+                    <text id="40" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="55.929825" y="123.6302">40</tspan>
+                    </text>
+                    <text id="45" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="55.929825" y="166.3631">45</tspan>
+                    </text>
+                    <text id="55" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="55.929825" y="208.467575">55</tspan>
+                    </text>
+                    <text id="65" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                        <tspan x="124.085881" y="38.0337141">65</tspan>
+                    </text>
+                    <text id="75" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                        <tspan x="124.085881" y="80.8973">75</tspan>
+                    </text>
+                    <text id="85" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                        <tspan x="124.085881" y="122.37335">85</tspan>
+                    </text>
+                    <text id="95" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                        <tspan x="124.085881" y="166.3631">95</tspan>
+                    </text>
+                    <text id="98" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                        <tspan x="124.085881" y="209.724425">98</tspan>
+                    </text>
+                    <text id="hsl(0,-100%,-__%-)" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="8.79795" font-weight="normal" fill="#191919">
+                        <tspan x="25.765425" y="245.582236">hsl(0, 100%, __% )</tspan>
+                    </text>
+                </g>
+                <g id="positive" transform="translate(335.921219, 21.497136)">
+                    <path d="M2.793,0 L67.8699,0 L67.8699,0 L67.8699,43.98975 L0,43.98975 L0,2.793 C-6.32994813e-16,1.25046869 1.25046869,-6.04820016e-16 2.793,0 Z" id="Rectangle" fill="#008000"></path>
+                    <rect id="Rectangle" fill="#00B300" x="0" y="42.7329" width="67.8699" height="43.98975"></rect>
+                    <rect id="Rectangle" fill="#00CC00" x="0" y="85.4658" width="67.8699" height="43.98975"></rect>
+                    <rect id="Rectangle" fill="#00E600" x="0" y="128.1987" width="67.8699" height="43.98975"></rect>
+                    <rect id="Rectangle" fill="#1AFF1A" x="0" y="170.9316" width="67.8699" height="43.98975"></rect>
+                    <path d="M67.8699,0 L134.20365,0 C135.746181,-2.83358404e-16 136.99665,1.25046869 136.99665,2.793 L136.99665,43.98975 L136.99665,43.98975 L67.8699,43.98975 L67.8699,0 Z" id="Rectangle" fill="#4DFF4D"></path>
+                    <rect id="Rectangle" fill="#80FF80" x="67.8699" y="42.7329" width="69.12675" height="43.98975"></rect>
+                    <rect id="Rectangle" fill="#B3FFB3" x="67.8699" y="85.4658" width="69.12675" height="43.98975"></rect>
+                    <rect id="Rectangle" fill="#B3FFB3" x="67.8699" y="128.1987" width="69.12675" height="43.98975"></rect>
+                    <rect id="Rectangle" fill="#F5FFF5" x="67.8699" y="170.9316" width="69.12675" height="43.98975"></rect>
+                    <text id="POSITIVE" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="15.0822" font-weight="normal" fill="#00CC00">
+                        <tspan x="32.049675" y="233.29705">POSITIVE</tspan>
+                    </text>
+                    <text id="hsl(120,-100%,-__-%)" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="8.79795" font-weight="normal" fill="#191919">
+                        <tspan x="24.5784" y="247.31355">hsl(120, 100%, __ %)</tspan>
+                    </text>
+                    <text id="25" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="55.929825" y="38.0337141">25</tspan>
+                    </text>
+                    <text id="35" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="55.929825" y="80.8973">35</tspan>
+                    </text>
+                    <text id="40" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="55.929825" y="123.6302">40</tspan>
+                    </text>
+                    <text id="45" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="55.929825" y="166.3631">45</tspan>
+                    </text>
+                    <text id="55" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="55.929825" y="208.467575">55</tspan>
+                    </text>
+                    <text id="65" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                        <tspan x="124.085881" y="38.0337141">65</tspan>
+                    </text>
+                    <text id="75" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                        <tspan x="124.085881" y="80.8973">75</tspan>
+                    </text>
+                    <text id="85" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                        <tspan x="124.085881" y="122.37335">85</tspan>
+                    </text>
+                    <text id="95" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                        <tspan x="124.085881" y="166.3631">95</tspan>
+                    </text>
+                    <text id="98" font-family="ArialNarrow-Bold, Arial Narrow" font-size="8.79795" font-weight="bold" fill="#191919">
+                        <tspan x="124.085881" y="209.724425">98</tspan>
+                    </text>
+                </g>
             </g>
         </g>
     </g>
