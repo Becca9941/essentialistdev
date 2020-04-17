@@ -28,7 +28,11 @@ $mdc-theme-on-surface: #000000;
 strong {
   font-weight: bold;
   color: $mdc-theme-primary;
-  &.tropical-rain-forest { color: $mdc-theme-secondary; }
+  &.tropical-rain-forest, &.accent { color: $mdc-theme-secondary; }
+  &.gray { color: $text; }
+  &.yellow { color: #B38600; }
+  &.red { color: red; }
+  &.green { color: green; }
 }
 em {
   font-style: italic;
@@ -841,6 +845,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     &-name {
       color: $mdc-theme-primary;
       text-decoration: none;
+      margin-left: .5rem;
     }
   }
   &__hero {
@@ -871,9 +876,12 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     color: $mdc-theme-secondary;
     font-weight: bold;
   }
-  & img { max-width: 100%; }
+  & img {
+    max-width: 100%;
+    margin: 2rem 0;
+  }
   & .list {
-      li {
+     & li {
         margin: 1rem 0;
         margin-left: 1.5rem;
         list-style-image: url('/assets/images/heart-bulletpoint.svg');

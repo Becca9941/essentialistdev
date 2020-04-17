@@ -20,6 +20,14 @@ leading: Using a single brand color, you can generate a complete and semantic co
 
 <h2 id="introduction">Introduction</h2>
 
+<p>Color palettes are essential tools when it comes to creating a strong brand identity across all of your assets. Colors can be used to convey meaning to your audience. They also help to reduce decision fatigue which speeds up the build process for both you and your team.</p>
+
+<p>Throughout this article, you will learn how to generate a complete, semantic, accessible and flexible color palette from just a single brand color, using HSL color values which allow you to create a whole range of shades for a single color, just by adjusting a single lightness value.</p>
+
+<p>At the end of this article, you will find a <a href="#action">Color Palette Action Plan</a> that I use to help me maintain a strong brand identity for The Essentialist Dev, by assigning each of the colors in my palette a specific use-case.</p>
+
+<a href="#action">Skip to Color Palette Action Plan</a>
+
 <h2 id="what">What Is A Color Palette?</h2>
 
 <p>A color palette in web design contains all of the colors that are used in a specific project, or over a series of projects if you are working from a brand-specific palette.</p>
@@ -60,7 +68,8 @@ leading: Using a single brand color, you can generate a complete and semantic co
 
 <p>Consistency is key for maintaining a strong brand identity across multiple web pages or even multiple web projects. Color is a great tool for helping you do this, because you can assign each color a specific use-case, which is something I do with all of my own color palettes. If you do this, be sure to write down the rules somewhere so that you can easily refer to them when building out your projects.</p>
 
-<p>TIP: To make it easier to assign use-case labels to each of your colors, you can look through this <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element" target="_blank">HTML elements reference</a> and assign the appropriate elements to one of the colors in your color palette.</p>
+<img src="/assets/images/article-images/canva-designs.png" alt="A cv, ebook and quote page designed on canva, all with a strong sense of brand identity">
+
 
 <h3>Clear Semantics</h3>
 
@@ -80,6 +89,8 @@ leading: Using a single brand color, you can generate a complete and semantic co
 
 <p>Tools like <a href="https://www.canva.com/" target="_blank">Canva</a> (templates for social media posts, ebooks and more) even let you add a 'Brand Kit', including your logos and color palette to make this even easier.</p>
 
+<img src="/assets/images/article-images/brand-palette.svg" alt="canvas brand kit creator on premium subscription">
+
 <h2 id="how">How To Create A Color Palette From A Single Brand Color</h2>
 
 <p>Crafting a color palette from scratch is a huge skill. Many color theorists spend much of their career learning about the science of color and it's impact on psychology, perception, accessibility and user experience etc (<a href="https://www.smashingmagazine.com/category/color-theory" target="_blank">Smashing Magazine, Color Theory article set</a>). For this reason, it's actually pretty difficult to find an online color palette generator that accounts for even a tiny subset of these factors.</p>
@@ -98,12 +109,13 @@ leading: Using a single brand color, you can generate a complete and semantic co
 
 <p>Before you convert your Hex or RGB value into a HSL value using this <a href="https://www.w3schools.com/colors/colors_converter.asp" target="_blank">color converter</a>, enter your color code into this <a href="https://webaim.org/resources/contrastchecker/" target="_blank">Web Accessibility Contrast Checker</a>. Set the foreground to white, and the background to your brand color. You will get a contrast ratio, and a rating for whether this color combination passes the accessibility standards for normal text, large text and user interface components. If it fails, adjust the lightness value scale until you get a pass mark. As soon as it passes, you have an accessible brand color.</p>
 
-<h4>What is a HSL color value?</h4>
+<img src="/assets/images/article-images/contrast-checker.png" alt="Web accessibility color contrast checker">
 
-<p>If your interested in exactly how Hex and RGB color values are calculated, <a href="https://www.maketecheasier.com/difference-between-hex-rgb-hsl/" target="_blank">Andrew Braun, 2020</a> wrote an excellent article about it.</p>
+<h3>Step 2: Convert Your Brand Color to a HSL value</h3>
 
 <p>HSL stands for Hue, Saturation and Lightness.</p>
 
+<p>If your interested in exactly how Hex and RGB color values are calculated, <a href="https://www.maketecheasier.com/difference-between-hex-rgb-hsl/" target="_blank">Andrew Braun, 2020</a> wrote an excellent article about it.</p>
 
 <ul class="list">
 
@@ -121,6 +133,10 @@ leading: Using a single brand color, you can generate a complete and semantic co
 
 <p><strong>The best part about only needing to adjust the lightness value of our Hsl code to get a new shade, is that instead of storing 10 shades of pink as individual values in our CSS color palette, we only need to store the hue for each of our colors. Then we only need one function to call any shade we can imagine for all of our colors!</strong></p>
 
+<p>Use this <a href="https://www.w3schools.com/colors/colors_converter.asp" target="_blank">Color Converter tool</a> to convert your brand color into a HSL value. If you're interested, you can find out the name of your chosen brand color by entering it's color value into this <a href="http://chir.ag/projects/name-that-color/#E60054" target="_blank">Name That Color</a> tool.</p>
+
+<img src="/assets/images/article-images/color-converter.png" alt="A color converter that converts any color value into rgb, hex, hsl, hwb, cmyk and ncol color values">
+
 <h3>Step 2: Auto Generate Your Brand's Complimentary Color</h3>
 
 <p>A complimentary color for you brand is one that offers the strongest contrast when placed next to your primary brand color. On a color wheel, a complimentary color is one that is directly opposite the color on the other side of the wheel. Therefore, to choose a good complimentary color for your brand, all you need to do is find your color on the color wheel (or one that is close to it), then look for the color directly opposite it.</p>
@@ -135,7 +151,9 @@ leading: Using a single brand color, you can generate a complete and semantic co
   <li><strong>Tetradic:</strong> Four colors that are spaced evenly on the color wheel. Can be difficult to balance and can be overwhelming in practice unless one color is dominant and the rest are used as accents.</li>
 </ul>
 
-<p>In my case, my primary brand color is a <strong>Razzmataz</strong>, which is a hot pink color. I found out the name of it by entering it's color value into this <a href="http://chir.ag/projects/name-that-color/#E60054" target="_blank">Name That Color tool</a> by Chirag Mehta, 2007.</p>
+<img src="/assets/images/article-images/canvas-color-wheel-tool.png" alt="Create different color combinations from a single color using canvas color wheel tool">
+
+<p>In my case, my primary brand color is a <strong>Razzmataz</strong>, which is a hot pink color.</p>
 
 <p>The complimentary color for my brand color is called Jade (after making it darker with the <a href="https://webaim.org/resources/contrastchecker/" target="_blank">Web Accessibility Contrast Checker</a> tool. However, this shade was a bit close to my semantic green color for confirmation messages, so I ended up choosing a <strong class="tropical-rain-forest">Tropical Rain Forest</strong> color instead, using the Triadic complimentary color wheel to help me choose a color that contrasts well with my brand color.</p>
 
@@ -149,6 +167,25 @@ leading: Using a single brand color, you can generate a complete and semantic co
 
 <img src="/assets/images/article-images/medium/color-palette-generator.svg" alt="color palette">
 
+<p>Feel free to tweak the hues for each of the semantic color palettes shown above. A slightly different hue can have a massive impact on the look and feel of your site. You can make the grays cooler by choosing a gray with more of a blue hint to it, or warmer by choosing a gray with more of a brown hint to it. Otherwise, feel free to use this palette, making sure to change the brand and accent colors to match your own brand.</p>
+
 <h2 id="action">Color Palette Action Plan</h2>
 
+<p>By this point, you should now have a complete color palette to work with for you web-design projects.</p>
+
+<p>To get the most out of your color palette, assign each of the colors a specific use-case. Make sure to include the hue for each of your chosen colors too. Here are some of my examples:</p>
+
+<ul class="list">
+  <li><strong>Brand (338):</strong> The progress bar at the top of my site, dominant color in my logo, main action buttons (like 'read' article buttons), bold article text.</li>
+  <li><strong class="accent">Accent (118):</strong> Minor action buttons like 'follow' on Twitter, link text, and label colors for things like categories and author names</li>
+  <li><strong class="gray">Grays (0):</strong> Darker gray for titles and a slightly lighter gray for body text. Very light gray backgrounds in each of the article card images to tie them together and also to contrast against the white background and drop shadows.</li>
+  <li><strong class="yellow">Yellows (45):</strong> Warning text, don't really need this right now for the blog.</li>
+  <li><strong class="red">Reds (0):</strong> <em>Note - The hue is the same for reds and greens, but the saturation values are different.</em> Destructive action text, others can't really delete stuff on my blog right now so not needed.</li>
+  <li><strong class="green">Greens (120):</strong> Confirmation messages, like ebook download success messages.</li>
+</ul>
+
+<p>TIP: To make it easier to assign use-case labels to each of your colors, you can look through this <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element" target="_blank">HTML elements reference</a> and assign the appropriate elements to one of the colors in your color palette.</p>
+
 <h2 id="nextSteps">Next Steps <i><img class="award" src="/assets/images/award.svg" alt="challenge time"></i></h2>
+
+<p>Your challenge for this article is simply to complete all the steps in both the article and the action plan. Bonus points if you leave a comment with you color use-case list like the one I left above.</p>
