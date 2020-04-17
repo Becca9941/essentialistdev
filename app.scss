@@ -47,9 +47,6 @@ q:before {
 q:after {
     content: close-quote;
 }
-ul, ol {
-  margin: 2rem 0;
-}
 
 .award {
   position: absolute;
@@ -881,6 +878,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     margin: 2rem 0;
   }
   & .list {
+      margin: 2rem 0;
      & li {
         margin: 1rem 0;
         margin-left: 1.5rem;
