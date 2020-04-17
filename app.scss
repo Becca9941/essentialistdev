@@ -2,8 +2,8 @@
 @import 'reset';
 
 // MDC Theming
-$mdc-theme-primary: #FF186E;
-$mdc-theme-secondary: #00BCD4;
+$mdc-theme-primary: #E60054;
+$mdc-theme-secondary: #006F80;
 $mdc-theme-error: #b00020;
 $text: #1D243A;
 
@@ -23,9 +23,12 @@ $mdc-theme-on-surface: #000000;
 @import "@material/fab/mdc-fab";
 // Card
 @import "@material/card/mdc-card";
+
+
 strong {
   font-weight: bold;
   color: $mdc-theme-primary;
+  &.tropical-rain-forest { color: $mdc-theme-secondary; }
 }
 em {
   font-style: italic;
