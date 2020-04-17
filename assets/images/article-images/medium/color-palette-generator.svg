@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="945px" height="945px" viewBox="0 0 945 945" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 62 (91390) - https://sketch.com -->
+    <title>Group 15</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M671.517,377.769875 C671.517,387.686148 663.478273,395.724875 653.562,395.724875 L493.7625,395.724875 C483.846227,395.724875 475.8075,387.686148 475.8075,377.769875 L475.8075,44.704625 C475.8075,39.7464887 479.826864,35.727125 484.785,35.727125 L662.5395,35.727125 C667.497636,35.727125 671.517,39.7464887 671.517,44.704625 L671.517,377.769875 Z" id="path-1"></path>
+        <filter x="-5.4%" y="-2.4%" width="109.7%" height="105.3%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.371940559 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M430.92,377.769875 C430.92,387.686148 422.881273,395.724875 412.965,395.724875 L253.1655,395.724875 C243.249227,395.724875 235.2105,387.686148 235.2105,377.769875 L235.2105,44.704625 C235.2105,39.7464887 239.229864,35.727125 244.188,35.727125 L421.9425,35.727125 C426.900636,35.727125 430.92,39.7464887 430.92,44.704625 L430.92,377.769875 Z" id="path-3"></path>
+        <filter x="-5.4%" y="-2.4%" width="109.7%" height="105.3%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.371940559 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M197.0395,377.769875 C197.0395,387.686148 189.000773,395.724875 179.0845,395.724875 L19.285,395.724875 C9.36872732,395.724875 1.33,387.686148 1.33,377.769875 L1.33,44.704625 C1.33,39.7464887 5.34936366,35.727125 10.3075,35.727125 L188.062,35.727125 C193.020136,35.727125 197.0395,39.7464887 197.0395,44.704625 L197.0395,377.769875 Z" id="path-5"></path>
+        <filter x="-5.4%" y="-2.4%" width="109.7%" height="105.3%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.371940559 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M97.1980067,35.91 L177.7545,35.91 C187.670773,35.91 195.7095,43.9487273 195.7095,53.865 L195.7095,98.9096062 L195.7095,98.9096062 L97.1980067,98.9096062 L97.1980067,35.91 Z" id="path-7"></path>
+        <filter x="-12.2%" y="-15.9%" width="122.3%" height="134.9%" filterUnits="objectBoundingBox" id="filter-8">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="-1" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.240466565 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-9" x="97.1980067" y="97.1096175" width="98.5114933" height="62.9996062"></rect>
+        <filter x="-12.2%" y="-15.9%" width="122.3%" height="134.9%" filterUnits="objectBoundingBox" id="filter-10">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="-1" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.240466565 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-11" x="97.1980067" y="158.309235" width="98.5114933" height="62.9996062"></rect>
+        <filter x="-12.2%" y="-15.9%" width="122.3%" height="134.9%" filterUnits="objectBoundingBox" id="filter-12">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="-1" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.240466565 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-13" x="97.1980067" y="219.508852" width="98.5114933" height="62.9996063"></rect>
+        <filter x="-12.2%" y="-15.9%" width="122.3%" height="134.9%" filterUnits="objectBoundingBox" id="filter-14">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="-1" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.240466565 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M195.7095,342.04275 C195.7095,351.959023 187.670773,359.99775 177.7545,359.99775 L17.955,359.99775 C8.03872732,359.99775 1.54252479e-14,351.959023 1.42108547e-14,342.04275 L0,17.955 C-1.21439316e-15,8.03872732 8.03872732,1.82158974e-15 17.955,0 L177.7545,0 C187.670773,-1.06290091e-14 195.7095,8.03872732 195.7095,17.955 L195.7095,342.04275 Z" id="path-15"></path>
+        <filter x="-14.6%" y="-6.5%" width="128.1%" height="115.3%" filterUnits="objectBoundingBox" id="filter-16">
+            <feMorphology radius="3" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="-1" dy="4" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.0362762238 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M195.7095,342.04275 C195.7095,351.959023 187.670773,359.99775 177.7545,359.99775 L17.955,359.99775 C8.03872732,359.99775 1.21439316e-15,351.959023 0,342.04275 L0,8.9775 C-6.0719658e-16,4.01936366 4.01936366,9.1079487e-16 8.9775,0 L186.732,0 C191.690136,-9.1079487e-16 195.7095,4.01936366 195.7095,8.9775 L195.7095,342.04275 Z" id="path-17"></path>
+        <filter x="-5.4%" y="-2.4%" width="109.7%" height="105.3%" filterUnits="objectBoundingBox" id="filter-18">
+            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.371940559 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M434.817804,342.04275 C434.817804,351.959023 426.779076,359.99775 416.862804,359.99775 L257.063304,359.99775 C247.147031,359.99775 239.108304,351.959023 239.108304,342.04275 L239.108304,8.9775 C239.108304,4.01936366 243.127667,9.1079487e-16 248.085804,0 L425.840304,0 C430.79844,7.89662453e-15 434.817804,4.01936366 434.817804,8.9775 L434.817804,342.04275 Z" id="path-19"></path>
+        <filter x="-5.4%" y="-2.4%" width="109.7%" height="105.3%" filterUnits="objectBoundingBox" id="filter-20">
+            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.371940559 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M675.547804,342.04275 C675.547804,351.959023 667.509076,359.99775 657.592804,359.99775 L497.793304,359.99775 C487.877031,359.99775 479.838304,351.959023 479.838304,342.04275 L479.838304,8.9775 C479.838304,4.01936366 483.857667,9.1079487e-16 488.815804,0 L666.570304,0 C671.52844,7.89662453e-15 675.547804,4.01936366 675.547804,8.9775 L675.547804,342.04275 Z" id="path-21"></path>
+        <filter x="-5.4%" y="-2.4%" width="109.7%" height="105.3%" filterUnits="objectBoundingBox" id="filter-22">
+            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.371940559 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-15">
+            <g id="Group-11">
+                <rect id="Rectangle" fill="#F9F9F9" x="0" y="0" width="945" height="945"></rect>
+                <g id="Group-28" transform="translate(122.872826, 71.635996)">
+                    <g id="Combined-Shape">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <g id="Combined-Shape">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                    </g>
+                    <g id="Combined-Shape">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-5"></use>
+                    </g>
+                    <g id="Rectangle">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-8)" xlink:href="#path-7"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-7"></use>
+                    </g>
+                    <g id="Rectangle">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-10)" xlink:href="#path-9"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-9"></use>
+                    </g>
+                    <g id="Rectangle">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-12)" xlink:href="#path-11"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-11"></use>
+                    </g>
+                    <g id="Rectangle">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-14)" xlink:href="#path-13"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-13"></use>
+                    </g>
+                    <path d="M5.54449329,35.727125 L98.5114933,35.727125 L98.5114933,35.727125 L98.5114933,98.569625 L1.55449329,98.569625 L1.55449329,39.717125 C1.55449329,37.5135088 3.34087714,35.727125 5.54449329,35.727125 Z" id="Rectangle" fill="#80002F"></path>
+                    <rect id="Rectangle" fill="#B30041" x="1.33" y="96.957" width="96.957" height="62.8425"></rect>
+                    <polygon id="Rectangle" fill="#CC004B" points="1.33 158.004 98.287 158.004 98.287 220.8465 51.7351085 220.8465 1.33 220.8465"></polygon>
+                    <rect id="Rectangle" fill="#E60054" x="1.33" y="219.051" width="96.957" height="62.8425"></rect>
+                    <rect id="Rectangle" fill="#FF1A6E" x="1.33" y="280.098" width="98.7525" height="62.8425"></rect>
+                    <path d="M98.287,35.91 L193.0495,35.91 C195.253116,35.91 197.0395,37.6963838 197.0395,39.9 L197.0395,98.7525 L197.0395,98.7525 L98.287,98.7525 L98.287,35.91 Z" id="Rectangle" fill="#FF4D8E"></path>
+                    <rect id="Rectangle" fill="#FF80AE" x="98.287" y="96.957" width="98.7525" height="62.8425"></rect>
+                    <rect id="Rectangle" fill="#FFB3CF" x="98.287" y="158.004" width="98.7525" height="62.8425"></rect>
+                    <rect id="Rectangle" fill="#FFE5F5" x="98.287" y="219.051" width="98.7525" height="62.8425"></rect>
+                    <rect id="Rectangle" fill="#FFF5FB" x="98.287" y="280.098" width="98.7525" height="62.8425"></rect>
+                    <text id="BRAND" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="21.546" font-weight="normal" fill="#CC004B">
+                        <tspan x="57.456" y="368.327">BRAND</tspan>
+                    </text>
+                    <text id="hsl(338,-100%,-__-%)" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="12.5685" font-weight="normal" fill="#191919">
+                        <tspan x="38.2375" y="386.3285">hsl(338, 100%, __ %)</tspan>
+                    </text>
+                    <text id="25" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="82.1275" y="90.8153058">25</tspan>
+                    </text>
+                    <text id="35" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="82.1275" y="152.049">35</tspan>
+                    </text>
+                    <text id="40" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="82.1275" y="213.096">40</tspan>
+                    </text>
+                    <text id="45" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="82.1275" y="274.143">45</tspan>
+                    </text>
+                    <text id="55" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="82.1275" y="334.29225">55</tspan>
+                    </text>
+                    <text id="65" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                        <tspan x="179.493294" y="90.8153058">65</tspan>
+                    </text>
+                    <text id="75" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                        <tspan x="179.493294" y="152.049">75</tspan>
+                    </text>
+                    <text id="85" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                        <tspan x="179.493294" y="211.3005">85</tspan>
+                    </text>
+                    <text id="95" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                        <tspan x="179.493294" y="274.143">95</tspan>
+                    </text>
+                    <text id="98" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                        <tspan x="179.493294" y="336.08775">98</tspan>
+                    </text>
+                    <path d="M239.2005,35.91 L332.1675,35.91 L332.1675,35.91 L332.1675,98.7525 L235.2105,98.7525 L235.2105,39.9 C235.2105,37.6963838 236.996884,35.91 239.2005,35.91 Z" id="Rectangle" fill="#006F80"></path>
+                    <rect id="Rectangle" fill="#009BB3" x="235.2105" y="96.957" width="96.957" height="62.8425"></rect>
+                    <rect id="Rectangle" fill="#00B1CC" x="235.2105" y="158.004" width="96.957" height="62.8425"></rect>
+                    <rect id="Rectangle" fill="#00C7E6" x="235.2105" y="219.051" width="96.957" height="62.8425"></rect>
+                    <rect id="Rectangle" fill="#1AE0FF" x="235.2105" y="280.098" width="96.957" height="62.8425"></rect>
+                    <path d="M332.1675,35.91 L426.93,35.91 C429.133616,35.91 430.92,37.6963838 430.92,39.9 L430.92,98.7525 L430.92,98.7525 L332.1675,98.7525 L332.1675,35.91 Z" id="Rectangle" fill="#4DE7FF"></path>
+                    <rect id="Rectangle" fill="#80EEFF" x="332.1675" y="96.957" width="98.7525" height="62.8425"></rect>
+                    <rect id="Rectangle" fill="#B3F5FF" x="332.1675" y="158.004" width="98.7525" height="62.8425"></rect>
+                    <rect id="Rectangle" fill="#E5FCFF" x="332.1675" y="219.051" width="98.7525" height="62.8425"></rect>
+                    <rect id="Rectangle" fill="#F5FEFF" x="332.1675" y="280.098" width="98.7525" height="62.8425"></rect>
+                    <text id="ACCENT" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="21.546" font-weight="normal" fill="#00C7E6">
+                        <tspan x="284.58675" y="366.5315">ACCENT</tspan>
+                    </text>
+                    <text id="ACCENT" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="21.546" font-weight="normal" fill="#00C7E6">
+                        <tspan x="284.58675" y="366.5315">ACCENT</tspan>
+                    </text>
+                    <text id="hsl(118,-100%,-__%-)" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="12.5685" font-weight="normal" fill="#191919">
+                        <tspan x="271.22025" y="383.6685">hsl(118, 100%, __% )</tspan>
+                    </text>
+                    <text id="25" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="315.11025" y="90.8153058">25</tspan>
+                    </text>
+                    <text id="35" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="315.11025" y="152.049">35</tspan>
+                    </text>
+                    <text id="40" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="315.11025" y="213.096">40</tspan>
+                    </text>
+                    <text id="45" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="315.11025" y="274.143">45</tspan>
+                    </text>
+                    <text id="55" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="315.11025" y="334.29225">55</tspan>
+                    </text>
+                    <text id="65" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                        <tspan x="412.476044" y="90.8153058">65</tspan>
+                    </text>
+                    <text id="75" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                        <tspan x="412.476044" y="152.049">75</tspan>
+                    </text>
+                    <text id="85" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                        <tspan x="412.476044" y="211.3005">85</tspan>
+                    </text>
+                    <text id="95" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                        <tspan x="412.476044" y="274.143">95</tspan>
+                    </text>
+                    <text id="98" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                        <tspan x="412.476044" y="336.08775">98</tspan>
+                    </text>
+                    <path d="M479.7975,35.91 L572.7645,35.91 L572.7645,35.91 L572.7645,98.7525 L475.8075,98.7525 L475.8075,39.9 C475.8075,37.6963838 477.593884,35.91 479.7975,35.91 Z" id="Rectangle" fill="#404040"></path>
+                    <rect id="Rectangle" fill="#595959" x="475.8075" y="96.957" width="96.957" height="62.8425"></rect>
+                    <rect id="Rectangle" fill="#666666" x="475.8075" y="158.004" width="96.957" height="62.8425"></rect>
+                    <rect id="Rectangle" fill="#737373" x="475.8075" y="219.051" width="96.957" height="62.8425"></rect>
+                    <rect id="Rectangle" fill="#8C8C8C" x="475.8075" y="280.098" width="96.957" height="62.8425"></rect>
+                    <path d="M572.7645,35.91 L667.527,35.91 C669.730616,35.91 671.517,37.6963838 671.517,39.9 L671.517,98.7525 L671.517,98.7525 L572.7645,98.7525 L572.7645,35.91 Z" id="Rectangle" fill="#A6A6A6"></path>
+                    <rect id="Rectangle" fill="#BFBFBF" x="572.7645" y="96.957" width="98.7525" height="62.8425"></rect>
+                    <rect id="Rectangle" fill="#D9D9D9" x="572.7645" y="158.004" width="98.7525" height="62.8425"></rect>
+                    <rect id="Rectangle" fill="#F2F2F2" x="572.7645" y="219.051" width="98.7525" height="62.8425"></rect>
+                    <rect id="Rectangle" fill="#FAFAFA" x="572.8975" y="279.965" width="98.7525" height="63.1085"></rect>
+                    <text id="GRAYS" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="21.546" font-weight="normal" fill="#666666">
+                        <tspan x="535.059" y="366.5315">GRAYS</tspan>
+                    </text>
+                    <text id="hsl(0,-0%,-__-%)" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="12.5685" font-weight="normal" fill="#191919">
+                        <tspan x="525.9975" y="385.527">hsl(0, 0%, __ %)</tspan>
+                    </text>
+                    <text id="25" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="555.70725" y="90.8153058">25</tspan>
+                    </text>
+                    <text id="35" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="555.70725" y="152.049">35</tspan>
+                    </text>
+                    <text id="40" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="555.70725" y="213.096">40</tspan>
+                    </text>
+                    <text id="45" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="555.70725" y="274.143">45</tspan>
+                    </text>
+                    <text id="55" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                        <tspan x="555.70725" y="334.29225">55</tspan>
+                    </text>
+                    <text id="65" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                        <tspan x="653.073044" y="90.8153058">65</tspan>
+                    </text>
+                    <text id="75" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                        <tspan x="653.073044" y="152.049">75</tspan>
+                    </text>
+                    <text id="85" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                        <tspan x="653.073044" y="211.3005">85</tspan>
+                    </text>
+                    <text id="95" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                        <tspan x="653.073044" y="274.143">95</tspan>
+                    </text>
+                    <text id="98" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                        <tspan x="653.073044" y="336.08775">98</tspan>
+                    </text>
+                    <text id="MAIN-COLORS" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="17.955" font-weight="normal" fill="#595959">
+                        <tspan x="0" y="17">MAIN COLORS</tspan>
+                    </text>
+                </g>
+                <g id="Group-26" transform="translate(122.872826, 489.535996)">
+                    <text id="SEMANTIC-COLORS" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="17.955" font-weight="normal" fill="#595959">
+                        <tspan x="0" y="17">SEMANTIC COLORS</tspan>
+                    </text>
+                    <g id="warning" transform="translate(0.000000, 31.192319)">
+                        <g id="Group-18" transform="translate(0.000000, 2.897750)">
+                            <g id="Combined-Shape">
+                                <use fill="black" fill-opacity="1" filter="url(#filter-16)" xlink:href="#path-15"></use>
+                                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-15"></use>
+                            </g>
+                            <g id="Combined-Shape">
+                                <use fill="black" fill-opacity="1" filter="url(#filter-18)" xlink:href="#path-17"></use>
+                                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-17"></use>
+                            </g>
+                            <g id="Combined-Shape">
+                                <use fill="black" fill-opacity="1" filter="url(#filter-20)" xlink:href="#path-19"></use>
+                                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-19"></use>
+                            </g>
+                            <g id="Combined-Shape">
+                                <use fill="black" fill-opacity="1" filter="url(#filter-22)" xlink:href="#path-21"></use>
+                                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-21"></use>
+                            </g>
+                        </g>
+                        <path d="M3.99,0 L96.957,0 L96.957,0 L96.957,62.8425 L0,62.8425 L0,3.99 C-2.69865147e-16,1.78638385 1.78638385,2.62524377e-15 3.99,0 Z" id="Rectangle" fill="#806000"></path>
+                        <rect id="Rectangle" fill="#B38600" x="0" y="61.047" width="96.957" height="62.8425"></rect>
+                        <rect id="Rectangle" fill="#CC9900" x="0" y="122.094" width="96.957" height="62.8425"></rect>
+                        <rect id="Rectangle" fill="#E6AC00" x="0" y="183.141" width="96.957" height="62.8425"></rect>
+                        <rect id="Rectangle" fill="#FFC61A" x="0" y="244.188" width="96.957" height="62.8425"></rect>
+                        <path d="M96.957,0 L191.7195,0 C193.923116,-8.67770418e-15 195.7095,1.78638385 195.7095,3.99 L195.7095,62.8425 L195.7095,62.8425 L96.957,62.8425 L96.957,0 Z" id="Rectangle" fill="#FFD24D"></path>
+                        <rect id="Rectangle" fill="#FFDF80" x="96.957" y="61.047" width="98.7525" height="62.8425"></rect>
+                        <rect id="Rectangle" fill="#FFECB3" x="96.957" y="122.094" width="98.7525" height="62.8425"></rect>
+                        <rect id="Rectangle" fill="#FFF9E5" x="96.957" y="183.141" width="98.7525" height="62.8425"></rect>
+                        <rect id="Rectangle" fill="#FFFCF5" x="96.957" y="244.188" width="98.7525" height="62.8425"></rect>
+                        <text id="WARNING" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="21.546" font-weight="normal" fill="#E6AC00">
+                            <tspan x="42.19425" y="331.9515">WARNING</tspan>
+                        </text>
+                        <text id="hsl(45,-100%,-__%-)" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="12.5685" font-weight="normal" fill="#191919">
+                            <tspan x="38.86925" y="350.073194">hsl(45, 100%, __% )</tspan>
+                        </text>
+                        <text id="25" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                            <tspan x="79.89975" y="54.9053058">25</tspan>
+                        </text>
+                        <text id="35" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                            <tspan x="79.89975" y="116.139">35</tspan>
+                        </text>
+                        <text id="40" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                            <tspan x="79.89975" y="177.186">40</tspan>
+                        </text>
+                        <text id="45" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                            <tspan x="79.89975" y="238.233">45</tspan>
+                        </text>
+                        <text id="55" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                            <tspan x="79.89975" y="298.38225">55</tspan>
+                        </text>
+                        <text id="65" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                            <tspan x="177.265544" y="54.9053058">65</tspan>
+                        </text>
+                        <text id="75" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                            <tspan x="177.265544" y="116.139">75</tspan>
+                        </text>
+                        <text id="85" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                            <tspan x="177.265544" y="175.3905">85</tspan>
+                        </text>
+                        <text id="95" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                            <tspan x="177.265544" y="238.233">95</tspan>
+                        </text>
+                        <text id="98" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                            <tspan x="177.265544" y="300.17775">98</tspan>
+                        </text>
+                    </g>
+                    <g id="destruct" transform="translate(239.290456, 33.852319)">
+                        <path d="M3.99,0 L96.957,0 L96.957,0 L96.957,62.8425 L0,62.8425 L0,3.99 C-2.69865147e-16,1.78638385 1.78638385,2.62524377e-15 3.99,0 Z" id="Rectangle" fill="#800000"></path>
+                        <rect id="Rectangle" fill="#B30000" x="0" y="61.047" width="96.957" height="62.8425"></rect>
+                        <rect id="Rectangle" fill="#CC0000" x="0" y="122.094" width="96.957" height="62.8425"></rect>
+                        <rect id="Rectangle" fill="#E60000" x="0" y="183.141" width="96.957" height="62.8425"></rect>
+                        <rect id="Rectangle" fill="#FF1A1A" x="0" y="244.188" width="96.957" height="62.8425"></rect>
+                        <path d="M96.957,0 L191.7195,0 C193.923116,-8.67770418e-15 195.7095,1.78638385 195.7095,3.99 L195.7095,62.8425 L195.7095,62.8425 L96.957,62.8425 L96.957,0 Z" id="Rectangle" fill="#FF4D4D"></path>
+                        <rect id="Rectangle" fill="#FF8080" x="96.957" y="61.047" width="98.7525" height="62.8425"></rect>
+                        <rect id="Rectangle" fill="#FFB3B3" x="96.957" y="122.094" width="98.7525" height="62.8425"></rect>
+                        <rect id="Rectangle" fill="#FFE5E5" x="96.957" y="183.141" width="98.7525" height="62.8425"></rect>
+                        <rect id="Rectangle" fill="#FFF5F5" x="96.957" y="244.188" width="98.7525" height="62.8425"></rect>
+                        <text id="DESTRUCT" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="21.546" font-weight="normal" fill="#CC0000">
+                            <tspan x="36.80775" y="332.138194">DESTRUCT</tspan>
+                        </text>
+                        <text id="25" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                            <tspan x="79.89975" y="54.9053058">25</tspan>
+                        </text>
+                        <text id="35" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                            <tspan x="79.89975" y="116.139">35</tspan>
+                        </text>
+                        <text id="40" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                            <tspan x="79.89975" y="177.186">40</tspan>
+                        </text>
+                        <text id="45" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                            <tspan x="79.89975" y="238.233">45</tspan>
+                        </text>
+                        <text id="55" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                            <tspan x="79.89975" y="298.38225">55</tspan>
+                        </text>
+                        <text id="65" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                            <tspan x="177.265544" y="54.9053058">65</tspan>
+                        </text>
+                        <text id="75" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                            <tspan x="177.265544" y="116.139">75</tspan>
+                        </text>
+                        <text id="85" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                            <tspan x="177.265544" y="175.3905">85</tspan>
+                        </text>
+                        <text id="95" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                            <tspan x="177.265544" y="238.233">95</tspan>
+                        </text>
+                        <text id="98" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                            <tspan x="177.265544" y="300.17775">98</tspan>
+                        </text>
+                        <text id="hsl(0,-100%,-__%-)" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="12.5685" font-weight="normal" fill="#191919">
+                            <tspan x="36.80775" y="351.403194">hsl(0, 100%, __% )</tspan>
+                        </text>
+                    </g>
+                    <g id="positive" transform="translate(479.887456, 30.710194)">
+                        <path d="M3.99,0 L96.957,0 L96.957,0 L96.957,62.8425 L0,62.8425 L0,3.99 C-2.69865147e-16,1.78638385 1.78638385,2.62524377e-15 3.99,0 Z" id="Rectangle" fill="#008000"></path>
+                        <rect id="Rectangle" fill="#00B300" x="0" y="61.047" width="96.957" height="62.8425"></rect>
+                        <rect id="Rectangle" fill="#00CC00" x="0" y="122.094" width="96.957" height="62.8425"></rect>
+                        <rect id="Rectangle" fill="#00E600" x="0" y="183.141" width="96.957" height="62.8425"></rect>
+                        <rect id="Rectangle" fill="#1AFF1A" x="0" y="244.188" width="96.957" height="62.8425"></rect>
+                        <path d="M96.957,0 L191.7195,0 C193.923116,-8.67770418e-15 195.7095,1.78638385 195.7095,3.99 L195.7095,62.8425 L195.7095,62.8425 L96.957,62.8425 L96.957,0 Z" id="Rectangle" fill="#4DFF4D"></path>
+                        <rect id="Rectangle" fill="#80FF80" x="96.957" y="61.047" width="98.7525" height="62.8425"></rect>
+                        <rect id="Rectangle" fill="#B3FFB3" x="96.957" y="122.094" width="98.7525" height="62.8425"></rect>
+                        <rect id="Rectangle" fill="#B3FFB3" x="96.957" y="183.141" width="98.7525" height="62.8425"></rect>
+                        <rect id="Rectangle" fill="#F5FFF5" x="96.957" y="244.188" width="98.7525" height="62.8425"></rect>
+                        <text id="POSITIVE" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="21.546" font-weight="normal" fill="#00CC00">
+                            <tspan x="45.78525" y="333.2815">POSITIVE</tspan>
+                        </text>
+                        <text id="hsl(120,-100%,-__-%)" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="12.5685" font-weight="normal" fill="#191919">
+                            <tspan x="35.112" y="353.8765">hsl(120, 100%, __ %)</tspan>
+                        </text>
+                        <text id="25" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                            <tspan x="79.89975" y="54.9053058">25</tspan>
+                        </text>
+                        <text id="35" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                            <tspan x="79.89975" y="116.139">35</tspan>
+                        </text>
+                        <text id="40" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                            <tspan x="79.89975" y="177.186">40</tspan>
+                        </text>
+                        <text id="45" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                            <tspan x="79.89975" y="238.233">45</tspan>
+                        </text>
+                        <text id="55" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#FFFFFF">
+                            <tspan x="79.89975" y="298.38225">55</tspan>
+                        </text>
+                        <text id="65" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                            <tspan x="177.265544" y="54.9053058">65</tspan>
+                        </text>
+                        <text id="75" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                            <tspan x="177.265544" y="116.139">75</tspan>
+                        </text>
+                        <text id="85" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                            <tspan x="177.265544" y="175.3905">85</tspan>
+                        </text>
+                        <text id="95" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                            <tspan x="177.265544" y="238.233">95</tspan>
+                        </text>
+                        <text id="98" font-family="ArialNarrow-Bold, Arial Narrow" font-size="12.5685" font-weight="bold" fill="#191919">
+                            <tspan x="177.265544" y="300.17775">98</tspan>
+                        </text>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
