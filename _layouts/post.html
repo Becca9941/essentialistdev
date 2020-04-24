@@ -7,4 +7,31 @@ layout: default
   <article class="article">
     {{ content }}
   </article>
+
+    <!--article class="popular-posts">
+      <h1 class="popular-posts__title">Related Posts</h1>
+
+  {% for post in site.posts limit:4 %}
+  {% if post.category contains page.category %}
+  {% if post.url != page.url %}
+
+
+      <article class="horizontal-article">
+        <div class="horizontal-article__wrapper" tab-index="0">
+          <section class="horizontal-article__content">
+            <img class="horizontal-article__content-cover" src="/assets/images/article-images/small/{{ post.featured_image }}" alt="">
+            <div class="horizontal-article__content-wrapper">
+              <p class="horizontal-article__content-category">{{ post.category }}</p>
+              <h2 class="horizontal-article__content-title">{{ post.title }}</h2>
+            </div>
+          </section>
+        </div>
+      </article>
+
+  {% endif %}
+  {% endif %}
+  {% endfor %}
+
+    </article-->
+
 </main>

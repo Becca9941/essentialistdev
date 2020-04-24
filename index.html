@@ -108,72 +108,37 @@ title: Essentialist Dev | Action Plans for Developers
     <section class="learn-more">
       <img class="learn-more__logo" src="/assets/images/logo.svg" alt="home">
       <p class="learn-more__welcome">Welcome to The Essentialist Dev!</p>
-      <a class="learn-more__about-link mdc-button" href="#">Learn More</a>
+      <a class="learn-more__about-link mdc-button" href="/about.html">Learn More</a>
     </section>
 
     <article class="popular-posts">
-      <h1 class="popular-posts__title">This month's popular posts</h1>
+      <h1 class="popular-posts__title">Most Recent Posts</h1>
+
+  {% for post in site.posts limit:4 %}
+
 
       <article class="horizontal-article">
         <div class="horizontal-article__wrapper" tab-index="0">
           <section class="horizontal-article__content">
-            <img class="horizontal-article__content-cover" src="#" alt="">
+            <img class="horizontal-article__content-cover" src="/assets/images/article-images/small/{{ post.featured_image }}" alt="">
             <div class="horizontal-article__content-wrapper">
-              <p class="horizontal-article__content-category">Category</p>
-              <h2 class="horizontal-article__content-title">Title</h2>
+              <p class="horizontal-article__content-category">{{ post.category }}</p>
+              <h2 class="horizontal-article__content-title">{{ post.title }}</h2>
             </div>
           </section>
         </div>
       </article>
 
-      <article class="horizontal-article">
-        <div class="horizontal-article__wrapper" tab-index="0">
-          <section class="horizontal-article__content">
-            <img class="horizontal-article__content-cover" src="#" alt="">
-            <div class="horizontal-article__content-wrapper">
-              <p class="horizontal-article__content-category">Category</p>
-              <h2 class="horizontal-article__content-title">Title</h2>
-            </div>
-          </section>
-        </div>
-      </article>
 
-      <article class="horizontal-article">
-        <div class="horizontal-article__wrapper" tab-index="0">
-          <section class="horizontal-article__content">
-            <img class="horizontal-article__content-cover" src="#" alt="">
-            <div class="horizontal-article__content-wrapper">
-              <p class="horizontal-article__content-category">Category</p>
-              <h2 class="horizontal-article__content-title">Title</h2>
-            </div>
-          </section>
-        </div>
-      </article>
-
-      <article class="horizontal-article">
-        <div class="horizontal-article__wrapper" tab-index="0">
-          <section class="horizontal-article__content">
-            <img class="horizontal-article__content-cover" src="#" alt="">
-            <div class="horizontal-article__content-wrapper">
-              <p class="horizontal-article__content-category">Category</p>
-              <h2 class="horizontal-article__content-title">Title</h2>
-            </div>
-          </section>
-        </div>
-      </article>
+  {% endfor %}
 
     </article>
 
-    <button class="full-cta-link">
-      <div class="mdc-button__ripple"></div>
-      <i class="material-icons mdc-button__icon" aria-hidden="true">launch</i>
-      <span class="full-cta-link__label">See all action plans</span>
-    </button>
 
     <section class="learn-more learn-more2">
       <img class="learn-more__logo" src="/assets/images/logo.svg" alt="home">
-      <p class="learn-more__welcome">Action Plans for Developers</p>
-      <a class="learn-more2__about-link" href="#">Learn More</a>
+
+      <button class="learn-more2__about-link">Learn More</button>
     </section>
 
 </main>
