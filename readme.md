@@ -1,5 +1,5 @@
 # The Essentialist Dev
-* Action Plans For Developers *
+Action Plans For Developers
 
 ## Always Learning
 
