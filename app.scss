@@ -443,9 +443,9 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 
 .ask-audience {
   padding: 0 1rem;
-  margin-bottom: 2rem;
   max-width: 900px;
   margin: 0 auto;
+  margin-top: 2rem;
   &__diagram {
     width: 100%;
     max-width: 600px;
@@ -899,6 +899,15 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     margin-top: 5rem;
   }
 }
+
+.privacy, .articles {
+  &__title {
+    @extend .mdc-typography--headline4;
+    margin-top: 5rem;
+    text-align: center;
+  }
+}
+
 
 .rating-table {
   width: 100%;

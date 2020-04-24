@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Career Ownership
+title: All Action Plans
 ---
 
 <article class="articles">
@@ -10,9 +10,7 @@ title: Career Ownership
 <section class="article-cards">
 
   {% for post in site.posts %}
-  {% if post.category contains "Career" %}
     {% include article-card.html %}
-  {% endif %}
   {% endfor %}
 
 </section>
