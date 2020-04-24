@@ -801,7 +801,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   }
 }
 
-.article {
+.article, .privacy {
   @extend .mdc-typography--body1;
   max-width: 900px;
   margin: 0 auto;
@@ -860,6 +860,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   & p {
     margin: 2rem 0;
   }
+
   & h2 {
     @extend .mdc-typography--headline4;
     margin-top: 4rem;
@@ -890,6 +891,13 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         list-style-type: inside;
       }
     }
+}
+
+.privacy {
+  &__title {
+    @extend .mdc-typography--headline4;
+    margin-top: 5rem;
+  }
 }
 
 .rating-table {
