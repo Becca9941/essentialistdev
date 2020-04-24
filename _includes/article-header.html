@@ -1,7 +1,7 @@
 <header class="article__intro">
   <section class="article__intro__metadata">
     <p class="article__intro__metadata__category">{{ page.categories }}</p>
-    <p class="article__intro__metadata__published">{{ page.date }}</p>
+    <p class="article__intro__metadata__published">{{ page.date | date_to_long_string }}</p>
   </section>
   <h1 class="article__title">{{ page.title }}</h1>
   <p class="article__leading">{{ page.leading }}</p>
