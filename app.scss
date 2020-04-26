@@ -559,7 +559,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   &__title {
     @extend .mdc-typography--button;
     background-color: #ff88ce;
-    color: white;
+    color: $text;
     width: max-content;
     font-weight: 500;
     display: block;
