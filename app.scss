@@ -48,6 +48,12 @@ q:after {
     content: close-quote;
 }
 
+video {
+  width: 100%;
+  max-width: 900px;
+  height: 100%;
+}
+
 .award {
   position: absolute;
   width: 2rem;
