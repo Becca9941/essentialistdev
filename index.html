@@ -7,7 +7,7 @@ title: Essentialist Dev | Action Plans for Developers
   <section class="landing-intro">
     <a class="landing-intro__link" href="/">
       <img class="landing-intro__logo" src="/assets/images/logo.svg" alt="Home">
-      <h2 class="landing-intro__tagline">Action plans for developers</h2>
+      <h2 class="landing-intro__tagline">A Live Developer Journal</h2>
     </a>
   </section>
 
@@ -16,28 +16,28 @@ title: Essentialist Dev | Action Plans for Developers
     <section class="category">
       <a href="/learning.html">
         <img class="category__cover" src="/assets/images/winding-path-through-the-woods.webp" alt="Winding path through the woods. A lady looking up at the beautiful canopy stretching far above her">
-        <h3 class="category__title"><i class="category__icon material-icons" aria-label="Roadmaps">map</i> Always Learning</h3>
+        <h3 class="category__title"><i class="category__icon material-icons" aria-label="Roadmaps">map</i> Action Plans</h3>
       </a>
     </section>
 
     <section class="category">
       <a href="/living.html">
-        <img class="category__cover" src="/assets/images/woman-holding-yoga-pose.webp" alt="Lady holding yoga pose, arms above head and one leg bent resting on her knee">
-        <h3 class="category__title"><i class="category__icon material-icons" aria-label="Wellbeing">wb_sunny</i> Live by Design</h3>
+        <img class="category__cover" src="/assets/images/lady-journalling.webp" alt="Birdseye view of a bullet journal with positive doodles scribbled over it.">
+        <h3 class="category__title"><i class="category__icon material-icons" aria-label="Wellbeing">extension</i> Messy Tech Journal</h3>
       </a>
     </section>
 
     <section class="category">
       <a href="/career.html">
         <img class="category__cover" src="/assets/images/woman-working-at-coffee-shop.webp" alt="A woman working at her laptop in a cozy co-working space dressed snugly.">
-        <h3 class="category__title"><i class="category__icon material-icons" aria-label="Career">business_center</i> Career Ownership</h3>
+        <h3 class="category__title"><i class="category__icon material-icons" aria-label="Career">business_center</i> Non-Tech Learnings</h3>
       </a>
     </section>
 
     <section class="category">
       <a href="/projects.html">
-        <img class="category__cover" src="/assets/images/lady-journalling.webp" alt="Birdseye view of a bullet journal with positive doodles scribbled over it.">
-        <h3 class="category__title"><i class="category__icon material-icons" aria-label="Journal">extension</i> Project Plans</h3>
+        <img class="category__cover" src="/assets/images/woman-holding-yoga-pose.webp" alt="Lady holding yoga pose, arms above head and one leg bent resting on her knee">
+        <h3 class="category__title"><i class="category__icon material-icons" aria-label="Journal">wb_sunny</i> Wellbeing and Crafts</h3>
       </a>
     </section>
 
@@ -48,9 +48,11 @@ title: Essentialist Dev | Action Plans for Developers
 
     <section class="article-cards">
 
-      {% for post in site.posts %}
+      {% assign posts = site.posts | where: "categories", "action-plans" %}
 
-      {% include article-card.html %}
+      {% for post in posts limit:6 %}
+
+          {% include article-card.html %}
 
       {% endfor %}
 
@@ -119,11 +121,12 @@ title: Essentialist Dev | Action Plans for Developers
       <article class="horizontal-article">
         <div class="horizontal-article__wrapper" tab-index="0">
           <section class="horizontal-article__content">
+            <a class="horizontal-article-link" href="{{ post.url }}">
             <img class="horizontal-article__content-cover" src="/assets/images/article-images/small/{{ post.featured_image }}" alt="">
             <div class="horizontal-article__content-wrapper">
-              <p class="horizontal-article__content-category">{{ post.category }}</p>
               <h2 class="horizontal-article__content-title">{{ post.title }}</h2>
             </div>
+            </a>
           </section>
         </div>
       </article>

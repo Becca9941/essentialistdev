@@ -1,0 +1,23 @@
+---
+layout: default
+title: Woo Live Dev Journal!
+---
+
+<article class="articles">
+
+<h1 class="articles__title">{{ page.title }}</h1>
+
+<section class="article-cards">
+
+  {% for post in site.posts %}
+
+  {% if post.categories contains "tech" %}
+
+    {% include article-card.html %}
+
+  {% endif %}
+  {% endfor %}
+
+</section>
+
+</article>
