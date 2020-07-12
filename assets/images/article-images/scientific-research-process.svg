@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="901px" height="589px" viewBox="0 0 901 589" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 62 (91390) - https://sketch.com -->
+    <title>Group 16</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Material-Components" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-16" transform="translate(0.153276, 0.405000)">
+            <g id="Group-15">
+                <g id="Group-2" fill="#F9F9F9">
+                    <rect id="Rectangle" x="0" y="0" width="899.97" height="588.19"></rect>
+                </g>
+                <g id="Group-13" transform="translate(195.190000, 0.000000)">
+                    <path d="M227.644566,87.8760189 L283.177807,51.8714544 C296.836825,43.0157317 315.088628,46.9095716 323.944351,60.5685894 C326.204047,64.0539325 327.701558,67.9775338 328.338701,72.0821522 L337.481023,130.979003 C338.074543,134.802588 336.272578,138.600814 332.935708,140.559733 L285.410958,168.459264 C282.338858,170.262749 278.512758,170.181531 275.519958,168.249304 L227.691977,137.370372 C214.016018,128.540833 210.087219,110.296523 218.916757,96.6205646 C221.1756,93.1218715 224.150207,90.1415608 227.644566,87.8760189 Z" id="Rectangle" fill="#F5296A" transform="translate(263.941270, 99.258747) scale(-1, -1) rotate(-151.000000) translate(-263.941270, -99.258747) "></path>
+                    <path d="M227.644566,442.19124 L283.177807,406.186676 C296.836825,397.330953 315.088628,401.224793 323.944351,414.883811 C326.204047,418.369154 327.701558,422.292755 328.338701,426.397374 L337.481023,485.294225 C338.074543,489.117809 336.272578,492.916036 332.935708,494.874954 L285.410958,522.774486 C282.338858,524.57797 278.512758,524.496752 275.519958,522.564526 L227.691977,491.685593 C214.016018,482.856055 210.087219,464.611745 218.916757,450.935786 C221.1756,447.437093 224.150207,444.456782 227.644566,442.19124 Z" id="Rectangle" fill="#F5296A" transform="translate(263.941270, 453.573968) scale(-1, 1) rotate(-151.000000) translate(-263.941270, -453.573968) "></path>
+                    <path d="M66.522421,258.134349 L122.055662,222.129784 C135.71468,213.274061 153.966483,217.167901 162.822206,230.826919 C165.081902,234.312262 166.579413,238.235864 167.216556,242.340482 L176.358878,301.237333 C176.952398,305.060917 175.150433,308.859144 171.813563,310.818062 L124.288812,338.717594 C121.216713,340.521078 117.390613,340.43986 114.397813,338.507634 L66.5698318,307.628701 C52.8938733,298.799163 48.9650736,280.554853 57.7946121,266.878894 C60.0534553,263.380201 63.0280619,260.399891 66.522421,258.134349 Z" id="Rectangle" fill="#0095AC" transform="translate(102.819125, 269.517077) scale(-1, 1) rotate(-235.000000) translate(-102.819125, -269.517077) "></path>
+                    <path d="M418.390748,258.134349 L473.923989,222.129784 C487.583007,213.274061 505.83481,217.167901 514.690533,230.826919 C516.950229,234.312262 518.44774,238.235864 519.084883,242.340482 L528.227205,301.237333 C528.820725,305.060917 527.01876,308.859144 523.68189,310.818062 L476.15714,338.717594 C473.08504,340.521078 469.25894,340.43986 466.26614,338.507634 L418.438159,307.628701 C404.7622,298.799163 400.833401,280.554853 409.662939,266.878894 C411.921782,263.380201 414.896389,260.399891 418.390748,258.134349 Z" id="Rectangle" fill="#0095AC" transform="translate(454.687452, 269.517077) rotate(-235.000000) translate(-454.687452, -269.517077) "></path>
+                    <path d="M360.736233,130.946554 L416.269474,94.9419891 C429.928492,86.0862664 448.180295,89.9801064 457.036018,103.639124 C459.295714,107.124467 460.793224,111.048069 461.430368,115.152687 L470.572689,174.049538 C471.166209,177.873122 469.364245,181.671349 466.027374,183.630267 L418.502624,211.529799 C415.430524,213.333283 411.604425,213.252065 408.611625,211.319839 L360.783643,180.440906 C347.107685,171.611368 343.178885,153.367058 352.008424,139.691099 C354.267267,136.192406 357.241873,133.212095 360.736233,130.946554 Z" id="Rectangle" fill="#E1F1F5" transform="translate(397.032937, 142.329282) rotate(-284.000000) translate(-397.032937, -142.329282) "></path>
+                    <path d="M117.877079,395.037655 L173.410321,359.03309 C187.069338,350.177368 205.321142,354.071208 214.176864,367.730225 C216.436561,371.215569 217.934071,375.13917 218.571214,379.243788 L227.713536,438.140639 C228.307056,441.964224 226.505091,445.76245 223.168221,447.721369 L175.643471,475.6209 C172.571371,477.424385 168.745272,477.343167 165.752471,475.41094 L117.92449,444.532008 C104.248532,435.702469 100.319732,417.458159 109.14927,403.782201 C111.408114,400.283508 114.38272,397.303197 117.877079,395.037655 Z" id="Rectangle" fill="#E1F1F5" transform="translate(154.173783, 406.420383) rotate(-459.000000) translate(-154.173783, -406.420383) "></path>
+                    <path d="M104.95071,153.573556 L160.483951,117.568991 C174.142969,108.713268 192.394773,112.607108 201.250495,126.266126 C203.510192,129.751469 205.007702,133.675071 205.644845,137.779689 L214.787167,196.67654 C215.380687,200.500124 213.578722,204.298351 210.241852,206.257269 L162.717102,234.156801 C159.645002,235.960285 155.818903,235.879067 152.826102,233.946841 L104.998121,203.067908 C91.3221625,194.23837 87.3933629,175.99406 96.2229013,162.318101 C98.4817445,158.819408 101.456351,155.839098 104.95071,153.573556 Z" id="Rectangle" fill="#F583C6" transform="translate(141.247414, 164.956284) rotate(-378.000000) translate(-141.247414, -164.956284) "></path>
+                    <path d="M371.619918,383.262255 L427.15316,347.257691 C440.812177,338.401968 459.063981,342.295808 467.919703,355.954826 C470.1794,359.440169 471.67691,363.36377 472.314053,367.468388 L481.456375,426.365239 C482.049895,430.188824 480.24793,433.98705 476.91106,435.945969 L429.38631,463.845501 C426.31421,465.648985 422.488111,465.567767 419.49531,463.635541 L371.667329,432.756608 C357.991371,423.927069 354.062571,405.682759 362.89211,392.006801 C365.150953,388.508108 368.125559,385.527797 371.619918,383.262255 Z" id="Rectangle" fill="#F583C6" transform="translate(407.916622, 394.644983) rotate(-552.000000) translate(-407.916622, -394.644983) "></path>
+                    <ellipse id="Oval" fill="#1D243A" cx="278.770327" cy="276.442653" rx="94.32" ry="95.499"></ellipse>
+                    <text id="OBSERVATION" font-family="Roboto-Medium, Roboto" font-size="11.79" font-weight="400" letter-spacing="1.05267854" fill="#FFFFFF">
+                        <tspan x="229.239894" y="122.262222">OBSERVATION</tspan>
+                    </text>
+                    <text id="SCIENTIFIC-RESEARCH" font-family="Roboto-Medium, Roboto" font-size="24.759" font-weight="400" letter-spacing="2.210625" fill="#FFFFFF">
+                        <tspan x="203.842124" y="253.710653">SCIENTIFIC</tspan>
+                        <tspan x="207.400712" y="286.710653">RESEARCH</tspan>
+                        <tspan x="216.424553" y="319.710653">PROCESS</tspan>
+                    </text>
+                    <text id="THEORY" font-family="Roboto-Medium, Roboto" font-size="11.79" font-weight="400" letter-spacing="1.05267854" fill="#FFFFFF">
+                        <tspan x="407.916622" y="281.517077">THEORY</tspan>
+                    </text>
+                    <text id="DATA-ANALYSIS" font-family="Roboto-Medium, Roboto" font-size="11.79" font-weight="400" letter-spacing="1.05267854" fill="#FFFFFF">
+                        <tspan x="107.076766" y="273.115653">DATA</tspan>
+                        <tspan x="92.5798196" y="288.115653">ANALYSIS</tspan>
+                    </text>
+                    <text id="PREDICTION" font-family="Roboto-Medium, Roboto" font-size="11.79" font-weight="400" letter-spacing="1.05267854" fill="#FFFFFF">
+                        <tspan x="235.134894" y="439.296084">PREDICTION</tspan>
+                    </text>
+                    <text id="RESEARCH-QUESTION" font-family="Roboto-Medium, Roboto" font-size="11.79" font-weight="400" letter-spacing="1.05267854" fill="#1D243A">
+                        <tspan x="354.511245" y="163.7655">RESEARCH</tspan>
+                        <tspan x="356.062713" y="178.7655">QUESTION</tspan>
+                    </text>
+                    <text id="DATA-COLLECTION" font-family="Roboto-Medium, Roboto" font-size="11.79" font-weight="400" letter-spacing="1.05267854" fill="#1D243A">
+                        <tspan x="147.162766" y="379.527983">DATA</tspan>
+                        <tspan x="123.976698" y="394.527983">COLLECTION</tspan>
+                    </text>
+                    <text id="HYPOTHESIS" font-family="Roboto-Medium, Roboto" font-size="11.79" font-weight="400" letter-spacing="1.05267854" fill="#1D243A">
+                        <tspan x="347.819746" y="391.317983">HYPOTHESIS</tspan>
+                    </text>
+                    <text id="GENERALISE-RESULTS" font-family="Roboto-Medium, Roboto" font-size="11.79" font-weight="400" letter-spacing="1.05267854" fill="#1D243A">
+                        <tspan x="123.806872" y="167.3025">GENERALISE</tspan>
+                        <tspan x="135.397027" y="182.3025">RESULTS</tspan>
+                    </text>
+                    <path id="Line" d="M323.292191,132.463193 L323.820807,132.724106 L333.74,137.62 L335.669973,133.71265 L342.447397,142.575171 L331.290442,142.585684 L333.219,138.677 L323.298981,133.781337 L322.770365,133.520424 L323.292191,132.463193 Z" fill="#1D243A" fill-rule="nonzero"></path>
+                    <path id="Line" d="M223.490836,132.514158 L217.098524,141.658342 L215.004,137.836 L206.073502,142.730099 L205.556525,143.013374 L204.989975,141.97942 L205.506952,141.696144 L214.437,136.802 L212.343633,132.980667 L223.490836,132.514158 Z" fill="#1D243A" fill-rule="nonzero"></path>
+                    <path id="Line" d="M417.591909,205.807047 L417.838345,206.342565 L422.733,216.977 L426.691597,215.156364 L426.377573,226.308904 L417.702706,219.29289 L421.661,217.47 L416.767309,206.835436 L416.520873,206.299918 L417.591909,205.807047 Z" fill="#1D243A" fill-rule="nonzero"></path>
+                    <path id="Line" d="M421.496032,327.932065 L422.534182,328.490889 L422.25477,329.009964 L419.94,333.309 L423.777766,335.375084 L414.681504,341.835408 L415.064874,330.685036 L418.902,332.751 L421.21662,328.45114 L421.496032,327.932065 Z" fill="#1D243A" fill-rule="nonzero"></path>
+                    <path id="Line" d="M341.721733,410.719793 L342.200112,411.797381 L341.661318,412.03657 L333.032,415.866 L334.801347,419.850083 L323.654058,419.385638 L330.786457,410.806207 L332.554,414.789 L341.182939,410.958982 L341.721733,410.719793 Z" fill="#1D243A" fill-rule="nonzero"></path>
+                    <path id="Line" d="M218.682711,411.048334 L216.824,414.99 L224.29214,418.509409 L224.825395,418.760703 L224.322807,419.827214 L223.789551,419.57592 L216.322,416.056 L214.464632,419.999247 L207.527777,411.260952 L218.682711,411.048334 Z" fill="#1D243A" fill-rule="nonzero"></path>
+                    <path id="Line" d="M142.7332,218.45597 L144.369668,229.492261 L140.222,228.153 L140.08413,228.581843 L139.903046,229.142841 L138.78105,228.780673 L138.962134,228.219675 L139.1,227.791 L134.953085,226.452692 L142.7332,218.45597 Z" fill="#1D243A" fill-rule="nonzero"></path>
+                    <path id="Line" d="M139.241511,326.817209 L148.57541,332.929172 L144.818,335.138 L146.110099,337.334057 L146.408928,337.842203 L145.392637,338.439859 L145.093808,337.931714 L143.802,335.736 L140.045978,337.945128 L139.241511,326.817209 Z" fill="#1D243A" fill-rule="nonzero"></path>
+                </g>
+            </g>
+            <text id="Scientists-usually-w" font-family="Roboto-Medium, Roboto" font-size="10.48" font-weight="400" letter-spacing="0.935714308" fill="#1D243A">
+                <tspan x="51.7693967" y="105.975">Scientists usually want to</tspan>
+                <tspan x="24.3763609" y="119.975">generalise results to the entire</tspan>
+                <tspan x="37.0903788" y="133.975">population, so they use their</tspan>
+                <tspan x="38.2351668" y="147.975">sample to estimate what the</tspan>
+                <tspan x="65.5339001" y="161.975">likely values are for the</tspan>
+                <tspan x="29.7998486" y="175.975">population (Inferential Stats).</tspan>
+            </text>
+            <text id="The-next-step-in-the" font-family="Roboto-Medium, Roboto" font-size="10.48" font-weight="400" letter-spacing="0.935714308" fill="#1D243A">
+                <tspan x="23.0289893" y="380.42">The next step in the process is </tspan>
+                <tspan x="30.8210038" y="394.42">to collect data from a sample </tspan>
+                <tspan x="61.4385988" y="408.42">of our targetpopulation.</tspan>
+            </text>
+            <text id="Once-we-have-our-dat" font-family="Roboto-Medium, Roboto" font-size="10.48" font-weight="400" letter-spacing="0.935714308" fill="#1D243A">
+                <tspan x="25.7762773" y="237.3025">Once we have our data, we use</tspan>
+                <tspan x="35.1553509" y="251.3025">it to describe what happened</tspan>
+                <tspan x="26.5138833" y="265.3025">in the sample tha we collected</tspan>
+                <tspan x="36.4909369" y="279.3025">by conducting data analysis.</tspan>
+                <tspan x="33.0521869" y="293.3025">We might draw a graph of the</tspan>
+                <tspan x="23.9297036" y="307.3025">data or calculate the summary.</tspan>
+                <tspan x="38.4712884" y="321.3025">This is known as descriptive</tspan>
+                <tspan x="140.444408" y="335.3025">statistics.</tspan>
+            </text>
+            <text id="Scientists-use-exist" font-family="Roboto-Medium, Roboto" font-size="10.48" font-weight="400" letter-spacing="0.935714308" fill="#1D243A">
+                <tspan x="723.12" y="383.3675">Scientists use existing</tspan>
+                <tspan x="723.12" y="397.3675">theory to generate a</tspan>
+                <tspan x="723.12" y="411.3675">hypothesis, which is a</tspan>
+                <tspan x="723.12" y="425.3675">testable explanation for</tspan>
+                <tspan x="723.12" y="439.3675">why something happens.</tspan>
+            </text>
+            <line x1="631.42" y1="401.1875" x2="713.295" y2="401.1875" id="Line-2" stroke="#F583C6" stroke-width="2.62" stroke-linecap="square"></line>
+            <line x1="713.295" y1="371.0575" x2="713.295" y2="435.2475" id="Line-3" stroke="#F583C6" stroke-width="2.62" stroke-linecap="square"></line>
+            <text id="Scientists-begin-wit" font-family="Roboto-Medium, Roboto" font-size="10.48" font-weight="400" letter-spacing="0.935714308" fill="#1D243A">
+                <tspan x="721.81" y="75.845">Scientists begin with an</tspan>
+                <tspan x="721.81" y="89.845">observation about the world.</tspan>
+            </text>
+            <line x1="524.655" y1="79.255" x2="711.985" y2="79.255" id="Line-2" stroke="#F5296A" stroke-width="2.62" stroke-linecap="square"></line>
+            <line x1="711.985" y1="63.535" x2="711.985" y2="94.32" id="Line-3" stroke="#F5296A" stroke-width="2.62" stroke-linecap="square"></line>
+            <text id="We-can-test-a-hypoth" font-family="Roboto-Medium, Roboto" font-size="10.48" font-weight="400" letter-spacing="0.935714308" fill="#1D243A">
+                <tspan x="55.7688722" y="471.7925">We can test a hypothesis</tspan>
+                <tspan x="50.0398152" y="485.7925">by operationalising it as a</tspan>
+                <tspan x="50.4024046" y="499.7925">prediction about what will</tspan>
+                <tspan x="39.1248543" y="513.7925">happen. A prediction should</tspan>
+                <tspan x="57.4933644" y="527.7925">be a scientific statement</tspan>
+                <tspan x="42.5745697" y="541.7925">that can be verified (or not)</tspan>
+                <tspan x="133.515033" y="555.7925">using data.</tspan>
+            </text>
+            <text id="Based-on-the-observa" font-family="Roboto-Medium, Roboto" font-size="10.48" font-weight="400" letter-spacing="0.935714308" fill="#1D243A">
+                <tspan x="721.81" y="132.5025">Based on the observation,</tspan>
+                <tspan x="721.81" y="146.5025">scientists generate a</tspan>
+                <tspan x="721.81" y="160.5025">research question to help</tspan>
+                <tspan x="721.81" y="174.5025">them find out the truth</tspan>
+                <tspan x="721.81" y="188.5025">about something.</tspan>
+            </text>
+            <line x1="623.2325" y1="148.685" x2="711.985" y2="148.685" id="Line-2" stroke="#E1F1F5" stroke-width="2.62" stroke-linecap="square"></line>
+            <line x1="711.985" y1="120.1925" x2="711.985" y2="192.57" id="Line-3" stroke="#E1F1F5" stroke-width="2.62" stroke-linecap="square"></line>
+            <text id="Scientists-consult-e" font-family="Roboto-Medium, Roboto" font-size="10.48" font-weight="400" letter-spacing="0.935714308" fill="#1D243A">
+                <tspan x="721.81" y="233.045">Scientists consult existing</tspan>
+                <tspan x="721.81" y="247.045">theory to see if there are</tspan>
+                <tspan x="721.81" y="261.045">any principles that have</tspan>
+                <tspan x="721.81" y="275.045">been found to explain why</tspan>
+                <tspan x="721.81" y="289.045">something happens, or any</tspan>
+                <tspan x="721.81" y="303.045">gaps in theory that they can</tspan>
+                <tspan x="721.81" y="317.045">then explore in their own</tspan>
+                <tspan x="721.81" y="331.045">research.</tspan>
+            </text>
+            <line x1="667.60875" y1="270.515" x2="711.82125" y2="270.515" id="Line-2" stroke="#0095AC" stroke-width="2.62" stroke-linecap="square"></line>
+            <line x1="711.985" y1="220.735" x2="711.985" y2="326.845" id="Line-3" stroke="#0095AC" stroke-width="2.62" stroke-linecap="square"></line>
+            <line x1="204.36" y1="398.24" x2="315.511091" y2="398.24" id="Line-2" stroke="#E1F1F5" stroke-width="2.62" stroke-linecap="square"></line>
+            <line x1="205.983772" y1="368.11" x2="206.98" y2="419.2" id="Line-3" stroke="#E1F1F5" stroke-width="2.62" stroke-linecap="square"></line>
+            <line x1="206.98" y1="476.5125" x2="477.263824" y2="476.5125" id="Line-2" stroke="#F5296A" stroke-width="2.62" stroke-linecap="square"></line>
+            <line x1="205.983772" y1="460.7925" x2="205.983772" y2="553.8025" id="Line-3" stroke="#F5296A" stroke-width="2.62" stroke-linecap="square"></line>
+            <line x1="209.184251" y1="145.7375" x2="330.355329" y2="145.7375" id="Line-2" stroke="#F583C6" stroke-width="2.62" stroke-linecap="square"></line>
+            <line x1="206.574673" y1="94.975" x2="206.795659" y2="175.2125" id="Line-3" stroke="#F583C6" stroke-width="2.62" stroke-linecap="square"></line>
+            <line x1="206.574673" y1="267.5675" x2="267.640116" y2="267.5675" id="Line-2" stroke="#0095AC" stroke-width="2.62" stroke-linecap="square"></line>
+            <line x1="206.795659" y1="223.0275" x2="206.795659" y2="329.1375" id="Line-3" stroke="#0095AC" stroke-width="2.62" stroke-linecap="square"></line>
+        </g>
+    </g>
+</svg>
