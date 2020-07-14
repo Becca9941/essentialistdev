@@ -2,4 +2,115 @@
 layout: default
 ---
 
-<h1 class="article__title">About Essentialist Dev</h1>
+<section class="landing-intro--about">
+  <a class="landing-intro__link" href="/">
+    <img class="landing-intro__logo" src="/assets/images/logo.svg" alt="Home">
+    <h2 class="landing-intro__tagline">A Live Developer Journal</h2>
+  </a>
+</section>
+
+<section class="article">
+
+  <h2>Essentialist Dev</h2>
+
+  <h3>My mission is to help you act on the things that matter to you.</h3>
+
+  <p>I do this by creating customizable <a href="http://localhost:4000/action-plans.html">Action Plans</a>, inspired by questions you ask me on <a href="https://twitter.com/Becca9941" target="_blank">Twitter</a>.</p>
+
+</section>
+
+<article class="popular-posts">
+  <h1 class="popular-posts__title">Action Plans</h1>
+
+  {% assign posts = site.posts | where: "categories", "action-plans" %}
+  {% for post in posts limit:4 %}
+
+
+  <article class="horizontal-article">
+    <div class="horizontal-article__wrapper" tab-index="0">
+      <section class="horizontal-article__content">
+        <a class="horizontal-article-link" href="{{ post.url }}">
+          <img class="horizontal-article__content-cover" src="/assets/images/article-images/small/{{ post.featured_image }}" alt="">
+          <div class="horizontal-article__content-wrapper">
+            <h2 class="horizontal-article__content-title">{{ post.title }}</h2>
+          </div>
+        </a>
+      </section>
+    </div>
+  </article>
+
+
+  {% endfor %}
+</article>
+
+<section class="article">
+
+  <h2>Essentialism</h2>
+
+  <p>The name "Essentialist Dev" is inspired by Greg McKeown's Book <a href="https://gregmckeown.com/book/" target="_blank">Essentialim: The Disciplined Pursuit of Less</a>.</p>
+
+  <p>It's easy to get overwhelmed by how much there is to learn as a developer. This book helped me realise that <strong>we can choose to do anything, but not everything</strong>.</p>
+
+  <img src="/assets/images/essentialism-quote.svg" alt="Only once you stop giving yourself permission to do it all, to stop saying yes to everyone, can you make your highest contribution to the things that really matter. - Greg McKeown">
+
+</section>
+
+<section class="article">
+
+<h2>Content</h2>
+
+<ul class="newsletter__list">
+  <li><a href="/action-plans.html">Action Plans</a>: Step-by-step guides for core developer skills.</li>
+  <li><a href="/tech-journal.html">Tech Journal</a>: Core developer techniques, tools, principles and philosophies (and the why behind them)</li>
+  <li><a href="/non-tech.html">Non-Tech</a>: The best transferable advice from other disciplines.</li>
+  <li><a href="/wellbeing">Wellbeing</a>: Tips on how to improve your life right now!</li>
+</ul>
+
+</section>
+
+<section class="download-cta">
+
+  <button class="download-cta__scroll-down" aria-label="Scroll down">
+    <div class="download-cta__wrapper"></div>
+    <span class="download-cta__icon material-icons">arrow_downward</span>
+  </button>
+
+  <h2 class="download-cta__title">How are you, really?</h2>
+  <p class="download-cta__tagline">Discover how to track and improve your wellbeing</p>
+  <img class="download-cta__ebook-cover" src="/assets/images/ebook-covers/wellbeing-trackers-ebook-cover.webp" alt="Download wellbeing ebook">
+  <a href="/assets/ebooks/wellbeing_trackers.pdf" target="_blank" class="mdc-button mdc-button--raised">
+    <div class="mdc-button__ripple"></div>
+    <i class="material-icons mdc-button__icon" aria-hidden="true">picture_as_pdf</i>
+    <span class="mdc-button__label">Download wellbeing trackers</span>
+  </a>
+  <p class="download-cta__additional-info">(No email necessary)</p>
+  <div class="download-cta__continue"></div>
+</section>
+
+<section class="article">
+
+</section>
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+<div class="newsletter__form" id="mc_embed_signup">
+<form action="https://gmail.us4.list-manage.com/subscribe/post?u=716d2e8af05263e18524af026&amp;id=4a06101bfd" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+
+<div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+<div class="mc-field-group">
+  <label for="mce-EMAIL" class="newsletter__email-label">Email Address  <span class="asterisk">*</span>
+</label>
+  <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+</div>
+  <div id="mce-responses" class="clear">
+    <div class="response" id="mce-error-response" style="display:none"></div>
+    <div class="response" id="mce-success-response" style="display:none"></div>
+  </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_716d2e8af05263e18524af026_4a06101bfd" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Stay Updated" name="subscribe" id="mc-embedded-subscribe" class="button newsletter__button"></div>
+    </div>
+</form>
+</div>
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+<!--End mc_embed_signup-->
