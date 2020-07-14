@@ -394,6 +394,10 @@ main {
 
 .landing-intro {
   text-align: center;
+  &--about {
+    margin-top: 4rem;
+    text-align: center;
+  }
   &__link {
     text-decoration: none;
   }
@@ -982,6 +986,7 @@ code {
   max-width: 500px;
   display: block;
   margin: 4rem auto;
+  padding: 0 2rem;
   &__logo {
     width: 100px;
     height: 100px;
@@ -994,7 +999,7 @@ code {
     text-align: center;
   }
   &__form {
-    margin-top: 2rem;
+    margin: 2rem 0;
   }
   &__email-label {
     @extend .mdc-typography--headline6;
