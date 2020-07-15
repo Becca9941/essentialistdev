@@ -1,0 +1,119 @@
+---
+layout: post
+author: Becca
+title: Hash Functions under the cover
+category: tech-journal
+tags: [syntax, javascript]
+featured_image: hash-tables.svg
+leading: A good hash table strikes the balance between avoiding collisions while not consuming memory. Most languages handle hashing for you, but it's fun to know how it works.
+---
+
+<h3 id="whatisahashtable">What is a hash table?</h3>
+
+<p>A hash table is a list of paired values (key and value). In the example below, each kitten (key) has a colour (value) associated with it.</p>
+
+{% highlight kotlin linenos %}
+kittens = {
+  "Haribo" => "Champagne",
+  "Berry" => "White",
+  "Granger" => "White and fluffy",
+  "Diamond" => "Tabby",
+  "Mistique" => "Faded dark gray and ginger"
+}
+{% endhighlight %}
+
+<p>We can look up a kitten's colour using this syntax:</p>
+
+{% highlight kotlin linenos %}
+kittens["haribo"]
+{% endhighlight %}
+
+<h3 id="howtohashwithhashfunctions">Hashing and Hash Functions</h3>
+
+<h4>Hashing</h4>
+
+<p>Hashing is where you take a series of one or more characters and convert them into numbers.</p>
+
+{% highlight kotlin linenos %}
+chars = {
+  "a" => 1,
+  "b" => 2,
+  "c" => 3
+}
+{% endhighlight %}
+
+<h4>Hash function</h4>
+
+<p>A hash function is the process for converting each of the characters into numbers. Usually, a hash function returns the same length number no matter how many characters it started with.</p>
+
+<p>The code that is used to convert those letters into particular numbers is called a hash function.</p>
+
+{% highlight kotlin linenos %}
+function sum(char1, char2, char3) {
+  return chars[char] + chars[char2] + chars[char3];
+}
+
+sum("a", "b", "c"); //6
+{% endhighlight %}
+
+<h3 id="howtobuildathesaurus">Practical Example: Thesaurus</h3>
+
+<p>Representing a thesaurus with a hash table:</p>
+
+{% highlight kotlin linenos %}
+thesaurus = {}
+{% endhighlight %}
+
+<p>Adding first entry to the hash:</p>
+
+{% highlight kotlin linenos %}
+thesaurus["cab" = "taxi"]
+thesaurus["ace" = "star"]
+{% endhighlight %}
+
+<p>Thesaurus now looks like this:</p>
+
+{% highlight kotlin linenos %}
+thesaurus = {
+  "cab" => "taxi",
+  "ace" => "star"
+}
+{% endhighlight %}
+
+<p>How the hash table stores this data:</p>
+
+<ol>
+<li>The computer applies a hash function to the key: cab = 3 + 2 + 1 = 7.</li>
+
+<li>The computer stores the value "taxi" into cell 7.</li>
+
+<li>The computer applies a hash function to the key: star = 19 + 20 + 1 + 19 = 59.</li>
+
+<li>The computer stores the value "star" in cell 59.</li>
+</ol>
+
+<p>We look up a value associated with the key of "cab":</p>
+
+{% highlight kotlin linenos %}
+thesaurus["cab"]
+{% endhighlight %}
+
+<ol>
+<li>The computer hashes the key we're looking up: cab = 3 + 2 + 1 = 7.</li>
+
+<li>The result is 7, so the computer looks inside the cell 7 and returns the value that is stored there: "taxi".</li>
+</ol>
+
+<h3 id="howtodealwithcollisions">How to deal with collisions?</h3>
+
+<p>If the hash function produces the same hash value (cell number) as another key that has been hashed, it'll store the value in a sub-array inside of that cell. It'll look at all the 0 indexs of the sub-arrays until it finds the key it's looking for, then will return the value stored at index 1 of the correct sub-array.</p>
+
+<h3 id="whatisthegreatbalancingact">What is the great balancing act?</h3>
+
+<p>A good hash table strikes a balance between avoiding collisions while not consuming memory. E.g. Storing 5 bits of data across 100 cells wastes memory, whilst storing 100 bits of data in 5 cells causes too much collision.</p>
+
+<p>A good rule of thumb: For every 7 data elements stored in a hash table, it should have 10 cells, which is known as the ideal load factor (7 elements / 10 cells).</p>
+
+<p>If you initially stored 7 pieces of data in a hash, the computer might allocate a hash with 10 cells. When you begin to add more data, the computer will expand the hash by adding more cells and changing the hash function so that the new data will be distributed evenly across the new cells.</p>
+
+<p>Most languages handle this for you.</p>
