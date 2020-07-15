@@ -1004,12 +1004,6 @@ code {
   &__email-label {
     @extend .mdc-typography--headline6;
   }
-  &__button {
-    @extend .mdc-button--raised;
-    background-color: $mdc-theme-primary !important;
-    text-transform: uppercase !important;
-    font-weight: bold !important;
-  }
   & p {
     @extend .mdc-typography--body1;
   }
@@ -1020,6 +1014,33 @@ code {
       margin-left: 1.5rem;
       list-style-image: url('/assets/images/heart-bulletpoint.svg');
       list-style-type: inside;
+    }
+  }
+}
+
+#mc-embedded-subscribe-form {
+  width: 100%;
+  max-width: 500px;
+  display: block;
+  margin: 0 auto;
+  padding: 1rem;
+  & input.button {
+    @extend .mdc-button;
+    @extend .mdc-button--raised;  @include mdc-button-filled-accessible($mdc-theme-primary);
+  }
+  & .indicates-required {
+    color: $mdc-theme-error;
+    text-align: right;
+  }
+  & div.mc-field-group {
+    & input {
+      display: block;
+      width: 100%;
+      padding: .5rem;
+      margin: 1rem 0;
+    }
+    & .asterisk {
+      color: $mdc-theme-error;
     }
   }
 }
