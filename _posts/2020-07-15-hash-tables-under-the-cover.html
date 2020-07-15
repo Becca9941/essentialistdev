@@ -54,9 +54,9 @@ function sum(char1, char2, char3) {
 sum("a", "b", "c"); //6
 {% endhighlight %}
 
-<h3 id="howtobuildathesaurus">Practical Example: Thesaurus</h3>
+<h3 id="howtobuildathesaurus">How hash tables store their values using hashing</h3>
 
-<p>Representing a thesaurus with a hash table:</p>
+<p>First, lets create a thesaurus and add some items to it.</p>
 
 {% highlight kotlin linenos %}
 thesaurus = {}
@@ -78,7 +78,11 @@ thesaurus = {
 }
 {% endhighlight %}
 
-<p>How the hash table stores this data:</p>
+<p>Each time we added a new key value pair to our table, the computer applied a hash function to the key to convert it into a number. Then it stored the value in an index in the computers memory with that same number.</p>
+
+<p>To access the value, the computer hashed the key again and looked at the resulting index to find the value that belongs to this key. This is a very efficient way of doing things in terms of Big O Notation, O(1).</p>
+
+<p>The hash function the computer uses is pretty complicated. To make the process easier to understand, our example below uses a much simpler hash function that we made up.</p>
 
 <ol>
 <li>The computer applies a hash function to the key: cab = 3 + 2 + 1 = 7.</li>
