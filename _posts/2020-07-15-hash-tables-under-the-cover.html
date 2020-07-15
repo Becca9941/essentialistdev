@@ -80,7 +80,9 @@ thesaurus = {
 
 <p>Each time we added a new key value pair to our table, the computer applied a hash function to the key to convert it into a number. Then it stored the value in an index in the computers memory with that same number.</p>
 
-<p>To access the value, the computer hashed the key again and looked at the resulting index to find the value that belongs to this key. This is a very efficient way of doing things in terms of Big O Notation, O(1).</p>
+<p>To access the value, the computer hashed the key again and looked at the resulting index to find the value that belongs to this key.</p>
+
+<p>Hashmaps are super efficient in terms of Big O Notation, O(1). This means that no matter how big the hash table is, it always takes the same number of steps to find the value it's looking for; unlike searching through every item in an array where the number of steps depend on the length of the array.</p>
 
 <p>The hash function the computer uses is pretty complicated. To make the process easier to understand, our example below uses a much simpler hash function that we made up.</p>
 
