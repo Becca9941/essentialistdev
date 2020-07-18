@@ -8,11 +8,39 @@ hero_caption: 'Research source for this article: <a href="https://pragprog.com/t
 leading: Some algorithms can be completed in a set number of steps, no matter how many elements there are to work with (efficient). Whilst others take many more steps (less efficient).
 ---
 
+<h2>Feedback Is Awesome!</h2>
+
+<p>After sharing this article the other day on <a href="https://twitter.com/Becca9941" target="_blank">Twitter</a>, lots of people responded and offered their own insights, feedback and suggestions. This is one of the reasons I love Twitter, because without that engagement all of those learning opportunities might not have happened, especially not so quickly.</p>
+
+<p>I updated this post to incorporate all of the feedback, by embedding the tweets directly in the post and expanding them based on my subsequent research.</p>
+
+<h2>What is Big O Notation?</h2>
+
 <p>Big O Notation is a mathematical concept that allows us to easily categorize how efficient an algorithm is.</p>
 
 <p>The number of steps that an algorithm takes is the main indicator of how efficient it is. If we have an array of 100 elements, and we want to find out the index of a specific value in that array, it could take up to 100 steps for us to find the value by checking each index individually (linear search), or it could take us 7 steps if the array was ordered and we took a higher or lower guessing game approach to finding the number (binary search).</p>
 
 <p>The number of steps it takes to complete a linear or binary search algorithm etc, will depend on how big the array is, and a bunch of other factors.</p>
+
+<h2>When is Big O Useful?</h2>
+
+<p>Big O is useful when you are working with extremely large input sizes. With smaller inputs the difference between the effectiveness of algorithms is pretty much irrelevent.</p>
+
+<p>If you look at the graph below, you'll see that the fewer elements there are, the closer the efficiency lines are. The difference in efficiency only become marked once the number of elements have increased significantly.</p>
+
+<img src="/assets/images/article-images/{{ page.featured_image }}" alt="graph showing efficiency matters more when there are more elements">
+
+<p>For more information on this, I found the C2 wiki article <a href="https://wiki.c2.com/?BigOh" target="_blank">Big Oh</a> to be helpful.</p>
+
+<p>Huge thanks to <a href="https://twitter.com/xpmatteo?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1283678672432627713%7Ctwgr%5E&ref_url=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2020%2F07%2F16%2Fbig-o-notation.html" target="_blank">Matteo Vaccari</a> and <a href="https://twitter.com/consolondon?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1283685379602882561%7Ctwgr%5E&ref_url=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2020%2F07%2F16%2Fbig-o-notation.html" target="_blank">Marco Consolaro</a> for helping me address this gap in the article! Here are the original tweets that inspired it:</p>
+
+<blockquote class="twitter-tweet" data-conversation="none"><p lang="en" dir="ltr">A number of steps proportional to the N, for all N larger than some number</p>&mdash; Matteo Vaccari (@xpmatteo) <a href="https://twitter.com/xpmatteo/status/1283678672432627713?ref_src=twsrc%5Etfw">July 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">I don’t want to nitpick a divulgation article, it’s ok to simplify, but make it clear to your readers that big O is really about behavior of algorithms when N gets very large</p>&mdash; Matteo Vaccari (@xpmatteo) <a href="https://twitter.com/xpmatteo/status/1283682948823252992?ref_src=twsrc%5Etfw">July 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">For me the point is that if the elements are few, the effectiveness of the algorithm is irrelevant (all are anyway fast and the gain or loss is minimal) while with a big number of elements the effectiveness of the algorithm is fundamental (see the wide divergence on the right)</p>&mdash; Marco Consolaro (@consolondon) <a href="https://twitter.com/consolondon/status/1283685379602882561?ref_src=twsrc%5Etfw">July 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" data-conversation="none"><p lang="en" dir="ltr">When it is not clear, I would favor simplicity and wait for a signal from the whole system before optimize. If that becomes a bottleneck sooner or later it will surface applying the theory of constraints.</p>&mdash; Marco Consolaro (@consolondon) <a href="https://twitter.com/consolondon/status/1283688715013980160?ref_src=twsrc%5Etfw">July 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <h2>Big O: Count the steps</h2>
 
@@ -115,3 +143,13 @@ end
 
 
 <p>We would describe the efficiency of this algorith like this: O(N), because the number of times the program loops through the numbers in the range depends on which number is given as the end of the range.</p>
+
+<h2>What About Other O Notations?</h2>
+
+<p>Thank you to <a href="https://twitter.com/TommasoPreviero" target="_blank">Tommaso Previero</a> for pointing out that there are a few Big O Notation Types not covered in this article.</p>
+
+<p>And thank you to <a href="https://twitter.com/commitsbyjoyce?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1283780551934185473%7Ctwgr%5E&ref_url=https%3A%2F%2Fpublish.twitter.com%2F%3Fquery%3Dhttps3A2F2Ftwitter.com2Fcommitsbyjoyce2Fstatus2F1283780551934185473widget%3DTweet" target="_blank">Joyce Kung</a> for adding that Big O Measures the Upper-bound of an algorithm might take. So Big O measures the efficiency of an alorithm in the worst-case scenario (e.g. If for example a value you were searching for happened to be the last item in an array, then that might take 10 steps instead of one if it was in the first item in the array. Big O calculates the efficiency assuming that all 10 steps might be taken.</p>
+
+<blockquote class="twitter-tweet" data-conversation="none"><p lang="en" dir="ltr">Beautiful! But shouldn&#39;t O(n log n) be in the picture as well? 🤔 I don&#39;t fully remember though...</p>&mdash; Tommaso Previero (@TommasoPreviero) <a href="https://twitter.com/TommasoPreviero/status/1284017092975624193?ref_src=twsrc%5Etfw">July 17, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" data-conversation="none"><p lang="en" dir="ltr">something that might be cool to clarify in your post is that Big O is a measure of the *upper-bound* of how many steps an algorithm might take (whereas Big θ and Ω measure a tight/lower bound respectively) - but thank you for the writeup, I thought it was a really good overview!</p>&mdash; joyce ✨ kung (@commitsbyjoyce) <a href="https://twitter.com/commitsbyjoyce/status/1283780551934185473?ref_src=twsrc%5Etfw">July 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
