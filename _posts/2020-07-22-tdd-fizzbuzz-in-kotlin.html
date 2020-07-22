@@ -1,0 +1,596 @@
+---
+layout: post
+author: Becca
+category: tech
+title: TDD Fizzbuzz Kata in Kotlin
+tags: [katas, tdd, kotlin]
+featured_image: fizzbuzz.svg
+hero_caption: 'Textbook source for this kata: <a href="https://leanpub.com/agiletechnicalpracticesdistilled" target="_blank">Agile Technical Practices Distilled</a>'
+leading: 'This is my attempt at solving a Fizzbuzz kata, where I practice TDD techniques like "Fake it", "Obvious Implementation" and "triangulation". Also learned how to remove test duplication!'
+---
+
+<p>I'm currently working through <a href="https://leanpub.com/agiletechnicalpracticesdistilled" target="_blank">Agile Technical Practices Distilled</a> which has lots of practical tips and techniques that you can practice with the katas at the end of each chapter.</p>
+
+<p>The first kata in the book, is Fizzbuzz, where you do nothing with non multiples of 3 and 5, get "Fizz" for multiples of 3, "Buzz" for multiples of 5 and "FizzBuzz" for multiples of 3 and 5.</p>
+
+<p>I'm going to explain (document) my process for solving this problem while applying the techniques and principles learned in this chapter.</p>
+
+<h2>My Final Set of Tests and Code</h2>
+
+<p>I'm pretty happy with this attempt at solving the Fizzbuzz kata using an unfamiliar language, and not being confident in TDD or Object-oriented approaches.</p>
+
+<p>I feel like I learned a lot. I got to practice 3 of the strategies metioned in the book (fake it, obvious implementation and triangulation). I learned from each of the error messages, which made it easier to predict and prevent future issues (especially compilation-based errors from not knowing the language well), and I learned how to remove duplication from tests (arrayOf and MapOf) etc.</p>
+
+<p>I also think that this solution is much better than it would've been if I wasn't constantly aware of each tiny decision and being able to pause and ask myself what I both liked and disliked about my approach.</p>
+
+<p>Yayy!</p>
+
+<p><strong>Test Code</strong></p>
+
+{% highlight kotlin linenos %}
+import org.junit.Assert.assertEquals
+import org.junit.Test
+
+class FizzbuzzShould {
+    @Test
+    fun notDivisibleBy3Or5() {
+        arrayOf(1,2,4).forEach {
+            assertEquals(it.toString(), Fizzbuzz(it).fizzBuzz())
+        }
+    }
+    @Test
+    fun divisibleBy3() {
+        arrayOf(3,6,12).forEach {
+            assertEquals("Fizz", Fizzbuzz(it).fizzBuzz())
+        }
+    }
+    @Test
+    fun divisibleBy5() {
+        arrayOf(5,10,20).forEach {
+            assertEquals("Buzz", Fizzbuzz(it).fizzBuzz())
+        }
+    }
+    @Test
+    fun divisibleBy3And5() {
+        arrayOf(15,30,60).forEach {
+            assertEquals("FizzBuzz", Fizzbuzz(it).fizzBuzz())
+        }
+    }
+    @Test
+    fun fizzBuzz() {
+        mapOf(1 to "1",2 to "2",4 to "4", 6 to "Fizz", 12 to "Fizz", 15 to "FizzBuzz", 30 to "FizzBuzz", 60 to "FizzBuzz").entries.forEach {
+            assertEquals(it.value, Fizzbuzz(it.key).fizzBuzz())
+        }
+    }
+}
+{% endhighlight %}
+
+<p><strong>Production code:</strong></p>
+
+{% highlight kotlin linenos %}
+class Fizzbuzz(private val num: Int = 0) {
+
+    private fun divisibleBy3(): String {
+        if (num % 3 == 0) { return "Fizz" }
+        return ""
+    }
+
+    private fun divisibleBy5(): String {
+        if(num % 5 == 0) { return "Buzz" }
+        return ""
+    }
+
+    private fun divisibleBy3And5(): String {
+        return divisibleBy3() + divisibleBy5()
+    }
+
+    private fun notDivisible(): String {
+        return num.toString()
+    }
+
+    fun fizzBuzz(): String {
+        var result = divisibleBy3And5()
+        if(result != "") { return result }
+        return notDivisible()
+    }
+
+}
+{% endhighlight %}
+
+
+<h2>Tech Choices</h2>
+
+<p>I'm using <a href="https://kotlinlang.org/" target="_blank">Kotlin</a> to solve this problem. I don't know Kotlin very well, so I'm building out the katas with it to learn it along the way.</p>
+
+<p>I'm using the <a href="https://junit.org/junit5/" target="_blank">Junit</a> testing suite, which came with my IntelliJ IDE by default. I'm using <a href="http://hamcrest.org/" target="_blank">Hamcrest</a> to write my test assertions, because I feel like it lets me express my testing intent better.</p>
+
+<p>I'm also using Git for version control, which I like to use with <a href="https://gitmoji.carloscuesta.me/" target="_blank">Gitmoji</a>, which lets me put cute little emojis at the start of my commit messages. Each emoji has it's own tech theme to help me stay more consistent. My commit messages follows <a href="https://chris.beams.io/posts/git-commit/" target="_blank">Chris Beam's Imperative Approach</a>, where my commit message fills in the blank for the following sentence: "If applied, this commit message will ____________".</p>
+
+<h2>Fizzbuzz</h2>
+
+<p>The first thing I did was set up my test environment with a setup test to make sure my tests run and fail as expected. Here's what it looks like:</p>
+
+{% highlight kotlin linenos %}
+import org.hamcrest.core.IsEqual.equalTo
+import org.junit.Assert.assertThat
+import org.junit.Test
+
+class FizzbuzzShould {
+  @Test
+  fun passSimpleSetupTest() {
+    assertThat(true, equalTo(true))
+  }
+}
+{% endhighlight %}
+
+<p>I prefer importing individual assertions that I'm actually using, instead of entire libraries.</p>
+
+<p>My test follows the pattern outlined in the book. The class name follows the pattern "MyClassShould", while my test method name follows the pattern "doSomething". This way, when we run our tests, they will read like a list of actions your object knows how to do.</p>
+
+<p>For my first test, I just wanted to make sure that the tests run and failed as expected. This first test has nothing to do with the actual problem.</p>
+
+<h3>Do nothing with non-multiples of 3 and 5</h3>
+
+<p>Now that I know the tests are up and running okay, it's time to write the first test.</p>
+
+<p>This kata in the book has a few steps partially completed for us. The behaviour to test is given, but it's up to us to decide our own test names.</p>
+
+<p>The first test for fizzbuzz in the book is described like this: "When I fizzbuzz number 1, I get back a string representing it".</p>
+
+<p>The behaviour we are first testing is that we return the number when that number isn't a multiple of 3 or 5.</p>
+
+<p>The challenge here is choosing a test name that doesn't reveal any implementation details. e.g. it doesn't say "return a string when...". Here's what I came up with:</p>
+
+{% highlight kotlin linenos %}
+@Test
+fun doNothingWhenNotDivisibleBy3Or5() {
+  assertEquals("1", fizzbuzz(1))
+}
+{% endhighlight %}
+
+<p>My test name is a bit long, but it's really clear what's going on. If I wanted to return the number as an int instead of a string, I can do that without having to change the test name.</p>
+
+<h4>Passing the test</h4>
+
+<p>When I ran the test, it failed, but not for the reason expected in the test assertion. It didn't fail because it expected "1" to be returned when a 1 is given to the fizzbuzz method.</p>
+
+<p>It failed because of a compilation error "Unresolved reference: fizzbuzz".</p>
+
+<p>Our first tiny step towards making the test pass is to create a fizzbuzz method.</p>
+
+{% highlight kotlin linenos %}
+fun fizzbuzz() {}
+{% endhighlight %}
+
+<p>When we run the tests again, the same test fails, but the error message changed. This means that we passed the error message, and it's time to pass the next one, which tells us that the test assertion expected an argument but the method doesn't accept arguments. To make this error message pass, we need our method to expect an integer as an argument.</p>
+
+<p>When we run the test this time, it fails because of the assertion instead of any compilation errors. The error message is: "Expected 1 but was kotlin.Unit".</p>
+
+<p>All Kotlin methods have a default return type of Unit, which is the equivalent to "Void" in Java meaning that no meaningful value is returned.</p>
+
+<p>We now have to write the production code that will make this test pass. There are three techniques outlined in the TDD chapter for doing this, they are:</p>
+
+<ul class="list">
+  <li>Fake it: Just return the exact value you need.</li>
+  <li>Obvious implementation: When you are sure of the code you need to write to make it go green.</li>
+  <li>Triangulation: When you need to introduce new behaviour, write a more specific test to force the code to be more generic (than the hard-coded fake it implementation for example).</li>
+</ul>
+
+<p>I'll use the fake it strategy right now. I prefer doing this until my tests force me away from doing this, being lazy to force myself not to be lazy.</p>
+
+{% highlight kotlin linenos %}
+fun fizzbuzz(num: Int): String {
+  return "1"
+}
+{% endhighlight %}
+
+<p>My test passes. I had to provide an explicit return type of "String" as well.</p>
+
+<p>It's time to commit our code now that our test passes.</p>
+
+<h4>Still testing the same behaviour</h4>
+
+<p>We know that our fizzbuzz method does nothing when we give it a 1, but we also know that it might be given other numbers that are not divisible by 3 or 5 besides 1. So we have not yet finished testing this behaviour.</p>
+
+<p>My next test is the same as the previous test, but given a different input value, this time a 2. The test fails because it expected "2" but got "1".</p>
+
+{% highlight kotlin linenos %}
+fun fizzbuzz(num: Int): String {
+  if ( num == 1 ) { return "1" }
+  return "2"
+}
+{% endhighlight %}
+
+<p>This time, I used the <strong>obvious implementation</strong> approach. If the only inputs this method was ever going to get was 1 or 2, this code would be sufficient. If not, then we need a new test to force it to be more generic (<strong>triangulation</strong>).</p>
+
+<p>Time to commit again now that the test passes again.</p>
+
+<p>I'm still not confident that the behaviour is fully tested, so I'll write another test, this time expecting the number 4. I skipped the number 3 because that is a multiple of 3 and would introduce new behaviour.</p>
+
+<p>To make this test pass, I could use the obvious implementation strategy again. However, I know that if I do, that will be the 3rd instance of duplication (3 ifs). So instead, I'm going to remove the duplication by returning the input (converted to a string) directly.</p>
+
+{% highlight kotlin linenos %}
+fun fizzbuzz(num: Int): String {
+  if ( num == 1 ) { return "1" }
+  return num.toString()
+}
+{% endhighlight %}
+
+<h3>Behaviour One Tests and Code</h3>
+
+<h4>Tests</h4>
+
+{% highlight kotlin linenos %}
+import org.hamcrest.core.IsEqual.equalTo
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertThat
+import org.junit.Test
+import org.junit.Ignore
+
+class FizzbuzzShould {
+    @Ignore @Test
+    fun pass_simple_setup_test() {
+        assertThat(true, equalTo(true))
+    }
+    @Test
+    fun doNothingWhenNotDivisibleBy3Or5() {
+        assertEquals("1", fizzbuzz(1))
+        assertEquals("2", fizzbuzz(2))
+        assertEquals("4", fizzbuzz(4))
+    }
+}
+{% endhighlight %}
+
+<h4>Code</h4>
+
+{% highlight kotlin linenos %}
+fun fizzbuzz(num: Int): String {
+    return num.toString()
+}
+{% endhighlight %}
+
+<h3>Behaviour 2: fizz when number is divisible by 3</h3>
+
+<p>Now that I'm confident that the behaviour "do nothing when number is not divisible by 3 or 5", I'm happy to move onto testing the next behaviour "fizz when divisible by 3".</p>
+
+<p>My new test looks like this:</p>
+
+{% highlight kotlin linenos %}
+@Test
+fun fizzWhenDivisibleBy3() {
+  assertEquals("Fizz", fizzbuzz(3))
+}
+{% endhighlight %}
+
+<p>To pass this test, I used the <strong>obvious implementation</strong> strategy again, because my tests currently don't force me to do otherwise.</p>
+
+{% highlight kotlin linenos %}
+fun fizzbuzz(num: Int): String {
+    if (num == 3) { return "Fizz" }
+    return num.toString()
+}
+{% endhighlight %}
+
+<p>The next step is to write another test to force me to be a little more generic:</p>
+
+{% highlight kotlin linenos %}
+assertEquals("Fizz", fizzbuzz(6))
+{% endhighlight %}
+
+<p>I used obvious implementation again to pass this test:</p>
+
+{% highlight kotlin linenos %}
+fun fizzbuzz(num: Int): String {
+    if (num == 3 || num == 6) { return "Fizz" }
+    return num.toString()
+}
+{% endhighlight %}
+
+<p>I added another test to force the code to be even more generic:</p>
+
+{% highlight kotlin linenos %}
+assertEquals("Fizz", fizzbuzz(12))
+{% endhighlight %}
+
+<p>As this would be the third instance of the if statement, I'll remove duplication and return "Fizz" if the number is divisible by 3 using the modulo operation.</p>
+
+{% highlight kotlin linenos %}
+fun fizzbuzz(num: Int): String {
+    if (num % 3 == 0) { return "Fizz" }
+    return num.toString()
+}
+{% endhighlight %}
+
+<p>Time to commit the code.</p>
+
+<h4>Pivot Point</h4>
+
+<p>The if statement in our production code represents a <strong>pivot point</strong>, where the code executes in two different behavioural directions. Either it returns the number if it isn't divisible by 3 or 5, or it returns "Fizz" if the number is divisible by 3.</p>
+
+<p>It's good practice for a method to only do one thing at a time, so I think it's a good idea to split my fizzbuzz method into two individual methods that each handle a single responsibility.</p>
+
+<p>I'll also rename the methods so that they more accurately reflect the behaviour they are responsible for.</p>
+
+<p><strong>Before:</strong></p>
+
+{% highlight kotlin linenos %}
+fun fizzbuzz(num: Int): String {
+    if (num % 3 == 0) { return "Fizz" }
+    return num.toString()
+}
+{% endhighlight %}
+
+<p><strong>After:</strong></p>
+
+{% highlight kotlin linenos %}
+fun fizzbuzz(num: Int): String {
+    return divisibleBy3(num)
+}
+
+fun divisibleBy3(num: Int): String {
+    if (num % 3 == 0) { return "Fizz" }
+    return notDivisible(num)
+}
+
+fun notDivisible(num: Int): String {
+    return num.toString()
+}
+{% endhighlight %}
+
+<p>I don't know if this is the best way to handle things at the moment. I see a few problems with it, but it does split the behaviour into their own methods, which is better than it was before.</p>
+
+<p>What is happening here is that when we call fizzbuzz, we check to see if our number is divisible by 3 by passing it over to the "divisibleBy3" method. If it isn't divisible by 3, then we call the "notDivisible" method which returns the number as a string.</p>
+
+<p>Now that we have a couple examples of behaviour, I think we should add our methods to a class called "FizzBuzz", like this:</p>
+
+{% highlight kotlin linenos %}
+class Fizzbuzz(private val num: Int = 0) {
+
+    fun fizzbuzz(): String {
+       return divisibleBy3()
+    }
+
+    private fun divisibleBy3(): String {
+        if (num % 3 == 0) { return "Fizz" }
+        return notDivisible()
+    }
+
+    private fun notDivisible(): String {
+        return num.toString()
+    }
+
+}
+{% endhighlight %}
+
+<p>I created a class called "Fizzbuzz", with an instance variable set to 0 by default, or any number that is passed in.</p>
+
+<p>I kept all of the methods the same, but made them private.</p>
+
+<p>After doing this, I needed to update the tests so that they called the method "fizzbuzz" through the class, rather than directly.</p>
+
+{% highlight kotlin linenos %}
+class FizzbuzzShould {
+    @Ignore @Test
+    fun pass_simple_setup_test() {
+        assertThat(true, equalTo(true))
+    }
+    @Test
+    fun doNothingWhenNotDivisibleBy3Or5() {
+        assertEquals("1", Fizzbuzz(1).fizzbuzz())
+        assertEquals("2", Fizzbuzz(2).fizzbuzz())
+        assertEquals("4", Fizzbuzz(4).fizzbuzz())
+
+    }
+    @Test
+    fun fizzWhenDivisibleBy3() {
+        assertEquals("Fizz", Fizzbuzz(3).fizzbuzz())
+        assertEquals("Fizz", Fizzbuzz(6).fizzbuzz())
+        assertEquals("Fizz", Fizzbuzz(12).fizzbuzz())
+    }
+}
+{% endhighlight %}
+
+<p>There's quite a lot of duplication here. It would be cool to get rid of some of that. Also, I'm going to rename the "fizzbuzz" method to "result" so it reads better in the tests.</p>
+
+<p>I don't know how to remove the duplication right now so will leave it.</p>
+
+<p>I also changed my mind about not calling "divisibleBy3" and "notDivisible" directly, because we're testing those specific behaviours.</p>
+
+<p>I feel all over the place right now. Here's the new tests:</p>
+
+{% highlight kotlin linenos %}
+class FizzbuzzShould {
+    @Ignore @Test
+    fun pass_simple_setup_test() {
+        assertThat(true, equalTo(true))
+    }
+    @Test
+    fun notDivisibleBy3() {
+        assertEquals("1", Fizzbuzz(1).notDivisible())
+        assertEquals("2", Fizzbuzz(2).notDivisible())
+        assertEquals("4", Fizzbuzz(4).notDivisible())
+
+    }
+    @Test
+    fun divisibleBy3() {
+        assertEquals("Fizz", Fizzbuzz(3).divisibleBy3())
+        assertEquals("Fizz", Fizzbuzz(6).divisibleBy3())
+        assertEquals("Fizz", Fizzbuzz(12).divisibleBy3())
+    }
+}
+{% endhighlight %}
+
+<h3>Divisible by 5</h3>
+
+<p>The next behaviour is to test whether the number is divisible by 5, and returning "buzz" when it is:</p>
+
+{% highlight kotlin linenos %}
+@Test
+fun divisibleBy5() {
+  assertEquals("Fizz", Fizzbuzz(5).divisibleBy5())
+}
+{% endhighlight %}
+
+<p>Passing the test:</p>
+
+{% highlight kotlin linenos %}
+fun divisibleBy5(): String {
+  if(num % 5 == 0) { return "Buzz" }
+  return notDivisible()
+}
+{% endhighlight %}
+
+<h3>Divisible by 3 AND 5</h3>
+
+<p>The next behaviour is to return "FizzBuzz" if a number is divisible by both 3 and 5.</p>
+
+{% highlight kotlin linenos %}
+assertEquals("FizzBuzz", Fizzbuzz(15).divisibleBy3And5())
+{% endhighlight %}
+
+<p>Code which passes the test:</p>
+
+{% highlight kotlin linenos %}
+fun divisibleBy3And5(): String {
+    if( "${divisibleBy3()}${divisibleBy5()}" == "FizzBuzz") { return "FizzBuzz" }
+    return notDivisible()
+}
+{% endhighlight %}
+
+<h3>Tying it all together</h3>
+
+{% highlight kotlin linenos %}
+import org.hamcrest.core.IsEqual.equalTo
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertThat
+import org.junit.Test
+import org.junit.Ignore
+
+class FizzbuzzShould {
+    @Ignore @Test
+    fun pass_simple_setup_test() {
+        assertThat(true, equalTo(true))
+    }
+    @Test
+    fun notDivisibleBy3Or5() {
+        assertEquals("1", Fizzbuzz(1).notDivisible())
+        assertEquals("2", Fizzbuzz(2).notDivisible())
+        assertEquals("4", Fizzbuzz(4).notDivisible())
+
+    }
+    @Test
+    fun divisibleBy3() {
+        assertEquals("Fizz", Fizzbuzz(3).divisibleBy3())
+        assertEquals("Fizz", Fizzbuzz(6).divisibleBy3())
+        assertEquals("Fizz", Fizzbuzz(12).divisibleBy3())
+    }
+    @Test
+    fun divisibleBy5() {
+        assertEquals("Buzz", Fizzbuzz(5).divisibleBy5())
+        assertEquals("Buzz", Fizzbuzz(10).divisibleBy5())
+        assertEquals("Buzz", Fizzbuzz(20).divisibleBy5())
+    }
+    @Test
+    fun divisibleBy3And5() {
+        assertEquals("FizzBuzz", Fizzbuzz(15).divisibleBy3And5())
+        assertEquals("FizzBuzz", Fizzbuzz(30).divisibleBy3And5())
+        assertEquals("FizzBuzz", Fizzbuzz(60).divisibleBy3And5())
+    }
+    @Test
+    fun fizzBuzz() {
+        assertEquals("1", Fizzbuzz(1).fizzBuzz())
+        assertEquals("Fizz", Fizzbuzz(3).fizzBuzz())
+        assertEquals("FizzBuzz", Fizzbuzz(15).fizzBuzz())
+    }
+}
+{% endhighlight %}
+
+<p>Production code:</p>
+
+{% highlight kotlin linenos %}
+class Fizzbuzz(private val num: Int = 0) {
+
+    fun divisibleBy3(): String {
+        if (num % 3 == 0) { return "Fizz" }
+        return divisibleBy5()
+    }
+
+    fun divisibleBy5(): String {
+        if(num % 5 == 0) { return "Buzz" }
+        return notDivisible()
+    }
+
+    fun divisibleBy3And5(): String {
+        if( "${divisibleBy3()}${divisibleBy5()}" == "FizzBuzz") { return "FizzBuzz" }
+        return divisibleBy3()
+    }
+
+    fun notDivisible(): String {
+        return num.toString()
+    }
+
+    fun fizzBuzz(): String {
+        return divisibleBy3And5()
+    }
+
+}
+{% endhighlight %}
+
+<p>Here is what I like and dislike about my object-oriented, test-driven fizzbuzz attempt written in Kotlin</p>
+
+<h4>Dislikes</h4>
+
+<ul class="list">
+  <li>The FizzBuzz method relies on a method chain. If one link breaks, it'll be hard to figure out where the problem is.</li>
+  <li>The test assertions are duplicated in multiple places.</li>
+  <li>The divisibleBy3and5 method looks messy.</li>
+  <li>Everything feels too tightly coupled.</li>
+  <li>I feel like I'm missing a more obvious simple solution.</li>
+  <li>Trying to do this in an object-oriented, tdd style is hard.</li>
+  <li>When I learn more about the problem or change my mind about the implementation, I find that I end up changing both the tests and production code a fair bit.</li>
+</ul>
+
+<h4>Likes</h4>
+
+<ul class="list">
+  <li>I like that each method handles it's own behaviour.</li>
+  <li>It was easy to make steady progress with the tests as feedback.</li>
+  <li>I could use fake implementation, obvious implementation and triangulation strategies.</li>
+  <li>I wrote a test-driven program in Kotlin that works even though I don't know Kotlin or TDD well.</li>
+</ul>
+
+<h2>Final refactorings</h2>
+
+<p>Some of the dislike points above bothered me too much to leave alone, so I asked for help, woo woo!</p>
+
+<p>The first major niggle for me was the test duplication. There were two techniques I was taught for removing it.</p>
+
+<h3>arrayOf</h3>
+
+<p>If you have multiple test cases that where the expected value stays the same but the input value changes, you can use arrayOf to loop through them, like this:</p>
+
+{% highlight kotlin linenos %}
+arrayOf(5,10,20).forEach {
+  assertEquals("Buzz", Fizzbuzz(it).fizzBuzz())
+}
+{% endhighlight %}
+
+<h3>mapOf</h3>
+
+<p>If you have multiple test cases where the expected value differs depending on which input value is given, mapOf is a good solution for storing the input as the key and the expected result as the value, like this:</p>
+
+{% highlight kotlin linenos %}
+mapOf(1 to "1", 6 to "Fizz", 15 to "FizzBuzz").entries.forEach {
+  assertEquals(it.value, Fizzbuzz(it.key).fizzBuzz())
+}
+{% endhighlight %}
+
+<h3>Preventing long method chains</h3>
+
+<p>The next major niggle was the method chains, where they all linked together. So I asked for help again and we ended up building up a string which ends up an empty string if a number is not divisible by 3 or 5, "Fizz" if the number is divisible by 3, and "Buzz" if the number is divisible by 5. The fizzbuzz method starts with the divisible by 3 method so if a number is divisible by 3 and 5, "Fizz" is added first, and "Buzz" is added second.</p>
+
+<p>This was so much fun! Learned a lot!</p>
+
+<p>The final test suite and production code for this problem is shown at the top of this article. I'm not entirely happy with my solution, but I'm happy with the progress made by attempting to implement it.</p>
+
+<p>I'm going to have a look at the solution in the back of the book so that I can compare it with my solution and go from there. Happy dance!</p>
