@@ -1,10 +1,10 @@
-![Full home page screen capture](/assets/images/article-images/logo-full.png)
+![Full home page screen capture](/assets/images/logo-full.png)
 
 # Essentialist Dev
 
-> A Live Developer Journal
+A Live Developer Journal
 
-> Tags: Blog, Website, Jekyll, Material Design, Katas, Wellbeing, Tech, Portfolio, Newsletter
+**Tags:** Blog, Website, Jekyll, Material Design, Katas, Wellbeing, Tech, Portfolio, Newsletter
 
 
 ![Full home page screen capture](/assets/images/site-screenshots/essentialist-dev-full-home.png)
