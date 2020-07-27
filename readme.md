@@ -1,10 +1,10 @@
-# The Essentialist Dev
-Action Plans For Developers
+[![Full home page screen capture](/assets/images/article-images/logo-full.png")](essentialistdev.com)
 
-## Always Learning
+# Essentialist Dev
 
-## Live By Design
+> A Live Developer Journal
 
-## Career Ownership
+> Tags: Blog, Website, Jekyll, Material Design, Katas, Wellbeing, Tech, Portfolio, Newsletter
 
-## Project Plans
+
+[![Full home page screen capture](/assets/images/site-screenshots/essentialist-dev-full-home.png")](essentialistdev.com)
