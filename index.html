@@ -50,13 +50,10 @@ title: Essentialist Dev | Action Plans for Developers
 
     <section class="article-cards">
 
-      {% for post in site.posts %}
-
-      {% if post.categories contains "action-plans" limit:6 %}
+      {% for post in site.categories.action-plans limit:2 %}
 
         {% include article-card.html %}
 
-      {% endif %}
       {% endfor %}
 
     </section>
