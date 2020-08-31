@@ -1,0 +1,43 @@
+---
+layout: post
+title: Notes on TDD as if you meant it
+---
+
+<p>Notes based on <a href="https://cumulative-hypotheses.org/2011/08/30/tdd-as-if-you-meant-it/" target="_blank">TDD as if you meant it</a> by Keith Braithwaite.</p>
+
+<p>The games Go and Tic Tac Toe are good candidates for practicing TDD as if you meant it.</p>
+
+<h2>Keith Braithwaites Rules</h2>
+
+<ol>
+  <li>Write <em>exactly one new test</em>, the smallest test you can that seems to point in the direction of a solution.</li>
+  <li>See it fail.</li>
+  <li>Make the test from (1) pass by writing the least implementation code you can <em>in the test method.</em>.</li>
+  <li>Refactor to remove duplication, and otherwise as required to improve the design.</li>
+</ol>
+
+<h3>Refactoring rules</h3>
+
+<p>If you want a new method, wait until refactoring time, then create new non-test methods by:</p>
+
+<ol>
+  <li>Preferred: Do Extract Method on implementation code created as per (3) to create a new method in the test class, or</li>
+  <li>If you must: Move implementation code as per (3) into an existing method.</li>
+</ol>
+
+<p>If you want a new class- wait until refactoring time, then create non-test classes to provide a destination for a Move Method and for no other reason.</p>
+
+<ol>
+  <li>Populate implementation classes with methods by doing Move Method, and no other way.</li>
+</ol>
+
+<p>After some time coding:</p>
+
+<ul>
+  <li>Contrast (look for differences) and compare (look for similarities) solutions.</li>
+  <li>Consider the classes created. How many? How big? What mutable state?</li>
+  <li>Consider the methods created. How many? How long?</li>
+  <li>Apply a few different design metrics.</li>
+  <li>How was the experience of working this way different from the usual?</li>
+  <li>How could these ideas be applied to your day job?</li>
+</ul>

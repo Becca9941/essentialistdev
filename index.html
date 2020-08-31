@@ -1,146 +1,39 @@
 ---
 layout: default
-title: Essentialist Dev | Action Plans for Developers
 ---
+
 <main>
 
-  <section class="landing-intro">
-    <a class="landing-intro__link" href="/">
-      <img class="landing-intro__logo" src="/assets/images/logo.svg" alt="Home">
-      <h2 class="landing-intro__tagline">A Live Developer Journal</h2>
-    </a>
-  </section>
+  {% include search.html %}
 
-  <article class="categories">
+{% include pagination.html %}
 
-    <section class="category">
-      <a href="/action-plans.html">
-        <img class="category__cover" src="/assets/images/winding-path-through-the-woods.webp" alt="Winding path through the woods. A lady looking up at the beautiful canopy stretching far above her">
-        <h3 class="category__title"><i class="category__icon material-icons" aria-label="Roadmaps">map</i> Action Plans</h3>
+<section class="all-posts">
+  {% for post in paginator.posts %}
+  {% assign month = post.date | date: "%m" %}
+  {% if month != activeMonth %}
+  {% unless forloop.first %}
+  </ul>
+  {% endunless %}
+  <p class="all-posts__month">{{ post.date | date: "%B %Y" }}</p>
+  <ul class="post-list">
+    {% assign activeMonth = month %}
+    {% endif %}
+    <li class="post-list__post"
+        tabindex="0">
+      <a class="post-list__post__link"
+         href="{{ post.url | prepent: site.baseurl }}">
+        <span class="post-list__post__date">
+          {{ post.date | date: "%d" }}
+        </span>
+        {{ post.title }}
       </a>
-    </section>
-
-    <section class="category">
-      <a href="/tech-journal.html">
-        <img class="category__cover" src="/assets/images/lady-journalling.webp" alt="Birdseye view of a bullet journal with positive doodles scribbled over it.">
-        <h3 class="category__title"><i class="category__icon material-icons" aria-label="Wellbeing">extension</i> Messy Tech Journal</h3>
-      </a>
-    </section>
-
-    <section class="category">
-      <a href="/non-tech.html">
-        <img class="category__cover" src="/assets/images/woman-working-at-coffee-shop.webp" alt="A woman working at her laptop in a cozy co-working space dressed snugly.">
-        <h3 class="category__title"><i class="category__icon material-icons" aria-label="Career">business_center</i> Non-Tech Learnings</h3>
-      </a>
-    </section>
-
-    <section class="category">
-      <a href="/wellbeing.html">
-        <img class="category__cover" src="/assets/images/woman-holding-yoga-pose.webp" alt="Lady holding yoga pose, arms above head and one leg bent resting on her knee">
-        <h3 class="category__title"><i class="category__icon material-icons" aria-label="Journal">wb_sunny</i> Wellbeing and Crafts</h3>
-      </a>
-    </section>
-
-  </article>
-
-  {% include newsletter-signup.html %}
-
-  <article class="action-plans">
-    <h1 class="action-plans__title">Most Recent</h1>
-
-    <section class="article-cards">
-
-      {% for post in site.categories.action-plans limit:6 %}
-
-        {% include article-card.html %}
-
-      {% endfor %}
-
-    </section>
-
-
-    <section class="ask-audience">
-
-
-      <h2 class="ask-audience__question">Recognising the progress we've made is not easy.</h2>
-
-      <p class="ask-audience__to-ponder">Especially when it comes to long-term goals, like becoming a better developer. This is why we take a before snap - to <strong>make our progress obvious to us.</strong></p>
-
-      <p class="ask-audience__to-ponder">If you think about it, each baby-step you take is like putting a single grain of rice on a set of balance scales. It doesn't budge at all, not even when we put 2 or 3 or even 100 grains of rice on the scale. That is, until a tipping point is reached. We'll show you how to <strong>choose your baby-steps wisely, to make the most of your time and effort.</strong></p>
-
-      <p class="ask-audience__to-ponder">Bill Gates said that <q>Most people overestimate what they can do in one year and underestimate what they can do in ten years.</q> Your after snap will challenge this as you <strong>realise how far you've come in a single year, with something to show for it too!</strong></p>
-
-      <img class="ask-audience__my-example" src="/assets/images/action-plan-poster.webp" alt="two nearly assembled crochet foxes sitting on a pub table. My favourite high energy day with my partner.">
-
-
-      <h2 class="ask-audience__question">How do you know you're making progress towards the right things?</h2>
-
-      <p class="ask-audience__to-ponder">When I first started to learn how to program, I had no idea which language to start with. Every job description I looked at had a different list of languages, tools and frameworks. Asking for opinions didn't help either, because well, they were all pretty opiniated.</p>
-
-      <p class="ask-audience__to-ponder">I felt so overwhelmed by how much there was to learn. This was made worse by the pressure to keep up with the latest technologies when I didn't even know how to get up to speed on any one of them in the first place.</p>
-
-      <p class="ask-audience__to-ponder">In the end, I realised that <strong>we can choose to do anything, but not everything</strong>. So I didn't choose a language, I chose a project that mattered to me, and that project chose my languages for me. You don't have to do it this way, the skill is learning how to choose what to invest yourself in.</p>
-
-      <img class="ask-audience__diagram" src="/assets/images/energy-and-improvement.webp" alt="Diagram represents that you can improve a lot on a couple things or improve very little on lots of things">
-
-
-    </section>
-
-    <section class="download-cta">
-
-      <button class="download-cta__scroll-down" aria-label="Scroll down">
-        <div class="download-cta__wrapper"></div>
-        <span class="download-cta__icon material-icons">arrow_downward</span>
-      </button>
-
-      <h2 class="download-cta__title">How are you, really?</h2>
-      <p class="download-cta__tagline">Discover how to track and improve your wellbeing</p>
-      <img class="download-cta__ebook-cover" src="/assets/images/ebook-covers/wellbeing-trackers-ebook-cover.webp" alt="Download wellbeing ebook">
-      <a href="/assets/ebooks/wellbeing_trackers.pdf" target="_blank" class="mdc-button mdc-button--raised">
-        <div class="mdc-button__ripple"></div>
-        <i class="material-icons mdc-button__icon" aria-hidden="true">picture_as_pdf</i>
-        <span class="mdc-button__label">Download wellbeing trackers</span>
-      </a>
-      <p class="download-cta__additional-info">(No email necessary)</p>
-      <div class="download-cta__continue"></div>
-
-    </section>
-
-    <section class="learn-more">
-      <img class="learn-more__logo" src="/assets/images/logo.svg" alt="home">
-      <p class="learn-more__welcome">Welcome to The Essentialist Dev!</p>
-      <a class="learn-more__about-link mdc-button" href="/about.html">About Us</a>
-    </section>
-
-    <article class="popular-posts">
-      <h1 class="popular-posts__title">Most Recent Posts</h1>
-
-  {% for post in site.posts limit:6 %}
-
-
-      <article class="horizontal-article">
-        <div class="horizontal-article__wrapper" tab-index="0">
-          <section class="horizontal-article__content">
-            <a class="horizontal-article-link" href="{{ post.url }}">
-            <img class="horizontal-article__content-cover" src="/assets/images/article-images/small/{{ post.featured_image }}" alt="">
-            <div class="horizontal-article__content-wrapper">
-              <h2 class="horizontal-article__content-title">{{ post.title }}</h2>
-            </div>
-            </a>
-          </section>
-        </div>
-      </article>
-
-
+    </li>
+    {% if forloop.last %}</ul>{% endif %}
   {% endfor %}
-
-    </article>
-
-
-    <section class="learn-more learn-more2">
-      <img class="learn-more__logo" src="/assets/images/logo.svg" alt="home">
-
-      <a href="/about.html" class="learn-more2__about-link">About Us</a>
-    </section>
+  </ul>
+</section>
 
 </main>
+
+{% include pagination.html %}

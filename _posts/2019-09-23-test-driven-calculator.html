@@ -1,0 +1,155 @@
+---
+layout: post
+title: Test-driven calculator app using Ruby and RSpec
+---
+
+<p>I have been trying to learn Test-driven development alongside Kotlin, object-oriented programming and design patterns. Got to the point where I was burned out because all of these things are difficult and require a huge amount of mental energy.</p>
+
+<p>So I decided to look for a few gentler TDD courses. By gentler, I mean in a sanguage I'm more comfortable with, and using examples that are easier for me to follow along with. A good candidate for this has been <a href="https://thoughtbot.com/upcase/fundamentals-of-tdd" target="_blank">Fundamentals of TDD</a> which I am going to work through in this entry.</p>
+
+<h2>Test-Driven Development (TDD) introduction</h2>
+
+<ul>
+  <li>Red, green refactor cycle.</li>
+  <li>Red: You write tests and see them fail, red is the color of failing tests.</li>
+  <li>Green: You make the test pass, green is the color of passing tests.</li>
+  <li>Orange: Refactor to clean up the code and the tests, orange is just to continue the traffic light theme.</li>
+  <li>By the end, you application will have a full suite of regression tests.</li>
+  <li>Regression tests give you confidence to refactor, if something breaks, you know exactly where it breaks because the tests will tell you.</li>
+  <li>While there is a bit of an investment to learning how to do TDD, and it's slower at first writing tests, the payoff is huge. It's a safety net and greatly reduces the time spent trying to figure out bugs, which is a huge maintainance cost.</li>
+</ul>
+
+<h2>Building out a calculator</h2>
+
+<h3>Write the interface you want to interact with</h3>
+
+<p>The instructors started out by writing out the interface they want to interact with. This is an important theme in TDD. The interface is what you use regularly so it's important that it's easy to understand and interact with. By writing tests first, you have more control over how the interface looks. So this is a technique worth highlighting. Before you write every test, write the interface you want and comment it out to guide the way you then write your test.</p>
+
+<pre>
+<code>
+require 'rspec/autorun'
+
+describe Calculator do
+  describe "#add" do
+    it "returns the sum of its two arguments" do
+      calc = Calculator.new
+
+      expect(calc.add(5, 10)).to eq(15)
+    end
+  end
+end
+</code>
+</pre>
+
+<p>The following is a list of steps that the instructors took to write their first test in RSpec, Ruby. The code for this first test is what you see above. Some knowledge of RSpec and how the tests are structured is assumed.</p>
+
+<ul>
+  <li>We want to describe a calculator class.</li>
+  <li>That calculator class will have an instance method called 'add', which is indicated with a string and a pound sign followed by the name of the instance method. A convention rather than a must.</li>
+  <li>Then we need an it block, which will describe the behaviour that we want to test.</li>
+  <li>Then we create a calculator object and store it in a variable called 'calc'.</li>
+  <li>Then we expect calc.add when given 5 and 10 to equal 15.</li>
+</ul>
+
+<p>I found it interesting that they created the calculator before wrinting the test assertion which called a method on it. So they are writing the test based on how they would use it in a real application. They are programming to the interface they want to use.</p>
+
+<h3>Steps to passing first test.</h3>
+
+<ul>
+  <li>When running the above test for the first time, it failed with an error message that read "uninitialized constant Calculator". To solve this error, the instructors defined the Calculator class above the test code. That's all they did, nothing more.</li>
+</ul>
+
+<pre>
+<code>
+class Calculator
+end
+</code>
+</pre>
+
+<ul>
+  <li>The next error message was "undefined method 'add' for Calculator". All they did to make this test pass was create an 'add' method stub inside the calculator class.</li>
+</ul>
+
+<pre>
+<code>
+class Calculator
+  def add
+  end
+end
+</code>
+</pre>
+
+<ul>
+  <li>The next error says 'wrong number of arguments, given 2, expected 0. This is because the class stub doesn't specify that it needs any arguments right now. This was solved by giving the add method stub two expected arguments, as follows:</li>
+</ul>
+
+<pre>
+<code>
+class Calculator
+  def add(a,b)
+  end
+end
+</code>
+</pre>
+
+<ul>
+  <li>Okay, after solving this error, we have gotten to the actual expectation failure error. It took three tiny incremental steps to get to this error by writing just enough code to pass the next error message.</li>
+  <li>The expectation error says "expected 15, got nil", because the add method we defined does not return a value yet.</li>
+  <li>To make this test pass, we are going to do the simplest thing possible to pass the test. So we can just return a hard-coded value here, the number 15.</li>
+  <li>We now have a passing test!</li>
+</ul>
+
+<pre>
+<code>
+class Calculator
+  def add(a,b)
+    15
+  end
+end
+</code>
+</pre>
+
+<p>While the code we have written above is not very general, we have used a hard-coded value, it pushes us towards writing a new test that gorces us to write more general code.</p>
+
+<h3>Tests that push us from specific to general.</h3>
+
+<p>The next test we write pushes us to write more specific code. To write a new test, we add another 'it' block which describes the new behaviour we want to test. In our next it block, we are testing that the calculator returns the sum of two different arguments.</p>
+
+<pre>
+<code>
+it "returns the sum of two different arguments" do
+  calc = Calculator.new
+
+  expect(calc.add(1,2).to eql(3)
+end
+</code>
+</pre>
+
+<ul>
+  <li>When we run our test, it fails with the error message: 'expected 3, got 15'.</li>
+  <li>In order to make this test, we need to make our code a little more generic. Again, we want to do the simplest thing we can to make this test pass.</li>
+  <li>To make the test pass, we would again use a perverse solution, which is an if statement that says if a == 5, return 15, else return 3. This approach is known as obvious implementation. You pass the test using as simple code as possible, and use the tests to force you to be more generic.</li>
+</ul>
+
+<pre>
+<code>
+class Calculator
+  def add(a, b)
+    if a == 5
+      15
+    else
+      3
+    end
+  end
+end
+</code>
+<pre>
+
+<p>Our next test will be similar to our last one, this time our test will say "returns the sum of another two different arguments"</p>
+
+<ul>
+  <li>To make this test, we could do the same thing as before and write another if statement to account for the third case. In fact, we do do this to make the next error message pass.</li>
+  <li>Now that our test is passing again it's time to take this opportunity to refactor. Refactoring is where you change the structure of your code without changing it's behaviour. In this case, we can now refactor to remove the duplication we have created in passing our test using if statements.</li>
+  <li>We are going to return a + b instead of using all of those if statements. We could have done this after writing the previous test, but instead decided to wait until the rule of three had been observed. The rule of three is where you remove duplication after something has been duplicated not once, not twice but three times. This approach works well for more complicated programs, because often we can cause design issues by removing duplication too early by making our code more complex because of anticipated, not observed changes.</li>
+</ul>
+

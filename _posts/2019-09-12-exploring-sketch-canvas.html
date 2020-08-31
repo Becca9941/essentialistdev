@@ -1,0 +1,273 @@
+---
+layout: post
+title: exploring sketch documentation - interface, canvas, shapes, layers etc
+---
+<p>An amazing piece of advice in the <a href="https://pragprog.com/book/tpp20/the-pragmatic-programmer-20th-anniversary-edition" target="_blank">Pragmatic Programmer</a> is to equip yourself with tools that you know extremely well. This means knowing the quirks and personality of your tools so that you feel extremely comfortable using them.</p>
+
+<p>So this is a little adventure exploring sketch by reading through the <a href="https://www.sketch.com/docs/getting-started/" target="_sketch">documentation</a> for it.</p>
+
+<h2>The Interface</h2>
+
+<p>Sketch's interface is designed to be minimal.</p>
+
+<ul>
+  <li><strong>Toolbar:</strong> contains all the important <em>tools</em> and <em>actions</em></li>
+  <li><strong>Inspector:</strong> lets you <em>adjust the properties</em>of the selected layer(s), as well as the <em>options</em> for the current tool. The inspector adapts to show you the tools you need at every moment, and hides everything else.</li>
+  <li><strong>Layer List:</strong> is the pane on the left, which lists all of the <em>layers</em> and <em>Artboards</em> in your document.</li>
+  <li><strong>Canvas:</strong> is where you see all of your designs in the middle.</li>
+</ul>
+
+<h2>Switching to dark mode</h2>
+
+<p>Preferences &gt;&gt; General Pane &gt;&gt; Appearance and select light or dark mode. Note, I need to update my mac to 10.14, it's on 10.13.</li>
+
+<h2>Canvas</h2>
+
+<p>Sketch's canvas size is infinite. No limit on where you can scroll in any direction.</p>
+
+<p>You can insert Artboards to create fixed frames inside the canvas. Many designers create an Artboard for each screen in the app and lay them out in order of appearance.</p>
+
+<p>You can view the canvas in a resolution-independent view where you have infinite precision (vector), or in a pixel preview so you know how the pixels will look when exported to JPG or PNG.</p>
+
+<p>NOTE: Some effects like blur will force parts of the Canvas to be displayed in pixel preview mode - blur is inherently a pixel-based effect.</p>
+
+<h2>Inspector</h2>
+
+<p>When you have a layer selected, the inspector is divided into sections. Though not all of these sections may be visible dependinf on the layer you have selected etc.</p>
+
+<p>Sections below the 'Layer properties' can be collapsed and expanded so you can hide or reveal their content.</p>
+
+<h3>Alignment options</h3>
+
+<p>Alignment options allow you to <em>align</em> and <em>distribute</em> layers. They become active when you have more than one layer selected.</p>
+
+<h3>Layer Properties</h3>
+
+<p>Visible in the top part of the Inspector. Includes the layer's position, size, rotation value, flip origin, and (depending on the layer type), a few special options, such as changing the number of points for a polygon shape.</p>
+
+<p>If you click on the padlock in between the width and height, this will lock your shape's aspect ratio. When you resize the width, the height will scale to match and vise-versa.</p>
+
+<h3>Smooth corners</h3>
+
+<p>You can also adjust the corner radius. You can choose between
+<em>rounded</em> corners and <em>smooth</em> corners. Smooth corners is a
+technique that apple uses. Their rounded corners have no obvious rounding edges.
+The corners curve seamlessly in both the hardware corners and icon corners. Both
+their software and hardware are part of the same design language. <a
+																																		href="https://hackernoon.com/apples-icons-have-that-shape-for-a-very-good-reason-720d4e7c8a14"
+																																		target="_blank">more
+																																		info here</a></p>
+
+<h3>Flip</h3>
+
+<p>Flip buttons allow you to flip layers vertically and horizontally. You can
+also <em>flatten</em> a flipped or ratated shape to reset its origin.</p>
+
+<h3>Shape terminology</h3>
+
+<p>The basic building block of a shape is a <em>point.</em> Points are connected
+by straight or curved lines into a path. They can have multiple paths. You can
+combine simple paths into complex shapes.</p>
+
+<h2>Editing Shapes</h2>
+
+<p>You can assert different shapes into your canvas. Standard shapes are
+rectangles, ovals, triangles and polygons. If you need a different shape, you
+can create it with four different boolean operations: union, subtract, intersect
+and difference.</p>
+
+<p>You can also create shapes by directly editing it's points by entering the
+vector editing mode by double-clicking it.</p>
+
+<ul>
+	<li>Click on points and drag them to change their position (and the
+		shape).</li>
+	<li>Add a new point by hovering over the path between two points and click to
+		insert.</li>
+	<li>Delete a point by clicking to select it and pressing the backspace
+		key</li>
+	<li>Paths can be straight lines or curves (depending on the type of point
+		that's connecting them). Double-clicking on a point will change it to create
+		a curved path. This will cause two handles to appear, which you can use to
+		control the curvature of the path (pulling the paths towards themselves or
+		away from themselves).</li>
+</ul>
+
+<h3>Flattening Layers</h3>
+
+<p>In the case of a rotated layer, Flatten will set the layer's rotation to 0º,
+whilst working out the total height and width of the layer as a whole.
+Flattening a rectangle with rounded corners with apply new vector points at the
+start and ends of a curve, rather than having a single point in the corner.</p>
+
+<h2>Boolean operations</h2>
+
+<ul>
+	<li><strong>Union:</strong> A vector that is the sum of both vectors'
+		areas.</li>
+	<li><strong>Subtract:</strong> A vector where the area of the top shape is
+		removed from the one under it.</li>
+	<li><strong>Intersect:</strong> A vector consisting of the parts where the
+		original shapes overlapped.</li>
+	<li><strong>Difference:</strong> A vector that is exactly the part where the
+		original shapes did not overlap.</li>
+</ul>
+
+<h3>Combined shapes</h3>
+
+<p>Combined shapes are shapes that are built from multiple shapes, which are
+called <em>subpaths</em>. A combined shape can have as many sub-paths as you
+want.</p>
+
+<p>Layers are rendered in Sketch from the bottom to the top. Boolean operations
+work in the same way. A final path for a combined shape is arrived at by
+starting at the subpath at the bottom, and then applying each subsequent subpath
+to it with the boolean operation it specified.</p>
+
+<p>When you use boolean operations, you want to use them with at most two shapes
+at a time. Then you can use boolean operations on two shapes that consist of two
+boolean operated shapes each.</p>
+
+<h3>Layer List</h3>
+
+<p>When you combine shapes, if you look at the layer list, you will see a triangle on the left of it. Clicking on it will reveal the sub-shapes, even if they are now combined. The individual shapes will still be accessible as if they had not been combined.</p>
+
+<p>If you add a shape into this layer list, the effect will be the same as if
+the boolean operation used to create the combined shape was selected manually
+from the toolbar.</p>
+
+<p>You can also hide sub-shapes (without deleting them) by control clicking them
+in the layer list and choosing 'hide layer' from the shortcut menu. This will
+change the way the shape appears as if it didn't exist.</p>
+
+<h3>Flattening shapes</h3>
+
+<p>When you flatten shapes in Sketch, it will try to flatten the hierarchy into
+one path. But not all paths can be flattened into one, like shapes that have a
+hole inside of them.</p>
+
+<h3>Combining other layer types</h3>
+
+<p>You can also combine shapes with text layers and symbols.</p>
+
+<h2>Rotate and transform</h2>
+
+<h3>Rotate</h3>
+
+<p>A rotation is a value that is measured in degrees. This value can be changed
+to a plus or negative value, or to rotate clockwise or counter-clockwise.</p>
+
+<p>For more rotation control, click the 'Rotate' button, then click anywhere
+outside of your selected layer and drag in any direction to rotate. Holding the
+shift key will rotate in 15º increments, which is great for right angles and
+diagonal effects.</p>
+
+<p>Layers rotate around their center point by default, but you can click and
+drag the cross-hair marker anywhere inside or outside your layer to rotate
+around that point. Reselect the layer to reset its origin to the middle.</p>
+
+<h4>Rotate Copies</h4>
+
+<p>This tool needs to be added to the toolbar through the customize toolbar
+option. You can use it to create a number of copies of a shape that you then
+rotate around a certain point. For example, you can take one leaf shape and make
+multiple copies of it, then rotate the copies around the center to form a flower
+shape.</p>
+
+<h3>Transform</h3>
+
+<p>Used to distort a shape by skewing its points or by creating a fake 3D
+effect. When you transform a shape from a corner, the opposite corner moves in
+the opposite direction as well.</p>
+
+<h2>Masking</h2>
+
+<p>Masks are used to selectively show parts of other layers. Masking an image
+layer to a circle will give the image a circular shape. Any layers above the
+mask are clipped to the shape below.</p>
+
+<h3>Restricting masks</h3>
+
+<p>If you don't want all subsequent layers to be clipped, put the mask and the
+layers you want clipped inside their own group. Or you can select the shape that
+is currently masked in the layer group and select 'Ignore Underlying Mask' in
+the Layer - Mask toolbar options.</p>
+
+<p>Or you can select a shape and an image on the canvas and choose 'Layer mask
+with selected shape. Sketch will place both layers inside a new group and turn
+the shape into a mask.</p>
+
+<p>You can also change the mask mode to 'Alpha Mask' to give the mask a
+gradient, and use the opacity of the gradient to determine what should and
+shouldn't be visible.</p>
+
+<h2>Scissors</h2>
+
+<p>The scissors tool allow you to cut away lines from a vector. E.g. if you cut
+the top and left lines from a rectangle, you will be left with a triangle.</p>
+
+<h2>Pencil</h2>
+
+<p>The pencil tool allows you to freehand drawings. When done, sketch will try
+to smooth out the curves and simplify the path for you.</p>
+
+<h2>Vector editing</h2>
+
+<h3>Bezier curves</h3>
+
+<p>A really awesome article about <a
+																		href="https://medium.com/sketch-app/mastering-the-bezier-curve-in-sketch-4da8fdf0dbbb"
+																		target="_blank">mastering the bezier curve
+																		in sketch.</a></p>
+
+<p>A great way to practice bezier curves is by tracing letterforms: Take a photo
+or drawing of a beautiful letter (something curved, like a “G”, “Q”, “R”, or
+anything from a script alphabet), bring that image into Sketch, and use the
+vector tool to trace the outline of the letterform. Try to position your vector
+points at the outermost places on the shape, use vertical and horizontal
+handles, and fine-tune them by manually entering coordinates.</p>
+
+<h3>Join</h3>
+
+<p>Joining two or more paths will combine them into a single continuous
+path.</p>
+
+<h3>Convert to outlines</h3>
+
+<p>You can convert a text layer to outlines and also convert a layers border to
+outlines too. When you do this, the border on your selected layer will become a
+path with its own fill.</p>
+
+<h3>Offset path</h3>
+
+<p>You can expand or contract the outline of a selected shape by choosing
+'Layer' - 'Path' - 'Offset' from the menu. This is a destructive action, so
+you'll have the ability to duplicatethe existing layer to preserve it.</p>
+
+<h3>Reverse Order</h3>
+
+<p>A path's direction is determined by the order in which its points are placed.
+There is a start and end point when paths are open. Reverse Order swaps the
+start and end points. This part of Sketch's documentation wasn't all that clear.</p>
+
+<h2>Vector Tool</h2>
+
+<h3>Points</h3>
+
+<p>There are different types of points available which can affect the paths that
+lie between them.</p>
+
+<ul>
+	<li><strong>Straight:</strong> The default point, it will give you a straight
+		line, which is useful for drawing things at angles, like corners.</li>
+	<li><strong>Mirrored:</strong> This will create a bezier curve, which is a
+		curved path. Dragging one of the handles will move the other to create a
+		completely smooth curve.</li>
+	<li><strong>Asymmetric:</strong> Similar to the bezier curve, the handles share the same angle but one can be moved to a different distance to the other one. They are still connected.</li>
+	<li><strong>Disconnected:</strong> The handle points are completely
+		independent of the other. You can delete one of the handles to allow a curve
+		to sharply turn into a straight line where the point lies.</li>
+</ul>
+
+<p>Bookmarking <a href="https://www.sketch.com/docs/text/"
+									target="_blank">place in documentation</a></p>

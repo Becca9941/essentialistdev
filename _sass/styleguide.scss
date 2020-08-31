@@ -1,0 +1,124 @@
+/*
+  1. Theme variables - Choose your font family, font weights, color hue values and spacing.
+  2. Color Palette   - Create any shade from your color hue value (0 = darkest, 100 = lightest).
+                       ⭐ Use: color($color-hue, 50);
+  3. Typography      - Change group or individual typography styles.
+                       ⭐ Use: .element-class-name { @extend .bw-typography--subtitle1; }
+  4. Drop Shadows    - Box shadows for creating natural drop-shadow depths.
+                       ⭐ Use: .element-class-name { @extent .bw-drop-shadow3; }
+*/
+
+// 1. Theme variables - Choose your font family, font weights and color hue values.
+//@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+
+//    Font weights specified in Google Fonts import
+$font-family: 'Avenir Next Rounded Pro', sans-serif;
+$bw-font-light: 300;
+$bw-font-regular: 400;
+$bw-font-medium: 500;
+
+//    Colors: Hue value in HSL
+$bw-color-brand: 338;
+$bw-color-accent: 188;
+$bw-color-gray: -1;
+$bw-color-warning: 45;
+$bw-color-info: 206;
+$bw-color-confirm: 130;
+$bw-color-destroy: 0;
+
+// Spacing (margin and padding)
+$bw-spacing1: .5rem;
+$bw-spacing2: 1rem;
+$bw-spacing3: 1.5rem;
+$bw-spacing4: 2rem;
+$bw-spacing5: 2.5rem;
+$bw-spacing6: 3rem;
+$bw-spacing7: 3.5rem;
+$bw-spacing8: 4rem;
+$bw-spacing9: 4.5rem;
+$bw-spacing10: 5rem;
+
+// 2. Color Palette Create any shade from your color hue value (0 = darkest, 100 = lightest).
+//    Use: color($color-hue, 50) 
+@function color($color, $lightness) {
+  @if $color == $bw-color-gray {
+    @return hsl($color, 0%, $lightness);
+  } @else {
+    @return hsl($color, 100%, $lightness);
+  } 
+}
+
+// 3. Typography - Change group or individual typography styles.
+//    Use: .element-class-name { @extend .bw-typography--subtitle1; }
+
+body { font-family: $font-family; }
+
+.bw-typography {
+  
+  // Styles that apply to multiple typography groups
+  &--heading1, &--heading2 { font-weight: $bw-font-light; }
+  &--heading3, &--heading4, &--heading5 { font-weight: $bw-font-medium; }
+  &--heading6, &--subtitle2, &--button { font-weight: $bw-font-medium; }
+  &--button, &--overline { text-transform: uppercase; }
+  
+  &--heading1 {
+    font-size: 6rem;
+    line-height: 6rem;
+  }
+  &--heading2 {
+    font-size: 3.75rem;
+    line-height: 3.75rem;
+  }
+  &--heading3 {
+    font-size: 3rem;
+    line-height: 3.125rem;
+  }
+  &--heading4 {
+    font-size: 2.125rem;
+    line-height: 2.5rem;
+  }
+  &--heading5 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  &--heading6 {
+    font-size: 1.25rem;
+    line-height: 2rem;
+  }
+  &--subtitle1 {
+    line-height: 1.75rem;
+  }
+  &--subtitle2 {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
+  &--body1 {
+    line-height: 1.5rem;
+  }
+  &--body2 {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  &--button {
+    font-size: 0.875rem;
+    line-height: 2.25rem;
+  }
+  &--caption {
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+  }
+  &--overline {
+    font-size: 0.625rem;
+    line-height: 2rem;
+  }
+}
+
+// 4. Drop Shadows - Box shadows for creating natural drop-shadow depths.
+//    Use: .element-class-name { @extent .bw-drop-shadow3; }
+.bw-shadow1 { box-shadow: color($bw-color-gray,88) 0 2px 1px -1px, color($bw-color-gray,76) 0 1px 1px 0, color($bw-color-gray,74) 0 1px 3px 0; }
+.bw-shadow2 { box-shadow: color($bw-color-gray,88) 0 2px 4px -1px, color($bw-color-gray,76) 0 4px 5px 0, color($bw-color-gray,74) 0 1px 10px 0; }
+.bw-shadow3 { box-shadow: color($bw-color-gray,88) 0 3px 5px -1px, color($bw-color-gray,76) 0 5px 8px 0, color($bw-color-gray,74) 0 1px 14px 0; }
+.bw-shadow4 { box-shadow: color($bw-color-gray,88) 0 3px 5px -1px, color($bw-color-gray,76) 0 6px 10px 0, color($bw-color-gray,74) 0 1px 18px 0; }
+.bw-shadow5 { box-shadow: color($bw-color-gray,88) 0 5px 5px -3px, color($bw-color-gray,76) 0 8px 10px 1px, color($bw-color-gray,74) 0 3px 14px 2px; }
+.bw-shadow6 { box-shadow: color($bw-color-gray,88) 0 6px 7px -4px, color($bw-color-gray,76) 0 11px 15px 1px, color($bw-color-gray,74) 0 4px 20px 3px; }

@@ -1,0 +1,166 @@
+---
+layout: post
+---
+
+<p>This is a nice article which explains how to get <a href="https://www.taniarascia.com/developing-a-wordpress-theme-from-scratch/" target="_blank">up and running with Wordpress</a>.</p>
+
+<p>I already have my Wordpress site installed locally, and am currently in the wordpress directory inside my site directory. I want to learn how to modify the HTML, CSS and JS for a Wordpress site, so I can implement the redesign for my works site.</p>
+
+<p>There are lots of sub-folders inside the wordpress folder. Apparently, all of the customisations will be taken care of in the wp-content folder. Inside that folder, there is an index.php page, and three folders, plugins, themes and uploads. Pretty straightforward. I'm pretty excited about this.</p>
+
+<h2>Themes</h2>
+
+<p>Inside the themes folder, there are already three themes listed: twentyseventeen, twentyeighteen and twentynineteen. So we can create our own theme by adding a new theme folder.</p>
+
+<p>I had a quick look in each of the pre-existing theme files, and there is a lot going on in them. Lots of files and folders. I'll keep them around for now so I can dive into them a bit deeper later on.</p>
+
+<p>Apparently, you only need a css file and an index file for your wordpress theme to work fine. That's cool. I can start simple and layer in the good stuff when it's needed, if it's needed. This is fun!</p>
+
+<h3>CSS</h3>
+
+<pre>
+<code>
+/*
+  Theme Name: qachef
+  Author: Becca Williams (essentialistdev.com)
+  Description: Software as a Service theme
+  Version: 0.0.1
+  Tags: materialdesign
+*/
+
+.title { color: blue; }
+</code>
+</pre>
+
+<p>I created a stylesheet (styles.css) and added a comment with a few bits of metadata about the theme and author, as well as a dummy selector to turn the title blue (so I can test the CSS is all linked up).</p>
+
+<h3>HTML</h3>
+
+<pre>
+<code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;link rel=&quot;shortcut icon&quot; href=&quot;favicon.ico&quot; type=&quot;image/x-icon&quot;&gt;
+
+    &lt;meta name=&quot;author&quot; content=&quot;Becca Williams (essentialistdev.com)&quot;&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;QAChef | End-to-end Traceability&quot;&gt;
+
+    &lt;title&gt;QAChef | End-to-end Traceability&lt;/title&gt;
+
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;?php echo get_bloginfo('template_directory'); ?&gt;/style.css&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+
+    &lt;h1 class=&quot;title&quot;&gt;QAChef&lt;/h1&gt;
+
+  &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
+
+<p>Then I created an index.php file with just a heading in it (as well as the HTML boilerplate markup).</p>
+
+<p>We need to use PHP to link to files (a Wordpress convention). This is the html link to my stylesheet: <code>&lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;?php echo get_bloginfo('template_directory'); ?&gt;/style.css&quot;&gt;</code></p>
+
+<p>That's all there is to creating an extremely basic Wordpress theem. To see it live, I went back onto my local Wordpress dashboard, clicked on 'Appearances', then 'Themes', and finally on my theme 'QAChef', where you can activate it or see a live preview of it:</p>
+
+<img src="/assets/img/wordpress-theme-test.png" alt="Screenshot of blue heading to test my theme works">
+
+<p>Pretty cool!</p>
+
+<h2>Split index into sections</h2>
+
+<p>The next thing I did was split the index page into seperate sections. I created three new pages, header.php, footer.php and content.php.</p>
+
+<h3>Header</h3>
+
+<p>The header page contains the html boilerplate (doctype, metadata, stlysheet links etc), the navigation and page header. Before the closing head tag, you include <code>&lt?php wp_head(); ?&gt;</code> so that wordpress knows it's a header.</p>
+
+<pre>
+<code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;link rel=&quot;shortcut icon&quot; href=&quot;favicon.ico&quot; type=&quot;image/x-icon&quot;&gt;
+
+    &lt;meta name=&quot;author&quot; content=&quot;Becca Williams (essentialistdev.com)&quot;&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;QAChef | End-to-end Traceability&quot;&gt;
+
+    &lt;title&gt;QAChef | End-to-end Traceability&lt;/title&gt;
+
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;?php echo get_bloginfo('template_directory'); ?&gt;/style.css&quot;&gt;
+
+    &lt;?php wp_head();?&gt;
+
+  &lt;/head&gt;
+  &lt;body&gt;
+
+    &lt;nav&gt;
+      &lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;
+    &lt;/nav&gt;
+
+    &lt;header&gt;
+      &lt;h1&gt;QA Chef&lt;/h1&gt;
+      &lt;p&gt;Tagline&lt;/p&gt;
+    &lt;/header&gt;
+</code>
+</pre>
+
+<h3>Content</h3>
+
+<p>The content contains the main content of the page. I put mine inside main tags to make this more clear semantically. You don't need a wordpress function here for it to know it's main content.</p>
+
+<pre>
+<code>
+&lt;main&gt;
+  &lt;p&gt;QAChef main content.&lt;/p&gt;
+&lt;/main&gt;
+</code>
+</pre>
+
+<h3>Footer</h3>
+
+<p>The footer contains the footer, and the closing tags for both the body and the html. It can also include links to JavaScript files.</p>
+
+<pre>
+<code>
+    &lt;footer&gt;
+      &lt;p&gt;&copy; 2020 - Present, QAChef - All rights reserved.&lt;/p&gt;
+      &lt;?php wp_footer(); ?&gt;
+    &lt;/footer&gt;
+
+  &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
+
+<h3>Index</h3>
+
+<p>Here is the markup for including all of the page sections back into the index page:</p>
+
+<pre>
+<code>
+&lt;?php get_header(); ?&gt;
+  &lt;?php get_template_part('content', get_post_format()); ?&gt;
+&lt;?php get_footer(); ?&gt;
+</code>
+</pre>
+
+<p>I refreshed my wordpress site on the qachef theme page to see my changes, here is what it looks like now:</p>
+
+<img src="/assets/img/wordpress-theme-sections.png" alt="screenshot of wordpress site once header, footer and content have been split and added back in">
+
+<h2>Enable non-techy editing</h2>
+
+<p>Now, I want to make it so that people can change the title of the site on Wordpress, without having to touch the code at all.</p>
+
+<p>I did this by going onto my sites dashboard, clicking 'settings', then 'General'. This brought me to a page where I can set the site title and tagline. I did this.</p>
+
+<p>Andy doesn't like this way of doing things. He says that it's bad on Wordpress's part that it gets the theme to reach into Wordpress to display the title. Whereas you should be able to create the theme and wordpress injects the relevant content, kind of like how handlebars and mustache templating languages do it.</p>
+
+<h2>Change site permalink</h2>
+
+<p>By default, wordpress sets the site urls to display the day and name. I changed it so the permalink is just the post name, which looks cleaner. I did this by going to the dashboard, clicking 'general' then 'permalinks' then selecting the 'post name option' before saving.</p>

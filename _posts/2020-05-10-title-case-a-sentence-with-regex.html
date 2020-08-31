@@ -1,0 +1,43 @@
+---
+layout: post
+---
+
+<h2>Problem Statement</h2>
+
+<p>Return the provided string with the first letter of each word capitalized. Make sure the rest of the word is in lower case.</p>
+
+<p>For the purpose of this exercise, you should also capitalize connecting words like "the" and "of".</p>
+
+<h2>Solution</h2>
+
+<p>In my original solution (shown below), I first split my str into lowercase words. Then I mapped my word array into a new array where the first letter of each word was capitalized, before joining the new title-cased words into a new setence:</p>
+
+<pre>
+<code>
+function titleCase(str) {
+  const lowerCaseWords = str.toLowerCase().split(" ");
+
+  lowerCaseWords.map(word =&gt; word.replace(word[0], word[0].toUpperCase()));
+
+  return lowerCaseWords.join(" ");
+}
+
+titleCase("I'm a little tea pot");
+</code>
+</pre>
+
+<p>After doing this, I thought it'd be cool to try and solve the same problem, but this time using a regex approach. Here is what I came up with:</p>
+
+<pre>
+<code>
+function titleCase(str) {
+  const lowerCase = str.toLowerCase();
+
+  return lowerCase.replace(/\w\S*/g, x => x.charAt(0).toUpperCase() + x.substr(1).toLowerCase());
+}
+
+titleCase("I'm a little teapot");
+</code>
+</pre>
+
+<p>I prefer my first approach because it's easier to read, but this was fun to figure out.</p>

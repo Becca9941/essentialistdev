@@ -1,0 +1,490 @@
+---
+layout: post
+---
+
+<h2>Problem Statement</h2>
+
+<p><em>Reworded to be easier to understand</em></p>
+
+<p>You are given an array of integers, and a target number. Your task is to return the indices of the two numbers in the array that add up to the target number.</p>
+
+<p><strong>Constraints:</strong>You can't return the index of the same element more than once. You may assume that there is exactly one solution for the target number your are given.</p>
+
+<p>Example:</p>
+
+<pre>
+<code>
+Given nums = [2, 7, 11, 15], target = 9
+
+ruturn [0,1]
+</code>
+</pre>
+
+<h2>Final Code</h2>
+
+<p>Test code:</p>
+
+<pre>
+<code>
+require 'two-sum'
+
+describe 'two_sum' do
+  describe 'Z is for zero cases' do
+    describe 'Empty when' do
+      it 'numbers and target are not given' do
+        expect(two_sum).to eq([])
+      end
+      it 'numbers contains 1 number' do
+        expect(two_sum([0])).to eq([])
+      end
+      it 'target cant be summed from numbers' do
+        expect(two_sum([0,0], 1)).to eq([])
+        expect(two_sum([1,4], 3)).to eq([])
+        expect(two_sum([2,1,1], 4)).to eq([])
+      end
+    end
+  end
+  describe 'O is for one cases' do
+    it 'Give both indices whose sum equals target' do
+      expect(two_sum([0,1],1)).to eq([0,1])
+      expect(two_sum([0,2],2)).to eq([0,1])
+    end
+  end
+describe 'M is for many cases' do
+    it 'Give indices for two nums that sum to target' do
+      expect(two_sum([0,1,2], 3)).to eq([1,2])
+      expect(two_sum([2,7,11,15], 9)).to eq([0,1])
+      expect(two_sum([15,11,7,2], 9)).to eq([2,3])
+    end
+  end
+  describe 'E is for exercising exceptions' do
+    it 'Throw exception if numbers and target are not in the right format' do
+      expect { two_sum('Sentence', 1) }.to raise_error('Numbers is not an array');
+      expect { two_sum([1,1], 's') }.to raise_error('Target is not numeric');
+    end
+  end
+end
+</code>
+</pre>
+
+<p>Production code:</p>
+
+<pre>
+<code>
+def two_sum(numbers = [], target = 0)
+  raise ArgumentError, 'Numbers is not an array' unless numbers.is_a? Array
+  raise ArgumentError, 'Target is not numeric' unless target.is_a? Numeric
+
+  return [] if numbers.length &lt; 2
+  return [] if numbers.length == 2 && numbers.sum() != target
+
+  numbers.each_with_index do |num, index|
+    other_index = numbers.index(target - num)
+    if other_index && other_index != index
+      return [index, other_index].sort
+    end
+  end
+  return [] #if no number pairs add up to target
+end
+</code>
+</pre>
+
+<h2>ZOMBIE TDD</h2>
+
+<p>Second attempt at solving this problem following James Grenning's <a href="http://blog.wingman-sw.com/tdd-guided-by-zombies" target="_blank">TDD Guided by ZOMBIES</a>.</p>
+
+<p>I asked for help with this approach on Twitter <a href="https://twitter.com/Becca9941/status/1255143609529102338" target="_blank">here</a> and got some great responses. James Grenning himself even replied (yayy).</p>
+
+<p>I'll copy in his tweets here which contain the main bits of advice:</p>
+
+<ul>
+  <li>The Z cases are hard-coded to see if you like interacting with the thing you are building.</li>
+  <li>Sometimes ZOMBIES is not an exact fit. The Zero [case is | cases are] the simplest path through the code. No conditionals needed.</li>
+  <li>Simplest cases create Interfaces (ZO) and record Boundaries. general cases (M) create the core logic. don’t forget to look for Exceptional cases. keep Scenarios Simple. (SIZOBMES, or for the non-linear ZOMBIES!</li>
+  <li>Now that I read the problem more carefully. Given nums = [0,1], target = 1, return [0,1]. (You have a types s/return/return/).</li>
+</ul>
+
+<h3>Z is for Zero</h3>
+
+<p>Here is my first test based on the advice above:</p>
+
+<pre>
+<code>
+require 'two-sum'
+
+describe 'two_sum' do
+  it 'return indices that add up to target' do
+    given_nums = [0,1], target = 1
+    expect(two_sum(given_nums, target)).to eq([0,1])
+  end
+end
+</code>
+</pre>
+
+<p>Here is the production code that makes this test pass:</p>
+
+<pre>
+<code>
+def two_sum(nums, target)
+  [0,1]
+end
+</code>
+</pre>
+
+<p>I'm going to rename the method to <code>two_indices_that_add_up_to_target</code>. It's a bit verbose, but it's easier to understand what's going on at a glance (for me anyway).</p>
+
+<p>I changed it back to <code>two_sum</code> because it does make sense after all.</p>
+
+<p>Okay, so we have defined the interface we want to use in the expect statement:</p>
+
+<code>two_sum(given_nums, target)</code>
+
+<p>We pass in an array of numbers and a target, and expect it to return two indices.</p>
+
+<p>What makes [0,1] a zero case?</p>
+
+<p>In the ZOMBIES article, it says that zero cases are <q>simple post-conditions of a just created object.</p>
+
+<p>A postcondition (as far as I know) are the conditions that are true once a method has just run or an object has just been created. In this case, we expect two indices from the array to be returned.</p>
+
+<p>I asked Andy what a zero case is. He said a zero case is hard-coded, and that he wouldn't call this a zero case, but a one-case (maybe I misunderstood the Tweet). I asked why and he said because we have given a specific answer here. Whereas a zero case is where you would return an empty array, 1 item in the array or a target that can't be summed from the array.</p>
+
+<p>So, my understanding is zero cases are empty input and/or outputs. In the case of my example, an empty input would be an empty array or target. Say if the function is called without providing any or either of those things. An empty output would be what happens if there are no two numbers in the provided array which add up to the target, etc.</p>
+
+<ul>
+  <li>A zero case is what you get when you have a valid non-answer that isn't an exception. E.g. What happens if you don't provide input, or the input is the right type but produces the wrong outcome.</li>
+</ul>
+
+<p>I'll rewrite my first test to reflect this new understanding</p>
+
+<p>Test:</p>
+
+<pre>
+<code>
+require 'two-sum'
+
+describe 'two_sum' do
+  it 'Return nothing when numbers and target are not given' do
+    expect(two_sum).to eq([])
+  end
+end
+</code>
+</pre>
+
+<p>Code:</p>
+
+<pre>
+<code>
+def two_sum
+  []
+end
+</code>
+</pre>
+
+<p>Just had a major burst of excitement because I feel like I'm actually making progress, happy dance!</p>
+
+<p>Here are my zero case tests:</p>
+
+<pre>
+<code>
+describe 'two_sum' do
+  describe 'Z is for zero cases' do
+    describe 'Empty when' do
+      it 'numbers and target are not given' do
+        expect(two_sum).to eq([])
+      end
+      it 'numbers contains 1 number' do
+        expect(two_sum([0])).to eql([])
+      end
+      it 'target cant be summed from numbers' do
+        expect(two_sum([0,0], 1)).to eql([])
+        expect(two_sum([1,4], 3)).to eql([])
+      end
+    end
+  end
+end
+</code>
+</pre>
+
+<p>Code which passes all of these tests:</p>
+
+<pre>
+<code>
+def two_sum(numbers = [], target = 0)
+  []
+end
+</code>
+</pre>
+
+<p>The output from my test runner for this is:</p>
+
+<ul>
+  <li>two_sum</li>
+  <ul>
+    <li>Z is for zero cases</li>
+    <ul>
+      <li>Empty when</li>
+      <ul>
+        <li>numbers and target are not given</li>
+        <li>numbers contains 1 number</li>
+        <li>target cant be summed from numbers</li>
+      </ul>
+    </ul>
+  </ul>
+</ul>
+
+<h3>O is for one-cases</h3>
+
+<p>This is what the ZOMBIES article says about One-cases:</p>
+
+<blockquote>Once progress is made on the Zero cases, move to the next special Boundary case, testing the Behavior desired when transitioning from Zero to One. To do so there are likely other Interfaces to define and use in new test Scenarios.</blockquote>
+
+<p>What is the desired behaviour when transitioning from zero to one?</p>
+
+<p>When given two numbers and a target, I want the indices of both of the numbers returned if they add up to the target.</p>
+
+<p>Test:</p>
+
+<code>
+expect(two_sum([0,1])).to eq([0,1])
+</code>
+
+<p>I changed the production code so that it returned [0,1] instead of an empty array to see if it would break the zero case tests as expected. It did, yayy.</p>
+
+<p>Code that passes the test:</p>
+
+<pre>
+<code>
+def two_sum(numbers = [], target = 0)
+  if numbers == [0,1] && target == 1
+    [0,1]
+  else
+    []
+  end
+end
+</code>
+</pre>
+
+<p>Now I need another one case to force generalisation (in both the zero cases and the one cases).</p>
+
+<pre>
+<code>
+it 'Give both indices whose sum equals target' do
+      expect(two_sum([0,1],1)).to eq([0,1])
+      expect(two_sum([0,2],2)).to eq([0,1])
+end
+</code>
+</pre>
+
+<p>Production code that makes this work:</p>
+
+<pre>
+<code>
+def two_sum(numbers = [], target = 0)
+  if numbers.length &lt; 2 || numbers.sum() != target
+    []
+  else
+    [0,1]
+  end
+end
+</code>
+</pre>
+
+<h3>M is for many cases</h3>
+
+<p>We hard-code return the indices of a numbers array with two numbers in it, if the numbers add up to the target. Now it's time to test for three or more numbers in the array.</p>
+
+<pre>
+<code>
+  describe 'M is for many cases' do
+    it 'Give indices for two nums that sum to target' do
+      expect(two_sum([0,1,2], 3)).to eq([1,2])
+    end
+  end
+</code>
+</pre>
+
+<p>I'm thinking about solving this by getting the first item in the array and subtracting it from the target to get the remaining number (as there are only two numbers to sum), then looking to see if that number is somewhere else in the array. If not, will move onto the next number and do the same thing again.</p>
+
+<p>Different idea, I could remove all elements that are greater than the number I'm looking for, sort the remaining elements and starting from the end, work backwards using the approach above.</p>
+
+<p>Ah, that won't work because I need the original array intact so I can grab the indices from it. Could I do both? Yeah but it won't be great for arrays that have duplicate numbers. That doesn't matter for this problem but it's still sketchy.</p>
+
+<p>Hmm, I could subtract the first number from the target to get the rest of the potential sum, then find the indice of that specific number.</p>
+
+<p>Code that passes the test:</p>
+
+<pre>
+<code>
+def two_sum(numbers = [], target = 0)
+  if numbers.length &lt; 2 || numbers.sum() != target
+    []
+  else
+    indices = []
+    numbers.each do |num|
+      if numbers.index(target - num)
+        indices &lt;&lt; numbers.index(num)
+        indices &lt;&lt; numbers.index(target - num)
+        break
+      end
+    end
+    indices
+  end
+end
+</code>
+</pre>
+
+<p>Andy challenged me with another test which broke my code:</p>
+
+<code>
+expect(two_sum([2,1,1], 4)).to eq([])
+</code>
+
+<p>It failed because it counted two twice, it's not supposed to count the same element twice. I didn't see that one coming. Cool.</p>
+
+<p>I fixed it and my eyes are bleeding looking at it, ick:</p>
+
+<pre>
+<code>
+def two_sum(numbers = [], target = 0)
+  if numbers.length &lt; 2 || numbers.sum() != target
+    []
+  else
+    indices = []
+    numbers.each do |num|
+      if numbers.index(target - num) && numbers.index(target - num) != number
+s.index(num)
+        indices &lt;&lt; numbers.index(num)
+        indices &lt;&lt; numbers.index(target - num)
+        break
+      end
+    end
+    indices
+  end
+end
+</code>
+</pre>
+
+<p>I added a 'only if the index isn't the same as the index of the current number' clause. This is so messy and gross, but I'm really impressed that Andy saw that just by looking at what I'd written.</p>
+
+<p>A new wild test appeared:</p>
+
+<pre>
+<code>
+expect(two_sum([2,2,1], 4)).to eq([0,1])
+</code>
+</pre>
+
+<p>This fails because at the first pass through, we are saying, grab the index of the target number - the current num (4-2 = 2). We are looking for the second two here, but it's grabbing the index of our first two, so fails.</p>
+
+<pre>
+<code>
+def two_sum(numbers = [], target = 0)
+  if numbers.length &lt; 2 || (numbers.length == 2 && numbers.sum() != target)
+    []
+  else
+    indices = []
+    numbers.each_with_index do |num, index|
+      if numbers.index(target - num) && numbers.index(target - num) != index
+        indices &lt; index
+        indices &lt; numbers.index(target - num)
+        break
+      end
+    end
+    indices.sort
+  end
+end
+</code>
+</pre>
+
+<p>This is getting worse and worse haha. It feels like I'm test-driving a hacky program. But the awesomething is that once the tests are all in place, I can refactor it to make it better and they'll let me know if I've done something wrong. Cool.</p>
+
+<p>To pass the new test, I had to change 'if the array is less that two in length or the numbers in the array don't add up to the target number' to, 'if the array is less than two in length or the length is two and the numbers don't add up to the target number' to account for the fact that I am using arrays greater than 3 in length now (many).</p>
+
+<p>I also changed my each to an 'each_with_index' so that the current index isn't used twice. Finally, I returned a sorted set of indices so that the indices are returned in the right order.</p>
+
+<p>For such a simple problem, this is a total headache, and I'm horrified at the thought of real-world programs being built like this. I HAVE to get better.</p>
+
+<p>I added another test, this time using the example given in the Leetcode problem statement (at the start of this article:</p>
+
+<code>expect(two_sum([2,7,11,15], 9)).to eq([0,1])</code>
+
+<p>It passes. I'll write a new test with the same numbers but in a different order:</p>
+
+<code>expect(two_sum([15,11,7,2], 9)).to eq([2,3])</code>
+
+<p>That passes too. So I have passed the Leetcode challenge with code the ugliest code I've ever written, but alse the first code I have written that is fully test-driven. Yayy! But! There are still more steps to go through in the ZOMBIE acronym.</p>
+
+<h3>B is for Boundary Behaviours</h3>
+
+<p>It seems we have already covered the 'Boundary behaviour' parts, where Andy challenged me with scenarios that broke my code. He said that as I get more experience, I'll learn from all the places I trip up and begin to be able to think through potential trip-up scenarios before they happen.</p>
+
+<h3>I is for Interfaces</h3>
+
+<p>In terms of I for Interface, the only interface we have is the two-sum method. I do want to refactor the internals so they are not an eye sore, but that's not really the interface.</p>
+
+<h3>E is for Exercise Exceptions</h3>
+
+<p>For my program, an exception would be someone entering a string instead of a target number or an array.</p>
+
+<pre>
+<code>
+  describe 'E is for exercising exceptions' do
+    it 'Throw exception if numbers and target are not in the right format' do
+      expect { two_sum('Sentence', 1) }.to raise_error('Argument is not an array');
+      expect { two_sum([1,1], 's') }.to raise_error('Argument is not a number');
+    end
+  end
+</code>
+</pre>
+
+<p>code that passes the tests:</p>
+
+<pre>
+<code>
+def two_sum(numbers = [], target = 0)
+  raise ArgumentError, 'Argument is not an array' unless numbers.is_a? Array
+  raise ArgumentError, 'Argument is not a number' unless target.is_a? Numeric
+  if numbers.length &lt; 2 || (numbers.length == 2 && numbers.sum() != target)
+    []
+  else
+    indices = []
+    numbers.each_with_index do |num, index|
+      if numbers.index(target - num) && numbers.index(target - num) != index
+        indices &lt; index
+        indices &lt; numbers.index(target - num)
+        break
+      end
+    end
+    indices.sort
+  end
+end
+</code>
+</pre>
+
+
+<h3>S is for Simple Scenarios, Simple Solutions</h3>
+
+<p>This is the part where I refactor the heck out of my code. Yayy!</p>
+
+<pre>
+<code>
+def two_sum(numbers = [], target = 0)
+  raise ArgumentError, 'Numbers is not an array' unless numbers.is_a? Array
+  raise ArgumentError, 'Target is not numeric' unless target.is_a? Numeric
+
+  return [] if numbers.length &lt; 2
+  return [] if numbers.length == 2 && numbers.sum() != target
+
+  numbers.each_with_index do |num, index|
+    other_index = numbers.index(target - num)
+    if other_index && other_index != index
+      return [index, other_index].sort
+    end
+  end
+  return [] #if no number pairs add up to target
+end
+</code>
+</pre>
+
+<p>Next, I'll look at the submissions on Leetcode and compare my solution to other solutions. Then I'll try and implement any I think could be better.</p>

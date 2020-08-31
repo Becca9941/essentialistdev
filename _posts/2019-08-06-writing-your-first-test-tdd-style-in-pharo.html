@@ -1,0 +1,113 @@
+---
+layout: post
+title: Writing and Passing your first TDD style test in Pharo
+categories: [dev environment, Testing]
+tags: [Pharo, Smalltalk, installation, Tests, Unit Tests, TDD]
+---
+
+<p>In the last post, I documented my process for <a href="{{ site.baseurl }}{% post_url 2019-08-01-committing-automating-tests-and-shipping-pharo-smalltalk-code %}">creating an empty project in Pharo and saving it to version control</a>.</p>
+
+<p>In this post, I'm going to document the steps I took to write my first TDD-style test in Pharo. A TDD-style test is one where you write a test before you write any code, and then you write the simplest code you can to pass the test.</p>
+
+<p>The reason we write a test before we write any code to pass the test is so that we can make clear what we intend our code to do. It also allows us to design a clean interface for our code.</p>
+
+<p>The program I am building at the moment is a Unicorn Rover Program, who we are going to call "Marshmallow". After we have written the code to pass this test, then we will know that our tests are working as expected. Then I will delete his test because it is not needed in our program.</p>
+
+<h3>Write a failing test</h3>
+
+<p>Before we write any tests, we need a test class that inherits from a parent
+class called 'TestCase'. To do this, we can click on our 'Unicorn-Rover' package and fill in the class template (see below), which extends the 'TestCase' class and is called 'UnicornRoverTest' to indicate that these tests are for the 'UnicornRover' test class.</p>
+
+<img src="/assets/img/first-testcase-pharo.png" class="medium-img" alt="first
+testcase class template code">
+
+<p>When we save our test class, it will appear in the classes panel. Clicking on the test 'instance side' text in the methods panel of our test class will bring up a template stub for creating a method. Our first method will be to test that our Unicorn Rover is called 'Marshmallow'.</p>
+
+<p>We will call our method 'isCalled', so that when we create a new instance of
+our Rover, we can get it's name by writing 'UnicornRover isCalled', which is
+more english readable than UnicornRover name.</p>
+
+<p>All of our test methods need to start with the lowercase word 'test' so that
+Pharo knows to run this method as a test. As we want our method to be called
+'isCalled', our test method will be called 'testIsCalled'.</p>
+
+<p>In order to send the 'isCalled' message (method), we need an object to
+receive the message. In this case, our object will be the UnicornRover because
+the name we are trying to find out belongs to him.</p>
+
+<p>In our test method, we start by creating an instance of a UnicornRover class
+that we haven't created yet. We store that instance in a variable called
+"Marshmallow" to make it clear that this Rover is an individual instance.</p>
+
+<p>Then we send an assert:equals: message that asks whether the unicornRovers
+name is equal to 'Marshmallow'. Here is what our test looks like:</p>
+
+<img src="/assets/img/first-failing-test-pharo.png" class="medium-img"
+																										alt="first failing test template code">
+
+<p>There are a few important things to note in this example. First is the panel
+spanning the bottom part of the screen. This panel is called the "Quality
+Assistant", and contained a number of helpful messages (known as 'critic text'),
+that tells you things to watch out for in your code.</p>
+
+<p>In this case, the critic text is telling us that we have undeclared variables and messages that have not been implemented. This is to be expected as we have written our test before we have declared the code that implements it.</p>
+
+<p>There is also a message that is telling us that our temporary variable
+'marshmallow' has not been read or written, which means that we have assigned
+the variable incorrectly. I used an '=' sign to assign the rover to the variable
+instead of ':=', which is how we assign things in Pharo. Corrected.</p>
+
+<p>The second important thing to note is the grey circle next to our test class,
+and next to our test method. If we click on the circle next to the test class,
+then all of the test methods within the class will be run. If we click on the
+circle next to a test method, then only that test will be run.</p>
+
+<p>Clicking on the little grey circle next to our test method will run the test
+and turn the circle a red color, which means that our test has failed.</p>
+
+<p>Yayy, we have just written our first failing test in Pharo.</p>
+
+<p>Writing in progress...</p>
+
+<h3>Write the simplest code to pass our test</h3>
+
+<p>To pass our test, we need to first create a class for our Unicorn Rover. To
+do this, click on the 'Unicorn-Rover' class and fill in the class template with
+the name 'UnicornRover' and save.</p>
+
+<p>Now that we have our unicorn Rover, we need to create a method that returns
+the name 'Marshmallow'. If we were not doing Test-driven development, we might
+be tempted to create a name variable for our class and write a method that
+accepts a name string and assigns it to the name variable. However, we are going
+to do this in smaller steps.</p>
+
+<p>All we need to do right now is write the simplest, bare-minimum code to pass
+our test and no more. We can do this by writing a method that returns a hard
+coded name string. No variables, no custom name. This is all we need to do to
+pass the test. Our 'isCalled' method looks like this:</p>
+
+<img src="/assets/img/rover-iscalled-marshmallow-pharo.png" class="medium-img" alt="obvious implementation for writing our rover iscalled message">
+
+<p>If we click on the red circle next to our 'isCalled' or 'testIsCalled'
+methods, our test will now pass and turn green accordingly. As we only have one
+test in our test suite right now, the little red circle next to our test class
+will also turn green to indicate that all our tests have now passed.</p>
+
+<img src="/assets/img/passed-first-failing-test-pharo.png" class="medium-img"
+																													 alt="tests are now
+																													 green to show that
+																													 they have passed.">
+
+<p>Every time we pass a new test, we then take the time to look at our code and
+see if anything needs to be refactored. This is because writing the simplest
+code possible to pass a test can introduce duplication and things we wouldn't
+want to have in our production code. At the moment, we don't have anything that
+needs refactoring, so we are ready to write our next test.</p>
+
+<p>If you know you are going to have multiple rovers, each with a different
+name, then your next test will be to check that you can create a different Rover
+with a name that is not 'Marshmallow'. To make this test pass as well as the
+test that checks that our first Rover's name is still 'Marshmallow', then we
+would have to make our code more generalised to account for both cases.</p>
+
+<p>The final post in this series documents my process for <a href="{{ site.baseurl }}{% post_url 2019-08-07-loading-in-a-pharo-project-from-a-remote-repository %}">loading in a project from a remote Phare repository</a></p>

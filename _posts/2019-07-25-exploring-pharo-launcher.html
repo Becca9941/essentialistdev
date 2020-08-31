@@ -1,0 +1,119 @@
+---
+layout: post
+title: Exploring Pharo World Menu and Language Overview
+categories: [installation, dev environment, reading notes]
+tags: [Pharo, Smalltalk, homebrew, image, system browser, playground,world menu,
+transcript]
+---
+
+<p>Notes are based on Pharo by Example, a free book suggested by a Mooc called <a href="https://www.canal-u.tv/producteurs/inria/cours_en_ligne/live_object_programming_in_pharo">Live Object Programming in Pharo</a></p>
+
+<p>Pharo by example requires a basic understanding of programming and
+object-oriented principles (rudimentary is okay). This book is focused around
+understanding the development environment itself, the Pharo language (based on
+Smalltalk) and tools. The focus is more on the technology than object-oriented
+design. That is taught in the MOOC linked to above.</p>
+
+<blockquote><em>Try not to care.</em> Beginning Smalltalk programmers often have
+  trouble because they think they need to understand all the details of how a
+  thing works before they can use it... One of the great leaps in OO is to be
+  able to answer the question "How does this work?" with "I don't
+  care".</blockquote>
+
+<p>The quote from the book book above hit me. The whole reason I started reading
+this book was because I wanted to understand the ins and outs of the Pharo
+environment.</p>
+
+<h2>Install and open the Pharo Launcher</h2>
+
+<p>I used Homebrew to install the Pharo launcher to my computer. I recorded what
+I did in a previous post called <a
+                                  href="{{ site.baseurl }}{% post_url 2019-07-23-setting-up-smalltalk-developer-environment %}">Setting
+                                  up Pharo Smalltalk Developer
+                                  Environment</a>.</p>
+
+<p>When you install and open Pharo Lancher, you should get a GUI similar to
+this:</p>
+
+<img src="/assets/images/pharo-launcher.png" alt="pharo launcher home screen">
+
+<p>The first thing I did was download a new image (a virtual evironment with
+everything it needs to run). To do this, I selected "Pharo 6.0 (stable)" from
+the template menu on the left of the screen. Then I double clicked on
+"latest-64" because my computer has a 64bit processer (I asked for help with
+this part because I didn't know which template to choose). It'll then give you
+the option to change the image name. I kept the default name.</p>
+
+<p>Once you the template has downloaded, it will appear in the 'Current Images'
+panel on the right hand side of the screen. Double-clicking on that will open a
+window. After closing the welcome message window, the
+windew will look like this:</p>
+
+<img src="/assets/images/pharo-world-menu.png" alt="pharo World Menu upon
+opening">
+
+<p>Clicking anywhere on the screen will cause a menu to pop up on the screen,
+this menu is called the "World Menu". The World Menu contains a list of core
+tools like the System Browser, Playground, package manager etc.<p>
+
+<p>Right clicking anywhere on the screen bringn up a contextual menu that
+offers different sets of actions depending on where the mouse is pointing.</p>
+
+<p>Meta clicking (Shift-Option click) on Mac (Shift-control click) on Windows
+brings up handles that allow you to perform operations on items in your window.
+These are shown as little icons that you can click on. When you hover over them
+you can see their name.</p>
+
+<h2>Playing in the Playground</h2>
+
+<p>To get to the playground, click anywhere on the screen and select
+"Playground" from the dropdown menu. The playground can be used to quickly
+execute code (similar to the console in JavaScript or IRB in Ruby).</p>
+
+<p>Entering the following command and running it with Command-D will open an
+interactive Pharo Tutorial that will teach you the basics of Pharo.</p>
+
+<code class="lang-smalltalk">ProfStef go</code>
+
+<p>Here is the <a
+                 href="2019-07-24-pharo-basic-language-examples-using-smalltalk.html">link</a>to
+               some of the notes I took when following the Smalltalk basics
+               tutorial.</p>
+
+<h2>Transcript</h2>
+
+<p>The Transcript is an object that is used for logging messages, like a system
+console. You can access it by clicking anywhere on the World, selecting "Tools"
+from the World Menu and then selecting "Transcript" from that.</p>
+
+<p>It's can be helpful to open your Playground and Transcript, then resize the
+windows so that they are both visible.</p>
+
+<p>To print a message to the Transcript, you can run Command-P after writing and
+selecting the following command:</p>
+
+<code class="lang-smalltalk">Transcript show: 'Hello World!'; cr.</code>
+
+<h2>Do it</h2>
+
+<p>You can run an expression by selecting it and using the Command-D shortcut.
+This will send the message to your object, but won't show the result anywhere
+because the Playground doesn't know what to do with it.</p>
+
+<h2>Print it</h2>
+
+<p>The print it command is similar to the do it command in that it evaluates the
+expression you have selected and run (this time with Command-P). The difference
+is that it prints the result of the expression besides the expression, and also
+to a Transcript object.</p>
+
+<h2>Inspect it</h2>
+
+<p>The inspect it comman allows you to browse and interact with any object in
+the system (Command-I). The title of the inspector tells you what class your
+object is an instance of. The top panel in the inspector lets you see the
+instance variables of an object as well as their values. You can use the bottom
+panel in the inspector to write messages and send expressions to the object.</p>
+
+
+

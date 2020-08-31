@@ -1,0 +1,235 @@
+---
+layout: post
+title: Setting up a virtual machine for collaborative work with Vagrant
+---
+
+<h2>What is Vagrant?</h2>
+
+<p>Google definition of Vagrant: A person without a settled home or regular work who wanders from place to place begging.</p>
+
+<p>Wiki definition of Vagrant (software): An open source software product for building and maintaining portable virtual software development environments... It tries to simplify software configuration management of virtualizations in order ot increase development productivity.</p>
+
+<p>Vagrant definition from its home page: Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vargrant lowers development environment setup time, increases production parity, and makes the "works on my machine" excuse a relic of the past.</p>
+
+<h2>What is a virtual machine?</h2>
+
+<p>A virtual machine (VM) is a software program or operating system that not only exhibits the behavior of a separate computer, but is also capable of performing tasks such as running applications and programs like a separate computer.</p>
+
+<h2>Who is Vagrant for?</h2>
+
+<p>Vagrant is designed for everyone, from programmers to designers to general all-purpose computer users.</p>
+
+<h2>If it's for everyone, can I set it up?</h2>
+
+<p>Going to quickly attempt to set this up on my own computer following the <a href="https://www.vagrantup.com/intro/getting-started/index.html" target="_blank">Getting Started guide.</a></p>
+
+<p>To install it, you go to <a href="https://www.vagrantup.com/downloads.html" target="_blank">this page</a>, and choose the download link for your operating system. I chose the macOS option. This triggered a package download, which when clicked on opens an installation wizard that you can just keep clicking next on until it's done.</p>
+
+<p>The installer adds this package to your system path, which means that it becomes available for use in your terminal. You can create any script, which when added to your system path (usually through setting environment variables) will become available to use in the terminal.</p>
+
+<p>Going back to the Getting Started page, the instructions assume a lot of prior knowledge, so not particularly beginner friendly (and maybe not accessible to 'everyone').</p>
+
+<p>The instructions immediately following the installation steps tell you about errors that you might encounter when trying to bring up a virtual machine with Vagrant and VirtualBox. VirtualBox is another open source system, which according to Wikipedia supports the creation and management of guest virtual machines.</p>
+
+<h3>Hypervisors</h3>
+
+<p>According to Oracle (who created VirtualBox), VirtualBox requires an existing operating system to be installed, and runs alongside existing applications on that host (Vagrant in this case). VirtualBox is a hosted hypervisor.</p>
+
+
+<p>A hosted (Type 2) hypervisor is a virtual machine manager that is installed on an existing operating system. According to <a href="https://phoenixnap.com/kb/what-is-hypervisor-type-1-2" target="_blank">phoenix nap</a>, hypervisors abstract guest machines and the operating system they run on from the actual hardware. So they create a layer that seperates CPU/Processors, RAM and other physical resources from the virtual machines you create.</p>
+
+<p><q>Hypervisors emulate available resources so that guest machines can use them. No matter what operating system you boot up with a virtual machine, it will think that actual physical hardware is at its disposal.</q></p>
+
+<p></q>From a VM’s standpoint, there is no difference between the physical and virtualized environment. Guest machines do not know the hypervisor created them in a virtual environment and that they share the available computing power. </q></p>
+
+<h4>Type 2 hypervisor</h4>
+
+<p>A type 2 hypervisor are hosted hypervisors. While type 1 hypervisors run directly on the hardware, hosted hypervisors have one software layer underneath. They require an operating system installed on the hardware from which to operate.</p>
+
+<h3>Back to getting started guide</h3>
+
+<p>Okay, now we know what hypervisors are (the assumed knowledge makes sense now), we can better understand the potential installation error messages they talk about. When trying to bring up a virtual machine with Vagrant and VirtualBox, you could get an error message if more than one hypervisor is in use. The provided solution involves blacklisting the hypervisor (there is a terminal command given to do this).</p>
+
+<h3>Starting vagrant</h3>
+
+<p>There are two terminal commands listed to get Vagrant up and running:</p>
+
+<code>vagrant init hashicorp/bionic64</code>
+
+<p>After running this command, we get a message in the terminal which says: A `Vagrantfile` has been placed in this directory. You are now
+ready to `vagrant up` your first virtual environment! Please read
+the comments in the Vagrantfile as well as documentation on
+`vagrantup.com` for more information on using Vagrant.</p>
+
+<code>vagrant up</code>
+
+<p>I did get an error message when running the above command from Vagrant. It was super informative and told me that I need to install VirtualBox (which I forgot to do) as well as the reasons why. Much clearer than the documentation, which is a good sign that the effort was put into the system much more than the docs.</p>
+
+<h3>Installing VirtualBox</h3>
+
+<p>I used homebrew (makes installing stuff easier on Mac) to install virtual box by running the following command:</p>
+
+<code>brew cask install virtualbox</code>
+
+<p>Or at least, I tried to do this but got an unclear error message. My assumption is that it's something to do with permissions. I tried running the command with the sudo command (root user), but got another error message saying that 'As Homebrew does not drop privileges on installation you would be giving all
+build scripts full access to your system.' So I won't try that again.</p>
+
+<p>A quick Google helped me figure out how to fix this issue. I went into my System Prefences (on my Mac) and clicked on the 'Security & Privacy' option. At the bottom of the 'general' tab screen, the following (not obvious) message was displayed: System software from developer "Oracle America, Inc", was blocked from loading with an "Allow" button next to it, which I clicked on (then the message disappeared).</p>
+
+<p>Just a quick note, I've never done this before and didn't really know what I was doing. I followed the clues left by error messages and used Google to help me out. I see some people giving up when they see error messages like these, but they are there to help you find out what has gone wrong. Trial and error. Might take a while, but it's a great feeling solving problems like this.</p>
+
+<p>Nice, ran the brew cask install virtualbox command again and it installed successfully.</p>
+
+<h3>Starting vagrant - second try</h3>
+
+<p>I ran the <code>vagrant up</code> command again which worked this time, yayy happy dance woot woot!</p>
+
+<p>Here is a breakdown of the log which outputs directly after running the command (another helpful learning practice).</p>
+
+<ul>
+  <li>Bringing machine 'default' up with 'virtualbox' provider: I googled this and found an interesting <a href="https://github.com/hashicorp/vagrant/issues/8662" target="_blank">thread</a> which discusses how to fix this if it was an error message, which this is not. This is essentially bringing up a virtual machine with the name 'default' with the help of virtualbox.</li>
+  <li>Box 'hashicorp/bionic64' could not be found. Attempting to find and install default: Box provider virtual box, default: &gt;= 0. So it's looking for any version of virtual box on your machine (so it works no matter what version you have installed). The box it couldn't find is 'hashicorp/bionic64'. A box is the package format for Vagrant environments (according to the docs). There is a <a href="https://app.vagrantup.com/boxes/search" target="_blank">catalogue of vagrant boxes</a> that you can search to match your use case. The bionic64 box by hashicorp is 'a standard Ubuntu 18.04 LTS 64-bit box', which is all the information I could find on it. Assuming it's a bare bones virtual machine that we are using virtualbox to replace.</li>
+  <li>Loading metadata for box 'hashicorp/bionic64', default url <a href="https://vagrantcloud.com/hashicorp/bionic64" target="_blank">https://vagrantcloud.com/hashicorp/bionic64</a>. The metadata here is stored in a config file. It sets the name of the box and the box verios.</li>
+  <li>Adding box 'hashicorp/bionic64' (v1.0.282) for provider: virtualbox, downloading [url] - I went to the url and it attempted to download a binary program, which google says is a "pre-linked program that is ready to run under a given operating system; a binary for one operating system will not run on a different operating system;". The next log message was that the download was directed to host, which is stored on aws.</a>.</li>
+  <li>There are a lot more log outputs. A quicker recap of them is that it changed the default name of the virtual machine from 'default' to another default name which includes my username (got from the terminal?). There are instructions for disabling vagrant as an environment variable with <code>VAGRANT_DISABLE_VBOXSYMLINKCREATE=1</code>, setting up ports and adapters, forwarding ports '22 (guest), 2222 (host)', setting up an SSH address, username, auth method (private key), swapping out an insecure key for a secure one (Vagrant security), booting up the virtual machine and mounting shared folders.</li>
+</ul>
+
+<p>Even this super quick skim told me a huuuge amount about how Vagrant works as a virtual machine. Yayy. Now that my shiny new virtual machine is up and running, I'm going to try set up a project following the next section of the user guide.</p>
+
+<h2>Setting up a vagrant project</h2>
+
+<p>Notes based on <a href="https://www.vagrantup.com/intro/getting-started/project_setup.html" target="_blank">setting up a vagrant project</a></p>
+
+<p>All of the steps in this part of the tutorial are really well explained, so I'm just going to capture the commands without explaining them (unless needed).</p>
+
+<code>mkdir vagrant_getting_started</code>
+<code>cd vagrant_getting_started</code>
+<code>vagrant init hashicorp/bionic64</code>
+
+<p>Ah, so this command initialised the box with a vagrant file, like a npm init creates a package.json for configuration options (including developer dependencies). The vagrant file created here is called 'Vagrantfile'. It contains config code, but is mostly comments containing options you can comment in to start using. Some options include configuring a box (the only one not commented out, and is the only required setting), disable automatic box checking, creating a forwarded port in a couple of ways, creating a private or public network and sharing additional folders to the guest virtual machine etc. Oh cool, yuo can also customise how much memory is stored on the virtual machine, wowwww</p>
+
+<h2>Installing boxes instead of building vm from scratch</h2>
+
+<p>Vagrant uses a base image to quickly clone virtual machines, which are known as 'boxes' in Vagrant. A system image is a snapshot of the entire state of a computer system stored in a file. They can be shut down and restored to the same state, and can be used for backups. A base image lets you layer other images on it (each layer image can be considered as a filesystem change). There are a bunch of great answers explaining <a href="https://www.quora.com/What-exactly-is-a-base-image-in-Docker" target="_blank">base images</a> in the discussion just linked to.</p>
+
+<p>You can download boxes from the vagrant cloud box catalog, or from a local file, url etc (just like the output for the installation log did). Boxes that you download never alter the base image.</p>
+
+<p>Boxes are name spaced. They are broken down into two parts, the username and the box name, seperated by a slash.</p>
+
+<p>To configure our project to use a box as a base, we can open the Vagrant file and change the contents as follows:</p>
+
+<pre>
+<code>
+Vagrant.configure("2") do |config|
+  config.vm.box = "hashicorp/bionic64"
+  config.vm.box_url = "https://vagrantcloud.com/hashicorp/bionic64"
+end
+</code>
+</pre>
+
+<p>The code above specifies the metadata for the box, it's name and url. You can also specify the version if you want to.</p>
+
+<h2>Running virtual machine as an ssh session</h2>
+
+<code>vagrant up</code>
+<code>vagrant ssh</code>
+
+<p>The above two commands boot up your virtual machine and then SSHs you into the machine. This command drops you into an SSH session and lets you interact with the machine and do whatever you want in it. But first, an explanation of SSH (courtesy of Google).</p>
+
+<p><q>SSH, also known as Secure Shell or Secure Socket Shell, is a network protocol that gives users, particularly system administrators, a secure way to access a computer over an unsecured network. SSH also refers to the suite of utilities that implement the SSH protocol.</q> - <a href="https://searchsecurity.techtarget.com/definition/Secure-Shell" target="_blank">What is Secure Shell(SSH)?</a></p>
+
+<p>The SSH session can be terminated with <code>CTRL+D</code></p>
+
+<h2>Setting up synced folders</h2>
+
+<p>Synced folders allow you to automatically sync the files to and from the guest machine. This means that people don't have to edit files using just terminal-based editors.</p>
+
+<p>When you ssh into your machine, you are in '/home/vagrant', which is a different directory from /home/vagrant.</p>
+
+<code>touch /vagrant/test</code>
+<code>exit</code>
+<code>ls</code>
+
+<p>The vagrant file you see in the virtual machine, is the same vagrant file that is on your host machine. If you create another file, exit and list the files in your current directory (code snippets above), you will see the file that you created in your virtual machine listed in your host machine).</p>
+
+<h2>Serving files with a web server</h2>
+
+<p>We have a virtual machine running a basic copy of Ubuntu and we can edit files from our machine and have them synced into the virtual machine. We can also serve those files using a webserver.</p>
+
+<p>We could SSH and install a webserver, but this would mean that every person who used Vagrant would have to do the same. Instead, Vagrant has built-in support for <em>automated provisioning</em>, where Vagrant automatically installs software when you 'vagrant up' so that the virtual machine can be repeatedle created and ready to use.</p>
+
+<p>The first step is to set up Apache via the following shell script (saved as 'bootstrap.sh' in the same directory as your Vagrant file:</p>
+
+<pre>
+<code>
+#!/usr/bin/env bash
+
+apt-get update
+apt-get install -y apache2
+if ! [ -L /var/www ]; then
+  rm -rf /var/www
+  ln -fs /vagrant /var/www
+fi
+</code>
+</pre>
+
+<p>This shell script configures Apache and sets up the default 'DocumentRoot' of Apache to point to our '/vagrant' directory.</p>
+
+<p>Then we configure vagrant to run this shell script when setting up our machine:</p>
+
+<pre>
+<code>
+Vagrant.configure("2") do |config|
+  config.vm.box = "hashicorp/bionic64"
+  config.vm.provision :shell, path: "bootstrap.sh"
+end
+</code>
+</pre>
+
+<p>You can verify that the web server works by loading a file from SSH within the machien as follows: <code>wget -q0- 127.0.0.1</code>.</p>
+
+<h2>Networking (option to browse from own browser instead of the terminal)</h2>
+
+<p>Vagrant has networking features which gives us more options for accessing our virtual machine from our host machine.</p>
+
+<p>One of these options is port forwarding, which allows us to specify ports on the guest machine to share via a port on the host machine. This lets us access ports on our own machine, but the network traffic is actually forwarded to a specific port on the guest machine.</p>
+
+<pre>
+<code>
+Vagrant.configure("2") do |config|
+  config.vm.box = "hashicorp/bionic64"
+  config.vm.provision :shell, path: "bootstrap.sh"
+  config.vm.network :forwarded_port, guest: 80, host: 4567
+end
+</code>
+</pre>
+
+<p>Then when you load 'http//127.0.0.1:4567' in your browser, <code>vagrant reload</code> first, we should see a web page that is being served from the virtual machine.</p>
+
+<p>More <a href="https://www.vagrantup.com/docs/networking/" target="_blank">networking options</a></p>
+
+<h2>Share vagrant environment for collaboration</h2>
+
+<p>Vagrant Share lets you share your Vagrant environment to anyone around the world, with an internet connection. It will give you a url that will route directly to your Vagrant environment from any device in the world that is connected to internet</p>
+
+<p>We need the Vagrant share plugin for this to work <code>vagrant plugin install vagrant-share</code>. According to the installation page, vagrant share also needs 'ngrok' to work.</p>
+
+<p>You can install ngrok from their <a href="https://ngrok.com/download" target="_blank">download page</a>. I used <code>brew cask install ngrok</code> to install it on mine. That way I don't have to worry about setting up the PATH</p>
+
+<p>The following command should work now, and output a url that you can send to people you want to share your vm with. Yayyy!</p>
+
+<code>vagrant share</code>
+
+<h2>Teardown process</h2>
+
+<p>If we want to work on another project, we can suspend <code>vagrant suspend</code>, halt <code>vagrant halt</code> or <code>destroy</code> the guest machine.</p>
+
+<p>Except for the 'vagrant halt' command, you can run 'vagrant up' to resume work.</p>
+
+<h2>Switching providers from virtualbox</h2>
+
+<p>You don't need to modify your Vagrant file, you can just run <code>vagrant up --provider=vmware_fusion</code></p>
+
+<h2>Additional resources to get a bit more advanced with Vagrant:</h2>
+
+<p><a href="https://www.vagrantup.com/intro/getting-started/providers.html" target="_blank">additional resources listed here.</a></p>

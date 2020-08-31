@@ -1,0 +1,289 @@
+---
+layout: post
+title: Building navigation menu with progress bar
+categories: [web development]
+tags: [css, sass, html, navigation menu, progress bar]
+---
+
+<p>I am spending most of today improving my website. I released it initially as a raw, text-only HTML site, and am slowly improving the design live in real time. This is so that I could share content without having to wait for the design to be 'finished'. Another benefit of this approach is that I get to show you how I'm designing and building out all of the new features.</p>
+
+<p>Today I'm documenting my process for building the following navigation menu:</p>
+
+<img src="/assets/img/nav-menu.png" alt="navigation menu">
+
+<ul>
+  <li>This navigation menu stays at the top of the screen when the user scrolls so that they always have access to site links.</li>
+  <li>The logo links back to the home page</li>
+  <li>The logo has an alt attribute set to an empty string. This is good practice when it comes to logos. It means that people who use screen readers don't have to listen to hundreds of "This is an image of a logo" messages. Read more here: <a href="https://davidwalsh.name/accessibility-tip-empty-alt-attributes" target="_blank">Accessibility tip: Empty alt tags</a></li>
+  <li>There are four social link icons: codepen, github, twitter and instagram. They each have their own hover color.</li>
+  <li>There is a progress bar that tells the user how much they have read and how much they have left to read.</li>
+</ul>
+
+<h2>Raw HTML for the navigation menu</h2>
+
+<pre>
+<code class="lang-html">
+&lt;nav class=&quot;navigation&quot;&gt;
+
+  &lt;ul class=&quot;social-media&quot;&gt;
+    &lt;li class=&quot;social-media__icon&quot; title=&quot;github&quot;&gt;
+      &lt;a href=&quot;https://github.com/Becca9941&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;fab fa-github&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;social-media__icon&quot; title=&quot;codepen&quot;&gt;
+      &lt;a href=&quot;https://codepen.io/Becca941&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;fab fa-codepen&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;social-media__icon&quot; title=&quot;twitter&quot;&gt;
+      &lt;a href=&quot;https://twitter.com/Becca9941&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;fab fa-twitter&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;social-media__icon&quot; title=&quot;instagram&quot;&gt;
+      &lt;a href=&quot;https://www.instagram.com/becca99941/&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;fab fa-instagram&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;a href=&quot;/&quot;&gt;
+    &lt;img class=&quot;logo&quot; src=&quot;/assets/img/devbecca.svg&quot; alt=&quot;&quot;&gt;
+  &lt;/a&gt;
+
+  &lt;button class=&quot;show-site-links&quot;&gt;MENU&lt;/button&gt;
+
+  &lt;nav class=&quot;site-menu hidden&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/about.html&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+  &lt;/nav&gt;
+
+&lt;/nav&gt;
+</code>
+</pre>
+
+<p>Navigation menus are mini programs in themselves. This navigation menu is composed of a list of social media icons (the hash symbols will be replaced with the links to each site), a logo, a button that opens another navigation menu which contains the site links.</p>
+
+<p>I also used the title attribute on the icon list items. This is so that a small tooltip will show up explaining what the icon is for when you hover over it.</p>
+
+<h2>Styling the social media icons</h2>
+
+<p>The first step to styling the social media icons is to create a new sass file called 'social-media.scss' in a folder called 'components' inside of the 'sass' directory.</p>
+
+<p>I imported the social media file into the 'main.scss' sass file like this: "@import 'components/social-media';"</p>
+
+<p>This is the css for styling the social media icons:</p>
+
+<pre>
+<code class="lang-css">
+.social-media {
+  width: max-content;
+  padding: 0; margin: 0;
+
+  li {
+    list-style-type: none;
+
+    &:first-child:hover a { color: $mint; }
+    &:nth-child(2):hover a { color: $pink; }
+    &:nth-child(3):hover a { color: $blue; }
+    &:last-child:hover a { color: $orange; }
+  }
+
+  a {
+    text-decoration: none;
+    color: $brand-grey;
+
+    &:hover { background: none; }
+
+  }
+
+  &__icon {
+    display: inline-block;
+    font-size: 2rem;
+
+    &:not(:last-child) {
+      margin-right: .5rem;
+    }
+
+  }
+
+}
+</code>
+</pre>
+
+<ul>
+  <li>The width of the social media icons list is set to 'max-content', which will allow us to display the icon set inline with the logo and menu button.</li>
+  <li>I removed the list bullets from the icons, removed the anchor tag underline and hover effects and set their color to a dark grey.</li>
+  <li>I used first, last and nth child selectors to change the color of each icon individually when hovered over.</li>
+  <li>I lined the icons up next to each other using 'display: inline-block'.</li>
+  <li>Finally, I added a small right-margin to all of the icons except the last one.</li>
+</ul>
+
+<img src="/assets/img/social-media-icons.png" class="small-img" alt="social media icons">
+
+<h2>Hiding the site menu</h2>
+
+<p>To hide the site menu, I added a class called 'hidden' to the 'site-menu' navigation which contains the links to main pages in the site. Then I created a css file that applies sitewide called 'sass/base/_sitewide.css'. I added the hidden class selector to this file which sets the display to none.</p>
+
+
+<h2>Positioning elements inside navigation menu</h2>
+
+<p>The following CSS positions the elements inside the navigation menu.</p>
+
+<pre>
+<code class="lang-css">
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background-color: white;
+
+  a {
+    background: none;
+  }
+
+  .logo {
+    width: 7rem;
+  }
+
+  .show-site-links {
+    background-color: white;
+    border: none;
+    outline: transparent;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: bold;
+    height: 1.5rem;
+    cursor: pointer;
+
+    &:hover span:first-child { color: $mint; }
+    &:hover span:nth-child(2) { color: $pink; }
+    &:hover span:nth-child(3) { color: $blue; }
+    &:hover span:last-child { color: $orange; }
+  }
+}
+</code>
+</pre>
+
+<ul>
+  <li>All of the elements are positioned inside of the navigation menu using two lines of css: 'display: flex' and 'justify-content: space-between'. The flexbox model is a really easy way to position elements, you can read more about it <a href="https://css-tricks.com/almanac/properties/j/justify-content/" target="_blank">here.</a></li>
+  <li>I also set the navigation position to 'sticky' and glued it to the top of the page using 'top: 0'.</li>
+  <li>I removed the background color that appears when you hover over links. I want this to apply everywhere except for links in the navigation menu, which is why I'm removing the styles here as an exception to the rule.</li>
+  <li>I also added spans around each of the letters in the 'menu' button, and changed the color of them individually in the same way that we did for the social media icons.</li>
+</ul>
+
+<h2>Adding the progress bar</h2>
+
+<p>The progress bar is inspired by this <a href="https://www.w3schools.com/howto/howto_js_scroll_indicator.asp" target="_blank">tutorial.</a></p>
+
+<h3>HTML</h3>
+
+<pre>
+<code class="lang-html">
+  &lt;article class=&quot;progress&quot;&gt;
+    &lt;section class=&quot;bar&quot;&gt;&lt;/section&gt;
+  &lt;/article&gt;
+</code>
+</pre>
+
+<ul>
+  <li>The progress bar is added inside of the main navigation menu, just before the closing tag.</li>
+  <li>I used an article instead of a div to represent the progress bar. The article tag can be used for any element block that makes sense by itself without needing any surrounding context to understand it.</li>
+  <li>I used a section for the progress bar because it represents a small section within the progress article.</li>
+</ul>
+
+<h3>CSS</h3>
+
+<pre>
+<code class="lang-css">
+ .progress {
+   position: absolute;
+   bottom: 0;
+   width: 100%;
+   background-color: rgba($brand-grey, .1);
+
+   .bar {
+     width: 1%;
+     height: 4px;
+     background: repeating-linear-gradient(
+       45deg,
+       white,
+       white, 4px,
+       $brand-purple 4px,
+       $brand-purple 8px,
+     );
+   }
+ }
+</code>
+</pre>
+
+<ul>
+  <li>I used position absolute to take the progress bar out of the flow of the document. This prevents the progress bar from being justified along with all of the other elements in the navigation bar. As the navigation menu has a position associated with it (sticky), the position of the progress bar is relative to the navigation menu, because it's the closest parent with a position associated with it. 'bottom: 0' then positioned it at the bottom of the navigation menu.</li>
+  <li>I set the background color of the progress bar to a very light grey, which is just my main brand grey color with the opacity set very low. A good practice as part of material design thinking is to use lighter or darker versions of the brand colors in other ui elements for consistency. Though I also used some fun non brand colors to bring a little joy to the icons.</li>
+  <li>For the progress bar colors, I set the background to a linear gradient which has the effect of looking like candy cane stripes. I took inspiration from an article on CSS-Tricks called <a href="https://css-tricks.com/stripes-css/">Stripes in CSS</a>.</li>
+</ul>
+
+<h3>JS</h3>
+
+<pre>
+<code class="lang-javascript">
+ window.onscroll = function() { progressBar() };
+
+ function progressBar() {
+   const distanceFromTop = document.body.scrollTop || document.documentElement.scrollTop;
+   const pageHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+   const progressBarWidth = (distanceFromTop / pageHeight) * 100;
+   document.querySelector('.bar').style.width = progressBarWidth + '%';
+ }
+</code>
+</pre>
+
+<ul>
+  <li>The JavaScript for the progress bar was inspired by this <a href="https://www.w3schools.com/howto/howto_js_scroll_indicator.asp" target="_blank">Scroll Indicator</a> tutorial.</li>
+  <li>I changed the variables in this code to const variables because they don't change in the program.</li>
+  <li>I also renamed all of the variables so that it was easier to read. The variable names in the tutorial make it difficult to know from a glance what the code is doing.</li>
+</ul>
+
+<h2>A few final improvements</h2>
+
+<ul>
+  <li>I realised that the logo wasn't positioned directly in the center of the navigation bar. So I used 'position: absolute' to take it out of the flow, leaving the social media icons and menu button justified to the left and right of the navigation bar. Then I centered the logo in the navigation bar by setting it's left value to 50 'left: 50%', and using the 'transformX: translate(-50%)' properties.</li>
+  <li>I also added a title to the logo so that when you hover over it a tooltip appears telling you that you can use it to go back to the home page.</li>
+  <li>I added a transition for the color property on the social media icons and the menu button. This is a very subtle transition that makes the colors change a tiny bit slower than instantly, which is a better user experience even if most people won't actually pick up on it.</li>
+</ul>
+
+<h2>Mobile Responsive</h2>
+
+<p>Completely forgot to make my navigation bar mobile responsive, that is fixed now.</p>
+
+<h3>Navigation.scss</h3>
+
+<pre>
+<code class="lang-css">
+@media only screen and (max-width: 600px) {
+  .navigation {
+    height: 5rem;
+
+    .logo {
+      width: 5rem;
+    }
+
+    .show-site-links {
+      font-size: 1.3rem;
+    }
+  }
+}
+</code>
+</pre>
+
+<h3>Social-media.scss</h3>
+
+<pre>
+<code class="lang-css">
+@media only screen and (max-width: 600px) {
+  .social-media__icon {
+    font-size: 1.3rem;
+
+    &:not(:last-child) {
+      margin-right: .2rem;
+    }
+  }
+}
+</code>
+</pre>
+
+<p>That's it for the navigation menu. In the next post, I'll document my process for showing/hiding the pop-up menu of site links when you click on the menu button.</p>

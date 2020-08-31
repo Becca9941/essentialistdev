@@ -1,0 +1,21 @@
+.landing-intro {
+  text-align: center;
+  margin-top: 3rem;
+  &__link {
+    text-decoration: none;
+  }
+  &__logo {
+    width: 13rem;
+  }
+  &__tagline {
+    text-transform: capitalize;
+    letter-spacing: .1rem;
+    margin-left: .3rem;
+    font-size: .8rem;
+    font-family: 'Roboto';
+    margin-top: .1rem;
+    font-weight: 400;
+    color: color($bw-color-accent, 30);
+  }
+}
+

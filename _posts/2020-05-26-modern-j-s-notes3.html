@@ -1,0 +1,118 @@
+---
+layout: post
+title: For...of method and symbols (including symbol methods)
+---
+
+<p>Working through <a href="https://pragprog.com/book/ves6/rediscovering-javascript" target="_blank">Rediscovering JavaScript: Master ES6, ES7 and ES8</a>.</p>
+
+<h2>For of iterator</h2>
+
+<p>There are a lot of moving parts in a traditional for loop. You have to set the iterator, the upper and lower bounds, and how much to iterate by.</p>
+
+<p>For the most part, we use for loops to iterate forwards rather than backwards. In this case, we can replace the traditional for loop with a for of loop:</p>
+
+<pre>
+<code>
+const names = ['Sara', 'Jake', 'Pete', 'Mark', 'Jill'];
+for(const name of names) { console.log(name);
+}
+</code>
+</pre>
+
+<p>We can use the for...of method on any object that is iterable.</p>
+
+<p>We can also use a method called entries to get the index for each of the items in the array. We can store the index and the item in their own variables by descructuring them, as follows:</p>
+
+<pre>
+<code>
+const names = ['Sara', 'Jake', 'Pete', 'Mark', 'Jill'];
+for(const [i, name] of names.entries()) { console.log(i + '--' + name);
+}
+</code>
+</pre>
+
+<h2>Symbol</h2>
+
+<p>Ahhh, the first part of this section was really difficult to understand, but I think I get it now.</p>
+
+<p>You can use symbols to hide object properties from being iterated over, but only if the propery name is of type symbol.</p>
+
+<pre>
+<code>
+const age = Symbol('ageValue');
+
+const sam = {
+  first: 'Sam',
+  email: 'sam@example.com',
+  [age]: 2
+};
+</code>
+</pre>
+
+<p>First, we create a constant variable called age, and store a Symbol that contains the string 'ageValue' in it.</p>
+
+<p>Then we create an object called Sam. Sam has a property called first, which stores a first name as a string value. Sam also has a property called email, which stores an email as an email value.</p>
+
+<p>Then we have an age propery, which is surrounded by square brackets. The square brackets means that the age property name will be set to whatever is stored in a variabel called age. So the age property name becomes the string 'ageValue', which is of type Symbol. The value stored in the symbol named property is the number 2.</p>
+
+<p>There is no explanation for why we might want to do this at the moment, but will see if one comes up later.</p>
+
+<p>While you can't access symbol properties when you iterate over them, they are not private or encapsulated. The symbol property can still be accessed and its value can still be changed. You can also see a list of symbol properties by using <code>Object.getOwnPropertySymbols()</code>.</p>
+
+<p>You can also create symbols by using the symbol.for() method. When you create a symbol like this, a new symbol is only created if the symbol key (the argument string you pass in) hasn't already been created. Otherwise, you get the symbol you have already created back. Kind of like an object reference instead of an object copy.</p>
+
+<pre>
+<code>
+const masterWizard = Symbol.for('Dumbledore'); const topWizard = Symbol.for('Dumbledore');
+console.log(typeof(masterWizard)); console.log(masterWizard); console.log(masterWizard === topWizard);
+console.log(Symbol.keyFor(topWizard));
+</code>
+</pre>
+
+<p>In the first line, we check in the global registry to see if the key 'dumbledore' already exists. If it doesn't, we create a symbol with the value 'Dumbledore', and assign it to a constant variable called 'masterWizard'.</p>
+
+<p>We then try and do the same thing for a topWizard variable. However, the key 'Dumbledore' already exists in our global registry, so we assign the reference to that symbol to it. So both the masterWizard and topWizard variables contain the same symbol.</p>
+
+<p>The rest of the console logs verify that this is the case.</p>
+
+<h2>Special, well-known symbols</h2>
+
+<p>Symbol names are unique, which means you can create symbols properties for an object that contain specific method calls.</p>
+
+<code>[Symbol.for('myapp.myMethod')];</code>
+
+<p>This is a roundabout (not perfect) way for JavaScript to implement interfaces, which are contracts where you expect a certain class to contain specific methods.</p>
+
+<pre>
+<code>
+class SuperHero { constructor(name, realName) {
+this.name = name;
+this.realName = realName; }
+toString() { return this.name; }
+[Symbol.search](value) {
+console.info('this: ' + this + ', value: ' + value); return value.search(this.realName);
+} }
+</code>
+</pre>
+
+<p>First, we create a class named Superhero. An instance of this class holds two fields, name and realName. The symbol.search() method accepts an argument (given the name value in this case), and searches the realName variable to see if it contains the value passed in. It also prints an informational message about the current object and it's passed in value argument.</p>
+
+<p>Ahh, so basically, the search symbol method overrides the normal search method.</p>
+
+<pre>
+<code>
+const superHeroes = [
+new SuperHero('Superman', 'Clark Kent'),
+new SuperHero('Batman', 'Bruce Wayne'),
+new SuperHero('Ironman', 'Tony Stark'),
+new SuperHero('Spiderman', 'Peter Parker') ];
+const names = 'Peter Parker, Clark Kent, Bruce Wayne'; for(const superHero of superHeroes) {
+console.log(`Result of search: ${names.search(superHero)}`); }
+</code>
+</pre>
+
+<p>The code above creates an array of superHero instances. Each superhero instance has a name, like 'Superman' or 'Spiderman', and a real name, like 'Clark Kent' and 'Peter Parker'.</p>
+
+<p>Then we create a variable which contains a list of real names that belong to superheros.</p>
+
+<p>Then, we loop through each of the superhero instances, and print out the index where the superheros real name (based on the instance variable realname), appears in the list of names. If the real name isn't in the list of given names, a -1 is returned.</p>

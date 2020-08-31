@@ -1,77 +1,13 @@
 ---
 layout: default
-comments: true
 ---
 
-<main>
-    {% include article-header.html %}
-  <article class="article">
-    {{ content }}
-  </article>
+<article class="post">
 
-<article class="popular-posts">
-  <h1 class="popular-posts__title">Related Articles</h1>
+<h1>{{ page.title }}</h1>
 
-  {% assign posts = site.posts | where: "categories", page.category %}
-  {% for post in posts limit:4 %}
-
-
-  <article class="horizontal-article">
-    <div class="horizontal-article__wrapper" tab-index="0">
-      <section class="horizontal-article__content">
-        <a class="horizontal-article-link" href="{{ post.url }}">
-          <img class="horizontal-article__content-cover" src="/assets/images/article-images/small/{{ post.featured_image }}" alt="">
-          <div class="horizontal-article__content-wrapper">
-            <h2 class="horizontal-article__content-title">{{ post.title }}</h2>
-          </div>
-        </a>
-      </section>
-    </div>
-  </article>
-
-  {% endfor %}
+{{ content }}
 
 </article>
 
-  <!-- Begin Mailchimp Signup Form -->
-<div class="newsletter__form" id="mc_embed_signup">
-<form action="https://gmail.us4.list-manage.com/subscribe/post?u=716d2e8af05263e18524af026&amp;id=4a06101bfd" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-    <div id="mc_embed_signup_scroll">
-
-<div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
-<div class="mc-field-group">
-  <label for="mce-EMAIL" class="newsletter__email-label">Email Address  <span class="asterisk">*</span>
-</label>
-  <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
-</div>
-  <div id="mce-responses" class="clear">
-    <div class="response" id="mce-error-response" style="display:none"></div>
-    <div class="response" id="mce-success-response" style="display:none"></div>
-  </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_716d2e8af05263e18524af026_4a06101bfd" tabindex="-1" value=""></div>
-    <div class="clear"><input type="submit" value="Stay Updated" name="subscribe" id="mc-embedded-subscribe" class="button newsletter__button"></div>
-    </div>
-</form>
-</div>
-<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-<!--End mc_embed_signup-->
-
-<div id="disqus_thread"></div>
-<script>
-
-/*
-var disqus_config = function () {
-this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-*/
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://theessentialistdev.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-</main>
+<script src="/assets/js/markdown-checkbox.js"></script>

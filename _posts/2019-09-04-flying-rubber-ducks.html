@@ -1,0 +1,450 @@
+---
+layout: post
+title: Flying rubber ducks - head first design pattern notes
+---
+
+<p>Notes are based on <a href="http://shop.oreilly.com/product/9780596007126.do" target="_blank">Head First Design Patterns</a></p>
+
+<h2>Ducks are ruining everything</h2>
+
+<p>You have a duck class that has three methods: Quack, swim and display. The display method is concerned with what the duck looks like. Lots of different ducks inherit from this super class, each of them look a little different (they all have a display method, but the code that describes how they look inside the method is different for each duck).</p>
+
+<p>If you add a 'fly' method to the duck class that all other ducks inherit from(super class), then they will all be able to fly. However, you might create a rubber duck. The problem with this is that rubber ducks can't fly. They also squeak instead of quack. So inside the rubber duck class, you override the default fly method so that it does nothing, and you override the quack class so the duck 'squeaks' instead. If you have a wooden toy duck, you override both the quack and fly methods so that they do nothing. This isn't a very good approach, it isn't maintainable.</p>
+
+<p>A better solution would be to create an interface called Flyable that has a fly method. This class inherits from the main duck superclass, so can do all the other things normal ducks can do. We also create a Quackable interface with the method quack, which also inherits from the main duck superclass. Then whenever we need a duck that can fly, it inherits from the Flyable interface. Whenever we need a duck that can quack, it inherits from the Quakable interface. Whenever we need a duck that can swim and have an appearance (display) and nothing else, it inherits from the Duck superclass. We don't have to override anything.</p>
+
+<p>The problem with this approach is that instead of overriding each behaviour you don't want your duck to have, you are instead creating a new interface for each of these behaviours. If you want to change exactly how a duck flies, you have to tweak them in all of the flying duck subclasses.</p>
+
+<p class="note">Interfaces are different to classes in that they do not contain any code inside of the methods they have. They have a bunch of methods that become a requirement for each of the subclasses that inherit from them. Like a contract. If you inherit from the flying duck class you are signing a contract that says you will also have a fly method.</p>
+
+<p>The example above highlights that there are a lot of maintainance issues to think about when writing code. The one thing you can always count on is that the software that you write is always going to change. So you need to think about how to make your code easy to maintain and extend in the face of constant, and often unexpected changes.</p>
+
+<h3>Exercise: Reasons for change</h3>
+
+<p>An exercise in the book tells you to list reasons why you have had to change code in your applications. I'm going to give some examples from my current work place.</p>
+
+<ul>
+  <li>When test-driving your code, you start with a metaphor that fits what you are trying to do, based on the current understanding you have about what you are building. As your software develops, you might encounter new information that changes the way you think about the problem. The metaphor you started with might not be the best fit anymore, so you have to change it to tell the right story.</li>
+  <li>I work at a startup where our product is being developed in a series of iterations. Every time we get a new piece of feedback, our understanding of the users needs evolves. There isn't a single day where we haven't had a conversation about a change of direction. My team are good at writing code that is easy to change, and it's amazing to watch. I still have a lot to learn to be able to do the same.</li>
+  <li>Working on the front-end, we have had many instances where a screen has been scrapped or rejigged because the underlying behaviours and capabilities have changed. I have had to redesign screens a lot to account for this. Have built up a library of reusable elements that can be dropped in place where needed, which has helped this a lot.</li>
+  <li>Having worked as a developer for a few months after a couple of years of self-teaching, it's really apparent that everything is a temporary snapshot. Nothing is immune to <em>daily</em> change.</li>
+</ul>
+
+<h3>Separating what changes from what stays the same</h3>
+
+<p>A design principle for dealing with the duck situation is to identify which parts of your application vary and seperate them from the parts that stay the same.</p>
+
+<p>This design principle is simple, but underlies almost every design pattern. They all <q>provide a way to let <em>some part of a system vary independently of all other parts</em></q>
+
+<p>A lot of the time, you won't really know what part of your code is going to change until you have to change a behaviour a few different times when the requirements change. This is a good time to pull out this behaviour and separate them.</p>
+
+<h3>Designing the classes that implement the duck and class behaviours</h3>
+
+<blockquote><strong>To seperate these behaviours [fly and quack] from the duck class, we'll pull both methods out of the duck class and create a new set of classes to represent each behaviour.</strong></blockquote>
+
+<ul>
+  <li>We are going to <em>assign</em> behaviours to instances of Duck.</li>
+  <li>We might want to give one duck a specific <em>type</em> of flying behaviour.</li>
+  <li>We can include behaviour setter and getter methods which will allow us to dynamically change Duck instance behaviour at runtime.</li>
+</ul>
+
+<h3>Program to an interface, not an implementation</h3>
+
+<p>In order to make the changes listed above, we can look to a second design principle for help, which is to program to an interface and not to an implementation.</p>
+
+<p>The benefit of this approach is that Duck classes won't need to know how to implement their fly behaviours. While it might have a specific fly type, it won't know exactly how to fly like that. Like a plugginable superpower.</p>
+
+<ul>
+  <li>The first thing we do is create an interface called 'FlyBehaviour' which has a method called 'fly()'. This is just a method name without any implementation details.</li>
+  <li>Then for each of the fly types, we create a new class with a method called 'fly()' - which satisfies the implementation contract. The fly method in these classes do implement their particular behaviour inside this method. For example, we might have one class called "FlyWithWings" that can implement a generic flying behaviour. We might also have a class called "FlyNoWay", which also has a 'fly()' method. However, this fly method contains implementation details for ducks who can't fly at all.</li>
+  <li>The only reason the different Flying classes exist, is because they each represent a flying behaviour.</li>
+</ul>
+
+<p>The differece between this way of doing things and the first set of approaches is that we are no longer tied to a concrete implementation of a behaviour. If we wanted to change a flying behavior, we would have to modify or write more code. This way, the behavior can be swapped out by any of the Fly behaviours at any time during runtime.</p>
+
+<p>Another good example of programming to an interface is as follows:</p>
+
+<h4>From this:</h4>
+
+<pre>
+<code>
+Dog d = new Dog();
+d.bark
+</code>
+</pre>
+
+<h4>To this:</h4>
+
+<pre>
+<code>
+Animal animal = new Dog();
+animal.makeSound();
+</code>
+</pre>
+
+<p>In the first example, we are locked into using a dog class who knows how to bark. In the second example, we can use any kind of animal who can make any sound. We are still using the dog class who barks, but the dog can easily be changed for another animal.</p>
+
+<p>We can improve this code even further by assigning the concrete dog class at runtime instead of hardcoding it.</p>
+
+<pre>
+<code>
+a = getAnimal();
+a.makeSound();
+</code>
+</pre>
+
+<h3>Implementing Duck behaviours</h3>
+
+<p><strong><q>The key is that the Duck will now <em>delegate</em> its flying and quacking behaviour, instead of using quacking and flying methods defined in the Duck class (or subclass)<q></strong></p>
+
+<ul>
+  <li>Add two instance variables to the duck class called 'flyBehaviour' and 'quackBehaviour' that have been declared as an interface type.</li>
+  <li>Replace fly() and quack() methods with two similar methods called 'performFly()' and 'performQuack()'.</li>
+  <li>call 'quack()' on the instance variable 'quackBehaviour' which contains a reference to the quackBehaviour object we are using.</li>
+  <li>If our duck flies, the quackBehaviour instance variable will contain an instance of the Quack class like this <code>quackBehavior = new Quack();</code></li>
+</ul>
+
+<p>The problem with this is that we are still referencing a concrete behaviour class in our quackBehaviour instance class, which is something we are only doing temporarily. We are shown how to fix this later in the book.</p>
+
+<p>A great benefit of this approach is that other classes can use the fly behaviour too, even if they are not ducks. The fly behaviours are no longer locked into the duck classes only.</p>
+
+<h4>Duck.java</h4>
+
+<pre>
+<code>
+public abstract class Duck {
+  FlyBehaviour flyBehaviour;
+  QuackBehaviour quackBehaviour;
+  public Duck() {
+  }
+
+  public abstract void display();
+
+  public void performFly() {
+    flyBehaviour.fly();
+  }
+
+  public void performQuack() {
+    quackBehaviour.quack();
+  }
+
+  public void swim() {
+    System.out.println("All ducks float, even decoys!);
+  }
+
+  public void setFlyBehaviour(FlyBehaviour fb) {
+    flyBehaviour = fb;
+  }
+
+  public void setQuackBehaviour(QuackBehaviour qb) {
+    quackBehaviour qb;
+  }
+}
+</code>
+</pre>
+
+<h4>MallardDuck.java</h4>
+
+<pre>
+<code>
+public class MallardDuck extends Duck {
+
+  public MallardDuck() {
+    quackBehaviour = new Quack();
+    flyBehaviour = new FlyWithWings();
+  }
+
+  public void display() {
+    System.out.println("I'm a real Mallard duck");
+  }
+}
+</code>
+</pre>
+
+<h4>ModelDuck.java</h4>
+
+<pre>
+<code>
+public class ModolDuck extends Duck {
+  public ModelDuck() {
+    flyBehaviour = new FlyNoWay();
+    quackBehaviour = new Quack();
+  }
+
+  public void display() {
+    System.out.println("I'm a model duck");
+  }
+}
+</code>
+</pre>
+
+<h4>FlyBehaviour.java</h4>
+
+<pre>
+<code>
+public interface FlyBehaviour {
+  public void fly():
+}
+</code>
+</pre>
+
+<h4>FlyWithWings.java</h4>
+
+<pre>
+<code>
+public class FlyWithWings implements FlyBehaviour {
+  public void fly() {
+    System.out.println("I'm flying!!");
+  }
+}
+</code>
+</pre>
+
+<h4>FlyNoWay.java</h4>
+
+<pre>
+<code>
+public class FlyNoWay implements FlyBehaviour {
+  public void fly() {
+    System.out.printlin("I can't fly");
+  }
+}
+</code>
+</pre>
+
+<h4>FlyRocketPowered.java</h4>
+
+<pre>
+<code>
+public class FlyRocketPowered implements FlyBehaviour {
+  public void fly() {
+    System.out.println("I'm flying with a rocket!");
+  }
+}
+</code>
+</pre>
+
+<h4>QuackBehaviour.java</h4>
+
+<pre>
+<code>
+public interface QuackBehaviour {
+  public void quack() {
+    System.out.println("Quack");
+  }
+}
+</code>
+</pre>
+
+<h4>Quack.java</h4>
+
+<pre>
+<code>
+public class Quack implements QuackBehaviour {
+  public void quack() {
+    System.out.println("Quack");
+  }
+}
+</code>
+</pre>
+
+<h4>MuteQuack.java</h4>
+
+<pre>
+<code>
+public class MuteQuack implements QuackBehaviour {
+  public void quack() {
+    System.out.println("<< Silence >>");
+  }
+}
+</code>
+</pre>
+
+<h4>Squeak.java</h4>
+
+<pre>
+<code>
+public class Squeak implements QuackBehaviour {
+  public void quack() {
+    System.out.println("Squeak");
+  }
+}
+</code>
+</pre>
+
+<h4>MiniDuckSimulator.java</h4>
+
+<pre>
+<code>
+public class MiniDuckSimulator {
+  public static void main(String[] args) {
+    Duck mallard = new MallardDuck();
+    mallard.performQuack();
+    mallard.performFly();
+  }
+}
+</code>
+</pre>
+
+<h4>MiniDuckSimulator.java - model duck edition</h4>
+
+<pre>
+<code>
+public class MiniDuckSimulator {
+  public static void main(String[] args) {
+    Duck mallard = new MallardDuck();
+    mallard.performQuack();
+    mallard.performFly();
+
+    Duck model = new ModelDuck();
+
+    model.performFly();
+
+    model.setFlyBehaviour(new FlyRocketPowered());
+
+    model.performFly();
+  }
+}
+</code>
+</pre>
+
+<p>Output from above would be 'Quack', 'I'm flying!!', 'I can't fly' and 'I'm flying with a rocket!'</p>
+
+<h2>Encapsulated behaviours</h2>
+
+<p>Instead of thinking of the duck behaviours as a set of behaviours, we can start thinking of them as <em>a family of algorithms</em>. The algorithms represents things that a duck would do (different ways of quacking or flying), but we can also apply the same techniques to a set of classes that implement currency conversion.</p>
+
+<h3>Exercise: Write the appropriate relationship</h3>
+
+<p>The exercise is to write the appropriate relationships (IS-A, HAS-A and IMPLEMENTS) on each arrow in the class digram in the book</p>
+
+<ul>
+  <li>Duck class HAS-A FlyBehaviour</li>
+  <li>Duck class HAS-A QuackBehaviour</li>
+  <li>MallardDuck, RedHeadDuck, RubberDuck and DecoyDuck IS-A Duck</li>
+  <li>Quack, Squeak and MuteQuack IMPLEMENTS QuackBehaviour</li>
+  <li>FlyWithWings and FlyNoWay IMPLEMENTS FlyBehaviour</li>
+</ul>
+
+<p>When you put two classes together like this you are using <strong>composition</strong>. <q>Instead of <em>inheriting</em> their behaviour, the ducks get their behaviour by being composed with the right behaviour object.</p>
+
+<h2>Favour composition over inheritance</h2>
+
+<p>Composing objects with the right behaviour object is our third design principle, which is to favour composition over inheritance.</p>
+
+<h3>Benefits of composition</h3>
+
+<ul>
+  <li>A lot more flexibility</li>
+  <li>Encapsulate a family of algorithms into their own set of classes</li>
+  <li>Change behaviour at runtime (as long as the object you're composing with implements the correct behaviour interface</li>
+</ul>
+
+<p>Composition is used in many design patterns.</p>
+
+<p><strong>We always spend more time maintaining and changing sofware than on initial development</strong></p>
+
+<h2>MY FIRST DESIGN PATTERN YAYYYYYY! The Strategy Pattern</h2>
+
+<blockquote><strong>The Strategy Pattern</strong> defines a family of algorithms, encapsulates each one, and makes them interchangeable. Strategy lets the algorithm vary independently from clients that use it.</blockquote>
+
+<ul>
+  <li>We're using the strategy pattern to implement the various behaviours of our ducks</li>
+  <li>This means that the duck behaviour has been encapsulated into it's own set of classes</li>
+  <li>The behaviour classes can easily be expanded and changed, even at runtime</li>
+</ul>
+
+<h2>Exercise: Action Adventure game</h2>
+
+<p><q>Below you'll find a mess of classes and interfaces for an action adventure game. You'll find classes for game characters along with classes for weapon behaviours the characters can use in the game. Each character can make use of one weapon at a time, but can change weapons at any time during the game, your job is to sort it all out.</q></p>
+
+<ol>
+  <li>1. Arrange the classes</li>
+  <li>2. Identify one abstract class (A x 1), one interface (I x 1), and 8 classes (C x 8)</li>
+  <li>Draw arrows between classes: ---|> = extends, ......> = implements, ----> = HAS-A.</li>
+  <li>Put the method SetWeapon into the right class</li>
+</ol>
+
+<ul>
+  <li>[A x 1] Character ----|> HAS-A WeaponBehavior</li>
+  <li>[C x 8] King, Queen, Troll, Knight ----> EXTENDS a Character</li>
+  <li>[I x 1] WeaponBehaviour</li>
+  <li>[C x 8] KnifeBehaviour, BowAndArrowBehaviour, AxeBehaviour, SwordBehaviour .....> IMPLEMENTS WeaponBehavior</li>
+</ul>
+
+<p>The following method belongs to the Character class.</p>
+
+<pre>
+<code>
+setWeapon(WeaponBehaviour w) {
+  this.weapon = w;
+}
+</code>
+</pre>
+
+<h2>Design patterns are a shared vocabulary</h2>
+
+<p>Design patterns give you a way to communicate with other developes. It also <q>elevates your thinking about architectures by letting you think at the <em>pattern</em> level, not the nitty-gritty <em>object</em> level.</q></p>
+
+
+<h3>Benefits of design patterns</h3>
+
+<ul>
+  <li>They let you communicate a whole set of qualities, characteristics and constraints that the pattern represents</li>
+  <li>They allow you to say more with less.</li>
+  <li>Let you keep the discussion at the design level, without having to dive into implementation details.</li>
+  <li>Less room for misunderstanding when a team is well versed in design patterns.</li>
+  <li>Shared vocabularies encourage junior developers to get up to speed</li>
+  <li>Once you understand design patterns, you'll quickly understand APIs that are structured around design patterns</li>
+  <li>Knowing OO basic principles is not enough to help us get good at building flexible, reusable, and maintainable systems.</li>
+  <li>There are some properties to constructing OO systems that are not all that obvious, they have only been discovered by hard work and experience and have been collected into Design Patterns.</li>
+  <li>Knowing patterns can help you jump to tried and testing patterns that work (though there might not be a pattern that fits your problem in whole or even in part).</li>
+</ul>
+
+<h3>How to use design patterns</h3>
+
+<ul>
+  <li>Design patterns <strong>DON'T</strong> go directly into your code. They first go into your brain.</li>
+  <li>Once you know them well, yo can start to apply them to your new designs, and rework old code when you find it's becoming an inflexible mess</li>
+  <li>It is our job to adapt them to fit our particular application. There is no one size fits all approach.</li>
+  <li>Most patterns and principles address issues of <em>change</em> in software</li>
+  <li>Patterns are not invented, they are discovered.</li>
+</ul>
+
+<h3>Tools for your design toolbox</h3>
+
+<h4>Object-oriented Basics</h4>
+
+<ul>
+  <li>Abstraction</li>
+  <li>Encapsulation</li>
+  <li>Polymorphism</li>
+  <li>Inheritance</li>
+</ul>
+
+<h4>Object-oriented Principles</h4>
+
+<ul>
+  <li>Encapsulate what varies</li>
+  <li>Favour composition over inheritance</li>
+  <li>Program to interfaces, not implementations</li>
+</ul>
+
+<p>As you learn more patterns, think about how they rely on oo basics and principles - will try this out for the strategy pattern I just learned.</p>
+
+<p>How does the Strategy pattern rely on Object-oriented basics?</p>
+
+<ul>
+  <li>Abstraction - Duck makes sense for an animal that quacks, swims and flies. Otherwise, not sure if there is much to say about abstraction in the case of the Strategy pattern. Though "family of algorithms" seems like a good abstraction that makes the strategy pattern apply more generally to different problems from creating ducks to currency conversion.</li>
+  <li>Encapsulation - The ducks fly and quack behaviours are encapsulated. Only the individual concrete classes for each behaviour know how to implement the behaviour. The Duck itself doesn't. We also use a setter to set the fly and quack instance variables on the Duck class instead of doing it directly. The Duck is in charge of setting its own instance variables.</li>
+  <li>Polymorphism - The abstract Duck class defines a bunch of methods that are shared by all the different DuckType classes that inherit from it. However, each of the different ducks implement these methods (behaviors) in slightly different ways to each other. The Mallard duck flies when the fly method is called. The Rubber duck does not fly when the fly method is called. The Mallard duck quacks when the quack method is called. The rubber duck squeaks when the quack method is called.</li>
+  <li>Each of the different types of duck classes inherit from the main abstract duck class.</li>
+</ul>
+
+<p>How does the Strategy pattern rely on Object-oriented design principles?</p>
+
+<ul>
+  <li>Encasulate what varies - All ducks can swim and look like a particular duck (display). Only some ducks can quack and fly, these are the things that vary. So we extract the behaviours that vary (quack and fly) from the duck class and encapsulate them into their own behaviour classes. There are different ways a duck can fly, so all of the fly behaviours can be thought of as a family of related objects. So we create an interface for that family - a fly interface which is like a contract that says every fly behaviour will have a fly method. Each behaviour then is implemented in the concrete fly classes. We can then add instance variables inside the duck class and store an object of type interface. e.g. The fly variable might say we can hold any class that belongs to the fly interface. That way the fly behaviours are interchangable. The duck doesn't know how the fly and quack behaviours it has are implemented. The details are hidden away (encapsulated) inside the concrete behaviour classes.</li>
+  <li>Favour composition over inheritance - Instead of all ducks inheriting the fly and quack behaviours (even those who can't fly or quack), we instead give the duck behaviour objects that give it superpowers. These behaviour objects can then be reused by other objects that might not be a duck at all, like a rocket or something (which can also fly). However, if we know we want a bunch of classes that definitely have at least a few guaranteed behaviours, then inheritance is beneficial. For the most part though, composition is more likely to be needed.</li>
+  <li>Program to interfaces - not to implementations. We used an interface to represent a fly behaviour, and then created a bunch of different fly behaviour types. By using an interface, we are not locked into one specific behaviour. We can instead say that we want the duck to have a fly behaviour (fly interface), but that it can be any kind of fly behaviour. This means that if something changes and we want some ducks to fly differently, we don't need to tweak the fly behaviour for each of them. We can just create a new class for the fly behaviour we want and replace the one we are currently using with the new one, because they are interchangeable. Using an interface like this also lets us swap out our behaviours during run time too</li>
+</ul>

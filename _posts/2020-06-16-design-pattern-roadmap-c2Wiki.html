@@ -1,0 +1,239 @@
+---
+layout: post
+title: Creating An Abstract Factory (Modern and Victorian Furniture Maker) in Ruby
+---
+
+<p>The c2Wiki has a <a href="https://wiki.c2.com/?DesignPatternsRoadMap" target="_blank">Roadmap for learning design patterns</a>. I'm going to start by looking at each of the creational design patterns, and note what the purpose of each of them are.</p>
+
+<h2>Creational Design patterns: Brief intent overview</h2>
+
+<ul>
+  <li>Abstract Factory: Exists to create new instances of another class.</li>
+  <li>Builder: Exists to create new instances of another class, including the details of the object construction (if an object being constructed has rich properties and needs to be immutable).</li>
+  <li>Factory Method: Allows classes to defer object creation to a seperate method (a factory method). This would be an additional method on existing classes in a hierarchy.</li>
+  <li>Prototype: Specifiy the kinds of objects to create using a prototypical instance, and create new objects by coping this prototype.</li>
+  <li>Singleton: If a system only needs one instance of a class, and that instance needs to be accessible in many different parts of a system, you control both instantiation and access by making that class a singleton.</li>
+</ul>
+
+<h2>Abstract Factory Pattern in Ruby</h2>
+
+<p>Source: <a href="https://refactoring.guru/design-patterns/abstract-factory/ruby/example" target="_blank">Refactoring.guru</a></p>
+
+<p>Abstract factory is a creational design pattern that lets you produce families of related objects without specifying their concrete classes.</p>
+
+<p>I went ahead and played around with this, and attempted to create my own version of abstract factory, using a furniture shop as an example. The final application creates one of each type of furniture. I'll put all my code below:</p>
+
+<h3>Modern Chair</h3>
+
+<p>The modern chair class has two methods, .describe_legs and .describe_sitting experience. The chair also has a name to reflect it's type. Same for the victorian chair.</p>
+
+<p>I used the RSpec testing suites 'respond_to' method as an interface replacement, to make it explicit which methods the chair is supposed to implement.</p>
+
+<pre>
+<code>
+require "modern_chair"
+
+describe "modern_chair" do
+  let(:modern_chair) { ModernChair.new }
+  it { expect(modern_chair).to respond_to(:describe_legs) }
+  it { expect(modern_chair).to respond_to(:describe_sitting_experience) }
+
+  describe ".describe_legs" do
+    it "has 3 bamboo legs" do
+      expect(modern_chair.describe_legs).to eq("3 legs made of cream bamboo")
+    end
+  end
+
+  describe ".describe_sitting_experience" do
+    it "Like being wrapped in a cocoon" do
+      expect(modern_chair.describe_sitting_experience).to eq("This round chair feels like being wrapped up in a cocoon")
+    end
+  end
+end
+<code>
+</pre>
+
+<pre>
+<code>
+class ModernChair
+  attr_reader :name
+
+  def initialize
+    @name = "Modern Chair"
+  end
+
+  def describe_legs
+    "3 legs made of cream bamboo"
+  end
+
+  def describe_sitting_experience
+    "This round chair feels like being wrapped up in a cocoon"
+  end
+end
+<code>
+</pre>
+
+<h3>Modern Coffee Table</h3>
+
+<p>The modern coffee table has one method called .describe_surface. Same for the victorian chair.</p>
+
+<pre>
+<code>
+require "modern_coffee_table"
+
+describe "modern_coffee_table" do
+  let(:modern_coffee_table) { ModernCoffeeTable.new }
+
+  it { expect(modern_coffee_table).to respond_to(:describe_surface) }
+
+  describe ".describe_table_surface" do
+    it "Has a glass surface" do
+      expect(modern_coffee_table.describe_surface).to eq("Glass surface. Funny when cats sit on it.")
+    end
+  end
+end
+<code>
+</pre>
+
+<pre>
+<code>
+class ModernCoffeeTable
+  attr_reader :name
+
+  def initialize
+    @name = "Modern Coffee Table"
+  end
+
+  def describe_surface
+    "Glass surface. Funny when cats sit on it."
+  end
+end
+<code>
+</pre>
+
+<h3>Modern Sofa</h3>
+
+<p>The modern sofa has one method, .describe_fabric. Same for the Victorian sofa.</p>
+
+<pre>
+<code>
+require "modern_sofa"
+
+describe "modern_sofa" do
+  let(:modern_sofa) { ModernSofa.new }
+
+  it { expect(modern_sofa).to respond_to(:describe_fabric) }
+
+  describe ".describe_fabric" do
+    it "Made from cotton" do
+      expect(modern_sofa.describe_fabric).to eq("Made from cotton.")
+    end
+  end
+end
+<code>
+</pre>
+
+<pre>
+<code>
+class ModernSofa
+  attr_reader :name
+
+  def initialize
+    @name = "Modern Sofa"
+  end
+
+  def describe_fabric
+    "Made from cotton."
+  end
+end
+</code>
+</pre>
+
+
+<h3>Modern Furniture Factory</h3>
+
+<p>The modern furniture factory has three methods, which all create an instance of each of the furniture type classes we have already created (Chair, coffee table and sofa). Same for the victorian furniture factory.</p>
+
+<pre>
+<code>
+require "modern_furniture_factory"
+
+describe "modern_furniture_factory" do
+  let(:modernff) { ModernFurnitureFactory.new }
+
+  it { expect(modernff).to respond_to(:create_chair) }
+  it { expect(modernff).to respond_to(:create_coffee_table) }
+  it { expect(modernff).to respond_to(:create_sofa) }
+
+  describe ".create_chair" do
+    it "creates modern chairs" do
+      expect(modernff.create_chair).to be_an_instance_of(ModernChair)
+    end
+  end
+
+  describe ".create_coffee_table" do
+    it "creates modern coffee tables" do
+      expect(modernff.create_coffee_table).to be_an_instance_of(ModernCoffeeTable)
+    end
+  end
+
+  describe ".create_sofa" do
+    it "creates modern sofas" do
+      expect(modernff.create_sofa).to be_an_instance_of(ModernSofa)
+    end
+  end
+end
+<code>
+</pre>
+
+
+<h3>Furniture Factory</h3>
+
+<p>The furniture factory can be initialized with a specific furniture factory type. I think this is a bit redundant and maybe I misunderstood the example. It would be cool for this to have a factory type list, which you can add to or delete factories from. Then a GUI where you can swap out factories on the fly.</p>
+
+<pre>
+<code>
+class FurnitureFactory
+  attr_reader :factory
+
+  def initialize(factory = ModernFurnitureFactory.new)
+    @factory = factory
+  end
+end
+<code>
+</pre>
+
+<h3>Application</h3>
+
+<p>The application code has a factory type store, then loops through the factories and creates each of the furniture types which are consistent for each of these categories. I think this code here is a little too procedural, but not sure. It seems that the abstract factory pattern is used for reskinning objects into a different style, because this wouldn't work if one of the furniture styles had an extra piece of furniture that the other furniture factories didn't have. Or maybe it would, not sure.</p>
+
+<pre>
+<code>
+require_relative 'furniture_factory'
+require_relative 'modern_furniture_factory'
+require_relative 'victorian_furniture_factory'
+
+factories = [(FurnitureFactory.new).factory, (FurnitureFactory.new(VictorianFurnitureFactory.new)).factory]
+
+
+factories.each do |f|
+  # Create Chairs
+  chair = f.create_chair
+  puts chair.name.upcase
+  puts "- #{chair.describe_legs}"
+  puts "- #{chair.describe_sitting_experience} \n\n"
+
+  #Create Coffee Tables
+  coffee_table = f.create_coffee_table
+  puts coffee_table.name.upcase
+  puts "- #{coffee_table.describe_surface} \n\n"
+
+  #Create Sofas
+  sofa = f.create_sofa
+  puts sofa.name.upcase
+  puts "- #{sofa.describe_fabric} \n\n"
+end
+<code>
+</pre>
+
+<p>This was fun. I want to find a couple more examples of the abstract factory pattern so I can play around with it some more and maybe come up with some different use-cases.</p>

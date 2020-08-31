@@ -1,0 +1,237 @@
+---
+layout: post
+title: Part 1 - Principles, and converting a design into semantic and accessible HTML
+---
+
+<p>I'm going to document my process for building the following Book Collection page I designed following Google's <a href="https://material.io/" target="_blank">Material Design Guidelines.</a></p>
+
+<img src="/assets/img/book-collection-page.png" alt="Screenshot of book collection page design: A screen with guideline elements, a clean screen and a styleguide screen" class="medium-img">
+
+<p>When building any project, I am guided by a bunch of values and principles which float just beneath the surface of every decision, much like you general principles and values.</p>
+
+<h2>Principles and values driving this project</h2>
+
+<ul>
+  <li><strong>Intent:</strong> My aim is to be able to give a reason for every decision from the low-level details to the high-level details. This includes visual and structural design decisions, as well as technology choices. If I don't understand why something is there (npm installed packages), I make a point to find out.</li>
+  <li><strong>Easy to change:</strong> All code is temporary. Either it becomes obsolete or needs to adapt. In this page for example, the type of book I am talking about might change, the quotes used to describe them might change, the category chips might change, the color scheme, the typography etc. My aim has been to make these changes as easy as possible. If something needs to be removed, it won't break anything else.</li>
+  <li><strong>Accessibility:</strong> Extremely high priority. Accessibility is a huge field, one that is made manageble by starting with what you have and making sure that they meet (I aim for exceeds) accessibility criteria. Semantics play a large role in this.</li>
+  <li><strong>DRY (Don't Repeat Yourself):</strong> Similar to ETC in that you look for places of variability and seek to reduce those. In back-end languages, I follow the rule of three which is where you remove duplication when you notice three instances of something trying to do the same thing (even if their expression is not the same). In user-interface projects - usually CSS, I follow the rule of two. If I use two of the same thing, I look for ways to remove duplication. This is why I use Sass, it's a lot more flexible when it comes to removing duplication.</li>
+  <li><strong>Minimalism:</strong> Every element and style rule used must either be essential or spark joy to the user. E.g. The button has a smooth ripple effect when the user hovers over them. The ripple starts near where the mouse clicked the button. This took a lot of work, and is an embellishment that improves the experience of clicking a button. Similarly, when the user resizes the page, the responsive behaviour is seamless, no jumpiness. This will only be seen when the user resizes, not just by using a different device.</li>
+  <li><strong>Consistency:</strong> If there is a choice to be made, there is an underlying rule (flexible) to support it. I created a styleguide before designing the screen we are building, which details visual elements like typography, color, elevation, border radius and even spacing (margin/padding). All of these were informed by Google's Material Design guidelines. Some rules are meant to be broken though, but this is more obvious with experience. For example, I used a grid to design mobile/tablet/desktop layouts pixel perfect, but use a content-first breakpoint approach to responsiveness for fluidity, with the grid as a loose guideline.</li>
+  <li><strong>Above and beyond:</strong>I'm a developer because I adore the craft and want to be a master-level crafter just like a master wood carver. Not to be better than anyone else, but to push the limits and make things that are truly beautiful as well as useful.</li>
+</ul>
+
+<p>NOTE: These are the principles and values that drive my approach to this and many of my projects. They change from project to project (usually more are added). My underlying approaches for each of these things also change, usually as I encounter 'better' ways of doing things.</p>
+
+<h2>Base visual elements</h2>
+
+<p>I have a styleguide repository which contains all of the base visual elements that make up my web-pages, like typography, color pallettes, elevation (box-shadows), icons, buttons, cards etc. I then pull only the styles I need into the projects I am using them in. There is also a component section of this repository. Every time I make a new component, I'll add it in as a use-case example so its easy to reuse.</p>
+
+<h2>Step 1. Boilerplate HTML</h2>
+
+<p>The first thing I do when making a webpage from a design is start with a mobile screen, by going into the developer console on any browser and selecting a mobile option. I usually go for android at 360px x 640px, but test against other options once the page is styled.</p>
+
+<p>Then I add a HTML boilerplate, which is the bare minimum code my web pages need to run, as well as a few things that are useful for accessibility.</p>
+
+<p>To come up with my boilerplate, I went online to this <a href="https://validator.w3.org/nu/#textarea" target="_blank">HTML validator</a> and entered in html tags containing body tags. Technically, this is the bare minimum you need to make a web page runnable. It's terrible practice to do this, but helpful if you run the validator on it, because the validator will then tell you the bare minimum you need to make this page accessible, listed below.</p>
+
+<ul>
+  <li>A document language: <code>&lt;html lang="en"&gt;</code> because it is used to identify the language of text content on the page, which helps search engines return specific language results. It is also used by screen readers that switch language profiles to provide the correct accent and pronunciation.</li>
+  <li>A doctype html: <code>&lt;!DOCTYPE html></code> which is used to infor a website visitor's browser that the document being rendered in a HTML document. Without the doctype, the browser enters Quirks mode and tries to deal with your code as if it were written in the late 90's. This means they will imitate many bugs that existed in the old browsers.</li>
+  <li>A title: <code>&lt;title&gt;Page title&lt;title&gt;</code> is critical to users with visual disabilities because they are always the first page element announced by screen reading software. This allows users with visual disabilities to quickly determine if they are interested in a page's content.They also provide a descriptive name for bookmarking the page.</li>
+</ul>
+
+<p>The validator tells you how to solve all of these problems, but not why it is important to solve these problems. Whenever you do something, it is a good habit to get into to ask yourself why you are doing something, even if you are just adding a few tags here and there. If you can't answer this, look up the answer and articulate it in your own words. It is surprising how many developers vehemently argue that you should do something just because 'that is the way it is done', without being able to explain why. This is a hugely beneficial tool for critical thinking, because over time, you'll be able to read tutorials/documentation and have a deep understanding about the quality of the content you are consuming, which will help inform whether or not you decide to implement/adapt those ideas.</p>
+
+<h3>Bare minimum boilerplate, but not enough</h3>
+
+<pre>
+<code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Page title&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
+
+<p>This HTML boilerplate code above will pass the HTML validator, but there are still a lot of things that can be done to improve accessibility. Indiana university has a great <a href="https://accessibility.iu.edu/creating-content/web-content/index.html" target="_blank">web accessibility checklist</a> that are explained in terms of 'why' as well as 'how'. I applied some of the techniques which can be applied to my boilerplate specifically, but added each item to my personal accessibilty checklist to refer to regularly throughout this project build.</p>
+
+<p>An uncommon accessibility tip listed in the web accessibility checklist, is to add a 'skip to main content' link, which is an anchor tag to a 'main' element which has an id. This is so people who are using screen readers can skip to the main content easily, instead of having to tab through everthing that comes before it. In my css, I set both the height and opacity of this link to 0 to hide it from the page. If you use 'visibility: none' or 'display: none', the element will be removed entirely from the DOM and won't be accessible to screen reader users.</p>
+
+<p>I also like to add a viewport meta tag to my HTML boilerplate, which sets the zoom level when the page is loaded for the first time, so it is consistent across all devices. Without this, the variation between viewport sizes can cause your content to look buggy. You can solve this with a good responsive design, but it is useful to put in place and works especially well for typography.</p>
+
+<p>I also added a character encoding meta tag which supports many languages, as well an author and description meta tags.</li>
+
+<h2>My HTML boilerplate</h2>
+
+<pre>
+<code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Page title&lt;/title&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;i
+    &lt;a href="#mainContent" id="skipToMainContent"&gt;Skip to Main Content&lt;/a&gt;
+    &lt;main id="mainContent" tabindex="-1"&gt;&lt;/main&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
+
+<p>This is the boilerplate I use to set up most of my web documents. If I am making an experiment project, I don't really need a name, description or social media image meta tags. I usually add these in once the page is done if they would improve the experience. That way I can be more intentional about the content I want to include or display once the page has evolved into it's production state.</p>
+
+<h2>Step 2. Semantic content HTML</h2>
+
+<p>Once I have my boilerplate in place, it's time to start converting my screen design to HTML. I like to do things in incremental stages, so that I can pause to ask myself, is anything bothering me right now. Usually, I'll have a few 'niggles' about things that I am not quite happy with. Usually, these niggles have been done on purpose. For example, once I finished building one of the book cards, a niggle was that it would be better as a web component instead of hard coded, so that it can be reused. However, following the rule of two, it's more efficient to convert it into a web-component once there are more than one of them, when it becomes <em>necessary</em>. So I recorded that niggle and set it aside as a useful reminder.</p>
+
+<p>The first incremental step then is to start from the top of the design and work your way down. At this stage, I don't worry about sectioning tags like headers, articles and sections etc. All I'm doing is turning each text content and image into their semantic tag equivalents to start with. This is what the HTML looks like after doing this:<p>
+
+<h3>Element level HTML</h3>
+
+<pre>
+<code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+    &lt;link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;
+      &lt;a href="#mainContent" class="skipToMain"&gt;Skip to Main content&lt;/a&gt;
+
+      &lt;h1&gt;Book Collection&lt;/h1&gt;
+      &lt;p&gt;Whenever you read a book, experiment with the ideas in them. They have the power to change your life, if you take action.&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;main id="mainContent" tabindex="-1"&gt;
+
+      &lt;div&gt;Tech&lt;/div&gt;
+      &lt;div&gt;Design&lt;/div&gt;
+      &lt;div&gt;Life-Strategies&lt;/div&gt;
+      &lt;div&gt;Tools&lt;/div&gt;
+
+      &lt;h2&gt;The pragmatic Programmer&lt;/h2&gt;
+      &lt;p&gt;David Thomas and Andrew Hunt&lt;/p&gt;
+      &lt;button&gt;&lt;i class="material-icons"&gt;share&lt;/i&gt;&lt;/button&gt;
+      &lt;img src="img/book-prag-prog.svg" alt="Book cover"&gt;
+      &lt;p&gt;&lt;q&gt;Kaizen&lt;/q&gt; is a Japanese term that captures the concept of continuously making many small improvements.&lt;/p&gt;
+      &lt;a href="#"&gt;Read notes&lt;/a&gt;
+
+    &lt;/main&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
+
+<p>Writing the markup like this as a pre-stage has a few benefits. First, you are not making any style decisions, there are no classes in the content tags. This forces you to focus on the semantics of the document, because you are continuously asking yourself, 'What tag is the best semantic fit for this specific element.'</p>
+
+<p>The elements that I struggled to give semantic tags to were the book category names 'Tech', 'Design', 'Life-Strategies' and 'Tools', and the buttons. First, the categories. They are not titles, so it isn't appropriate to use any of the title tags. They are also not paragraphs, so those are also ruled out. I thought about using button tags, but they are not really call to actions, they are just filtering options.</p>
+
+<p>I ended up looking up how other people style category tags and found that many people use 'div' tags. Div tags have no semantic meaning, so should only be used for styling purposes only. I ended up using button tags because I realised that 'filter' is an action associated with selecting a category, so is more semantically appropriate than div tags.</p>
+
+<p>The buttons were difficult for me because I want them to take you to a different web page when you click on them. If I choose a button element, I'd have to use a link element with the button to turn it into a link. If I wrap the link element around the text, then you have to click on the text and not the button padding to go to the next page. If I wrap the link tags around the button, then clicking anywhere on the button will take you to the next page, but that feels wrong. So I Googled.</p>
+
+<p>Most tutorials advised using link tags with buttons, but gave no reason why. One commenter said that they use links instead of buttons because if buttons were meant to take you to another page, then they'd have a href attribute, which they don't. That is a convincing argument to me, but still not enough. I needed a distinction between use cases. If you don't use buttons for linking to new pages, when and why <em>should</em> you use them instead of links.</p>
+
+<p>I ended up finding <a href="https://karlgroves.com/2013/05/14/links-are-not-buttons-neither-are-divs-and-spans">this article</a> which did a great job of breaking down the distinction between buttons and links.</p>
+
+<ul>
+  <li>Use links for navigation to another page, window, or help topic, displaying definitions and command menus.</li>
+  <li>Use buttons for primary commands like displaying windows used to gather input or making choices (modals) and destructive or irreversible actions (adding can be an irreversible action even if you can delete them after, they are two seperate events).</li>
+</ul>
+
+<p>I decided to use a link element for the 'Read more' call to action because it takes you to another page. Whereas I used a button for the 'share' call to action because it opens a window that allows you to compose a tweet and share it. While the 'Read more' link is no longer a button, it can still be styled like one. The visual hierarchy is distinct from the DOM hierarchy, which is another reason why this exercise is so useful. You have to think in terms of semantics, instead of choosing a button element because it's going to look like a button.</p>
+
+<h3>Sectioning</h3>
+
+<p>As I was writing up the elements for this page, two areas jumped out as needing to be grouped together. The category names and all of the information related to the book, which in the design is grouped together on top of an elevated panel.</p>
+
+<p>There are a few tags that can be used to group elements together semantically (address, article, aside, header, footer, h1-h6, hgroup and main), and one tag to group elements together purely for styling purposes (div). Of these tags, only three are not immediately ruled out for both the categories and book information, the article, section and div elements.</p>
+
+<p>For the categories section, it doesn't make sense to use the article tag. The article tags are used to group content, which would make sense out of context. If we remove everything else from the page and just have the categories, then they don't really make sense. We'll be left with the question 'what are these categories for?'</p>
+
+<p>We are left with the section and div tags to group our categories together. A good rule of thumb for deciding if a section tag is needed, is asking whether the section should logically appear in the outline of a document. Each section also needs to have a heading, which is what would appear in the outline. So imagining this, the outline would read 'Book collection > book categories, The Pragmatic Programmer'. I don't like this because 'book categories' as a section does not tell you anything important other than that they exist.</p>
+
+<p>To make this more meaningful, I would need an additional section with a title that corresponds to the selected category. However, the fact that the selected category will look selected makes this extra bit of text redundant. With that in mind, the grouping of the categories will be purely for styling purposes, so a div will be more appropriat.</p>
+
+<p>Now for the book information. The article tags are the most appropriate for the book ingformation. If nothing else was on the page except for this, then it would be fully understandable in its own right, out of context. The section and div tags are not a sematic fit for this.</p>
+
+<p>Now the book information is grouped in an article tag, it made sense to swap out the h2 level book heading with a h1 level book heading. This is because article elements are specifically used to indicate <q>a complete, or self-contained, componsition in a document page, application or site and that is, in principle, independently distributable or reusable.</q> If we used a h2 heading, we would effectively be saying that they are level wwo headings, even though they are actually level 1 headings in the scope of the article section.</p>
+
+<p>Before HTML5, it was an absolute rule of HTML and SEO that each individual page of a site should contain one h1 level heading only. However, <a href="https://webdesign.tutsplus.com/articles/the-truth-about-multiple-h1-tags-in-the-html5-era--webdesign-16824" target="_blank">in HTML5, it is permissable to use as many sets of h1 tags as required</a>, as long as there is only one per sectioning root or content section. There should still always be a h1 level heading between the opening body tag and the first content section to label the overall document.</p>
+
+<p>After these sections were in place, I glanced through the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element" target="_blank">list of HTML elements</a> and realised that I should use the 'hgroup' tags to group together the page heading and description, as well as the book heading and author names.</p>
+
+<p>Here is what our markup looks like now:</p>
+
+<pre>
+<code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;a href="#mainContent" class="skipToMain"&gt;Skip to Main content&lt;/a&gt;
+
+    &lt;header&gt;
+      &lt;h1&gt;Book Collection&lt;/h1&gt;
+      &lt;p&gt;Whenever you read a book, experiment with the ideas in them. They have the power to change your life, if you take action.&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;main id="mainContent" tabindex="-1"&gt;
+
+      &lt;div&gt;
+        &lt;button&gt;Tech&lt;/button&gt;
+        &lt;button&gt;Design&lt;/button&gt;
+        &lt;button&gt;Life-Strategies&lt;/button&gt;
+        &lt;button&gt;Tools&lt;/button&gt;
+      &lt;/div&gt;
+
+      &lt;article&gt;
+        &lt;header&gt;
+          &lt;h1&gt;The pragmatic Programmer&lt;/h1&gt;
+          &lt;p&gt;David Thomas and Andrew Hunt&lt;/p&gt;
+          &lt;button&gt;&lt;i class="material-icons"&gt;share&lt;/i&gt;&lt;/button&gt;
+        &lt;/header&gt;
+        &lt;img src="img/book-prag-prog.svg" alt="Book cover"&gt;
+        &lt;p&gt;&lt;q&gt;Kaizen&lt;/q&gt; is a Japanese term that captures the concept of continuously making many small improvements.&lt;/p&gt;
+        &lt;a href="#"&gt;Read notes&lt;/a&gt;
+      &lt;/article&gt;
+    &lt;/main&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
+
+<h3>Classes</h3>
+
+<p>Now that we have our semantic HTML, it's time to add classes to things we will be styling. The reason we are doing this now instead of as we go, is so that we focus again on writing semantic classes. The styleguide I wrote in Sass contains a lot of visual elements like typography, color, buttons, elevation etc, and all use generic style-based names. However, I don't want these names to clutter up my HTML, because they are not semantic. Instead, I'm going to give my elements semantic class names which follow the <a href="http://getbem.com/" target="_blank">Block Element Modifier (BEM)</a> convention, and then use Sass @extend to extend from the style-based classes. That way, the structure of my web page is truly seperate from the style.</p>
+
+<p>A major benefit of seperating the structure from the style like this is so that the styles are easy to change. For example, if you change the name of a style-based class, e.g. <code>.button--raised</code>, then you would have to change all of the class name mentions in your HTML. This way, you just need to change <code>.visitPageCTA { @extend .button--raised; }</code> to <code>.visitPageCTA { @extend .button--different; }</code>, without touching your HTML at all.</p>
+
+<img src="/assets/img/semantic-html.png" alt="code snippet semantic html">
+
+<p>All of the class names above are semantic in that they describe the content of the page without revealing any style details. I'll go through them and explain my reasoning one by one.</p>
+
+<ol>
+  <li>I gave the 'Book Collection' title a class name of 'main-title'. This one needs to be generic because there will be a main title on all of by web pages, so it doesn't make sense to be more specific.</li>
+  <li>The categories div has the class name "categories". All of the buttons inside this section do not make sense by themselves outside of the section. They belong to the block and so their class names follow the BEM convention. The category is the block, the buttons are the elements and the modifier is the active state: <code>.block__element--modifier</code>. The purpose of the category buttons is to filter the books so only the ones in the category the user is interested in are displayed, so I gave the elements the classname 'filter'. The selected category will look different to the unselected categories, it will be 'modified', so I set the modifier classname to 'selected'.</li>
+  <li>The article section contains book information, more specifically, it contains my favourite quote which captures the spirit of the advice contained in the book, or the gist of the book. So I called it 'book-gist'. I was tempted to use 'book-info', but that implies that the card tells you information about the book, which is not as close to the purpose intended for displaying this book information. So gist it is.</li>
+  <li>Following the BEM method again, the book title is given the element classname of 'title', and the authors are given the element classname of 'authors'. Same for the book cover and book quote.</li>
+  <li>The share button and 'Read notes' link however, do not intrinsically belong to the book gist section. They are more like capabilities that can be dropped wherever they are needed. The share button is given the classname 'share' for now. If I need a share button that is a different shape, will consider adding a modifier, but for now that isn't necessary. I gave the 'Read notes' link a class name of 'goToPage', to reinforce that the purpose of these links styled like buttons is to take the user to a different page.</li>
+</ol>
+
+<p>At this stage, the book collection page is now a clean, semantic and accessible HTML page. In part two, I'll talk about how to style a mobile version of this page using Sass. The result will be style rules that are easy to maintain and change. It's going to be FUN! :D</p>

@@ -1,0 +1,111 @@
+---
+layout: post
+---
+
+<p>The number of steps that an algorithm takes is the main indicator of how efficient it is. If we have an array of 100 elements, and we want to find out the index of a specific value in that array, it could take up to 100 steps for us to find the value by checking each index individually (linear search), or it could take us 7 steps if the array was ordered and we took a higher or lower guessing game approach to finding the number (binary search).</p>
+
+<p>The number of steps it takes to complete a linear or binary search algorithm etc, will depend on how big the array is, and a bunch of other factors.</p>
+
+<p>This is where the Big O Notation comes in. It is a way for us to easily categorize the efficiency of a given algorithm in a consistent and concise way. The Big O Notation is originally a mathematical concept that computer scientists borrowed to help us with this.</p>
+
+<h2>Big O: Count the steps</h2>
+
+<p>Big O achieves consistency by focusing only on the number of steps that an algorithm takes.</p>
+
+<p>When we read data from an array by specifying it's index, that only takes one step because the computer knows the memory address for each index in an array, and can jump straight to it. The way to express this in Big O Notation is:</p>
+
+<p>O(1)</p>
+
+<p>Some people read this as "Big Oh of 1", or "Order of 1".</p>
+
+<p>O(1) means that an algorithm takes the same number of steps no matter how much data there is. In this case, reading from an array always takes just one step no matter how much data the array contains.</p>
+
+<p>Other operations that fall under the category of O(1) are the insertion and deletion of a value at the end of an array.</p>
+
+<p>In the case of a linear search, the number of steps it takes to complete in the worst-case scenario, is the same number of steps as there are elements in the array. So, for N elements in the array, linear search can take up to a maximum of N steps.</p>
+
+<p>O(N)</p>
+
+<p>Oh of N, is the Big O way of saying that for N elements inside an array, the algorithm would take N steps to complete.</p>
+
+<p>Big O Notation does more than describe the number of steps that an algorithm takes, like a hard number such as 22 or 400. It describes how many steps an algorithm takes <em>based on the number of data elements that the algorithm is acting upon.</em></p>
+
+<p>Another way of saying this is that Big O answers the following question: <em>How</em> does the number of steps change as the data increases?</p>
+
+<p>When an array increases in size by one element, the O(N) algorithm will increase by one step. Whilst an algorithm that is O(1) will take the same number of steps no matter how large the array gets.</p>
+
+<p>When plotted on a graph (see below), the O(N) makes a perfect diagonal line. This is because for every additional piece of data, the algorithm takes one additional step. O(N) is also known as linear time.</p>
+
+<p>Whereas O(1) is a perfect horizontal line, because the number of steps in the algorithm remains constant no matter how much data there is.</p>
+
+<img src="/assets/img/big-o-notation-graph.png" alt="big o notation graph showing O(N) and O(1)">
+
+<p>Big O is primarily concerned about how an algorithm performs across varying amounts of data. This means, that as long as an algorithm always takes the same number of steps to perform regardless of how much data there is, then the algorithm would also be described as O(1).</p>
+
+<p>If we are looking for a value that happens to be in the first index of an array (best case scenario), then the efficiency of the linear search in that example could be described as O(1) as it only took one step to complete. However, Big O notation generally refers only to <em>worst case</em> scenarios unless otherwise specified.</p>
+
+<p>Knowing exactly how inefficient an algorithm can get in a worst-case scenario prepares us for the worst and may have a strong impact on our choices.</p>
+
+<h3>O(log N)</h3>
+
+<p>We can't describe a binary search as being O(1), because the number of steps increases as the data increases. It also doesn't fit into the category of O(N), because the number of steps is much fewer than the number of elements that it searches, only seven steps for an array containing one hundred elements.</p>
+
+<p>Binary search seems to fall somewhere in between O(1) and O(N). In Big O, we describe binary search as having a time complexity of O(log N). This type of algorithm is also known as having a time complexity of <em>log time</em>.</p>
+
+<p>O(log N) is the Big O way of describing an algoritm that <em>increases one step each time the data is doubled</em>.</p>
+
+<h4>Logarithms</h4>
+
+<p>Logarithms are the inverse of exponents (the power to which a given number or expression is to be raised, like 2<sup>3</sup> or 2 * 2 * 2, which is 8).</p>
+
+<p>log<sub>2</sub> 8 is the converse (Switching the hypothesis and conclusion of a conditional statement) of the above. It means, how many times do you have to multiply 2 by itself to get a result of 8.</p>
+
+<p>Another example, 2<sup>6</sup> translates to 2 * 2 * 2 * 2 * 2 * 2 = 64.</p>
+
+<p>Since we had to multiply 2 by itself 6 times to get 64, log<sub>2</sub> 64 = 6</p>
+
+<p>Another way of explaining log<sub>2</sub> 8 is: if we kept dividing 8 by 2 until we ended up with 1, how many 2s would we have in our equation (8/2/2/2 = 1). In this example it takes 3 times. So log<sub>2</sub> 8 = 3.</p>
+
+<p>Or, we could explain log<sub>2</sub> 64 as: <strong>how many times do we need to halve 64 until we end up with 1?</strong> (6 times)</p>
+
+<h4>Back to O(log N)</h4>
+
+<p>Whenever we say O(log N), it's actually shorthand for saying O(log2 N). We're just ommitting the small 2 for convenience.</p>
+
+<p>O(log N) means that for N data elements, the algorithm would take log<sub>2</sub> N steps. If there are 8 elements, the algorithm would take three steps, since log<sub>2</sub> 8 = 3.</p>
+
+<p>Said another way, if we keep dividing the eight elements in half, it would take us three steps until we end up with one element.</p>
+
+<p>This is exactly what happens with binary search. As we search for a particular item, we keep dividing the array's cells in half until we narrow it down to the correct number.</p>
+
+<p><strong>O(log N) means that the algorithm takes as many steps as it takes to keep halving the data elements until we remain with one.</strong></p>
+
+<h2>Practical Examples</h2>
+
+<pre>
+<code>
+things = ["apples", "baboons", "cribs", "pinapples"]
+for thing in things:
+  print "Here's a thing: %s" % thing
+</code>
+</pre>
+
+<p>We would describe the efficiency of this algorithm in Big O Notation like this: O(N) because the number of times we print the elements in the array depends on how many elements are in the array.</p>
+
+<code>print 'Hello world!'</code>
+
+<p>We would describe the efficiency of this algorithm like this: O(1) because this print statement consistently takes only one step to achieve.</p>
+
+<pre>
+<code>
+def in_prime(number):
+  for i in range(2, number):
+    if number % i == 0:
+      return False
+    return True
+  end
+end
+</code>
+</pre>
+
+<p>We would describe the efficiency of this algorith like this: O(N), because the number of times the program loops through the numbers in the range depends on which number is given as the end of the range.</p>

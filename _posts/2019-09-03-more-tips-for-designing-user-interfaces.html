@@ -1,0 +1,64 @@
+---
+layout: post
+title: More tips for designing user interfaces
+---
+
+<p>Notes inspired by <a href="https://refactoringui.com/book/#get-refactoring-ui" target="_blank">Refactoring UI</a></p>
+
+<p>This is a follow on post from <a href="{{site.baseurl}}{% post_url 2019-09-02-tips-for-designing-user-interfaces %}">tips for designing user interfaces.</a></p>
+
+<h2>Alignment</h2>
+
+<ul>
+  <li>Center-alignment is great for short, independent blocks of text. If the text is longer than two or three lines, it will look better left aligned.</li>
+  <li>If you have a table that includes numbers, right-align them.</li>
+  <li>Whenever you justify text, enable hyphenation 'hypens: auto' to avoid awkward gaps between words. If a word doesn't fit at the end of the line, it'll be put on the next line and the spacing between the words above will increase so that there isn't a long gap at the end of the sentence. Enabling hypenation stops the word wrapping and instead hyphenates it so that it breaks mid-word onto the next line, and doesn't change the spacing between words.</li>
+</ul>
+
+<h2>Letter-spacing</h2>
+
+<ul>
+  <li>Some fonts are designed for headlines whilst other fonts are designed to be read well on small screen sizes like for mobile phones. Fonts designed for headlines usually have less space between letters. Whilst fonts designed for content text usually have more space between letters. So if you are using one or the other type of font, it's a good idea to adjust the letter spacing for either the content or headline.</li>
+</ul>
+
+<h2>Working with color</h2>
+
+<p>Use HSL instead of Hex or RGB, because different shades of one color in hex or rgb look nothing alike. Whereas in hsl, it's obvious that these shades share a lot in common.</p>
+
+<h3>Shades of blue in hex</h3>
+
+<ul>
+  <li>Dark blue: #03369E</li>
+  <li>Medium blue: #507DD7</li>
+  <li>Light blue: #9FB9ED</li>
+</ul>
+
+<h3>Shades of blue in hsl</h3>
+
+<ul>
+  <li>Dark blue: hsl(220, 95%, 34%)</li>
+  <li>Medium blue: hsl(220, 65%, 61%)</li>
+  <li>Light blue: hsl(220, 69%, 80%)</li>
+</ul>
+
+<h3>HSL</h3>
+
+<p>The hsl values represent (in order) Hue, saturation and lightness.</p>
+
+<ul>
+  <li>Hue: A color's position on the color wheel - let's us identify two colors as blue even if they are not identical.</li>
+  <li>Saturation: How vivid a color looks - how much grey it has in it. 0% grey, 100% no grey.</li>
+  <li>Lightness: How close a color is to black or white: 0% is pure black, 100% is pure white.</li>
+</ul>
+
+<h3>Color pallettes</h3>
+
+<p>A good color pallette consists of:</p>
+
+<ul>
+  <li>Greys: text, backgrounds, panels, form controls - most everything in an interface is grey. You want 8-10 shades to choose from.</li>
+</ul>
+
+<p>At this point, I stopped reading and created my own color pallette styleguide, shown below.</p>
+
+<img src="/assets/img/pallette.png" alt="color pallette following advice from the refactoring ui book">

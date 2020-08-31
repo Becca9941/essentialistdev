@@ -1,0 +1,196 @@
+---
+layout: post
+title: Quick skim of Pharo Spec UI book
+---
+
+<p>Notes based on <a href="https://books.pharo.org/spec-tutorial/" target="_blank">The Spec UI framework</a>
+
+<p>Skim reading notes</p>
+
+<h2>Small but complete interfaces</h2>
+
+<h3>Customer satisfaction UI</h3>
+
+<p>Allows user to give feedback by clicking on one of three buttons: 'Happy', 'neutral' and 'bad' with little icons in each button.</p>
+
+<ul>
+  <li>Create class of UI and variable accessors</li>
+  <li>instantiate and configure subwidgets (ui elements).</li>
+  <li>Define a title and window size, open and close the UI</li>
+</ul>
+
+<h3>Fun with lists</h3>
+
+<p>A list using different background colors and a list that also shows icons.</p>
+
+<ul>
+  <li>Registered colors as item background</li>
+  <li>Lists of icons</li>
+</ul>
+
+<h3>Ideas</h3>
+
+<ul>
+  <li>What can I do to customise these?</li>
+  <li>Can I combine both programs into one user interface?</li>
+</ul>
+
+<h3>Chapter conclusion</h3>
+
+<ul>
+  <li>What are the different steps to building a user interface?</li>
+  <li>How to configure existing spec widgets</li>
+  <li>All ui are subclasses of ComposableModel - bigger ui can be built of sub uis, and all uis can be opened as stand alone widgets.</li>
+  <li>Widget reuse is key superpower behind Spec.</li>
+</ul>
+
+<h2>Reusing and composing elements</h2>
+
+<p>Widgets are all reusable, this gives significant productivity boost when creating user interfaces.</p>
+
+<p>This chapter shows us how to build new ui using existing ui elements.</p>
+
+<h3>First requirements</h3>
+
+<ul>
+  <li>Creating a basic UI to be reused as a widget</li>
+  <li>Combining two basic widgets into a reusable UI</li>
+  <li>Managing three widgets and their interactions</li>
+  <li>Changing the layout of a reused widget</li>
+  <li>considerations about a public configuration API</li>
+</ul>
+
+<p>The only thing that needs to be taken into account is how a UI can (or should) be customised, and public customization methods should be placed in a api protocol.</p>
+
+<h2>Fundamentals of Spec</h2>
+
+<ul>
+  <li>User interface building: a composition</li>
+  <li>The initializeWidgets method</li>
+  <li>Widget instantiation</li>
+  <li>Defining UI layouts</li>
+  <ul>
+    <li>Having multiple layouts for a widget</li>
+    <li>specifying a layout when reusing a widget</li>
+    <li>The initializePresenter method</li>
+  </ul>
+</ul>
+
+<p>There are three fundamental methods of Spec: initializeWidgets, defaultSpec and initializePresenter, which are each responsible for a different aspect of the user interface building process.<p>
+
+<h2>Layout Constructions</h2>
+
+<ul>
+  <li>Row and column layouts</li>
+  <li>Combining rows and columns</li>
+  <li>Setting row and column size</li>
+  <li>Proportional layout (responsive)</li>
+  <li>layouts without rows or columns</li>
+  <li>Absolute widget positions</li>
+  <li>Relative widget positions</li>
+  <li>Relative with offsets</li>
+</ul>
+
+<p>If your user interface has more than one widget, you will need to use one of these strategies. The book covers two broad layout strategies: row and column-based, and absolute and relative layouts (plus a combination).</p>
+
+<h3>Ideas</h3>
+
+<ul>
+  <li>Find out the advantages and disadvantages of each of these layout strategies (they should be mentioned in the book.</li>
+  <li>What is possible styling-wise. Is the UI as free as CSS?</li>
+</ul>
+
+<h2>Managing Windows</h2>
+
+<ul>
+  <li>Opening a window or a dialog box</li>
+  <li>Modal windows and the closing of windows</li>
+  <li>Window size and decoration</li>
+  <li>Title, icon and about text</li>
+</ul>
+
+<p>Small but important details of the window, it's title, icon and about text.</p>
+
+<h2>Advanced Widgets</h2>
+
+<p>Some interface elements provide more advanced functionalities, like text input widgets, radio buttons and tabs, toolbars and pop-up menus</p>
+
+<ul>
+  <li>Text model</li>
+  <ul>
+    <li>Non-editable text field</li>
+    <li>Remove yello triangle, perform an action at each edit</li>
+    <li>keyboard shortcuts</li>
+    <li>Single-line input field extras</li>
+  </ul>
+  <li>RadioButtonModel</li>
+  <li>TabModel</li>
+  <li>Toolbars and Pop-up Menus</li>
+</ul>
+
+<p>In some examples, author used dynamic spec, discussed in next chapter</p>
+
+<h2>Dynamic Spec</h2>
+
+<p>There are some cases where user interfaces need to be more dynamic.</p>
+
+<ul>
+  <li>A file dialogue can have a preview area for the currently selected file. When the file is text, its content is shown in a text field. When it is an image, the image is shown etc.</li>
+  <li>Visualising collections of data where we cannot determine at development time how data items will be shown.</li>
+  <li>A genealogy application clicking on a parent reveals information on all of the children, each child being presented using a complex, editable widget.</li>
+</ul>
+
+<ul>
+  <li>Dynamically changing an already opened UI</li>
+  <li>Changing the UI layout</li>
+  <li>Replacing a widget with another one</li>
+  <li>Dynamically populating a UI with widgets</li>
+  <li>Implementing the widget for showing array contents</li>
+  <li>Hacking together a UI in the playground - This one caught my interest a lot.</li>
+</ul>
+
+<p>Discussed dynamic features of spec like changing the layout and content on the fly, determining the UIs widget at opening time. Ended with allowing the complete construction of a UI in one big block of code.</p>
+
+<h2>Tips and tricks</h2>
+
+<p>Small interesting features that are useful for building user interfaces with Spec.</p>
+
+<h3>Integrating different UI frameworks</h3>
+
+<ul>
+    <li>Include a Morph in a Spec UI - example given is code that turns CalendarMorph into a plane Spec UI</li>
+    <li>Include a Glamour UI in a Spec UI</li>
+    <li>Make a Spec presentation for the GT Inspector</li>
+</ul>
+
+<h3>Lists, trees and tables</h3>
+
+<ul>
+  <li>A scrollable list of widgets</li>
+  <li>List items do not update automatically</li>
+  <li>Setting the selection in a tree</li>
+  <li>Show a table-like view</li>
+</ul>
+
+<h3>Using the underlying widget library</h3>
+
+<ul>
+  <li>Customising the appearance of the widget</li>
+  <li>Get called at periodic intervals</li>
+</ul>
+
+<h3>Testing the functionality of a Spec Ui</h3>
+
+<p>By programmatically simulating button clicks, without having to open the UI at all.</p>
+
+<p>Best practice is to create an API for testing that exposes the internals that are required to be able to write UI tests.</p>
+
+<h2>Final thoughts</h2>
+
+<p>Question: Does user have to open Pharo, or be familiar with Pharo to use the programs that have been built in it? How can I set up a project on a non-tech person's computer?</p>
+
+<p>Build a rover project that incorporates all of the widgets discussed in this book.</p>
+
+<p>Let rover be moved with keyboard shortcuts</p>
+
+<p>Rover choose your own adventure game, let him explore obects that are on the screen</p>

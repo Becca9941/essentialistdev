@@ -1,0 +1,294 @@
+<p>Writing in progress...</p>
+
+<p>The Mars Rover problem is a classic programming challenge that has been set by many companies who value test-driven development (TDD) and object-oriented approaches to programming.</p>
+
+<p>As someone who is still trying to learn TDD and object-oriented design, I pair programmed with two other experienced developers to help me learn how to do this, with a lot of feedback iterations.</p>
+
+<h2>People who influenced this shared approach</h2>
+
+<p>One of the things I like to do when documenting my process is to credit the people/resources who influenced my thought patterns and approach. When you are exposed to many amazing ideas it can be difficult to know where they came from, especially when those ideas have become a part of your own intuition. Taking a snapshot of them is a good way to let other people know where to go if they want to learn the things I am learning too.</p>
+
+<p><a href="https://twitter.com/consolondon" target="_blank">Marco Consolaro</a> spent an hour pair programming with me remotely. He explained how to approach TDD by testing one behaviour completely before moving on, and using an 'obvious' implementation approach where you write the simplest possible code to pass the test and refactor regularly. We also talked about acceptance testing which is where we test behaviours at the business domain level, in comparison to unit testing which is testing the tiny steps that make this behaviour work internally.</p>
+
+<p>Marco also co-wrote a book that made TDD a lot more accessible for someone like me who was new to it. It's called <a href="https://leanpub.com/agiletechnicalpracticesdistilled" target="_blank">Agile Technical Practices Distilled.</a></p>
+
+<p><a href="https://twitter.com/AndyPalmer" target="_blank">Andy Palmer</a> spent a large amount of time discussing object-oriented and TDD concepts with me. After our talks I would <a href="{{ site.baseurl }}{% post_url 2019-08-12-conversation-about-mars-rover-problem %}">write up my understanding of what we discussed</a>. Afterwards, he would read over it and point out any areas where there were misunderstandings and also where I had understood things well. This happened over several iterations. He also built the Mars Rover with me the first time through so any particularly good design practice here is credited to him. He is fantabulous.</p>
+
+<p>Another resource that really influenced me was <a href="https://online-training.jbrains.ca/p/wbitdd-01" target="_blank">The World's Best Intro to TDD</a> by <a href="https://twitter.com/jbrains">Joe B. Rainsberger</a> who gave the invaluable advice to learn <a href="{{ site.baseurl }}{% post_url 2019-08-01-committing-automating-tests-and-shipping-pharo-smalltalk-code %}">how to ship a hello world program to version control with tests set up.</a> I learned a lot about Pharo just by spending a solid week learning how to make a simple shippable program that other people could use.</p>
+
+
+<blockquote>
+
+<h2>Mars Rover Problem Statement</h2>
+
+  <p>A squad of robotic rovers are to be landed by NASA on a plateau on Mars.</p>
+
+  <p>This plateau, which is curiously rectangular, must be navigated by the rovers so that their on board cameras can get a complete view of the surrounding terrain to send back to Earth.</p>
+
+  <p>A rover's position is represented by a combination of x and y coordinates and a letter representing one of the four cardinal compass points. The plateau is divided up into a grid to simplify navigation. An example position might be 0, 0, N, which means the rover is in the bottom left corner facing North.</p>
+
+  <p>In order to control a rover, NASA sends a simple string of letters. The possible letters are 'L', 'R' and 'M'.</p>
+
+  <p>'L' and 'R' makes the rover spin 90 degrees left or right respectively, without moving from its current spot. 'M' means move forward one grid point, and maintain the same heading.</p>
+
+  <p>Assume that the square directly North from (x, y) is (x, y+ 1).</p>
+
+  <h3>Input</h3>
+
+  <p>The first line of input is the upper-right coordinates of the plateau, the lower-left coordinates are assumed to be 0,0.</p>
+
+  <p>The rest of the  input is information pertaining to the rovers that have been deployed. Each rover has two lines of input. The first line gives the rover's position, and the second line is a series of instructions telling the rover how to explore the plateau.</p>
+
+  <p>The position is made up of two integers and a letter seperated by spaces, corresponding to the x and y co-ordinates and the rover's orientation.</p>
+
+  <p>Each rover will be finished sequentially, which means that the second rover won't start to move until the first one has finished moving.</p>
+
+  <h3>Output</h3>
+
+  <p>The output for each rover should be it's final coordinates and heading.</p>
+
+  <hr>
+
+  <h4>Test Input:</h4>
+
+  <pre>
+  <code>
+  5 5
+  1 2 N
+  LMLMLMLMM
+  3 3 E
+  MMRMMRMRRM
+  </code>
+  </pre>
+
+  <hr>
+
+  <h4>Expected Output:</h4>
+
+  <pre>
+  <code>
+  1 3 N
+  5 1 E
+  </code>
+  </pre>
+
+  <hr>
+
+</blockquote>
+
+<h2>Working out examples of the problem by hand</h2>
+
+<p>Before writing any code or trying to break down the problem statement into objects, it really helps to get a piece of paper and work out a couple of examples by hand. I'm a visual learner to so this really helps me get 'closer' to the problem and get a real sense of meaning from the text and numbers.</p>
+
+<img src="/assets/img/rover-by-hand.jpg" alt="blue 5 by 5 grid with a purple and orange triangle with a path to their start and end points, workings out shown" class="medium-img">
+
+<p>The first time I drew out the problem above, I thought the rovers were inside the grid squares instead of at the intersections. Solving problems by hand like this will let you catch errors that would otherwise cause problems if you encountered them for the first time in the build itself.</p>
+
+<h2>Build Process</h2>
+
+<ul>
+  <li>
+    <h3>Create a package called 'Mars-Rover-Tests'</h3>
+    <p>To create a package in Pharo, right-click onywhere on the packages pane and select '+ New package'. You will be prompted to name your package. I called mine 'Mars-Rover-Tests' and then clicked 'OK' to finish creating the package. You should now see your package listed in the packages pane.</p>
+  </li>
+  <li>
+    <h3>Create a test class called 'OrientationTest'</h3>
+    <p>Clicking on the 'Mars-Rover-Tests' package will bring up a template for creating a new class. Pharo is a statically typed language with a universal base class that every object inherits from. This universal base class in called 'Object', which means that everything in Pharo is an object.</p>
+    <p>We want our test class to inherit from the 'TestCase' class, so in the class template we will swap out the universal base class that the templates provide as the default our class inherits from, to the 'TestCase' class.</p>
+    <p>Replace the name of the class template to 'OrientationTest', being sure to keep the hash at the start of the class name. All of our test classes will start with the name of the source code equivalent object that we will be testing, and end with the CamelCase word 'Test' so thath Pharo knows to interpret it as a test class.</p>
+    <p>Make sure that the package your test class belongs to contains the name of the package you created earlier, which was 'Mars-Rover-Tests'.</p>
+    <p>Finally, accept your new class by 'saving' it. You should now see the name of your new test class in the classes pane. There should also be a little grey circle to the right of the name to show that it is a test class. Clicking on this little grey circle runs all of the test messages inside of your test class. There will also be little circles next to each of your test messages, which you can click on the run each test individually if you want to. Doing this will also give you more specific error messages (called 'critic text' in Pharo) than a general failing or passing message.</p>
+
+  <pre>
+  <code class="lang-smalltalk">
+    TestCase subclass: #OrientationTest
+      instanceVariableNames: ''
+      classVariableNames: ''
+      package: 'Mars-Rover-Tests'
+  </code>
+  </pre>
+
+  </li>
+
+  <li>
+    <h3>Create a 'testNorth' message inside of our OrientationTest class.</h3>
+    <p>We can create a new message (method) in Pharo by clicking on our class name ('OrientationTest') and then by clicking on the 'instance side' tab just above the editor toolbar, or the 'instance side' text in the messages panel to the right of the class panel containing your class name.</p>
+    <p>We are going to replace the message template text with the following code, which I will explain line by line.</p>
+
+  <pre>
+  <code class="lang-smalltalk">
+    testNorth
+      | north |
+      north := North new .
+
+      self assert: north left class equals: West .
+  </code>
+  </pre>
+
+  <h4>Naming our message</h4>
+
+  <p>The first thing we do is name our message 'testNorth'. In Pharo, we prefix all of our test message names with the lowercase word 'test' so that it knows to interpret the message as a test. This is followed by the name of the thing we are testing. In this case we are testing an object called North, which is one of our four orientation objects (they do not inherit from an orientation class, we are just calling them orientation objects at the domain language level, because that is what they represent.</p>
+
+  <h4>Assigning instance of our North object to a variable</h4>
+
+  <p>We then create a variable called 'north', that we then assign an instance of our North class to. In Pharo, we assign variables with the ':=' expression. We create an instance of a class by writing the CamelCase class name followed by the 'new' reserved keyword (there are only six reserved words in Pharo).</p>
+
+  <h4>TMO Pharo fullstops</h4>
+
+  <p>In Pharo, we end statements with a period, so that they look like english sentences. Andy and I discussed whether or not to put a space before the period or not. I voted not initially because that looks more like english, but his argument that seperating it from what comes before it makes more sense in the context of Pharo, we had a whole conversation about this, I'll share it here.</p>
+
+  <p class="note">In pharo, we can have a messages like ',' which represents string cocatenation and ';' which represents a cascade of multiple messages. Both of these punctuations are used as stand-alone messages, with spaces on either side of them. Andy also said that in JavaScript, he wouldn't put a space before a semi-colon because it represents the end of the statement, whereas in Pharo the '.' is a message that represents 'go', where it's saying okay now this line is finished you (the next line) are good to go. I think it represents the end of the statement rather than go, but agree that it represents a seperate message worth seperating with a space. Yeah, we had a whole conversation about the semantics of a full-stop/full-start, and it was awesome.</p>
+
+  <h4>Test assertion</h4>
+
+  <p>The test assertion here is made up of a reciever and a keyword message. The reciever is what we are passing our message to. The reciever is always found on the left hand side. In this case, our reciever is the 'self' keyword. In Pharo, the reciever refers to the object that our message is contained within. In this case, our test message is contained within the OrientationTest class which inherits from the TestCase class.</p>
+  <p>writing in progress...</p>
+
+  <h3>Create a package called 'Mars-Rover'</h3>
+  <h3>Create a class called North</h3>
+  <h3>Create a message called 'left' that returns a 'West' object.</h3>
+
+  <pre>
+  <code class="lang-smalltalk">
+    left
+      ^ West new .
+  </code>
+  </pre>
+
+  <h3>Create a class called 'West'</h3>
+  <h3>Commit your passing test</h3>
+
+  <h4>Create a repository on 'Github' called 'mars-rover'</h4>
+  <h4>Copy the HTTP or SSH clone link to your repository</h4>
+  <h4>Add Github repository to your Pharo project using Pharo</h4>
+  <p> Click the green '+' button, and then select the 'Clone from github.com' option. Enter your Github username and the name of your github repository (mars-rover). Select the clone protocol that you are using (HTTP or SSH) then click 'Ok'. This will clone your repository and add it to the list of repositories associated with your project.</p>
+  <p>Your newly added repository name will be green with a little asterisk next to it, which will indicate that there are uncommitted changes in your repository. In this case, we have made no commits at all and the status message next to our repository name says 'No Project Found'. We will have to add the packages we want to track in our repository manually. This is so that Pharo doesn't automatically add all of the packages avaiable in the packages pane in you project, of which there are many.</p>
+  <h4>Commit passing orientation test and code</h4>
+  <p>As this is the first commit we are making to this repository, Pharo doesn't know where to find your repository even though we have given it a remote clone link. There needs to be a meta-data file in our repository so that Pharo knows where to send it. Pharo can generate one of these automatically for you. All you need to do is click on the 'repair' option in the toolbar and then select 'Create project meta-data' from that list. Then you can click on the 'Ok' button to finish this process, which will enable to to make commits to your repository.</p>
+  <p>To add your packages, double click on your repository name, this will bring up a window called 'Working copy of mars-rover'. Click on the 'Add package option in the toolbar. Check the 'Mars-Rover' and 'Mars-Rover-Tests' packages to indicate that you want to add them to your repository. Then click the 'Add' button.</p>
+  <p>Once you have added your packages, they will be green with a little asterisk next to them. They will also have status text that says 'Uncommited changes'.</p>
+  <p>To commit your packages you can click the 'commit' option in the toolbar (which wasn't avaible before we repaired our repository). I liked to uncheck all of the options except '.project' and '.properties' to start with. The commit message I added for those to was 'Pharo now knows where to find the remote repository'. Then I clicked the 'Commit' button. I made a further two commits' one for each of the packages I added with messages explaining why they had been created.</p>
+  <p>For the Mars-Rover-Tests package, my commit message was 'Testing that rover can turn left from the north position to the west position'. For the Mars-Rover package, my commit was 'Rover can turn left from North to face West'</p>
+  <h4>Push your code</h4>
+  <p>To push your code, all you need to do is click the 'Push' option in the toolbar. If there are committed changes that have not been pushed yet, there will be a red circle next to this option with a white asterisk inside it. Once you click on this, a window will pop up showing you the commits you are about to push, this is so that you can double check that everything is okay before clicking the final 'Push' button.</p>
+  <p>If you go back to your list of repositories after pushing your code, the status bar should now say 'Up to date', and your remote repository should contain your pushed code.</p>
+
+  <p>Every time we pass a failing test, refactor or just feel like committing, the above process is what we will follow to commit our code to version control.</p>
+
+  <h3>Create a new test called 'testEast'</h3>
+
+  <p>The behaviour we are currently testing is our Rover's ability to turn left. At the moment, he can only turn left once, from the North position to East. We have another three degrees of freedom to test and code before we can say that this behaviour is 'complete'<p>
+
+  <p>As we are using a new class for each of our orientation positions, we are going to need a seperate test for each of them. The next failing test we are going to write will be called 'testEast', and it will do exactly the same thing as 'testNorth' execpt instead of facing West when it turns left, East will be facing 'North'.</p>
+
+  <p>We can pass this test in a similar way that we passed our testNorth, making sure to commit each passing test. Here is the code for each of the remaining orientation tests as well as the code that makes them pass.</p>
+
+  <h4>testEast</h4>
+
+  <pre>
+  <code class="lang-smalltalk">
+    testEast
+      | east |
+      east := East new .
+
+      self assert: east left class equals: North .
+  </code>
+  </pre>
+
+  <h4>East left</h4>
+
+  <pre>
+  <code class="lang-smalltalk">
+    left
+      ^ North new .
+  </code>
+  </pre>
+
+  <p>Commit message: Rover can turn left from East to North</p>
+
+  <h4>testSouth</h4>
+
+  <pre>
+  <code class="lang-smalltalk">
+    testSouth
+      | south |
+      south := South new .
+
+      self assert: south left class equals: East .
+  </code>
+  </pre>
+
+  <h4>South left</h4>
+
+  <pre>
+  <code class="lang-smalltalk">
+    left
+      ^ West new .
+  </code>
+  </pre>
+
+  <p>Commit message: Rover can turn left from South to West</p>
+
+  <h3>testWest</h3>
+
+  <pre>
+  <code class="lang-smalltalk">
+    testWest
+      | west |
+      west := West new .
+
+      self assert: west left class equals: South .
+  </code>
+  </pre>
+
+  <h4>West left</h4>
+
+  <pre>
+  <code class="lang-smalltalk">
+    left
+      ^ South new .
+  </code>
+  </pre>
+
+  <p>Commit message: Rover can turn left from West to South</p>
+
+  <h2>Behaviour: Rover can turn 90 degrees to the right in a full circle.</h2>
+
+  <p>Now our Rover can happily turn around in a full circle, but now he is starting to feel limited because he can only turn left. He wonders what it would be like to be ambidextrous, so we're going to give him a new behaviour, the ability to turn right.</p>
+
+  <p>We are going to start by writing a new failing test. This time, we are not going to create a new test message, we are just going to add a new test assertion to each of our orientation test messages. In the testNorth message, we will add an assertion that tests our rover going in the right direction. This will look very similar to our left test assertion. The updated message code will look like this:</p>
+
+  <pre>
+  <code class="lang-smalltalk">
+    testNorth
+      | north |
+      north := North new .
+
+      self assert: north left class equals: West .
+      self assert: north right class equals: East .
+  </code>
+  </pre>
+
+  <p>We will pass this code by creating a 'right' message in our North orientation class which is very similar to the 'left' message we implemented for it earlier. It looks like this:</p>
+
+  <pre>
+  <code class="lang-smalltalk">
+    right
+      ^ East new .
+  </code>
+  </pre>
+
+  <p>After passing this test we can commit it to version control. Again, there is nothing to refactor here, so we can test-drive and complete the remaining degrees of freedom for the right turns. The commit messages for each of them are as follows:</p>
+
+  <ul>
+    <li>Rover can now turn right from North to East</li>
+    <li>Rover can now turn right from East to South</li>
+    <li>Rover can now turn right from South to West</li>
+    <li>Rover can now turn right from West to South</li>
+  </ul>
+
+  <p>Our Rover can now happily turn around in a circle in both directions. Being ambidextrous is pretty cool! He does wish he could get a little bit closer to the magical things he can see in the distance though...</p>
+
+  <h2>Behaviour: Move forward</h2>
+
+  <p>The next behaviour we are going to test-drive is our rovers ability to move forward. </p>

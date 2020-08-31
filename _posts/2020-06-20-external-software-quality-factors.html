@@ -1,0 +1,90 @@
+---
+layout: post
+---
+
+<p>Notes from <a href="https://books.google.com.au/books/about/Object_oriented_software_construction.html?id=kn0xNyridvkC" target="_blank">Object-Oriented Software Construction by Bertrand Meyer</a></p>
+
+<h2>External Quality factors</h2>
+
+<h3>Correctness</h3>
+
+<p>Correctness is the ability of software projects to perform their exact task, as defined by their specification. If a system doesn't do what it's supposed to do, it doesn't matter if it's fast or looks amazing.</p>
+
+<p>A serious software system touches on so many areas that it's impossible to guarantee its correctness by dealing with all components and properties on a single level. Instead, a layered approach is necessary, where each layer relies on a lower layer.</p>
+
+<p>Methods for ensuring correctness will usually be conditional, where we only worry about guaranteeing that each layer is correct on the assumption that the lower levels are correct. You can't usefully check that a program in a high-level language X is correct unless you are able to assume that the compiler on hand implements X correctly. This doesn't mean you trust the compiler blindly, but that you separate the two components of the problem: Compiler correctness and the correctness of your program relative to the language's semantics.</p>
+
+<h3>Robustness</h3>
+
+<p>Robustness is the ability of software systems to react appropriately to abnormal conditions. Robustness complements correctness in that correctness addresses the behaviour of a system in cases covered by its specification; robustness characterizez what happens outside of that specification.</p>
+
+<p>There will always be cases that the specification does not explicitly address. The role of the robustness requirement is to make sure that if such cases do arise, the system does not cause catastrophic events; it should produce appropriate error messages, terminate its execution cleanly, or enter a so-called "graceful degradation" mode.</p>
+
+<h3>Extendability</h3>
+
+<p>Extendability is the ease of adapting software products to changes of specification. Software is supposed to be soft.</p>
+
+<p>The problem of extendibility is one of scale. For small programs, change is usually not a difficult issue; but as software grows bigger, it becomes harder and harder to adapt.</p>
+
+<p>Change is forefront in software development: Change of requirements, of our understanding of the requirements, of algorithms, of data representation, of implementation techniques. Support for change is a basic goal of object-oriented programming.</p>
+
+<p>Two principles are essential for improving extendability:</p>
+
+<ul>
+  <li>Design simplicity: A simple architecture will always be easier to adapt to changes than a complex one.</li>
+  <li>Decentralization: The more autonomous the modules, the higher the liklihood that a simple change will affect just one module, or a small number of modules, rather than triggering off a chain reaction of changes over the whole system.</li>
+</ul>
+
+<h3>Reusability</h3>
+
+<p>Reusability is the ability of software elements to serve for the construction of many different applications.</p>
+
+<p>Software systems often follow similar patterns; it should be possible to exploit this commonality and avoid reinventing solutions to problems that have been encountered before. By capturing such a pattern, a reusable software element will be applicable to many different developments.</p>
+
+<h3>Compatibility</h3>
+
+<p>Compatibility is the ease of combining software elements with others. Software elements need to interact with each other. But they often have trouble interacting because they make conflicting assumptions about the rest of the world.</p>
+
+<h3>Efficiency</h3>
+
+<p>Efficiency is the ability of a software system to place as few demands as possible on hardware resources, such as processor time, space occupied in internal and external memories, bandwidth used in communication devices.</p>
+
+<h3>Portabilty</h3>
+
+<p>Portability is the ease of transferring software products to various hardware and software environments.</p>
+
+<h3>Ease of use</h3>
+
+<p>Ease of use is te ease with which people of various backgrounds and qualifications can learn to use software products and apply them to solve problem. It also covers the ease of installation, operation and monitoring.</p>
+
+<p>This requirement poses one of the major challenges to software designers: How to provide detailed guidance and explanations to novice users, without bothering expert users who just want to get right down to business. A well-designed system, built accroding to a clear, well thought-out structure, will tend to be easier to learn and use than a messy one.</p>
+
+<p>Successful systems always outgrow their initial audience. A system designed for a specific group will rely on assumptions that simply do not hold for a larger audience.</p>
+
+<h3>Functionality</h3>
+
+<p>Functionality is the extend of possibilities provided by a system.</p>
+
+<p>A good software product is based on a small number of powerful ideas: even if it has many specialized features, they should all be explainable as consequences of these basic concepts. The "Grand plan" must be visible, and everything should have its place in it.</p>
+
+<p>Never compromise on reliability, extendibility and the like: Refuse to proceed with new features until you are happy with the features you have.</p>
+
+<h3>Timeliness</h3>
+
+<p>Timeliness is the ability of a software system to be released when or before its users want it.</p>
+
+<h3>Verifiability</h3>
+
+<p>Verifiability is the ease of preparing acceptance procedures, especially test data, and procedures for detecting failures and tracing them to errors during the validation and operation phases.</p>
+
+<h3>Integrity</h3>
+
+<p>Integrity is the ability of software systems to protect their various components (program, data) agaist unauthorized access and modification.</p>
+
+<h3>Repairability</h3>
+
+<p>Repairability is the ability to facilitate the repair of defects.</p>
+
+<h3>Economy</h3>
+
+<p>Economy is the companion of timliness, the ability of a system to be completed on or below its assigned budget.</p>

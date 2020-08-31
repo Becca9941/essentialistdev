@@ -1,0 +1,29 @@
+---
+layout: post
+title: Behind the scenes process for setting up a living style guide
+---
+
+<p>At work, I am setting up a living styleguide, which will contain examples of style elements and components, code snippets, principles, explanations etc. The reason is to ensure consistency and get our style code as clean, maintainable, accessible and collaborative(able?) as possible.</p>
+
+<p>There are two styleguides I particularly love the look of:</p>
+
+<ul>
+  <li><a href="http://ux.mailchimp.com/patterns/color" target="_blank">Mailchimp</a></li>
+  <li><a href="https://rizzo.lonelyplanet.com/styleguide/design-elements/colours" target="_blank">Lonely Planet</a></li>
+</ul>
+
+<p>My elements and components will follow Google's <a href="https://material.io/" target="_blank">Material Design Guidelines.</a> I absolutely love the minimal, clean and clear vibes that following these principles allows us to achieve.</p>
+
+<p>I started by making a rough sketch of what I'm thinking this styleguide will look like, inspired by the two style guides listed above.</p>
+
+<img src="/assets/img/rough-living-styleguide" alt="rough living styleguide sketch">
+
+<h2>Setting up base page for Typography styles</h2>
+
+<p>I'm not going to build this out right away, it's just an inspiration drawing. The first thing I'm going to do is set up a pre git commit hook which runs Pa11y accessibility tests before you commit new code. If any of the tests fail, the commit will also fail. Accessibility is a key driving principle.</p>
+
+<p>I'll add a rectangle at the top of the page (nav element) to represent the navigation, it won't have any elements in it. Then I'll add another rectangle below that to represent the tab bar, again with no elements in it. I'll add a sidebar with the title 'visual elements' and a 'Typography' tab. This is because the text is the most important visual element on our pages. So it's the most important style category to focus on first.</p>
+
+<p>Before adding our Typography styles, this is what our living styleguide looks like. It's bare, basic, but is enough to start working on the most important thing, typography styles.</p>
+
+<p>In writing...</p>

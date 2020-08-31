@@ -1,0 +1,32 @@
+---
+layout: post
+title: Creating Packages, Classes and testing (Smalltalk)
+---
+
+<p>To learn how to use the developer environment tools for <a href="http://www.cincomsmalltalk.com/main/products/visualworks/" target="_blank">Cincom Visualworks 9.0</a>, I'll be going through each of the <a href="http://www.cincomsmalltalk.com/main/community/resources/smalltalk-product-tutorials/?utm_campaign=CST_US_FY15_VW%20Download%2FNurture&utm_medium=email&_hsmi=15335373&_hsenc=p2ANqtz-8UsRBL-tGBfbdGAzmZXpdHNUg6BHbOH4O0DXwBag2CUro-I3hbB0ss9CVGosomOc-4xsTLXaX2jNBvFNPiMHAquNlSYA&utm_content=15335373&utm_source=hs_automation" target="_blank">Cincom Smalltalk Product Tutorials</a> and keeping notes along the way.</p>
+
+<p>I'm currently on the third tutorial, which shows us how to create packages, create c/asses and test your Smalltalk code. Here are my notes for <a href="https://www.youtube.com/watch?v=5QJ5GkVWA-I&feature=youtu.be" target="_blank">the video tutorial</a>.</p>
+
+<h2>Notes</h2>
+
+<ul>
+  <li>Before we create a new class, we want to first create a package to keep it in. You can do this by clicking on the 'package' button in the toolbar and entering the name of your new package (PascalCase).</li>
+  <li>To create a new class, we click on the package we want our class to belong to, right click on the classes pane for that packafe, and then we pick the 'New Class' option.</li>
+  <li>Once we have clicked on the 'New Class' option, a little menu will pop-up showing the Package the class belongs to, the Namespace (Smalltalk), the name of the class (which you enter), it's superclass if it has one (Object by default), instance variables (which you add as a space seperated list) and whether or not you want to create methods for the class (Accessors, initializer and/or Subclass responsibilities).</li>
+  <li>Once you create a class for the first time, there will be a warning next to the comment tab above the class code window, to indicate that the class hasn't yet been commented to explain what it is, does, and how to use it.</li>
+</ul>
+
+<h3>Example Class</h3>
+
+<pre>
+<code>
+Smalltalk defineClass: #Person
+    superclass: #{Core.Object}
+    indexedType: #none
+    private: false
+    instanceVariableNames: 'name address'
+    classInstanceVariableNames: ''
+    imports: ''
+    category: ''
+</code>
+</pre>

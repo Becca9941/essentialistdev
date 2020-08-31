@@ -1,0 +1,111 @@
+---
+layout: post
+---
+
+<p>Smalltalk books are a great way to learn Object-oriented programming, because it helps rewire how you think about objects. Currently recapping my object-oriented programming knowledege with the help of <a href="http://stephane.ducasse.free.fr/FreeBooks/" target="_blank">Smalltalk An Introduction to Application Development using VisualWorks</a>.</p>
+
+<h2>Language Basics</h2>
+
+<h3>Literals</h3>
+
+<ul>
+  <li>Numbers: 8, 12.7, -0.0007, 8r177, 16r5E, 2r10001, 2.23e5, 2.23f</li>
+  <li>Characters: $D, $+, $9, $$, $x</li>
+  <li>Strings: 'test string' 'string with "embedded single quote'</li>
+  <li>Symbols: #initialize #W80, #temp, #'3x'</li>
+  <li>Literal Arrays: #(40 41 42), #((1 '2') ('first' #second), #(1 'one' (#5 'five'))</li>
+  <li>Byte Arrays: #[1 2 3 0], #[16rFF 0 2r111 2e2]</li>
+  <li>Variables: someObject, Integer, Smalltalk, temp3</li>
+  <li>Pseudo-variables (object that can't be changed): nil, true, false</li>
+  <li>Messages: &lt;receiver&gt;&lt;unary, binary or keyword message&gt;</li>
+  <li>Unary Messages: 3 negated, 100 factorial, Window new, anArray size, theta sin, 4 even</li>
+  <li>Binary Messages: +, =, & (logical and), &lt;=, , (string cocat), -, &lt;, &gt;=, | (logical or), /, &gt;, // (integer division), *, ~=</li>
+  <li>Binary message examples: 2 + 3, true & false, 3 * 4, 100 // 7, index -1</li>
+  <li>Keyword messages: anArray copyFrom: 1 to: 3, index max: limit, anArray at: first put: 'aardvark'</li>
+</ul>
+
+<h3>Parsing Rules</h3>
+
+<p>The order of evaluation in a Smalltalk statement is:</p>
+
+<ol>
+  <li>Unary messages left to right</li>
+  <li>Binary messages left to right</li>
+  <li>Keyword messages left to right</li>
+</ol>
+
+<p>Round brackets can be used to alter the order of precedence: a + (b*2), (anArray at: 14) even, frame scale: (factor max: 5)</p>
+
+<h3>Assignments</h3>
+
+<p>The assignment expression can be used to assign an object to a variabel. it looks like:</p>
+
+<code>&lt;variable&gt;:=&lt;message send&gt;</code>
+
+<p>Some more examples:</p>
+
+<pre>
+<code>
+newIndex := 1
+this := that
+someString := 'Part Two'
+anArray := #(1 2 3 4 5)
+</code>
+</pre>
+
+<p>Assignment expressions return values, so several assignments can be made together:</p>
+
+<pre>
+<code>
+this := that := theOther
+stop := end := 0
+</code>
+</pre>
+
+<h3>Returning</h3>
+
+<p>When it has finished evaluating, every Smalltalk method returns an object to the sender of the message. If no object is specified, the receiver itself is returned.</p>
+
+<p>If some other object should be returned, the '^' symbol is used to return the object and terminate the evaluation of the current method (though it need not necessarily be at the end of the message sequence). Any object can be returned this way.</p>
+
+<h3>Blocks</h3>
+
+<p>A block represents a deferred sequence of messages. A block is represented by a sequence of expressions (seperated by full stops), enclosed by square brackets:</p>
+
+<pre>
+<code>
+aBlock := [index + 2]
+aBlock := [anArray at: newIndex put: 2]
+</code>
+</pre>
+
+<p>The expressions in a block are evaluated when the block receives the message value:</p>
+
+<code>aBlock value</code>
+
+<p>Blocks are used to implement control structures:</p>
+
+<pre>
+<code>
+aNumber even
+  ifTrue: [aString := 'even']
+  ifFalse: [aString := 'odd']
+
+[index &gt; 0]
+  whileTrue: [index := index 1]
+</code>
+</pre>
+
+<h3>Variables part 2</h3>
+
+<p>Instance variables are only available to the specific object in which they are contained. They're simply names for pointers to other objects and always begin life as nil. Each instance of a class keeps its own internal copy of each instance variable.</p>
+
+<p>Other types of variables:</p>
+
+<ul>
+  <li>Temporary: exist only for the duration of some activity, like the evaluation of a method.</li>
+  <li>Class Variables: are shared by all instances of a single class.</li>
+  <li>Global variables: are shared by all instances of all classes (i.e. all objects). Try not to use these except for experimentation.</li>
+  <li>Pool Variables: are shared by all instances of some classes, and are a way of creating common storage between object classes. These kinds of variables are rarely used.</li>
+  <li>Comments: Text that is only for documentation purposes are enclosed in "double quotes".</li>
+</ul>

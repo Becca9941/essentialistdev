@@ -1,0 +1,120 @@
+---
+layout: post
+title: SQL constraints, views and transactions
+---
+<p>Notes based on <a href="https://www.oreilly.com/library/view/head-first-sql/9780596526849/" target="_blank">Head First SQL</a></p>
+
+<h3>Check constraints</h3>
+
+<p>A CHECK constraint restricts what values you can insert into a column. It uses the same conditionals as a WHERE clause. Constraints are added when we create a table. Some of the constraints you've already seen include NOT NULL, PRIMARY KEY, FOREIGN KEY and UNIQUE.</p>
+
+<p>There is another column constraint called CHECK.</p>
+
+<pre>
+<code>
+CREATE TABLE piggy_bank
+(
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  coin CHAR(1) CHECK (coin IN ('P', 'N', 'D', 'Q'))
+)
+</code>
+</pre>
+
+<p>In the query above, we are restricting the values that we can enter into our piggy bank to 'P' for pennies, 'N' for nickles, 'D' for dimes and 'Q' to stand for quarters.</p>
+
+<p>If you forget to add constraints, you can use an ALTER statement to add them in later:</p>
+
+<pre>
+<code>
+ALTER TABLE my_contacts
+ADD CONSTRAINT CHECK gender IN ('M', 'F');
+</code>
+</pre>
+
+<p>You can use all the conditions AND, OR, IN, NOT, BETWEEN and others just like you can when you use WHERE clauses.</p>
+
+<h2>Views</h2>
+
+<p>Views are a way for us to save queries that we use regularly inside of our database. We could save them into a text file and copy and past them, but these can be deleted or overwritten accidentally.</p>
+
+<p>A view is basically a table that only exists when you use the view in a query. It's considered a virtual table because it acts like a tabel, and the same operations that can be performed on a table that can be performed on a view.</p>
+
+<p>However, the virtual table doesn't stay in the database. It gets created when we use the view ant then deleted. The advantage of this is that each time new rows are inserted into the database, when you use the view then it will show you all of the new information.</p>
+
+<p>To create a view, we can add a CREATE VIEW statement to our query.</p>
+
+<pre>
+<code>
+CREATE VIEW web_designers AS
+SELECT mc.first_name, mc.last_name, mc.phone, mc.email
+FROM my_contacts mc
+NATURAL JOIN job_desired jd
+WHERE jd.title = 'Web Designer';
+</code>
+</pre>
+
+<p>To see your views, we can treat it as though it was a table and see it's results.</p>
+
+<code>SELECT * FROM web_designers;</code>
+
+<p>This query is acting like a subquery, we are actually saying 'select everything from the subquery that returns the first name, last name, phone, and email of all the people from my_contacts who are looking for a job as a web designer.</p>
+
+<h3>Benefits of views</h3>
+
+<ul>
+  <li>You can make changes to the structure of your tables and create views that mimic what your table structure used to look like. This is good for applications which depended on the original structure of your data and is not easily able to accomodate new structural changes.</li>
+  <li>Views hide the complexity of joins and subqueries. <code>SELECT * FROM web_designers</code> is easier to understand that the underlying query which makes it possible to retreive this data.</li>
+  <li>You can also create views that hide information that isn't needed by the user. For example, you can create a view to indicate that someone has a credit/debit card on file without revealing the details of that card. You can allow people to see just the information they need, while keeping sensitive data hidden.</li>
+</ul>
+
+<p>When you are finished with your view, you can delete it with the following DROP command: <code>DROP VIEW web_designers;</code>
+
+<h2>Transactions</h2>
+
+<p>Imagine you are at an ATM and you want to transfer $1000 to your savings account. The database deletes the value from your checking account table, and just as it's about to insert your money into the savings table, the power cuts out. When you turn it on again, it has forgotten all about the transaction. It deleted your money, and you can't get it back.</p>
+
+<p>A different scenario. Imagine you share a bank account with someone. You are both on a night out, and there is $400 in the account. At exactly the same time, you withdraw $350. The database first checks to see if that amount is available to be withdrawn. As you are both taking it out at the same time, in both cases it says there is enough money. Then it gives you both $350 dollars each. After the transactions are completed, the account is now overdrawn by $300. Not good.</p>
+
+<p>SQL transactions are a way around this problem. During a transaction, if ALL the steps can't be completed without interference, then NONE of them should be completed.</p>
+
+<h3>ACID test</h3>
+
+<p>There are four characteristics that have to be true before we can call a set of SQL statements a transaction:</p>
+
+<ul>
+  <li>Atomicity: All of the pieces of the transaction must be completed, or none of them will be completed.</li>
+  <li>Consistency: A complete transaction leaves the database in a consistent state at the end of the transaction. Nothing goes missing.</li>
+  <li>Isolation: Every transaction has a consistent view of the database regardless of other transactions taking place at the same time. If two transactions are happening at the same time, there should be some kind of a 'transaction in progress' message.</li>
+  <li>Durability: After the transaction, the database needs to save the data correctly and protect it from power outages or other threats. This is generally handled through records of transactions being saved to a different location than the main database.</li>
+</ul>
+
+<h3>Transaction statements in SQL</h3>
+
+<ul>
+  <li>START TRANSACTION: keeps track of all the SQL commands that follow until you enter either a COMMIT or a ROLLBACK.</li>
+  <li>COMMIT: makes the statements permanent when you are happy with them.</li>
+  <li>ROLLBACK: takes you right back to before you started the transaction. It reverses everything to the way it was before you typed START TRANSACTION if something isn't quite right.</li>
+</ul>
+
+<p>It's best to save transactions for when you really need to be able to undo what you're doing to avoid wasting space and making your database have to work harder than necessary to keep track of what you have done.</p>
+
+<p>Before you can use a transaction with MySQL, you need to use the correct storage engine, which is a behind the scenes structure that stores all your database data and structures. Some allow transactions, some do not.</p>
+
+<p>When you type in <code>SHOW CREATE TABLE table_name;</code>, you will be able to see the type of engine you are using. It will look something like this: <code>ENGINE=MyISAM DEFAULT CHARSET=latin1</code>. You need to make sure that your storage engine is either BDB or InnoDB, which are the two choices that support transactions.</p>
+
+<p>To change your engine, you can use the following syntax:</p>
+
+<code>ALTER TABLE your_table TYPE = InnoDB;</code>
+
+<p>Here is an example of a transaction in practice:</p>
+
+<pre>
+<code>
+START TRANSACTION;
+UPDATE piggy_bank set coin = "Q' where coin = "N"
+AND coin_year &gt; 1950;
+ROLLBACK;
+</code>
+</pre>
+
+

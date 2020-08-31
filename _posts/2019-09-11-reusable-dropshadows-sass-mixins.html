@@ -1,0 +1,152 @@
+---
+layout: post
+title: reusable dropshadows in sass using mixins
+---
+
+<p>Drop-shadows are a great way to give elements a sense of elevation. The bigger the drop-shadow is, the closer the element appears to be to the user. The smaller the drop-shadow, the closer the element appears to be to the page. Elevation is calculated along the z-axis (like x and y axis).</p>
+
+<p>You can create drop-shadows in css by using the drop-shadow property like in the example below:</p>
+
+<code>drop-shadow: 0 4px 5px 0 rgba(0,0,0,.2);</code>
+
+<p>In the example above, the drop-shadow values represent, in order, an offset-x value, and offset-y value, a blur radius and a spred radius, as well as a color (black with an opacity of 20% in this example).</p>
+
+<ul>
+  <li>Offset-x value is 0, which specifies how far to the left or right of the element the drop-shadow appears. In this case, the drop shadow is directly behind the element along the x-axis.</li>
+  <li>offset-y value is 4px, which specifies how far to the top or bottom of the element the drop-shadow appears. In this case, the drop shadow starts 4 pixels above the element (which means that the bottom edge of the drop shadow is 4px above the bottom edge of the element.</li>
+  <li>The blur radius softens the edges of the drop-shadow by making them lighter, whilst also extending them out. Kind of like a radial gradient that is darker on the inside and lighter on the outside. In this case, the value is 5px, which is saying soften the edges of the drop-shadow as well as extending the edges out by 5 pixels. The bigger the blur, the lighter the drop-shadow appears as the edges turn lighter and bleed into the middle.</li><li>The spread radius increases the size of the drop-shadow. It starts off being the same size as the element it is being applied to. In this case we have kept the size the same. Positive values increase the size whilst negative values decrease the size.</li>
+  <li>The color property specifies the color of the drop shadow. In this case, I chose black at a 20% opacity to illustrate.</li>
+</ul>
+
+<h2>Level up your drop-shadow game</h2>
+
+<p>When most people apply drop-shadows to web elements, they only apply one drop-shadow. This is because when you add a more than one drop-shadow property, the last one overwrites the previous properties because of how the CSS cascade works.</p>
+
+<p>However, if you use the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter" target="_blank">filter</a> property in css, you can apply multiple drop-shadow statements one after the other, and they will all be applied.</p>
+
+<p>Alternatively, you can use SASS mixins to apply multiple drop-shadow statements, which is my preferred method.</p>
+
+<h3>Why multiple drop-shadows are important</h3>
+
+<p>Look around you and pick any object. Look at the shadows it casts. On first appearance, it might look like it only has one shadow. If you look closely, you will notice multiple layers of shadows.</p>
+
+<p>For example, there is an empty plastic bottle sitting on my desk. There is a darker shadow that is cast very close to the bottle. The edges are pretty solid and follow the shape of the bottle. Then there is a softer shadow that overlays (or underlays) that. The shape is less solid. If the bottle wasn't there, I wouldn't be able to guess what it belongs to. There are also a lot of very light shadows, some of which are cast in opposite directions that are thrown from both the same an different light sources.</p>
+
+<p>If the bottle only had one drop-shadow with no layers, it would look unnatural. So only having one drop-shadow for your element is also unnatural. That being said, it isn't possible to mimic the shadows of the real world closely, so we need to find a balance.</p>
+
+<h3>Creating more natural drop-shadows for the web</h3>
+
+<p>When creating drop-shadows for our web elements, we want them to look natural even thought it isn't possible to mimic the complexity of shadows in the real world. To acheive this, we can simplify things by using three layers of drop-shadows.</p>
+
+<ul>
+  <li>Layer 1: A darker shadow that appears close to our element, a small blur radius.</li>
+  <li>Layer 2: A slightly lighter shadow with a much bigger blur radius.</li>
+  <li>Layer 3: A slightly lighter shadow with a slightly smaller blur radius.</li>
+</ul>
+
+<h2>Elevation</h2>
+
+<p>Another important consideration when making drop-shadows is elevation. The closer an element is to the page, the smaller its three drop-shadows are. The closer an element is to the viewer (and not the page), the bigger its three drop-shadows are.</p>
+
+<p>I prefer to have ten stages of elevation to choose from, ranging from smallest elevation to biggest elevation. While I may not use all of these levels in one project, I may use them all across all of my projects. Therefore, there is a huge amount of benefit in creating a bunch of reusable box-shadow styles.</p>
+
+<h2>10 reusable box-shadow styles</h2>
+
+<p>If you don't feel like spending half a day creating your own specific drop-down shadow styles, you can use the ones that I created.</p>
+
+<p>The following 10 styles are not original. They are based on Google's <a href="https://material.io/design/" target="_blank">material design guidelines.</a> In fact, I downloaded their material design sketch styleguide and built a responsive web-version of it.</p>
+
+<p>I have written out these styles as sass mixins. To convert them to CSS, just add each of the box-shadow properties one after the other using the 'filter' property.</p>
+
+<pre>
+<code>
+@mixin elevation-1 {
+  box-shadow: 0 1px 1px 0 rgba(black, .14);
+  box-shadow: 0 2px 1px -1px rgba(black, .12);
+  box-shadow: 0 1px 3px 0 rgba(black, .2);
+}
+@mixin elevation-2 {
+  box-shadow: 0 2px 2px 0 rgba(black, .14);
+  box-shadow: 0 3px 1px -2px rgba(black, .12);
+  box-shadow: 0 1px 5px 0 rgba(black, .2);
+}
+@mixin elevation-3 {
+  box-shadow: 0 3px 4px 0 rgba(black, .14);
+  box-shadow: 0 3px 3px -2px rgba(black, .12);
+  box-shadow: 0 1px 8px 0 rgba(black, .2);
+}
+@mixin elevation-4 {
+  box-shadow: 0 4px 5px 0 rgba(black, .14);
+  box-shadow: 0 1px 10px 0 rgba(black, .12);
+  box-shadow: 0 2px 4px -1px rgba(black, .2);
+}
+@mixin elevation-5 {
+  box-shadow: 0 6px 10px 0 rgba(black, .14);
+  box-shadow: 0 1px 18px 0 rgba(black, .12);
+  box-shadow: 0 3px 5px -1px rgba(black, .2);
+}
+
+.elevation-1 { @include elevation-1; }
+.elevation-2 { @include elevation-2; }
+.elevation-3 { @include elevation-3; }
+.elevation-4 { @include elevation-4; }
+</code>
+</pre>
+
+<h2>Identifying patterns</h2>
+
+<p>There are only 5 of the 10 drop-shadows written up above. They are all reusable, but I feel uncomfortable with how much duplication is already here. So I spent a while seeing if there were any patterns to help me rewrite this in a better way</p>
+
+<p>Looking at the first shadow in each of the cases, I can see that the x-offset stays the same at 0. The y-offset value increments by 1 pixel for the first 4 cases, and then by two for the last case. The blur radius increases by 1, then by 2, then by 1, then by 5. The spread stays the same.</p>
+
+<p>The blur radius is the least consistent of these, whilst the y-offset has one jump in pattern. I'll have to look at the last 5 cases to see if the pattern changes here, so will write those up too.</p>
+
+<h3>Drop shadow 1/3</h3>
+
+<p>Starting with the first dropshadow style for all 10 cases<p>
+
+<ul>
+  <li>x-offset: 0,0,0,0,0,0,0,0,0,0</li>
+  <li>y-offset: 1,2,3,4,6,8,9,12,16,24</li>
+  <li>blur:     1,2,4,5,10,10,12,17,24,38</li>
+  <li>spred:    0,0,0,0,0,1,1,2,2,3</li>
+</ul>
+
+<p>Okay, so the main pattern is that the values increase, but the increments in which they increase are pretty jumpy. Will make some time to think about how to improve this down the line, but for now the drop shadows are working and reusable.</p>
+
+<p>The remaining 5 drop-shadow cases are:</p>
+
+<pre>
+<code>
+@mixin elevation-5 {
+  box-shadow: 0 6px 10px 0 rgba(black, .14);
+  box-shadow: 0 1px 18px 0 rgba(black, .12);
+  box-shadow: 0 3px 5px -1px rgba(black, .2);
+}
+@mixin elevation-6 {
+  box-shadow: 0 8px 10px 1 rgba(black, .14);
+  box-shadow: 0 3px 14px 2px rgba(black, .12);
+  box-shadow: 0 5px 5px -3px rgba(black, .2);
+}
+@mixin elevation-7 {
+  box-shadow: 0 9px 12px 1px rgba(black, .14);
+  box-shadow: 0 3px 16px 2px rgba(black, .12);
+  box-shadow: 0 5px 6px -3px rgba(black, .2);
+}
+@mixin elevation-8 {
+  box-shadow: 0 12px 17px 2px rgba(black, .14);
+  box-shadow: 0 5px 22px 4px rgba(black, .12);
+  box-shadow: 0 7px 8px -4px rgba(black, .2);
+}
+@mixin elevation-9 {
+  box-shadow: 0 16px 24px 2px rgba(black, .14);
+  box-shadow: 0 6px 30px 5px rgba(black, .12);
+  box-shadow: 0 8px 10px -5px rgba(black, .2);
+}
+@mixin elevation-10 {
+  box-shadow: 0 24px 38px 3px rgba(black, .14);
+  box-shadow: 0 9px 46px 8px rgba(black, .12);
+  box-shadow: 0 11px 15px -7px rgba(black, .2);
+}
+</code>
+</pre>

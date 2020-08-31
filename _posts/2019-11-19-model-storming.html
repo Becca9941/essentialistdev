@@ -1,0 +1,34 @@
+---
+layout: post
+title: Event Storming and Model Storming Notes
+---
+
+<p>Notes based on <a href="https://www.slideshare.net/ziobrando/model-storming" target="_blank">Model Storming - A presentation by Ziobrando (Alberto Brandolini)</a><p>
+
+<ul>
+  <li>Software development is a learning process. Working code is a side effect</li>
+  <li>Aim is to improve learning and decision making.</li>
+  <li>Event storming in a nutshell: 0) Unlimited modelling space, 1) Domain events, 2) Commands and external systems (persona and user stories), 3) Aggregates (Key test scenarios - given, when, then).</li>
+  <li>What is Model Storming? 0) Unlimited modelling space, 1) Simple gaming rules, 2) active collaboration, 3) addressing complexity, 4) everything is visible, 5) supporting divergence, 6) Decide later</li>
+  <li>Our brain doesn't learn under stress, provides inferior solutions under pressure, tries to preserve energies.</li>
+  <li>Data first, structure later.</li>
+  <li>We need at least three bad ideas (I LOVE THIS IDEA).</li>
+  <li>It's awesome. 35 people means 35 interpretations of the domain.</li>
+</ul>
+
+<p>Notes based on <a href="https://www.slideshare.net/ziobrando/event-storming-recipes?next_slideshow=1">Event Storming Recipies - A presentation by Ziobrando (Alberto Brandolini)</a></p>
+
+<ul>
+  <li>Invite the right people to the party - Those who bring the questions, those who know the answers.</li>
+  <li>Value in in the interaction between people. If key people don't show up, make them regret it. Tell them they missed the party, but more importantly, that they are invited to the next one.</li>
+  <li>Use a large paper roll. You need unlimited modelling space, because you can't tell the size of a problem before exploring it.</li>
+  <li>Domain events: Simple, semantic and easy to grasp by everyone in the room. E.g. Item purchased, invoice sent, invoice paid.</li>
+  <li>Along a timeline: Enforce narratives. People like telling stories, not just filling diagrams or templates. Encourage experts to tell stories. Look for concrete examples and edge cases. You can eventually turn them into tests.</li>
+  <li>Sketch acceptance tests: <strong>Given</strong> a registered user Bob <strong>and</strong> Bob is a premium customer, <strong>when</strong> Bob purchases goods for $100, <strong>then</strong> Bob is given a 20% discount.</li>
+  <li>Reverse narrative: What was the path that led us here? What needs to happen before, so that this event can happen too?</li>
+  <li>Look for pivotal events. What does trigger events? A command from a given user, or an external system? Or simple the time (end of month), or just another event (item added to cart, (something magic happens here), price updated.</li>
+  <li>The word 'whenever' is important. Whenever we receive an invoice we schedule a payment.</li>
+  <li>In many companies, the bottleneck in not in the actions, but in the decisions. There are huge areas for improvement here.</li>
+  <li>Modelling commands and read models. Things a user needs to see in order to make a decision (only 1 item left - availability).</li>
+  <li>What really happens in event storming? Conflicts and potential overlappings are highlighted, can finally see the big picture, conversations can finally happen, ideas are popping out.</li>
+</ul>

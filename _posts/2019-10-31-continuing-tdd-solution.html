@@ -1,0 +1,234 @@
+---
+layout: post
+title: Part two solving a problem using a TDD-based approach, Yayy!
+---
+
+<p>This is the second article (<a href="{{ site.baseurl}} % post_url 2019-10-30-conference-track-manager-tdd.html%}">this is the first</a>) where I document my process solving a problem using TDD. These posts are not really helpful if you want to copy the code I am writing, because I have had to obscure the problem I am working on as it is an old interview question. I'll have to write another series where I can show how to come up with abstract concepts to help your design so that you can see it before it has been abstracted. There are a lot of lightbulb moments in these posts that could be helpful though.</p>
+
+<p>So far, we have two objects. The TetrisGame object has a limit of 0 blocks, and has no room for more blocks. These are hard-coded values to pass the test. We will improve them later. The Block object has a default size of 0, but the size can be set to any number.</p>
+
+<h2>Block size</h2>
+
+<p>The next test is to prevent the Block from accepting a negative value, as follows:</p>
+
+<pre>
+<code>
+  it 'not allow a negative number size' do
+    block = Block.new -2
+    expect(block.size).to eql('Block sizes must be a positive number.')
+  end
+</code>
+</pre>
+
+<p>Oops, my test failed because I forgot to add a 'do' to the end of the 'it' description. Added and corrected above.</p>
+
+<pre>
+<code>
+  def initialize( size = 0 )
+    raise 'Block size must be a positive number.' if size < 0
+    @size = size
+  end
+</code>
+</pre>
+
+<pre>
+<code>
+class Block
+  attr_reader :size
+
+  def initialize( size = 0 )
+    raise 'Block size must be a positive number.' if size < 0
+    @size = size
+  end
+
+end
+</code>
+</pre>
+
+<p>The code above raises an error if the size is set to a negative number. The test failed even though the error message appeared as expected, which means that the test is not testing for error messages raised correctly. I'll look it up.</p>
+
+<p>I struggled to figure out how to fix the test, the documentation wasn't clear to me, so I asked a colleague to help. Turns out I just needed to add curly brackets to indicate that the instantiation of a new object is a function to be called, which raises an error.</p>
+
+<pre>
+<code>
+  it 'not allow a negative number size' do
+    expect{Block.new -2}.to raise_error('Block size must be a positive number.')
+  end
+</code>
+</pre>
+
+<p>Now the test passes. Okay, so I have a Tetris Game with a block limit set to 0. It doesn't accept new blocks, and I have a block whose size can be set to a positive number. The next most important thing is to go back to the 'is there room for blocks' set of tests, because we now have a block with a size that we can compare against the limit to see if there is room. Here are the tests we have for the TetrisGame so far:</p>
+
+<pre>
+<code>
+describe 'TetrisGame should' do
+  it 'have a limited number of blocks' do
+    tetris = TetrisGame.new
+    expect(tetris.blockLimit).to eql(0)
+  end
+  it 'tell us if there is room to add more blocks' do
+    tetris = TetrisGame.new
+    expect(tetris.isThereRoomForBlocks).to eql(false)
+  end
+end
+</code>
+</pre>
+
+<p>I'm going to start by doing a bit of refactoring of the tests above. The first thing I'm going to change is the name of the first one, which instead of saying 'TetrisGame should have a limited number of blocks', I want it to read 'TetrisGame should have a default block limit of 0'. The other way of phrasing suggest that the game holds a limited number of blocks, instead of accepting a limited number of blocks. The test still passes here.</p>
+
+<h2>Tetris game block limit</h2>
+
+<p>The next test will push us in the direction of allowing a custom block limit, as follows:</p>
+
+<pre>
+<code>
+  it 'have a custom block limit' do
+    tetris = TetrisGame.new 1
+    expect(tetris.blockLimit).to eql(1)
+  end
+</code>
+</pre>
+
+<p>Code which passes the above test:</p>
+
+<pre>
+<code>
+  def initialize( blockLimit = 0 )
+    @blockLimit = blockLimit
+  end
+</code>
+</pre>
+
+<p>Next, I want the tetris game to throw an error if a negative number is set as the blockLimit.</p>
+
+<pre>
+<code>
+  it 'not allow blockLimit to be set to a negative number' do
+    expect{TetrisGame.new -1}.to raise_error('Block limit must be a positive number.')
+  end
+</code>
+</pre>
+
+<p>Code to pass this test:</p>
+
+<pre>
+<code>
+  def initialize( blockLimit = 0 )
+    raise 'Block limit must be a positive number.' if blockLimit < 0
+    @blockLimit = blockLimit
+  end
+</code>
+</pre>
+
+<h2>Is there room in the game for a new block?</h2>
+
+<p>The next most important thing to work on is checking to see if there is enough room to add a new block to our tetris game.</p>
+
+<p>At the moment, our tetris game block limit is set to 0 by default, which means that there is no room for more blocks. Our current test (see below) passes. However, it uses a hard-coded value to pass. Now we have a block with a size, we can compare it to the limit instead of using our hard-coded value, which was written before we had a block to compare with.</p>
+
+<pre>
+<code>
+  it 'tell us if there is room to add more blocks' do
+    tetris = TetrisGame.new
+    expect(tetris.isThereRoomForBlocks).to eql(false)
+  end
+</code>
+</pre>
+
+<p>Before I implement the new code, I'm going to refactor the test name and method name from 'isThereRoomForBlocks' to 'isThereRoomForThis' wit an added parameter 'block', so it will read 'isThereRoomForThis(block)</p>
+
+<p>I also changed all of the method names to snake_case to match Ruby's naming convention. The new implementation code is as follows:</p>
+
+<pre>
+<code>
+  def is_there_room_for_this(block)
+    if block.size > @block_limit
+      false
+    end
+  end
+</code>
+</pre>
+
+<p>Next, I want to check that a block with a size of 1 can be added if the block limit is bigger than the block size.</p>
+
+<pre>
+<code>
+  it 'tell us if there is room to add another block' do
+    tetris = TetrisGame.new 1
+    expect(tetris.is_there_room_for_this(Block.new 1)).to eql(true)
+  end
+</code>
+</pre>
+
+<p>The code that passes the test:</p>
+
+<pre>
+<code>
+  def is_there_room_for_this(block)
+    if block.size > @block_limit
+      false
+    else
+      true
+    end
+  end
+</code>
+</pre>
+
+<p>The next test is to say there is no room for a block if it would go over the block limit (into minus numbers):</p>
+
+<pre>
+<code>
+ it 'tell us if there is room for another block' do
+    tetris = TetrisGame.new 1
+    expect(tetris.is_there_room_for_this(Block.new 3)).to eql(false)
+  end
+</code>
+</pre>
+
+<p>The code to pass the test:</p>
+
+<pre>
+<code>
+  def is_there_room_for_this(block)
+    if block.size > @block_limit || @block_limit - block.size < 0
+      false
+    else
+      true
+    end
+  end
+</code>
+</pre>
+
+<p>There are a couple of things I would like to refactor. First, there are three tests that test for the same thing, using different values. So I'm going to use an each loop to call the test on each set of values. Secondly, I'm going to use a guard clause to remove the else clause in the 'if/else' condition statement in the solution.</p>
+
+<p>When I tried to parameratize the tests, I found that the tests were not actually doing the same thing, so I changed their names to reflect what they were actually doing. The new tests names are:</p>
+
+<ul>
+  <li>TetrisGame will not have room for a block if the block limit is 0</li>
+  <li>TetrisGame will have room for a block if it is smaller than the block limit size</li>
+  <li>TetrisGame will not have room for a block if it would bring the block limit below 0</li>
+</ul>
+
+<p>Instead of using a guard clause, I just returned a negated condition, as follows:</p>
+
+<pre>
+<code>
+  def is_there_room_for_this(block)
+    !(block.size > @block_limit || @block_limit - block.size < 0)
+  end
+</code>
+</pre>
+
+<p>Oh, wait. I'm an actual idiot. I changed the code to this:</p>
+
+<pre>
+<code>
+  def is_there_room_for_this(block)
+    block.size <= @block_limit
+  end
+</code>
+</pre>
+
+<p>If the block size is smaller than the block limit, of course it isn't going to take the limit into minus numbers once subtracted...</p>
+
+<p>Now we have a TetrisGame with a limited number of blocks it can hold, and a block of a specific size. We can check to see if there is room for the block to be added to the game.</p>

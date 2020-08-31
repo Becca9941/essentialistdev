@@ -1,0 +1,34 @@
+---
+layout: post
+title: Maintaining the TDD cycle
+---
+
+<p class="note">Reading notes based on <a
+href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627"
+   target="_blank">Growing Object-Oriented Software, Guided by Tests</a> by
+ Steve Freeman and Nat Pryce</p>
+
+<p>This is how the TDD process runs once once it has started.</p>
+
+<h2>Start each feature with an acceptance test</h2>
+
+<p>The first thing we do when working on a new feature is to write a failing acceptance test. This test demonstrates that the system does not yet have the feature we are about to write. It helps us to track our progress towards the completion of the feature.</p>
+
+<p><strong>IMPORTANT:</strong> The language of our acceptance test must not use any underlying tech-related terminology. It should reflect the language of the domain and capture our assumptions of what the system does, not how it will be implemented.</p>
+
+<p>Writing our acceptance tests this way will mean that they will still be valid even if the underlying technologies that we use to build our program changes.</p>
+
+<p>Likewise, writing acceptance tests using the domain language helps us look at the system from our user's point of view based on what they need, instead of seeing through the frosted goggles of the implementation view.</p>
+
+<h2>Separate tests that measure progress from those that catch regressions</h2>
+
+<p>We expect our acceptance tests to fail until the feature we are testing has been implemented. Passing those tests allows the team to measure the progress they are making. Once they have passed, they should not fail again. A failure here indicates that we have broken our existing code (there has been a regression).</p>
+
+<p>Completed acceptance tests serve a different role to unit and integration tests.</p>
+
+<ul>
+  <li><strong>Acceptance tests (new):</strong> Represent work in progress and should not pass until the feature has been complete.</li>
+  <li><strong></strong></li>
+  <li><strong></strong></li>
+  <li><strong></strong></li>
+</ul>

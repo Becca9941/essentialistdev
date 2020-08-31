@@ -1,0 +1,84 @@
+<p>Following a <a href="https://github.com/feenkcom/Bloc" target="_blank">Memory Game tutorial</a></p>
+
+<p>The tutorial is free so I am documenting every step I take so that I can capture thoughts along the build process. Any code that has been modified by me will be highlighted, otherwise it comes from the tutorial.</p>
+
+<h2>Card model</h2>
+
+<p><q>A card is an object holding a symbol to be displayed, a state representing whether it is flipped or not, and an announcer to emit state changes.<q></p>
+
+<pre>
+<code>
+  Object subclass: #MgdCardModel
+    instanceVariableNames: 'symbol flipped announcer'
+    classVariableNames: ''
+    package: 'Bloc-MemoryGame-Demo-Model'
+</code>
+</pre>
+
+<ul>
+  <li>First we create a subclass of object with the name "MgdCardModel"</li>
+  <li>Then we provide three instance variable names. 'symbol' will hold the symbol that will be displayed on the front of the card. 'flipped' will hold the state of the card (whether the front or back of it is displayed). 'announcer' will send out announcements whenever the state of the card has changed (my assumption).</li>
+  <li>We do not create any class variable names</li>
+  <li>We specify that the class belongs to a package we created called 'Bloc-MemoryGame-Demo-Model</li>
+</ul>
+
+<h3>Initialising method (card not flipped and accessors)</h3>
+
+<h4>Initialise method with a default 'flipped' value of false</h4>
+
+<pre>
+<code>
+  MgdCardModel
+    super initialize.
+    flipped := false
+</code>
+</pre>
+
+<ul>
+  <li>Inside the MgdCardModel class, we create an instance side method with the name 'initialize'.</li>
+  <li>Then we initialize the super, which is the BIElement class that our MgdCardModel class inherits from.</li>
+  <li>Then we assign the value false to our 'flipped' instance variable, which ensures that it always has a value when the class is instantiated (never empty).</li>
+</ul>
+
+<h4>symbol variable accessor</h4>
+
+<pre>
+<code>
+  symbol: aCharacter
+    symbol := aCharactor
+</code>
+</pre>
+
+<p>In the code above, we create a new instance side method on the MgdCardModel class. The method name is a keyword message 'symbol:' which accepts an argument that we have given the variable name 'aCharacter'. Inside the method, we assign the aCharacter argument to our symbol instance variable.</p>
+
+<pre>
+<code>
+  symbol
+    ^ symbol
+</code>
+</pre>
+
+<p>We then create an accessor method to return the value contained in our 'symbol' variable, implemented in the code above.</p>
+
+<h4>Accessor method for flipped variable</h4>
+
+<pre>
+<code>
+  isFlipped
+    ^ flipped
+</code>
+</pre>
+
+<p>As we have already initialised our 'flipped' variable, we don't need to create a setter for it (i'm not sure if we'll need one down the line). So we just created an accessor method for it, shown above.</p>
+
+<h4>Method for creating an announcement</h4>
+
+<pre>
+<code>
+  announcer
+    ^ announcer ifNil: [ announcer := Announcer new ]
+</code>
+</pre>
+
+<p>We created another method above with the name 'announcer'. The method assigns a new instance of an Announcer object if there is nothing in the 'announcer' instance variable.</p>
+

@@ -1,0 +1,296 @@
+---
+layout: post
+title: Starting to get the hang of TDD, process walkthrough, yayyy! 
+---
+
+<p>I can't include the problem statement that I am attempting to solve here, because it was an interview problem. The aim of this is to capture the process of solving the problem.</p>
+
+<h2>First tiny step</h2>
+
+<p>The first question I am asking myself is, <strong>what is the most important thing to work on first?</strong> To discover the most important thing, you need to know the why behind the solution. So, in order to answer my first question, I need to ask a second. <strong>What is the primary purpose/goal/need that this solution seeks to solve?</strong></p>
+
+<p>I'll attempt to write a user story to help me with this. As an event manager, I want to fit our speakers who have different length talks into our timetable, so that the organisation process is less complicated.</p>
+
+<p>Hmm, I don't like this one. Will try again.</p>
+
+<p>As an event organiser, I want to organise workshops, so that we can fit different length walkshops into a multi-day timetable.</p>
+
+<p>That's better, not sure if it's 'right', but it's something to work on.</p>
+
+<p>Okay, so the most important thing is organising workshops by length. In fact, the workshop isn't even the most important thing here. Fitting items into a box is. In this case, the items are minutes and the box is time. We have two time boxes, morning and afternoon. But that's also not important. We need one box, and items to go in it. So that's where we'll start.</p>
+
+<h2>Thinking in the abstract - Writing first tetris test</h2>
+
+<p>Now we have a user story and a bit of functionality to work on, I'm going to write my first test. I'm going to start by writing the test assertion first (as recommended by Kent Beck in his Test-Driven Development book).</p>
+
+<p>A really great thing about writing the assertion first, is that you can design the API you want to <em>use</em> before you code it. Naming is really important in this case. It helps to use an abstract names and metaphors to describe your problem, like a box and items to go in it. I don't like these names though, because they are a bit generic.</p>
+
+<p>I thought for a bit and thought the solution I'm working towards right now resembles a game of tetris. A game of tetris is a box that you have to fit differently shaped tiles into, often by turning them around and squeezing them into the available space.</p>
+
+<p>There are a few interesting thoughts this raises. First, we fit the tiles one by one into the box. Second, we look at the available space before we fit our tile into it. Third, we choose to place the tile in the area that seems to be the 'best fit' for it's shape.</p>
+
+<p>This is one of the awesome things about abstract concepts. They give you lots of idea hooks. Some of these concepts might be a very close fit to the problem space, others may need a little tweaking. For example, the tiles (workshop lengths) in our program don't have any fixed requirements to be placed in an area of best fit. So they can have gaps around them as long as they fit within the time constraints.</p>
+
+<p>That being said, just because it isn't a requirement, this could be an implementation strategy that could help us meet the requirements (or challenge them) in a different way. We'll probably change our design as we go along too, as we learn more about the problem and solution we are building. The main thing is that we have a great starting point.</p>
+
+<p>Okay, now for the first test part. I created a project folder called 'event_planning'. Inside that folder I created another folder called 'spec' to contain all of our tests in Ruby using RSpect. Inside that folder I created and opened a file called 'event-test.rb', which is the file that we are going to start adding tests to. It helps to start with one file. If we need to seperate our tests as we go along, we can, but only when it is <em>necessary</em>.</p>
+
+<pre>
+<code>
+expect(tetris.blockLimit).to eql(0);
+</code>
+</pre>
+
+<p>The above is the first line I wrote in my test file. In order to write this, I had to think about what the most important thing we need to implement first. I decided that the most important thing to know is how many blocks can fit into the tetris game (assuming that all the blocks are square, and that none of them vanish). This is important because we can't calculate how many blocks will fit if we don't know the limit.</p>
+
+<p>In the test, I set the blockLimit to equal 0. I chose zero because thereare no blocks in the program I have built yet.</p>
+
+<pre>
+<code>
+describe 'TetrisGame should' do
+  it 'have a limited number of blocks' do
+    tetris = TetrisGame.new
+    expect(tetris.blockLimit).to eql(0);
+  end
+end
+</code>
+</pre>
+
+<p>I then filled out the rest of the test in the code above. I ran it and it fails, we now have a failing test, woo woo. Time to commit.</p>
+
+<p>The next step is to make the test pass as simply as possible. I made the test pass by making each of the error messages for that test run one by one, including compilation errors like 'name tetris doesn't exist'.</p>
+
+<pre>
+<code>
+class TetrisGame
+  def self.blockLimit 
+    0
+  end
+end
+
+describe 'TetrisGame should' do
+  it 'have a limited number of blocks' do
+    tetris = TetrisGame.new
+    expect(tetris.blockLimit).to eql(0);
+  end
+end
+</code>
+</pre>
+
+<p>Once I made the test pass, I had to refactor it because I realised that the blockLimit makes more sense as a read only instance variable, not a method. This is because it is a data value, not a method which acts on the data value. After refactoring the test and making sure it still passed, I committed and pushed the following code:</p>
+
+<pre>
+<code>
+class TetrisGame
+  attr_reader :blockLimit
+
+  def initialize
+    @blockLimit = 0
+  end
+end
+
+describe 'TetrisGame should' do
+  it 'have a limited number of blocks' do
+    tetris = TetrisGame.new
+    expect(tetris.blockLimit).to eql(0);
+  end
+end
+</code>
+</pre>
+
+<p>The tests and code are all in one file for now. I committed my code when I finished writing the failing test, finished passing the test, and then finished refactoring the test and making sure it still passed. Then I pushed my code once all of that was done.</p>
+
+<p>That was my process for coming up with and writing the first test. There was a lot of thinking involved throughout the whole process. The actual coding was pretty quick as all the steps were so small. I didn't have to hold a bunch of things in my mind.</p>
+
+<h2>Is there room to add more blocks?</h2>
+
+<p>What is the next important tiny step? So we now have a limit. The next step is to be able to add blocks to the game. No wait, we have to check if there is room to add more blocks to the game before we do that. Okay, the next test is to check if there is room for more blocks.</p>
+
+<h3>Red</h3>
+
+<code>expect(tetris.isThereRoomForBlocks).to eql(false)</code>
+
+<p>At the moment, we don't have any blocks, and the limit is set to 0. So i'm expecting that when we check if there is any room for new blocks, we will get the answer false. Which is the test assertion shown above.</p>
+
+<p>There's one thing I need to point out. Returning the blockLimit and Checking if there is room for more blocks, are two seperate behaviours. Some TDD practitioners follow the degrees of freedom approach, which is basically, don't move on to testing a new behaviour until you have finished testing an old behaviour. In this case, I know that the block limit might be something other than zero, and that the block limit will not be a minus number, so this behaviour is not tested fully yet.</p>
+
+<p>I made the decision to start testing the next behaviour, because in my mind, unless we can actually add blocks, I see no reason to test for different values yet, because there is no immediate need to. So I kept a note of things I think I'd like to write tests for in a test list and put it aside for later. After I have written a bunch of tests, I could group them together by behaviour, so my tests will appear as though I wrote them in order, but I didn't. Do what works for you and your project.</p>
+
+<h3>Test-list so far</h3>
+
+<pre>
+<code>
+Tetris Block Limit:
+
+blockLimit can't be a negative number.
+* blockLimit can't be -0.
+* blockLimit can't be -4.
+
+blockLimit can be a positive number.
+* blockLimit can be a 1.
+* blockLimit can be a 3.
+* blockLimit can be a 10.
+* blocklimit can be a 200.
+</code>
+</pre>
+
+<p>When writing a test list, it helps to use examples of values that you are going to be testing. In the above list, we have some minus numbers and some positive numbers. I also included a title to explain what the examples mean. This created two groups of tests, testing for negative numbers and testing for positive numbers. We may or may not code these up later, but for now, this means we won't forget them.</p>
+
+<h3>Green</h3>
+
+<pre>
+<code>
+def isThereRoomForBlocks
+  false
+end
+</code>
+</pre>
+
+<p>I added the above method to my TetrisGame object. To make the test pass, I did the most obvious, cheating, hard-coded thing to make the test pass (known as <em>obvious implementation</em>. This is a bit of a mindset shift. When I first passed a test like this, it felt so wrong. Of course you wouldn't want your real method to pass a hard-coded value. However, your job is just to pass the test. It's the tests job to guide your code. If you are able to pass the test like this, you need another test to drive your design to a better place. This is a hint of what 'test-driven design' really means.</p>
+
+<p>Now that we have the test passing, I looked to see if there was any refactoring needed. Nope, can't really change that. Remember, refactoring is where you change the structure of your code, not it's behavior. Time to commit.</p>
+
+<h3>Test list so far</h3>
+
+<pre>
+<code>
+TETRIS BLOCK LIMIT:
+
+blockLimit can't be a negative number.
+* blockLimit can't be -0.
+* blockLimit can't be -4.
+
+blockLimit can be a positive number.
+* blockLimit can be a 1.
+* blockLimit can be a 3.
+* blockLimit can be a 10.
+* blocklimit can be a 200.
+
+TETRIS IS THERE ROOM FOR MORE BLOCKS:
+
+* block limit = 0? false
+* block limit = 3, block to add = 1, true
+* block limit = 3, block to add = 4, false
+* block limit = 3, block to add = 3, true
+</code>
+</pre>
+
+<h2>Create a new block</h2>
+
+<p>It's time for our next test. Again, I am moving onto the next behavior, leaving the block limit ugly and hard-coded. This is because in order to test if there is enough room, we need something to compare it against. We need to be able to add a block. Earlier, I said that before we can add a block, we must first check if there is room for it. So this is a bit of a catch 22, they both kind of rely on each other, or do they?</p>
+
+<p>To help me out here, I'm asking myself another question. If there is no room for a new block, what do we do with that answer? Well, if there is no room, then the blockLimit will stay the same. Every time we add a new block, the blockLimit decreases as there is less room.</p>
+
+<p>Okay, so we could write a test to check that the blockLimit stays the same when a new block is added, but that is too big a step. We will be doing two things at the same time, and we don't even have a way to add blocks yet. So it's time to focus on that.</p>
+
+<p>Having gotten to this point, I see now that I could have started with a test to add a new block in the first place. That probably would have made more sense, because the ultimate goal of the program is to add talks to a schedule, not tell the user how much time is available. This is an interesting bit of learning that I'll hold onto next time I test-drive a problem. A new bit of experience from trying. Yayy!</p>
+
+<p>Our next test then, should be to add a block.</p>
+
+<p>I wrote out the following test to reflect adding a new block to the game, and then changed my mind.</p>
+
+<code>
+expect(tetris.addBlock(0).to eql(0)
+</code>
+
+<p>The above assertion felt wrong to me, or at least, the API I wrote out above feels wrong to me. Here, I will be adding a block to the game, which has a size of 0. The bit that caught me was <em>has a</em>. The block <em>has a </em> size, which means that it should be an object with its own size attribute. A block is not an attribute of the tetris game object. The tetris game can hold blocks, but a block is not a characteristic of the game like blue eyes or 'blockLimit'.</p>
+
+<p>So the next test wants to find out the size of a block, which involves creating a block to pass. Our first object breakaway, yayyy.</p>
+
+<pre>
+<code>
+describe 'Block should' do
+  it 'have a set size' do
+    block = Block.new
+    expect(block.size).to eql(0)
+  end
+end
+</code>
+</pre>
+
+<p>As we are testing a new object, we need a different set of tests, which in Ruby's case, is denoted by a different 'describe' block.</p>
+
+<p>At this point, you have a few areas where you could split your test file into smaller files. You could create a file for your TetrisGame object tests, a file for the TetrisGame object source code directory, and the same again for the Block object tests and code. I'm going to defer this for now. Instead, I will follow the rule of three principle. I will split the code into seperate files once I have three objects and tests for them. But for now, it's easier to manage all in one file as the number of code lines is pretty small.</p>
+
+<p>This is why a test list is a helpful thing to keep next to you (and a benefit of testing a behaviour fully before moving on), it can be hard to remember things when you switch contexts.</p>
+
+<pre>
+<code>
+class Block
+  attr_reader :size
+
+  def initialize
+    @size = 0
+  end
+end
+</code>
+</pre>
+
+<p>I passed the test by writing the code above, which is similar to the code we wrote for our TetrisGame object. I didn't mention this before, but I used the initialize block because I want to give the size instance variable an actual value. I also set the accessor method for the variable to 'attr_reader', which is my default. Objects should be the only things able to change the state (value) of their own instance variables. So they are always read only to other objects except in well-thought out, exceptional circumstances.</p>
+
+<p>You wouldn't want a cashier to take your purse off you and take the money out of it to pay for your groceries for you, without even asking. This is the same thing.</p>
+
+<h2>Setter test, no wait, scrap that</h2>
+
+<p>Time for the next test. I know that the size of the block created is going to vary from block to block. So my next test will check that we can set the size to something different. As mentioned earlier, we want our Block object to be in charge of setting it's own size. So the setSize method will be called on the Block object as follows:</p>
+
+<code>expect(block.setSize(1)).to eql(1)</code>
+
+<p>This test assertion was a little more difficult for me to write. What do I want to happen when I set the size? I want the size to have changed. So should I be testing the before and after size? Hmm, the default size is 0 at the moment, so if I set it to 1 and return the new value, then by default it must have been changed. So I wrote the assertion to what it was above.</p>
+
+<p>I used a hardcoded value to pass this test, because the current tests allow me to do so. I'm not going to write a new test to make this more general though. I have a bit of an issue though, either this is a bad test, TDD isn't suited for testing setters, or I don't know how to test for setters in TDD. Probable the first and last cases of the two. Why do I think the test is bad? The before and after transformation of the size variable isn't clear. OH I HAVE AN IDEA. I can use mulitple assertions to test the before, setting and after states.</p>
+
+<p>Scratch that. Don't need a setter at all. The only reason to have a setter is for an outside object to change the value in another object's variable. I literally said that earlier. Also, the size of the Block never needs to be changed at all since it is instantiated. What was I even thinking? Ah well, nothing lost. Pretty quick backpedal.</p>
+
+<h2>Back to creating blocks</h2>
+
+<p>Okay, so now I'm going back to the block object tests. I still want to be able to create a block that has a default or a set size. So I changed the name of the original test so that it says 'Block should have a default size of 0'. Then I added a new test called 'Block should have a custom size', where when 1 is passed as an argument, the size of the block is set to 1.</p>
+
+<pre>
+<code>
+describe 'Block should' do
+  it 'have a default size of 0' do
+    block = Block.new
+    expect(block.size).to eql(0)
+  end
+  it 'have a custom size' do
+    block = Block.new 1
+    expect(block.size).to eql(1)
+  end
+end
+</code>
+</pre>
+
+<p>This was a quick fix to make this test pass. I swapped out the hard-coded value for an argument in the initialize method. The argument is a variable with a value of 0, which is what the size is set to if no other argument is provided.</p>
+
+<pre>
+<code>
+class Block
+  attr_reader :size
+
+  def initialize( size = 0 )
+    @size = size
+  end
+
+end
+</code>
+</pre>
+
+<p>I wrote a couple more tests which set the size of a newly created Block object to different number values. After the third one, I implemented the rule of 3 and refactored my tests to remove duplication. If you want to test a range of different inputs that are being handled in exactly the same way, you can do something called parametirization, which groups the inputs and outputs into an array. The test is then called for each input output in the list, which means less duplication. Someone on Twitter told me about this a while back.</p>
+
+<p>After looking it up, you can just use an each loop in Ruby to acheive the same kind of thing. Will include the code below:</p>
+
+<pre>
+<code>
+  [1,2,3,5,10,200,36,42,19].each do |num|
+    it 'have a custom size' do
+      block = Block.new num
+      expect(block.size).to eql(num)
+    end
+  end
+</code>
+</pre>
+
+<p>I was thinking about whether or not to add contraints to the block size input. I could put in a check to make sure that negative numbers are not input into the system. But the requirements do not mention this as an important thing right now. So will ignore it as it is wasn't important enough at that stage to be flagged to our attention. If you're working with sensative data, sanitization is a priority even if it isn't explicitly mentioned, but in this case it doesn't matter so much. We are able to create new blocks.</p>
+
+<p>Okay, will pick this up the next time I work on it (in a near future post), probably tomorrow, we'll see. Feeling much much better about TDD now, this has been an insane amount of fun.</p>

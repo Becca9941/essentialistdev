@@ -1,0 +1,120 @@
+---
+layout: post
+title: Understanding 3n + 1 problem
+categories: [kata]
+tags: [pharo, smalltalk, math, operators, numbers, integers]
+---
+
+<p>Problem source: <a href="https://www.amazon.com/Programming-Challenges-Contest-Training-Computer/dp/0387001638" target="_blank">Programming Challenges: The Programming Contest Training Manual</a></p>
+
+<blockquote>Start with an integer <em>n</em>. If <em>n</em> is even, divide by 2. If <em>n</em> is odd, multiply by 3 and add 1. Repeat this process with the new value of <em>n</em>, terminating when the value is 1. For an input <em>n</em>, the <em>cycle length</em> of <em>n</em> is the number of numbers generated up to and <em>including</em> the 1. The cycle length of 22 is 16. Given any two numbers <em>i</em> and <em>j</em>, you are to determine the maximum cycle length over all numbers between <em>i</em> and <em>j</em>, <em>including</em> both endpoints.</blockquote>
+
+<h2>Sample Input</h2>
+
+<pre>
+<code>
+1 10
+100 200
+201 210
+900 1000
+</code>
+</pre>
+
+<h2>Sample Output</h2>
+
+<pre>
+<code>
+1 10 20
+100 200 125
+201 210 89
+900 1000 174
+</code>
+</pre>
+
+<h2>Do I understand the problem?</h2>
+
+<p>Here are the key rules that stand out to me:</p>
+
+<h3>Rules as I understand them</h3>
+
+<ul>
+  <li>If <em>n</em> is even, divide by two</li>
+  <li>If odd, multiply by 3 then add 1</li>
+  <li>Stop after you have reached the end point</li>
+  <li>Keep track of how many cycles there are up to and including the end point.</li>
+</ul>
+
+<p>The first thing I'm going to do is write a test list which includes all of the sample output cases, as well as the example mentioned in the problem statement.</p>
+
+<h3>Test list</h3>
+
+<ul>
+  <li>1 22 16</li>
+  <li>1 10 20</li>
+  <li>100 200 125</li>
+  <li>201 210 89</li>
+  <li>900 1000 174</li>
+</ul>
+
+<p>The next thing I'm going to do is work out the example given in the problem statement by hand to see if it matches their solution</p>
+
+<pre>
+<code>
+22 is even so / 2
+11 is odd so x 3 + 1
+34 is even so / 2
+17 is odd so x 3 + 1
+52 is even so / 2
+26 is even so / 2
+13 is odd so x 3 + 1
+40 is even so / 2
+20 is even so / 2
+10 is even so / 2
+5 is odd so x 3 + 1
+16 is even so / 2
+8 is even so / 2
+4 is even so / 2
+2 is even so / 2
+1
+Cycle length = 16.
+</code>
+</pre>
+
+<p>Okay, my workings out matched the example in the problem statement. Now I'm going to do the same thing for the first sample example in the test output, which is '1 10 20'</p>
+
+<pre>
+<code>
+10 is even so / 2
+5 is odd so x 3 + 1
+16 is even so / 2
+8 is even so / 2
+4 is even so / 2
+2 is even so / 2
+1
+cycle length: 7
+</code>
+</pre>
+
+<p>Well, something went wrong, the expected output was supposed to be 10. I've done the same thing as I did for the 22 example. They both had the same end point of 1.</p>
+
+<p>Reading the problem again, it says determine the 'maximum' cycle length, which implies that there is a 'minimum' cycle length. The emphasis was on including both end points. Was the 1 included in the cycle for 22? Yes.</p>
+
+<p>Hmm, maybe I need to do do the cycle for each individual number from 1 to 10. Let's try it</p>
+
+<p>Cycle length of 10 is 7</p>
+
+<p>9,28,14,7,22,11,34,17,52,26,13,40,20,10,5,16,8,4,2,1</p>
+
+<p>Cycle length of 9 is 20, which takes us over the 20 limit, so this isn't the way to go. OH WAIT, maybe that IS the answer. So are we counting the cycles individually for each number and keeping the largest score?? THAT MAKES SENSE.</p>
+
+<p>I did not expect the first problem in the book to be this difficult. But okay, now I think I understand it properly.</p>
+
+<h2>Rephrasing problem statement</h2>
+
+<p>My program then must count the cycles for each number in the range including both the start and end number, and then return the largest of all of those cycle counts.</p>
+
+<p>Now that I understand the problem statement, the next step is to think about how I'm going to solve the problemas well as set up my developer environment. Will link to it here once the article is started.</p>
+
+<p>Wow, it took me a good 2 hours to actually understand what this problem was actually asking, though I was also getting distracted by a kitten who keeps pouncing on me and the keyboard. He's currently lying on my chest trying to boop my nose with his paws, heart melted.</p>
+
+<p>Time to get ready for work.</p>

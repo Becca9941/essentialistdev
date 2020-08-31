@@ -1,0 +1,108 @@
+---
+layout: post
+title: Limitation breeds creativity - 1-8 Ruby experiments
+---
+
+<p>YAYYYY! Tried out a new learning technique and my programming perfectionist block has gone because of it happy happy happy dance.</p>
+
+<p>I'm reading <a href="http://poignant.guide/" target="_blank">Why's Poignant Guide to Ruby</a>, and am going to do a 'limitation breeds creativity' experiment.</p>
+
+<p><strong>RULE:</strong> I can only build programs by choosing from the pool of concepts contained in each of the code snippets I encounter in the book I am reading so far. The more code snippets I encounter, the larger the pool will be to draw from.</p>
+
+<p>I'll include the code experiments and comments on each of them. To start with, the code is going to be pretty ick, but the whole point is to get all the bad programs out so that the good ones can make an appearance later.</p>
+
+<h2>1. Print odaley five times</h2>
+
+<pre>
+<code>5.times do { print "Odaley! " }</code>
+</pre>
+
+<p>First code snippet in Why's Poignant Guide to Ruby shows you how to use the times method to run a block of code a number of times. In this case, we printed 'Odaley! ' to the screen five times.</p>
+
+<h2>2. Sing we wish you a merry christmas</h2>
+
+<pre>
+<code>
+3.times {
+  print "We wish you a Merry Christmas!"
+}
+print "And a Happy New Year!"
+</code>
+</pre>
+
+<p>Used the times method to copy the chorus of a popular christmas song and then a single print to output the only unique line in the chorus. Allows me to remove duplication.</p>
+
+<h2>3. Quit unless restaurant contains subword</h2>
+
+<pre>
+<code>
+exit unless "restaurant".include? "aura"
+</code>
+</pre>
+
+<p>Second code snippet in Why's Poignant Guide to Ruby shows you how to search a string for a substring and exit the program if there is no match.</p>
+
+<h2>4. Quit unless blog titles contain search query</h2>
+
+<pre>
+<code>
+exit unless 'This example blog title'.include? "blog"
+</code>
+</pre>
+
+<p>A useful usecase for checking whether a string contains a substring could be searching blog titles for words that a user searches for. My instinct was to make a list of titles and loop through them using this approach but blocked by the limitation of not using concepts that haven't been covered yet.</p>
+
+<h2>5. Capitalize each food item in list</h2>
+
+<pre>
+<code>
+['toast', 'cheese', 'wine'].each {
+  |food| print food.capitalize
+}
+</code>
+</pre>
+
+<p>Third code snippet in Why's Poignant Guide to Ruby shows you how to iterate over each item in a list and do something to it using an 'each' method. In this case, we have a list of food items and use the 'capitalize' method to change the first letter of each word to uppercase.</p>
+
+<h2>6. Say which article titles contain the word ruby</h2>
+
+<pre>
+<code>
+['ruby function and files - quick programs to explore language', 'ruby koans', 'advice for devs who need to hear it', 'writing first failing, failing and failing tests in ruby using rspec'].each {
+  |title| print title.include? 'ruby'
+}
+</code>
+</pre>
+
+<p>I created a list of 5 article titles from my blog, and thenused an each block to iterate over them and print true or false depending on whether the title contained the word 'ruby' or not. All hard-coded. Am itching to make it work properly. Really enjoying this iterative approach.</p>
+
+<h2>7. Cheer on Gryffindors only</h2>
+
+<pre>
+<code>
+["Harry Potter", "Hermione Granger", "Ron Weasely", "Draco Malfoy"].each {
+  |character| 3.times {
+    print "Go, Go Griffindor!"
+  } unless
+  character.include? "Draco"
+}
+</code>
+</pre>
+
+<p>This program prints 'Go, Go Gryffindor' three times for any character in the list of Harry Potter characters who do not have the word 'Draco' in their name. These are hard coded, all the characters who are not Draco Malfoy happen to be Gryffindor.</p>
+
+<h2>8. Santa clause is checking his list</h2>
+
+<pre>
+<code>
+["Harry Potter", "Hermione Granger", "Ron Weasely", "Draco Malfoy"].each {
+  |character| 3.times {
+    print "Go, Go Griffindor!"
+  } unless
+  character.include? "Draco"
+}
+</code>
+</pre>
+
+<p>Santa has a list of childrens names, including whether they are good, bad or bitey (kitten). He checks the list twice by printing out all of the children on his list twice. This whole list checking process is quaintly wrapped in lyrics from 'Santa Clause is coming to town'.</p>
+

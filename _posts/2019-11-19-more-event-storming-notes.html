@@ -1,0 +1,40 @@
+---
+layout: post
+title: Event Storming notes from live-storming video.
+---
+
+<p>On Twitter, I asked for some help with TDD user story stuff. The conversation evolved and I asked Tim Ottinger if he could provide a link to some of the Event Storming videos he had mentioned. Here are my notes, taken while watching the videos</p>
+
+<h2>Event Storming Demo and Discussion (<a href="https://www.youtube.com/watch?v=xIB_VQVVWKk" target="_blank">link</a>)</h2>
+
+<h3>Step 1: Before we start</h3>
+
+<p>Before event storming, the participants already had a few scenarios written down which demonstrate some of the business rules, with examples: "We are booking a room for a hotel, all rooms are paid for in advance. During holiday periods, the super saver rate is £200. We have a flexible rate which allows cancellations. Rooms booked during school term times will be cheaper.</p>
+
+<p>The plan is to go through the scenarios as a starting point for event storming. The aim is tofind out whether they can model them in a domain model.</p>
+
+<p>Tool: They use a real-time board that allows them to collaborate remotely. It allows you to add virtual stickies everywhere, and the modelling space is unlimited. I can see this being difficult if you have a lot of participants, both logistically and in terms of getting everyone actively engaged. No body language signals either, but really helpful in terms of keeping all of the stickies accessible.</p>
+
+<h3>Step 2: Getting started</h3>
+
+<p>The participants start by asking "What is the relevent part of the domain, what is the most important thing that happens during the entire process?". In this case, we are talking about a booking process.</p>
+
+<p>To kickstart the event storming process, the participants start from the Event, using orange stickies. The events are things that are most relavent to your customers.</p>
+
+<p>They talk about what name they should give the event, whether they should call it "reserved", or "booked". They went with "reserved" because if they didn't know the domain, then the word 'booked' is something that is used by everyone. Reserved gives a bit of a clearer meaning.</p>
+
+<p>At a later point, they talk about how they have modelled some things to demonstrate the different types of impact some things can have on the domain. A high rate and a low rate, will both have a different impact on the domain, even if they represent the same thing - price. A higher rate allows you to cancel or change a booking (flexible rate), while a lower rate means that your booking is more fixed.</p>
+
+<p>They decided to write down things that could end up being duplicates, so that they could figure out later what the correct terminology could be.<p>
+
+<p>Another question they asked themselves is "What do we want this domain to do right?" To be able to book a room. Working backwards from that, they say that they want to be able to select a rate.</p>
+
+<p>Then they tell a story to illustrate this process a bit more. "We want to book a selected duration and we want to pick the date. Isn't the date the same thing? Well no, because we check in on a date and stay for three days. You could do it in one of two ways. You could say this is when I'm checking in. I'm staying for three nights. Or you could say, this is when I check in and this is when I check out.</p>
+
+<p>By telling the story above, they were able to identify different potential solutions for how they might want to be able to select the duration for the visit whilse booking their room.</p>
+
+<p>They also wonder whether this is more of a user interface kind of thing, and then conclude that it doesn't matter. It's worth capturing anyway because for now, they are things that are actually happening.</p>
+
+<p>First we write them down, and then we decide what is the relevant data to mine as an outcome.</p>
+
+<p>Another scenario workthrough: "If we are a loyalty card holder, we can use our points to discount the total [of our booking]... Assuming that the customer has paid for something, they can earn loyalty points after the payment has been taken. This happens after payment. Alright, so loyalty points redeemed and loyalty points earned, what else?"</p>

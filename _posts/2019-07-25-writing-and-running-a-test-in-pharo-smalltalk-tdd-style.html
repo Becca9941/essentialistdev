@@ -1,0 +1,127 @@
+---
+layout: post
+title: Writing and running TDD style tests in Pharo (Smalltalk)
+categories: [principles]
+tags: [Smalltalk, Pharo, TDD, test, method]
+---
+
+<p>Notes are based on Pharo by Example, a free book suggested by a Mooc called <a href="https://www.canal-u.tv/producteurs/inria/cours_en_ligne/live_object_programming_in_pharo">Live Object Programming in Pharo</a></p>
+
+<h3>What is TDD?</h3>
+
+<p>TDD stands for Test-Driven Development. It is where you write a test that
+defines the behaviour you want your code to perform, BEFORE we write the code
+that implements that behaviour.</p>
+
+<p>In the Pharo by example book, they want a method that turns a string into
+it's uppercase version so that it looks like shouting.</p>
+
+<h3>Defining a new test method in Pharo</h3>
+
+<p>Before we define a test method in Pharo, we have to decide which class the
+method should belong to. In the shouting string case, the class that our method
+belongs to is a string. So we will call our test "StringTest". It is
+conventional to name test files with the class name of the method we are testing
+(starting with an uppercase letter) followed by the word "Test" (also Pascal
+case with no spaces between the words).</p>
+
+<p>To define a test, we first open the System browser on the the class
+StringTest. We can do this by typing "StringTest" in our editor (or Playground)
+, selecting it, and then running Command-B, which opens up the system browser on
+this class.</p>
+
+<p>In the next panel to the right of our test, we need to select the right
+protocol for our method. A protocol includes data about how a class is expected
+to be used, including the order in which methods expect to be invoked. <a
+                                                                         href="https://en.wikipedia.org/wiki/Talk%3AProtocol_(object-oriented_programming)"
+                                                                         target="_blank">More
+                                                                         information
+                                                                         here</a>.</p>
+
+<p>In this case, we select the "tests-converting" protocol (not to be confused
+with the "testing - converting protocol"). At the moment, I can't find much
+information on what this protocol means, so will bookmark it to look into.</p>
+
+<p>After you have selected your protocol, you can replace the template code in
+the bottom panel of the system browser with your test method. The test method
+that we have written for our shout method is as follows:</p>
+
+<figure>
+  <figcaption>Test for shout method</figcaption>
+  <pre>
+  <code class="lang-smalltalk">
+  testShout
+    self assert: ('No panic' shout = 'NO PANIC!')
+  </code>
+  </pre>
+</figure>
+
+<p>After typing this test into the system browser, the corner of the panel
+containing the test method turns orange and looks like a blurred fold like a
+book that has been dog-eared. This is a reminder that the pane contains unsaved
+changes. You can save by running Command-S This is a reminder that the pane
+contains unsaved changes. You can save by running Command-S. If this is the
+first time you have saved code to your Image, you will be prompted to enter your
+name. Enter your name without any spaces.</p>
+
+<p>As we have not written any code yet to pass the test, a message should pop up
+at the bottom of the panel telling you that the message (method) shout has been
+sent but not implemented.<p>
+
+<p class="note">When I wrote the test decribed in the book, the quality
+assurance messenger at the bottom of the system browser told me to use assert:
+equals: instead of assert: and =. It asked if I wanted it to correct my test for
+me and I chose yes. This is what the test method now looks like:</p>
+
+<figure>
+  <figcaption>Improved Test for shout method</figcaption>
+  <pre>
+  <code class="lang-smalltalk">
+  testShout
+    self assert: 'No panic' shout equals: 'NO PANIC!'
+  </code>
+  </pre>
+</figure>
+
+<h2>Running the test method</h2>
+
+<p>To run your newly created test, click on the little circle icon next to the
+method name in the top panel of the system browser. Hovering over this will show
+a tooltip that says "Run the tests". <span class="note">The circle icon looks
+  like a grey oversized bullet point. My eyes skipped over this a few times so
+  pointing it out here for future reference). Also, you want to be clicking on
+  the circle next to "testShout", not "StringTest".</span> You can also run the tests by opening the "Test Runner" from the World Menu, though this is a little slower.</p>
+
+<p>After running the test a small pop up panel also appears with a toolbar at
+the top with the options "Proceed", "Abandon", "Debug" and "Report". If you
+click on the "Debug" option another window will pop up. It will provide an error
+message. In this case, the error message is "shout self
+shouldBeImplemented."</p>
+
+<h2>Implementing the test method</h2>
+
+<p>Without leaving the debugger, we can implement our test method by clicking on
+the "Create" button in the debugger. (for some reason this option wasn't in my
+debugger, instead the Shout class I needed had already been created and was
+listed as an option. I'll have to write another test case to figure out what's
+happening here next time.</p>
+
+<p>When I clicked on the test case there was a method template stub, just like
+there was for the test method. I replaced the stub code with the method that
+would make the test pass, which is as follows:</p>
+
+<figure>
+  <figcaption>Implementing shout test method</figcaption>
+  <pre>
+  <code class="lang-smalltalk">
+    shout
+      ^ self asUppercase, '!'
+  </code>
+  </pre>
+</figure>
+
+<p>I compiled this method by saving the code with Command-S. Then I clicked the
+'Proceed' button in the debugger to implement it. Finally, I ran the test again
+by clicking on the red icon next to the same "testShout" method as before. The
+icon turned green and a little 'toast' notification popped up to tell me that my
+test had run successfully.</p>

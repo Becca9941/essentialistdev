@@ -1,0 +1,62 @@
+---
+layout: post
+title: JavaScript Gotchas, ESLintand immutable vs mutable variables
+---
+
+<p>Just started reading <a href="https://pragprog.com/book/ves6/rediscovering-javascript" target="_blank">Rediscovering JavaScript: Master ES6, ES7 and ES8</a> by Venkat Subramaniam.</p>
+
+<h2>Introduction</h2>
+
+<p>You can run the <code>node</code> command in the command line (if you have node.js installed) to get a interactive JavaScript environment, which is the same as entering your code into a Browser developer console.</p>
+
+<h2>JavaScript Gotchas</h2>
+
+<p>Semicolons are not optional in JavaScript, even though JavaScript won't complain if you leave them out.</p>
+
+<p>If you do leave the semicolon off, JavaScript will insert one for you just before an unexpected token.</p>
+
+<p>For example, if you create a variable called first, then start a new line without closing it with a semi-colon, the semi-colon will be inserted after the line break, just before the declaration of your second variable. This causes your first variable to be assigned the value "undefined" instead of the value you intended, whilst the second variable becomes a global variable.</p>
+
+<p>In JavaScript, if you use the reurn keyword, and add a line break before the value to be returned, a semi colon will be added just before your return value, so the value of your return statement will be undefined.</p>
+
+<p>Make sure you always use the strict equality operator (===) instead of the less strict equality operator (==).</p>
+
+<p>If you compare the string '1' with the number 1 using ==, the result is true. If you compare the number 1 with the string '1.0', then the result is also true. However, if you compare the string '1' with the string '1.0' then the result is false.</p>
+
+<p>If you try to compare two values of different types (string and number), the == operator will perform a type conversion first before converting them. If you are comparing two values of the same type (number and number), then the == will do a direct comparison, so '1' is not equal to '1.0'.</p>
+
+<p>So, only use the == operator if you specifically want to do type conversions before checking for equality. Do the same for the != and !== operators.</p>
+
+<p>Make sure you always declare varibles using let or const. If you don't declare variables inside of a function (you assign a value to a name without a declaration), then that variable will become a global variable automatically.</p>
+
+<p>Use strict mode to avoid most of these traps. <code>'use strict';</code>. It doesn't tolerate undeclared variables. You can use this directive at the top of your file to make your whole file run in strict mode, or inside a function to make only the function run in strict mode. This is useful when you are refactoring legacy code, where using strict mode at the top could overwhelm you with error messages. This way, you can refactor one function at a time.</p>
+
+<h2>Setting up eslint</h2>
+
+<code>npm install eslint --savedev</code>
+
+<code>npx eslint --init</code>
+
+<code>npm eslint yourfile.js</code>
+
+<h2>Const and Let</h2>
+
+<p>Only use const and let, never var.</p>
+
+<p>A constant variable is a read-only variable.</p>
+
+<p>A let variable can't be redeclared, but it's value can be modified.</p>
+
+<p>Use Object.freeze(); to make objects immutable (like const variables can't be changed). However, if an object's property refers to another object, the nested object is not frozen by the freeze method.</p>
+
+<h2>Rule Summary</h2>
+
+<ul>
+  <li>Always add semi-colons to the end of your statements.</li>
+  <li>Favor the strict equality operator (===, !==) over the type conversion equality operator (!=, ==).</li>
+  <li>As a general rule, add the 'use strict' directive to the top of your script.</li>
+  <li>Use ESLint to catch standard-compliance errors. Install locally to your project with: npm install eslint --savedev</li>
+  <li>Only use const and let, never var or undeclared variables.</li>
+  <li>Use Object.freeze(); to make objects immutable (like const variables can't be changed).</li>
+  <li>However, if an object's property refers to another object, the nested object is not frozen by the freeze method.</li>
+</ul>

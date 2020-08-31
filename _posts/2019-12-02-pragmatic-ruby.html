@@ -1,0 +1,53 @@
+---
+layout: default
+title: Revisiting a few cool ruby basics
+---
+
+<p>I try to regularly revisit the basics of languages that I am currently learning, because you always learn something awesome each pass through. These notes are based on <a href="https://pragprog.com/book/ruby4/programming-ruby-1-9-2-0" target="_blank">Programming Ruby - The Pragmatic Bookshelf</a>.</p>
+
+<p>I'm just going to capture some of the things I didn't know, or things that I experiment with.</p>
+
+<p>Oh nice, instead of writing an array of words seperated by quotes and commas, we can just use <code>%w{ ant bee cat dog elk } instead. Cool!</p>
+
+<p>If an if statement is just a single expression, you can write it like this:<code>puts "Danger, Will Robinson" if radiation &gt; 3000</code>.</p>
+
+<p>If a while statement is just a single expression, you can write it in a similar fashion, like this: <code>square = square*square while square &lt; 1000</code>.</p>
+
+<h2>Regular expressions</h2>
+
+<p>A regular expression is simply a way of specifying a <em>pattern</em> of characters to be matched in a string.</p>
+
+<ul>
+  <li>/Perl|Python/ = match a string that contains either the word 'Perl' or the word 'Python'.</li>
+  <li>/ab+c/ = match a string that contains an 'a' followed by 1 or more 'b's followed by a 'c'.</li>
+  <li>line.sub(/Perl/, 'Ruby') = replace first 'Perl' with 'Ruby'.</li>
+  <li>line.gsub(/Python/, 'Ruby') = replace every 'Python' with 'Ruby'.</li>
+</ul>
+
+<h2>Yield</h2>
+
+<pre>
+<code>
+def call_block
+  puts "Start of method"
+  yield
+  yield
+  puts "End of method"
+end
+call_block { puts "In the block" }
+
+OUTPUT:
+Start of method
+In the block
+In the block
+End of method
+</code>
+</pre>
+
+<h2>printf</h2>
+
+<pre>
+<code>
+printf("Number: %5.2f, \nString: %S\N", 1.23, "hello")
+</code>
+</pre>

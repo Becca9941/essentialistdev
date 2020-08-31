@@ -1,0 +1,131 @@
+---
+layout: post
+title: Exploring accessibility testing with Pa11y
+---
+
+<p>Accessibility is a priority in all of my projects. I'm pretty good at making my code base accessible, but am aware that this is a huge field of information that is worth exploring more if it's going to be a serious priority.</p>
+
+<p>Ideally, I want some kind of accessiblity tool that integrates with my project. I want it to flag areas that do not meet accessibility criteria, or help me discover ways I can improve accessibility in general.</p>
+
+<p>So I did a quick Google search for an npm-based accessibility tester. I use npm for other things like node-sass which is why I searched for npm-based stuff.</p>
+
+<p>One of the results which looks good is <a href="https://pa11y.org/tutorials/" target="_blank">Pa11y</a>, so will be starting with that. There are a few articles introducing it that I'll look through and takes notes from below.</p>
+
+<h2>Accessibility Testing with Pa11y - Single files</h2>
+
+<ul>
+  <li>Pa11y is <em>a</em> tool for developing accessible websites, but a powerful one. <a href="https://bitsofco.de/tools-for-developing-accessible-websites/" target="_blank">This article</a> lists a bunch of additional tools to help with accessibility testing, mainly browser-based.</li>
+  <li>Pa11y is pronounced 'Pally'. It is a set of tools to help making designing and developing accessible projects easier.</li>
+  <li>Install pally: <code>npm install -g pa11y</code></li>
+  <li>You can then run <code>pa11y url/pathToFile</code> to get an accessibility report in your terminal</li>
+  <li>pa11y has three types of messages: 1) A notice, which is a general message about an element's accessibility, like 'check that the title element describes the document.</li>
+  <li>2) A warning, which is something that <em>could</em> be an issue, like an img with a null alt attribute will show 'Warning: Img element is marked so that it is ignored by Assistive Technology".</li>
+  <li>3) An error, which is a critical issue that should be fixed. For example, an error you may receive on an unlabelled input is "Error: This text input element does not have a name available to an accessibility API".</li>
+  <li>You can ignore notices and warnings by using the ignor flag like this: <code>pa11y url --ignore "warning;notice"</code></li>
+  <li>You can set a threshold number, which is the number of critical errors that should be permitted in order to 'pass' the accessibility tag (0 is the priority). <code>pa11y url --threshold 0</code></li>
+  <li>You can hide elements like third party widgets that you have no control over like adds: <code>pa11y url --hide-elements "#adds .sc-only [aria-role='presentation']</code></li>
+</ul>
+
+<h2>Accessibility Testing with pa11y - Multiple files</h2>
+
+<ul>
+  <li>Install pa11y-ci: <code>npm install -g pa11y-ci</code></li>
+  <li>You can then run <code>pa11y-ci</code></li>
+  <li>The configuration options are stores in a .pa11yci JSON file:</li>
+</ul>
+
+<pre>
+<code>
+{
+  "defaults": {
+    "hideElements": "#carbonads",
+    "ignore": [ "notice", "warning" ]
+  },
+  "urls": [
+    "https://webpage.com",
+    "https://second-webpage.com",
+    {
+      "url": "webpage.com",
+      "hideElements: "#carbonads, #disqus_thread"
+    }
+  ]
+}
+</code>
+</pre>
+
+<ul>
+  <li>You can change the JSON file pa11y-ci looks for using the --config option: <code>pa11y-ci --config package.json</code></li>
+  <li>You can output the accessibility tests to a json file, which is useful if you want to do things with the data: <code>pa11yci --reporter json url.com &gt; results.json</code></li>
+  <li>Or output the tests into a csv file for processing or importing into a database: <code>pa11y --reporter csv web.com &gt; results.csv</code></li>
+  <li>We can configure pa11y-ci to test a page using a specific standard. The default accessibility standard it uses is WCAG2AA, but we can also change it to: Section508, WCAG2A, WCAG2AA or WCAG2AA.</li>
+</ul>
+
+<pre>
+<code>
+{
+  "defaults": {
+    "standard": "WCAG2A",
+    "rules": [ 'Principle1.Guideline1_4.1_4_6_AAA' ]
+  }
+}
+</code>
+</pre>
+
+<ul>
+  <li>You can also use pa11y-ci to test actions that a user might take on your page. You can demo a flow of actions like subscribing, to test that a user can actually fill out the form to subscribe.</li>
+</ul>
+
+<pre>
+<code>
+"urls": [
+  {
+    "url": "http://webpage.com/subscribe",
+    "actions": [
+      "set field #email to pa11y@testing.com",
+      "set field #username to Tester",
+      "click element #subscribe",
+      "wait for url to not be http://webpage.com/subscribe"
+    ],
+    "timeout": 6000
+  }
+}
+</code>
+</pre>
+
+<ul>
+  <li>It's important to set a long timeout to allow pa11y to go through all the tests.</li>
+  <li>We can also do device specific testing by specifying the viewport dimensions:</li>
+</ul>
+
+<pre>
+<code>
+{
+  "defaults": {
+    "page": {
+      "viewport": { "width": 320, "height": 480 }
+    }
+  }
+}
+</code>
+</pre>
+
+<h2>Using actions in pa11y</h2>
+
+<p><q>Imagine we have an online pie shop. We want users to press a button to obtain a delicious pie, be redirected to a login page to input their account details, and then redirect them again to the delivery confirmation page. We're interested in the accessibility of the delivery confirmation page only.</q></p>
+
+<p>Actions are used to test pages once an action has been completed. The confirmation page will look different once a delivery has been confirmed than it would before it was confirmed.</p>
+
+<pre>
+<code>
+var test = pa11y({
+  actions: [
+    'click element #addToCartButton',
+    'wait for url to be http://the-pa11y-pie-shop/login',
+    'set field #username to exampleUser',
+    'set field #password to password1234',
+    'click element #submit',
+    'wait for url to be http://the-pa11y-pie-shop/delivery-confirmation/5px372aa8j'
+  ]
+});
+</code>
+</pre>

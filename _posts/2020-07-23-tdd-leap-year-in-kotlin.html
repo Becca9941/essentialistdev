@@ -1,14 +1,3 @@
----
-layout: post
-author: Becca
-category: tech
-title: TDD LeapYear Kata in Kotlin
-tags: [katas, tdd, kotlin]
-featured_image: leapyear.svg
-hero_caption: 'Frog icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>'
-leading: 'This is my attempt at solving a Leap Year kata, where I practice TDD and refactoring techniques like removing duplication from tests and production code, extracting behaviour etc.'
----
-
 <p>I'm currently working through <a href="https://leanpub.com/agiletechnicalpracticesdistilled" target="_blank">Agile Technical Practices Distilled</a> which has lots of practical tips and techniques that you can practice with the katas at the end of each chapter.</p>
 
 <h2>Leap Year</h2>
@@ -23,7 +12,8 @@ leading: 'This is my attempt at solving a Leap Year kata, where I practice TDD a
 
 <p>The first thing I decided to test was whether a year is divisibile by 4. I thought it would be a good place to start, for no major reason.</p>
 
-{% highlight kotlin linenos %}
+<pre>
+<code>
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -33,32 +23,39 @@ class LeapYearShould {
         assertEquals(true, checkIfLeapYear(2000))
     }
 }
-{% endhighlight %}
+</code>
+</pre>
 
 <p>To pass the first test, I just returned a hard-coded true Boolean value (Fake implementation strategy).</p>
 
-{% highlight kotlin linenos %}
+<pre>
+<code>
 fun checkIfLeapYear(year: Int): Boolean {
     return true
 }
-{% endhighlight %}
+</code>
+</pre>
 
 <p>I commit every time a new test passes.</p>
 
 <p>I then added another year that is divisible by 4 to force me to write a slightly more generic solution:</p>
 
-{% highlight kotlin linenos %}
+<pre>
+<code>
 assertEquals(false, checkIfLeapYear(2001))
-{% endhighlight %}
+</code>
+</pre>
 
 <p>To pass this test, I used an if/else statement because my test doesn't force me to do better than that yet.</p>
 
-{% highlight kotlin linenos %}
+<pre>
+<code>
 fun checkIfLeapYear(year: Int): Boolean {
     if(year == 2000) { return true }
     return false
 }
-{% endhighlight %}
+</code>
+</pre>
 
 <p>I wrote another assertion, this time using 2004 as an example. I expect true to be returned as it is divisible by 4.</p>
 
@@ -68,12 +65,14 @@ fun checkIfLeapYear(year: Int): Boolean {
 
 <p>There are now three instances of duplication in my production code, so I refactor it to return true if the year is actually divisible by 4 using the modulo operator. It feels uncomfortable writing what feels like hacky code to start with, but removing duplication only when necessary makes it more likely that you are distilling your code down to a single concept, instead of accidentally merging two different concepts.</p>
 
-{% highlight kotlin linenos %}
+<pre>
+<code>
 fun checkIfLeapYear(year: Int): Boolean {
     if(year % 4 == 0) { return true }
     return false
 }
-{% endhighlight %}
+</code>
+</pre>
 
 <p>I'm confident that the behaviour divisible by 4 has been tested fully for the purposes of this kata.</p>
 
@@ -81,7 +80,8 @@ fun checkIfLeapYear(year: Int): Boolean {
 
 <h3>Before</h3>
 
-{% highlight kotlin linenos %}
+<pre>
+<code>
 class LeapYearShould {
     @Test
     fun divisibleByFour() {
@@ -90,11 +90,13 @@ class LeapYearShould {
         assertEquals(true, checkIfLeapYear(2004))
     }
 }
-{% endhighlight %}
+</code>
+</pre>
 
 <h3>After</h3>
 
-{% highlight kotlin linenos %}
+<pre>
+<code>
 class LeapYearShould {
     @Test
     fun divisibleByFour() {
@@ -103,13 +105,14 @@ class LeapYearShould {
         }
     }
 }
-{% endhighlight %}
+</code>
+</pre>
 
 <h2>Behaviour 2: Divisible by 400</h2>
 
 <p>The two remaining behaviours are:</p>
 
-<ul class="list">
+<ul>
   <li>Not a leap year if divisible by 100 EXCEPT</li>
   <li>Is a leap year if divisible by 400</li>
 </ul>
@@ -122,12 +125,14 @@ class LeapYearShould {
 
 <p>I wrote an assertion to test for a non-leap year that is not divisible by 100.</p>
 
-{% highlight kotlin linenos %}
+<pre>
+<code>
 @Test
 fun divisibleBy100() {
   assertEquals(false, checkIfLeapYear(2100))
 }
-{% endhighlight %}
+</code>
+</pre>
 
 <p>I wrote the code to pass this test, but it broke the first test. In the first test, 2000 is divisible by 100, but it is a leap year because it is also divisible by 400. So it comes back as a non-leap year because it's divisible by 100 when it should come back as a leap year.</p>
 
@@ -137,17 +142,20 @@ fun divisibleBy100() {
 
 <p>The code that passes the tests:</p>
 
-{% highlight kotlin linenos %}
+<pre>
+<code>
 fun checkIfLeapYear(year: Int): Boolean {
     if(year % 100 == 0) { return false }
     if(year % 4 == 0) { return true }
     return false
 }
-{% endhighlight %}
+</code>
+</pre>
 
 <p>I immediately don't like this, at all. Too many things happening. Both of the if statements represent different paths the code can go down (called pivot points in the book). I want only one path per method, so will refactor to extract the behaviour into seperate methods.</p>
 
-{% highlight kotlin linenos %}
+<pre>
+<code>
 fun checkIfLeapYear(year: Int): Boolean {
     if(divisibleBy4(year)) { return !divisibleBy100(year) }
     return false
@@ -162,7 +170,8 @@ private fun divisibleBy100(year: Int): Boolean {
     if(year % 100 == 0) { return true }
     return false
 }
-{% endhighlight %}
+</code>
+</pre>
 
 <p>After extracting the behavior, there are three methods. One checks if a number is divisible by 4, one checks if a number is divisible by 100, and the other ties them togather to return whether the year is a leap year or not based on only those two rules.</p>
 
@@ -172,34 +181,40 @@ private fun divisibleBy100(year: Int): Boolean {
 
 <p>Here is my first assertion for this behaviour:</p>
 
-{% highlight kotlin linenos %}
+<pre>
+<code>
 fun divisibleBy400() {
   assertEquals(true, checkIfLeapYear(2000))
 }
-{% endhighlight %}
+</code>
+</pre>
 
 <p>To pass the test, I changed the checkIfLeapYear method to the following:</p>
 
-{% highlight kotlin linenos %}
+<pre>
+<code>
 fun checkIfLeapYear(year: Int): Boolean {
     if(divisibleBy4(year) && !divisibleBy100(year) ||
        divisibleBy100(year) && divisibleBy400(year)) { return true }
     return false
 }
-{% endhighlight %}
+</code>
+</pre>
 
 <p>I really like that this code reads like the original problem. Ifdivisible by 4 AND not divisible by 100, OR if divisible by 100 AND divisible by 4 then it is a leap year (true), otherwise it isn't a leap year (false).</p>
 
 <p>When I asked for feedback, I was shown a better solution however, so changed mine to the following:</p>
 
-{% highlight kotlin linenos %}
+<pre>
+<code>
 fun checkIfLeapYear(year: Int): Boolean {
     if(divisibleBy400(year)) { return true }
     if(divisibleBy100(year)) { return false }
     if(divisibleBy4(year)) { return true }
     return false
 }
-{% endhighlight %}
+</code>
+</pre>
 
 <p>I'm going to refactor the test names so they read like the problem statement too.</p>
 
@@ -207,7 +222,8 @@ fun checkIfLeapYear(year: Int): Boolean {
 
 <h3>Tests</h3>
 
-{% highlight kotlin linenos %}
+<pre>
+<code>
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -244,11 +260,13 @@ class LeapYearShould {
 
     }
 }
-{% endhighlight %}
+</code>
+</pre>
 
 <h3>Production Code</h3>
 
-{% highlight kotlin linenos %}
+<pre>
+<code>
 fun checkIfLeapYear(year: Int): Boolean {
     if(!divisibleBy100(year)) { return divisibleBy4(year) }
     return divisibleBy400(year)
@@ -265,7 +283,8 @@ private fun divisibleBy100(year: Int): Boolean {
 private fun divisibleBy400(year: Int): Boolean {
     return year % 400 == 0
 }
-{% endhighlight %}
+</code>
+</pre>
 
 <p>Every time I solve a kata, I ask for feedback to help me get better next time. Here is the feedback I got:</p>
 

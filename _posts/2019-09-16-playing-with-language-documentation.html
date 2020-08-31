@@ -1,0 +1,158 @@
+---
+layout: post
+title: Playing with language documentation to get an overview of similarities and differences
+---
+
+<p>I am on holiday for a week, so thought it would be fun using the time off to go down a bunch of research rabbit holes that I have been putting off in favour of 'more important' things over the last few months.</p>
+
+<p>Every time I learn a new programming language, I catch myself explaining concepts to myself in terms of how they relate to concepts I have been exposed to in other languages. For example, the other day I was learning Kotlin whilst pair programming, and said 'oh val variables are like const variables in JavaScript. They stay constant and can't be changed'. If I had learned Kotlin first, I might have said 'oh const variables are like val variables in JavaScript, they are read-only'.</p>
+
+<p>This is also probably why it's easier to learn each new language, because you won't be starting completely from scratch anymore. You'll will already have a baseline of concepts that you don't have to expend mental energy on learning, you can jump right to the things that you don't understand. Oh this is a lightbulb moment for me. Start with the basics, then when you know those solidly, make the next pass through and dive a little deeper. Cool.</p>
+
+<p>The languages I'm going to quickly read about will include some languages I have exposure to, and some languages I have not touched before. Will list my reasons for picking the ones I have chosen below, just for transparency.</p>
+
+<ul>
+  <li><strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank">JavaScript:</a></strong> most familiar with this one, so chosen for familiarity.</li>
+  <li><strong><a href="http://web.thu.edu.tw/s942864/www/PL/Ruby%20User%27s%20Guide.pdf" target="_blank">Ruby:</a></strong> also familiar with this one, same reason.</li>
+  <li><strong><a href="http://mooc.pharo.org/#week1" target="_blank">Pharo:</a></strong> started learning this one because it is a pure object-oriented language, it forces you to write pure OO, so thought it would help me understand OO better. Including because a birdseye view would be helpful.</li>
+  <li><strong><a href="https://kotlinlang.org/docs/reference/" target="_blank">Kotlin:</a></strong> currently playing with this language, so on the list by default.</li>
+  <li><strong><a href="https://docs.oracle.com/javase/tutorial/java/index.html" target="_blank">Java:</a></strong> some experience with this one, interested in getting some idea of how it differs from Kotlin, as they are similar to each other.</li>
+  <li><strong><a href="https://elixir-lang.org/getting-started/introduction.html" target="_blank">Elixir:</a></strong> at work there was an off-hand conversation about this being an events-based language, so interested in learning more about it.</li>
+  <li><strong><a href="https://www.haskell.org/tutorial/" target="_blank">Haskell:</a></strong> have heard that this is a purely functional language. I tend to be interested in languages that are paradigm specific to help me learn new perspectives.</li>
+  <li><strong><a href="https://dev.mysql.com/doc/mysql-getting-started/en/" target="_blank">MySQL:</a></strong> curious about potential crossovers in concepts even though this is a database specific language.</li>
+  <li><strong><a href="http://www.cplusplus.com/doc/tutorial/" target="_blank">C++:</a></strong> because I am interested in programming arduinos. Not planning on diving deep into this one any time soon but it's on the radar.</li>
+  <li><strong><a href="https://devdocs.io/bash/" target="_blank">Bash:</a></strong> I always use the command line so learning more about this is sensible.</li>
+</ul>
+
+<p>I'm going to start with master list of concepts for one language. Then when I start the documentation for the next language will create two lists, one for comman concepts and one for distinct concepts and so on until all of the 10 documentation sources listed above have been covered.</p>
+
+<p>I'm expecting many of my assumptions below to be wrong, this is a surface level exploratory exercise.</p>
+
+<p>Upate: I decided against merging them into similar and different concept lists. It's more interesting to keep the lists seperate.</p>
+
+
+<h2>JavaScript Concepts</h2>
+
+<p>Javascript is an object-oriented scripting language used to make webpages interactive. JavaScript contains a standard library of objects such as Array, Date and Math, and a core set of language elements like operators, control structures, and statements.</p>
+
+<ul>
+  <li>Object-oriented.</li>
+  <li>No distinction between types of objects.</li>
+  <li>Inheritance is through the prototype mechanism, and properties and methods can be added to any object dynamically.</li>
+  <li>Variable data types are not declared (dynamic typing, loosely typed).</li>
+  <li>Cannot automatically write to hard disk.</li>
+</ul>
+
+<h3>JavaScript Syntax</h3>
+<ul>
+  <li>Grammer and types: variables and data structures</li>
+  <li>Control flow</li>
+  <li>Error handling</li>
+  <li>Loops and iteration</li>
+  <li>Functions</li>
+  <li>Expressions and operators</li>
+  <li>Numbers and Dates</li>
+  <li>Text formatting</li>
+  <li>Indexed collections</li>
+  <li>Keyed collections</li>
+  <li>Objects</li>
+  <li>Promises</li>
+  <li>Iterators and generators</li>
+  <li>Meta programming</li>
+  <li>Modules</li>
+</ul>
+
+<h2>Ruby Concepts</h2>
+
+<p>Ruby is "an interpreted scripting language for quick and easy object-oriented programming".</p>
+
+<ul>
+  <li>ability to make operating system calls directly</li>
+  <li>powerful string operations and regular expressions</li>
+  <li>variable declarations are unnecessary</li>
+  <li>variables are not typed</li>
+  <li>memory management is automatic</li>
+  <li>everything is an object</li>
+  <li>classes, methods, inheritance</li>
+  <li>singleton methods</li>
+  <li>"mixin" functionality by module</li>
+  <li>iterators and closures</li>
+  <li>threading support</li>
+</ul>
+
+<h3>Ruby Syntax</h3>
+
+<ul>
+  <li>Strings</li>
+  <li>Regular expressions</li>
+  <li>Arrays</li>
+  <li>Control structures</li>
+  <li>Iterators</li>
+  <li>Object-oriented thinking</li>
+  <li>Methods, classes, inheritance</li>
+  <li>access control</li>
+  <li>modules</li>
+  <li>procedure objects</li>
+  <li>Exception processing</li>
+  <li>Object initialisation</li>
+</ul>
+
+<h2>Java Concepts</h2>
+
+<p>Java is a general-purpose programming language that is class-based, object-oriented (although not a pure object-oriented language, as it contains primitive types.</p>
+
+<ul>
+  <li>Class-based.</li>
+  <li>Objects are divided into classes and instances with all inheritance through the class hierarchy.</li>
+  <li>Classes and instances cannot have properties or methods added dynamically.</li>
+  <li>Variable data types must be declared (static typing, strongly typed).</li>
+  <li>Can automatically write to hard disk.</li>
+  <li>Multithreaded</li>
+  <li>Dynamic</li>
+</ul>
+
+<h3>Java Syntax</h3>
+
+<ul>
+  <li>Variables</li>
+  <li>Operators</li>
+  <li>Expressions, statements and blocks</li>
+  <li>Control flow statements</li>
+  <li>Classes</li>
+  <li>Objects</li>
+  <li>Annotations</li>
+  <li>Interfaces and inheritance</li>
+  <li>Numbers and strings</li>
+  <li>Generics</li>
+  <li>Packages</li>
+</ul>
+
+<h2>Pharo concepts</h2>
+
+<p>Pharo: an Immersive Object-Oriented System based on Smalltalk.</p>
+
+<ul>
+  <li>Object-oriented</li>
+  <li>Message based programming</li>
+</ul>
+
+<h3>Pharo Syntax</h3>
+
+<ul>
+  <li>Messages</li>
+  <li>Sequence and cascade</li>
+  <li>Blocks</li>
+  <li>Loops</li>
+  <li>Booleans and Conditions</li>
+  <li>Yourself</li>
+  <li>Dispatch</li>
+  <li>Packages, tags and groups</li>
+  <li>Expressions</li>
+  <li>Class</li>
+  <li>Stream</li>
+  <li>Iterators</li>
+  <li>Hooks and templates</li>
+  <li>Images</li>
+</ul>
+
+<p>This is something to come back to, pretty tired after doing this for four languages. Also much harder to identify similarities and consistencies as all of the documentation styles are wildly different from one another.</p>

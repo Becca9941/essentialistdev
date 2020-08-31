@@ -1,0 +1,197 @@
+---
+layout: post
+title: Walmart Greeter Job Description Object Analysis
+---
+
+<p>It can be difficult knowing how to break down a programming problem into objects, so I came up with this technique to help me experiment and get better at doing this. It's a lot of fun.</p>
+
+<h2>Get a job description</h2>
+
+<p>The first step is to find a job description. I chose a Walmart Greeter job description, because there are a lot of elements here that are great for thinking about objects.</p>
+
+<p>Here is the job description:</p>
+
+<p class="note">Walmart greeters meet customers at store entrances. Greeters at Walmart may assist customers with cart selection, offer coupons, or simply welcome people to the store. Walmart greeters may direct customers to specific areas of the store or note a return a customer brings back. Greeters with Walmart may need to perform other assigned duties, according to shift and location.</p>
+
+<p class="note">Walmart greeters may clean store entryways, departments, or even restrooms if assigned such a task from a managing supervisor. Greeters at Walmart may also need to identify customers for security purposes.</p>
+
+<p class="note">Employment benefits and competitive salary options await qualified Walmart greeters. Greeters with Walmart may receive a variety of job benefits. Eligible Walmart greeters may take advantage of several financial work benefits, such as paid vacation days or 401(k) retirement program, and health-related work benefits, such as vision, dental, medical, and life insurance plans.</p>
+
+<p class="note">Starting pay for a Walmart greeter often falls near minimum wage. Walmart greeters may earn more with experience and more time served with the department store chain.</p>
+</code>
+</pre>
+
+<h2>Who are the people?</h2>
+
+<p>The first step is to identify all of the people mentioned in the job description. This will help us map out responsibilities as well as how they may interact with each other.</p>
+
+<ul>
+  <li>Walmart Greeter</li>
+  <li>Customers (more than one)</li>
+  <li>People (more than one) - could be referring to customers, but as a different word as used, we'll capture it instead of making assumptions. People could include non-customers.</li>
+  <li>Managing supervisor (are there different categories of supervisor? We don't know at this stage, but important to take note of).</li>
+  <li>Employees (more than one) - implied by the use of the word 'employment benefits', not 'Walmart Greeter benefits'.</li>
+</ul>
+
+<h2>What are the tasks?</h2>
+
+<p>The job description mentions a list of tasks that the Walmart Greeter <em>may</em> perform. This is important, it implies they may not perform these tasks. Tasks then, are something that <strong>vary</strong>. There are also some conditions surrounding when they may do certain tasks. In some case, they are assissting a customer. In other cases they are assigned tasks by their Managing Supervisor. Some of their tasks are also location-based.</p>
+
+<p>All of this suggests that a Walmart Greeter has no task that belongs to them specifically. We might assume that 'welcoming customers to the store', is a task that belongs to them and no one else, but this is also a task that is listed as something they <em>may</em> do.</p>
+
+<p>There are also a lot of questions left over here. We know that a Greeters tasks can come about from customer requests and having them assigned by a Managing supervisor. Does that mean they can <em>only</em> ever perform tasks that are instigated by customers or their supervisor? If all of the tasks are 'may' tasks, are any actually critical?</p>
+
+<h2>Anything else we know?</h2>
+
+<p>We have a store that has different areas/departments (are areas and departments the same thing?). There are multiple stores across different locations. The store operates according to shift times, at least for the Greeter. Not clear whether other employees work on a shift-based pattern or not, or whether there are multiple types of schedule. As it's not mentioned, it isn't important, but worth noting in case it becomes a question worth asking later on.</p>
+
+<p>Greeters have access to a variety of benefits and salary options. A key point here is that some Greeters are eligible for some of these, others are not. There are some indicators as to what makes some eligible or not (more time served/ more experience). Work benefits are split into categories like financial and health.</p>
+
+<h2>Grouping things that belong together</h2>
+
+<p>Okay, now we have a better idea of the problem space, it's time to group the things that belong together. So what data belongs to what object or person, and what behaviour is associated with that object or person.</p>
+
+<h2>Walmart</h2>
+
+<ul>
+  <li>Location</li>
+  <li>Areas</li>
+  <ul>
+    <li>Entrances</li>
+    <li>Departments</li>
+    <li>Restrooms</li>
+  </ul>
+  <li>Shift patterns? No</li>
+  <li>Opening times</li>
+</ul>
+
+<p>A Walmart has a location. We could say that the Greeter has a location, but the Greeter's location is actually determined by where the store is. So the location belongs to the Walmart. A walmart also has different areas, and it could have more than one of the same area - There might be multiple entrances, restrooms and departments.</p>
+
+<p>At this point, I'm not sure if the shift pattern is something that belongs to Walmart. Actually no, it doesn't make sense for the entrances, departments and restrooms to be outside of the Walmart. However, a shift pattern does not depend on a Walmart to exist. So it's seperate.</p>
+
+<h2>Shift Patterns</h2>
+
+<p>A shift pattern has employees assigned to it. There are multiple types of employees. Hmm, what about opening times? Could we say that the opening times of a store is a shift pattern? No. It's meaning is different. Opening times allow or deny access to customers and employees. It belongs to the store. Let's add it.</p>
+
+<h2>Greeter</h2>
+
+<ul>
+  <li>Has experience</li>
+  <li>Time worked at the store.</li>
+  <li>Can perform duties</li>
+  <li>Can be assigned duties (restriction - only Managing Supervisor can assign cleaning duties based on job description - also implies that duties can be assigned by others)</li>
+</ul>
+
+<p>While the job description mentions lots of duties that the Greeter can perform, there are none that appear to belong to the Greeter only, including welcoming people to the store. All we know is that they can perform duties (or not perform duties?).</p>
+
+<h2>Managing Supervisor</h2>
+
+<ul>
+  <li>Has experience</li>
+  <li>Time worked at the store.</li>
+  <li>Can assign duties.</li>
+</ul>
+
+
+<p>We also have a Managing Supervisor. It makes sense that they would also have 'experience' and 'time worked at the store'. We know that they can assign duties. Which leads to a few questions. Can they assign different duties to different people? Are there any restrictions on the kinds of duties that they can assign? That information is not accessible right now, so we will assume not, whilst being mindful of making our code easy to change should these things turn out to be the case. Similarly, we know that the Greeter can not be assigned cleaning duties by anyone besides the Managing Supervisor (as far as we know). This implies that others can assign duties too, but who can is unclear. So I'll assume that everyone can (Greeter can assign duties to themselves too), with the only restriction being that the Greeter can reject cleaning duties if assigned by anyone other than the Supervising Manager.</p> 
+
+<h2>Customer</h2>
+
+<ul>
+  <li>Can request assistance (for returning something/directions etc)</li>
+</ul>
+
+<p>We have customers, who can request assistance. This led me to ask, can they accept assistance? As this isn't specified we won't worry about it, but will be mindful that it might turn out that the requirements change so that customers can be offered assistance without asking.</p>
+
+<h2>Duties</h2>
+
+<p>Now that all of our people (that we know about) are covered, we can focus on the kinds of duties that can be performed. As all of these duties are something that <em>may</em> be assigned to a Greeter, it would be better to seperate them so that they do not <em>belong</em> to a Greeter. For example, if only a Greeter could welcome customers, then that could make for some unfortunate interactions at the checkouts where the cashier just looks at each customer with a stony face and no hint of a smile.</p>
+
+<p>However, we can make some distinctions between the duties based on what we can see in the job description. There appears to be three types of duties, customer facing duties, cleaning duties and general people facing duties.</p>
+
+<h3>Customer Duties</h3>
+
+<ul>
+  <li>Assist customer with cart selection</li>
+  <li>Note a return a customer brings back</li>
+</ul>
+
+<p>These are tasks that rely on a person being a customer. A non customer would not need assistance with these things.</p>
+
+<h3>Cleaning Duties</h3>
+
+<ul>
+  <li>Clean store entryways</li>
+  <li>Clean departments (one or more?)</li>
+  <li>Clean Restrooms</li>
+</ul>
+
+<p>Caveat, according to the job description, only a Managing Supervisor can assign these duties. It could be better to set permissions for the tasks that can be assigned to each person instead, as maybe the Store Manager can assign these too? Could be easier to write the code with that in mind instead of having to rejig it later.</p>
+
+<h3>General People Duties</h3>
+
+<ul>
+  <li>Welcome people to the store.</li>
+  <li>Direct customers to a specific area of the store.</li>
+  <li>Identify customers for security purposes.</li>
+</ul>
+
+<p>While two of these duties mention customers specifically, this is a requirement I would challenge as being something you would want to perform in relation to non-customers too.</p>
+
+<h2>Benefits</h2>
+
+<ul>
+  <li>Financial benefits (paid vacation days, 401(k) retirement program.</li>
+  <li>Health Benefits (vision, dental, medical, life insurance plans).</li>
+</ul>
+
+<p>There are two categories of benefits here. Financial and health. There could be more categories but we don't know that, if we can make two though, we should be able to make more (if we keep that easy to change principle in mind).</p>
+
+<h2>Salary</h2>
+
+<ul>
+  <li>Min wage</li>
+  <li>Wage can be increased (and decreased?)</li>
+</ul>
+
+<p>We know that the base salary is minimum wage, and that it can be increased depending on Greeters (and other staff's?) experience and time at the store. This data doesn't belong anywhere else so stands alone as a salary right now.</p>
+
+<h2>Mapping dependencies/relationships</h2>
+
+<p>Okay, we now have a pretty good model of the domain based on what we know about it. We have a bunch of objects whose names are domain specific. The model is incomplete, there are a lot of unanswered questions. It also has both way too much information, and not enough information depending on the needs our program will be created to solve.</p>
+
+<p>One of the things missing from our model so far are dependencies. Or, the relationships between our objects. Or, how the different parts of the system collaborate with each other.</p>
+
+<p>There are a few ways to map relationships: one-to-one, one-to-many, many-to-many, has-a, is-a, etc. In this case, I'm literally just going to jot down the interactions between different objects in the model we have captured.</p>
+
+<ul>
+  <li>A Walmart can have employees and customers.</li>
+  <li>A greeter can perform different kinds of duties.</li>
+  <li>A greeter can be assigned duties, but only a Managing Supervisor can assign them cleaning duties.</li>
+  <li>A greeter has a salary, that starts at minimum wage, but can increase depending on both their experience level, as well as the amount of time they have worked at Walmart (store specific or not?)</li>
+  <li>A greeter can be assigned a shift pattern.</li>
+  <li>A greeter may have access to a range of benefits that fall into different categories, if they are eligible (eligibility criteria unknown).</li>
+  <li>A managing supervisor can assign duties to the greeter (and other employees?)</li>
+  <li>A customer can request assistance (unknown whether they can accept unprompted assistance).</li>
+  <li>A customer can return (an unknown thing - probably an item but it hasn't been made explicit so would be an assumption to think so).</li>
+</ul>
+
+<p>Okay, now we have a clearer idea as to how each of the entities in our system can interact with each other based on the knowledege we have so far. There are still a lot of unanswered questions, missing information, and no hint as to how duties are performed, or whether some duties require tools or not to perform.</p>
+
+<h2>Implications</h2>
+
+<ul>
+  <li>We'd like a Greeter who may welcome people to the store, assist customers with their shopping, handle returns, and has certain benefits that they could be elegible for, a base salary, and they clean only if a Managing Supervisor tells them too.</li>
+  <li>The Greeter is great, they do exactly what we wanted them to be able to do. Can you make us another Greeter, but this time they just thank our customers for shopping with us at the back entrance. They don't need to do any of the other things, the Greeter at the front of the store can handle those.</li>
+  <li>We need a store manager. At the moment, our Greeters ignore him when he asks them to clean. They only listen to the managing supervisor. Can you make them listen to the Store Manager too?</li>
+  <li>We'd like a couple customers who can return food if they didn't like it.</li>
+  <li>Oh, we are adding a new department, it would be great if customers can return items too, or even swap items.</li>
+  <li>We need some cashiers, we want them to greet customers who arrive at the checkout, and thank them for shopping with us. I know that's something only the greeters do right now but we didn't think about that before.</li>
+  <li>Instead of giving a greeter, managing supervisor and a store manager a base salary each individually, can't we just assign a base salary to everyone who works for us, all employees?</li>
+</ul>
+
+<p>These are the kinds of questions you will be asked when working on any project in the real world. Many developers get frustrated when their clients keep changing their minds, or ask for things that mean an overhaul of their existing system.</p>
+
+<p>The secret to dealing with change, is to be prepared for it. Remember, software is meant to be 'soft'. You don't have to anticipate every possible scenario. That isn't possible. Instead, seperate things that don't belong together. If a new requirement you build out causes something else to break, that is an opportunity to seperate concerns into something that is easy to change.</p>
+
+<p>Giving entities withing your software names that are domain language-based, will make it much easier to challenge your assumptions too. If you are talking to your colleague about 'Fred the customer who is going to get a salary raise for how long he's been working at the store for', the non-technical store owner sitting next to you might jump out of his seat and say no 'Fred gets a raise in loyalty points, salary raises are for employees not customers!!'. An example that might sound silly, but is likely to happen when you are building a system for a domain you know nothing about.</p>

@@ -1,0 +1,164 @@
+---
+layout: post
+title: Experimenting with Ruby input and file reading and writing
+---
+
+<p>Notes based on <a href="https://www.amazon.com/Learn-Ruby-Hard-Way-Computational/dp/032188499X" target="_blank">Learn Ruby the hard way.</a></p>
+
+<h2>Simple command line form</h2>
+
+<p>In this program, we ask the user a series of questions and then return their answers in sentence form.</p>
+
+<pre>
+<code>
+print "How old are you? "
+age = gets.chomp()
+print "How tall are you? "
+height = gets.chomp()
+print "How much do you weigh? "
+weight = gets.chomp()
+
+puts "So, you're #{age} old, #{height} tall and #{weight} heavy."
+</code>
+</pre>
+
+<h2>Simple resource links form</h2>
+
+<p>Based on the program above, I created a form that asks the user for a name of a resource as well as a link to the resource. Then the resource name and link is printed as a sentence.</p>
+
+<pre>
+<code>
+print "Resource name: "
+resource_name = gets.chomp()
+print "Link to resource (url): "
+url = gets.chomp()
+puts "#{resource_name} (#{url})"
+</code>
+</pre>
+
+<h2>Run file with arguments</h2>
+
+<p>This program lets you add variables to your script by adding the values seperated by spaces after the run command for your program. In this case, I ran my program in the command line like this: ruby arguments.rb happy go lucky.</p>
+
+<pre>
+<code>
+first, second, third = ARGV
+
+puts "The script is called: #{$0}"
+puts "Your first variable is #{first}"
+puts "Your second variable is #{second}"
+puts "Your third variable is #{third}"
+</code>
+</pre>
+
+<p>If you specify three arguments but only provide one, the variable placeholders will print nothing when the program is run.</p>
+
+<h2>Ask something specific</h2>
+
+<p>In this program, we provide our name as an argument when we run the program. Then the user is asked a series of questions which are stored as variables within the program. The user is addressed by the name they gave when running the program. The results of the questions are printed as a sentence at the end.</p>
+
+<pre>
+<code>
+user = ARGV.first
+prompt = '> '
+
+puts "Hi #{user}, I'm the #{0} script."
+puts "I'd like to ask you a few questions."
+puts "Do you like me #{user}?"
+print prompt
+likes = STDIN.gets.chomp()
+
+puts "Where do you live #{user}?"
+print prompt
+lives = STDIN.gets.chomp()
+
+puts "What kind of computer do you have?"
+print prompt
+computer = STDIN.gets.chomp()
+
+puts &lt;&lt;MESSAGE
+Alright, so you said "#{likes}" about liking me.
+You live in #{lives}. Not sure where that is.
+And you have a #{computer} computer. Nice.
+MESSAGE
+</code>
+</pre>
+
+<p>We are using <code>STDIN.gets.chomp()</code> instead of <code>gets.chomp()</code> because if we have passed in arguments from outside of the program, then gets tries to read the first argument passed in as a file and read from that. So you need to use STDIN explicitly when using ARGV.</p>
+
+<h2>Read file</h2>
+
+<p>In this program, we open a file and tell the user the name of the file and the contents inside the file. Then the user is asked to supply a new filename, and when they enter it the contents of that file is shown. In this case we just gave the same filename again.</p>
+
+<pre>
+<code>
+filename = ARGV.first
+
+prompt = "> "
+txt = File.open(filename)
+
+puts "Here's your file: #{filename}"
+puts txt.read()
+txt.close()
+
+puts "I'll also ask you to type it again:"
+print prompt
+file_again = STDIN.gets.chomp()
+
+txt_again = File.open(file_again)
+
+puts txt_again.read()
+txt_again.close()
+</code>
+</code>
+
+<p><code>File.open</code> opens a file and returns a File object, but it doesn't return the contents of the file yet. The <code>.read()</code> method reads the content of a whole file. You can pass the file to read as an argument to the function too if you wanted to.</p>
+
+<p>It's important to close files once you are done with them.</p>
+
+<h2>Read and write to a file</h2>
+
+<p>In this program, we erase a file and then ask the user for three lines which we write individually to the file. Then we close the file after we are done with it.</p>
+
+<pre>
+<code>
+filename = ARGV.first
+script = $0
+
+puts "We're going to erase #{filename}."
+puts "If you don't want that, hit CTRL-c (^c)."
+puts "If you do want that, hit RETURN."
+
+print "? "
+STDIN.gets
+
+puts "Opening the file..."
+target = File.open(filename, 'w')
+
+puts "Truncating the file. Goodbye!"
+target.truncate(target.size)
+
+puts "Now I'm going to ask you for three lines."
+
+print "Line 1: "; line1 = STDIN.gets.chomp()
+print "Line 2: "; line2 = STDIN.gets.chomp()
+print "Line 3: "; line3 = STDIN.gets.chomp()
+
+
+puts "I'm going to write these to the file."
+
+target.write(line1)
+target.write("\n")
+target.write(line2)
+target.write("\n")
+target.write(line3)
+target.write("\n")
+
+puts "And finally, we close it."
+target.close()
+</code>
+</pre>
+
+<p>I refactored the target.write code to remove duplication:</p>
+
+<code>target.write(line1, "\n", line2, "\n", line3, "\n")</code>

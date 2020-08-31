@@ -1,0 +1,37 @@
+---
+layout: post
+---
+
+<p>Now that I've played around with developing a wordpress theme, I want to dive deeper into everything and understand what's under the hood.</p>
+
+<p>Starting from scratch, with wordpress newly added and logged into. When I open the wordpress file on the command line, there are three directories: wp-admin, wp-content, and wp-includes.</p>
+
+<p>The wp-content file is where we add all of our theme files, including themes, plugins and assets (images, css and js etc).</p>
+
+<p>The remaining directories and folders in the wordpress root, are all core wordpress files. Modifying any of them can cause the site to be unstable, so it's important to be careful with these.</p>
+
+<h2>wp-config.php</h2>
+
+<p>The wp-config file is super important. It contains all of the database connection settings, including the database name, username and password.</p>
+
+<p>Wordpress will look for this file in the root of the wordpress directory. If it can't find it, it'll look in the parent directory. <strong>It's a good idea to move this file up a directory so that it's much harder (almost impossible) to access it from a web browser.</strong></p>
+
+<h3>Generate secret keys</h3>
+
+<p>You can strengthen the security of Wordpress sites by setting secret keys in the wp-config file. Secret keys are where you hash salts, which makes your site harder to hack by adding random elements (salt) to the password you set.</p>
+
+<p>You can autogenerate your own random secret keys by visiting <a href="https://api.wordpress.org/secret-key/1.1/salt/" target="_blank">Wordpress's secret key random generator</a>.</p>
+
+<p>You can generate secret keys whenever you want. When you do, all cookies will be wiped and your users will all be asked to log in again.</p>
+
+<h3>Change table prefix</h3>
+
+<p>You can also define database table prefixes in the config file. Doing this makes it harder for hackers to exploit your website via SQL injection attacks.</p>
+
+<h3>Save Queries</h3>
+
+<p>Adding this option to your config will let you save all database queries that are run, so that you can view them on Wordpress. Useful for debugging, especially plugins.</p>
+
+<code>define('SAVEQUERIES', true);</code>
+
+<p>In the next post, I'm going to explore how the wordpress core works (pages, posts, tags, search, categories etc.</p>

@@ -1,0 +1,329 @@
+---
+layout: post
+title: Exploring SQL some more
+---
+
+<p>Notes based on <a href="https://www.oreilly.com/library/view/head-first-sql/9780596526849/" target="_blank">Head First SQL</a></p>
+
+<p><strong>The simple the query the better</strong></p>
+
+<h2>Partially insert data</h2>
+
+<p>You can leave out some of the columns in your database if you need to enter data but don't have all of the data for that entry yet. Just omit the columns you can't enter yet and make sure to keep the values in the same order of the columns you are adding data to.</p>
+
+<code>INSERT INTO my_contacts (first_name, email, profession, location) VALUES ('Pat', 'patpost@breakneckpizza.com', 'Postal Worker', 'Princeton, NJ');</code>
+
+<h2>View contents of table with SELECT statement</h2>
+
+<p>The DESC statement only shows you the structure of your table, and not the information inside of it. Whereas the SELECT statement shows you what is inside your table:</p>
+
+<code>SELECT * FROM my_contacts;</code>
+
+<h2>Must enter values using NOT NULL</h2>
+
+<p>The value NULL appears in any columns that do not have an assigned value. NULL means undefined.</p>
+
+<p>There will be some columns in your table that you never want to be null, they should always have values (like last_name, it wouldn't make sense for that to be null). In order to make sure that a column must always be filled in (is never null), then you can add <code>NOT NULL</code> after the datatype you have specified for your column:</p>
+
+<pre>
+<code>
+CREATE TABLE my_contacts
+(
+  last_name VARCHAR(30) NOT NULL,
+  first_name VARCHAR(20) NOT NULL,
+  ...
+</code>
+</pre>
+
+<h2>Setting DEFAULT values for table data</h2>
+
+<p>If you have a column that usually has a specific value, we can set this value using the DEFAULT keyword in our create table script. This value is automatically inserted into the table each time a row is added <em>if no other value is specified</em>.</p>
+
+<pre>
+<code>
+CREATE TABLE doughnut_list
+(
+  doughnut_name VARCHAR(10) NOT NULL,
+  doughnut_type VARCHAR(6) NOT NULL,
+  doughnut_cost DEC(3,2) NOT NULL DEFAULT 1.00
+);
+</code>
+</pre>
+
+<h2>Find an entry using the SELECT statement</h2>
+
+<code>SELECT * FROM my_contacts WHERE first_name = 'Anne';</code>
+
+<p>The 'WHERE' clause gives the RDBMS something specific to look for. It only returns the rows that match this condition.</p>
+
+<p>The star '*' operator selects all of the rows in your database, similar to the * (universal selector) in CSS which selects all elements in your document.</p>
+
+<h2>SELECT the columns you wish to see</h2>
+
+<pre>
+<code>
+SELECT drink_name, main, second
+FROM easy_drinks
+WHERE main = 'soda';
+</code>
+</pre>
+
+<p>To select only the columns you want to see, you can replace the star operator with the names of the columns you want to see, seperated by commas.</p>
+
+<h2>Find the 'plain glazed' doughnut with the highest rating</h2>
+
+<p>To find the best glazed doughnut, you need to do at least two SELECT statements. The first one will select rows with the type 'glazed doughnut', and the second will select rows with doughnuts that have a rating of 10.</p>
+
+<code>SELECT location, rating FROM doughnut_ratings WHERE type = 'plain glazed AND rating = 10;</code>
+
+<p>Another example:</p>
+
+<code>SELECT drink_name FROM easy_drinks WHERE main = 'soda' AND amount1 = 1.5;</code>
+
+<h2>Comparison operators for more specific queries</h2>
+
+<p>We can also use the greater than sign to find all the places where the glazed donuts are greater than 7 (so 8-10):</p>
+
+<code>SELECT location, rating FROM doughnut_ratings WHERE type = 'plain glazed AND rating &gt; 10;</code>
+
+<p>Here are some more signs we can use:</p>
+
+<ul>
+  <li><strong>=</strong>: Exact match</li>
+  <li><strong>&lt;&gt;</strong>: Not a match</li>
+  <li><strong>&lt;</strong>: Less than</li>
+  <li><strong>&lt;=</strong>: Less than OR equal to</li>
+  <li><strong>=&gt;</strong>: Greater than OR equal to</li>
+</ul>
+
+<p>All of these comparison operators also work with text-based data types like CHAR and VARCHAR. They evaluate everything alphabetically. If you want to select all drinks that begin with 'L', then you would write the following:</p>
+
+<pre>
+<code>
+SELECT drink_name
+FROM drink_info
+WHERE
+drink_name &gt;= 'L';
+</code>
+</pre>
+
+<h2>Selecting ranges</h2>
+
+<p>You can select based on ranges in two ways. The first way is by using the AND clause to specify both a lesser and greater than condition that must be met. Or you can use the BETWEEN keyword. Both methods are shown below:</p>
+
+<pre>
+<code>
+WHERE calories &gt;= 30
+AND
+calories &lt; 60;
+</code>
+</pre>
+
+<code> WHERE calories BETWEEN 30 AND 60;</code>
+
+<h2>Return queries when any of the conditions are met using OR</h2>
+
+<p>You can combine queries using OR just like we did using AND. The AND statement requires that both conditions in the query are met, whilst the OR statement requires that any of the conditions are met. In the following query, we are returning all drinks whose main OR secondary indredients are 'cherry juice'.</p>
+
+<pre>
+<code>
+SELECT drink_name from easy_drinks
+WHERE main = 'cherry juice'
+OR
+second = 'cherry juice';
+</code>
+</pre>
+
+<h2>Find values that are NULL</h2>
+
+<p>We can use the IS NULL keyword to find values that are undefined (NULL).</p>
+
+<pre>
+<code>
+SELECT drink_name
+FROM drink_info
+WHERE
+calories IS NULL;
+</code>
+</pre>
+
+<h2>Look for part of a text string using LIKE</h2>
+
+<p>You can use the LIKE keyword in conjunction with two wildcard characters '%' and '_' to search for values that contain a pattern you are looking for.</p>
+
+<p>The '%' sign represents zero, one or more characters, whilst the underscore represents a single character. Both wildcard characters can be put before or after part of a string. Here are some examples that demonstrate how they work:</p>
+
+<code>WHERE customer_name LIKE 'a%'</code>
+
+<p>The above query means: Where customer name starts with 'a'.</p>
+
+<code>WHERE customer_name LIKE '%a'</code>
+
+<p>The above query means: Where customer name ends with 'a'.</p>
+
+<code>WHERE Customer_name LIKE '%ac%'</code>
+
+<p>The above query means: Where customer name contains 'ac'</p>
+
+<code>WHERE customer_name LIKE 'a__%'</code>
+
+<p>The above query means: Where customer name starts with 'a' and are at least 3 characters in length</p>
+
+<code>WHERE customer_name LIKE 'a%o'</code>
+
+<p>The above query means: Where customer name starts with 'a' and ends in 'o'.</p>
+
+<h2>Select if value matches list of values</h2>
+
+<p>In the query below, we are returning all date names where the rating matches one of the values listed in between the parentheses. This saves us from using a chain or OR clauses.</p>
+
+<pre>
+<code>
+SELECT date_name
+FROM black_book
+WHERE rating
+IN ('innovative', 'fabulous', 'delightful', 'pretty good');
+</code>
+</pre>
+
+<p>We can also swap out or IN clause for NOT in to get the inverse result, to know which dates to avoid if they call (book example).</p>
+
+<h2>NOT keyword</h2>
+
+<p>The NOT keyword can be used with BETWEEN and LIKE, just like we did above with the IN keyword. The important thing to remember with the NOT keyword is that it must appear right after the WHERE clause in our statements. The NOT IN clause is the only exception to this rule in that it doesn't have to come just after the WHERE clause, though it will still work if you do place it there.</p>
+
+<pre>
+<code>
+SELECT drink_name
+FROM drink_info
+WHERE NOT carbs
+BETWEEN 3 and 5;
+</code>
+</pre>
+
+<p>The above query says: Select drink names from the drink_info table where the carbs are not between the range of 3 and 5 (must be less than 3 or greater than 5.</p>
+
+<pre>
+<code>
+SELECT * FROM easy_drinks
+WHERE NOT main IN ('soda', 'iced tea');
+</code>
+</pre>
+
+<p>The above query says: Select all items in the easy_drinks table where any of the columns except 'main' contain a value 'soda' or 'iced tea'.</p>
+
+<pre>
+<code>
+SELECT * FROM easy_drinks
+WHERE main NOT IN ('soda', 'iced tea');
+</code>
+</pre>
+
+<p>The above query says: Select all items in the easy_drinks table where the main columns do not contain the values 'soda' or 'iced tea'.</p>
+
+<h2>Can't guarantee chronological order problem</h2>
+
+<p>We have a table which contains clown names, a description of their appearance, where they were last seen and what they were doing (activities).</p>
+
+<p>The data is collected as reports, which are emailed to volunteers who then enter the data, sometimes at the same time causing duplication, or at different times where the most recent sighting is added before an earlier sighting.</p>
+
+<p>The two problems here are duplication, and the fact that we can't be sure that the last record is the newest record. We can't rely on the rows being in chronological order. So how do we know the most recent place that Zippo the clown was actually seen?</p>
+
+<p>We can structure our database in such a way that there are never any duplicates. For now though, we'll assume that the database has been poorly designed and that we need to delete some records. We can do this using the DELETE clause.</p>
+
+<h2>DELETE</h2>
+
+<p>The DELETE statement allows you to delete rows of data from your table.</p>
+
+<pre>
+<code>
+DELETE
+FROM clown_info
+WHERE activities = 'dancing';
+</code>
+</pre>
+
+<p>Unlike the SELECT statement, we don't have to tell it what to delete because it will just delete the entire record. The query above deletes all records from the 'clown_info' table whose activities column contains the value 'dancing'.</p>
+
+<ul>
+  <li>You can't use DELETE to delete the value from a single column or tableful of columns</li>
+  <li>You can use DELETE to delete a single row or multiple rows depending on the WHERE clause</li>
+  <li>You can delete every row in your table using <code>DELETE FROM your_table</code> which is permanent.</li>
+</ul>
+
+<h2>Create one new record and delete the old one</h2>
+
+<p>We already have a record in our table for a clown called Clarabelle who has just been spotted in a different area. Only her activity is different from the current record.</p>
+
+<p>In our table, we want to make sure that we only have one record per clown, containing the most recent 'last seen' information. To do this, we first insert a record containing all of the most recent information we have about Clarabelle the clown:</p>
+
+<pre>
+<code>
+INSERT INTO clown_info
+VALUES
+('Clarabelle', 'Belmont Senior Center', 'F, pink hair, huge flower, blue dress', 'dancing');
+</code>
+</pre>
+
+<p>Then we DELETE the old record of Clarabelle the clown using a WHERE clause:</p>
+
+<pre>
+<code>
+DELETE FROM clown_info
+WHERE activities = 'yelling'
+AND name = 'Clarabelle';
+</code>
+</pre>
+
+<p>This leaves us with just the new record. NOTE: My colleague says it's better to never delete information from a table because all information is valuable. Plus in this case we might have been interested in analysing all of the past sightings, which we are unable to do now that we have deleted them every time a new sighting occurs.</p>
+
+<p>DELETE is a destructive action, so it is important to be careful whenever you use it, by making sure that you use a precise WHERE clause to target the exact rows you really intend to delete.</p>
+
+<p>A trick to make sure you're only going to delete the rows you intend to delete is to use a SELECT statement instead.</p>
+
+<h2>Update your data</h2>
+
+<p>The UPDATE keyword updates a column, or columns to a new value. You can also give it a WHERE clause to indicate which row you want to update:</p>
+
+<pre>
+<code>
+UPDATE doughnut_ratings
+SET
+type = 'glazed'
+WHERE type = 'plain glazed';
+</code>
+</pre>
+
+<p>The SET keyword telss the RDBMS that it needs to change the column before the equal sign to contain the value after the equal sign. You can update more colums by adding column = value pairs to the SET clause, seperated with commas.</p>
+
+<p>You can use the UPDATE clause to change the old record into the new one without deleting anything:</p>
+
+<pre>
+<code>
+UPDATE clown_info
+SET last_seen = 'Tracy\'s'
+WHERE name = 'MR. Hobo'
+AND last_seen = 'Dickson Park';
+</code>
+</pre>
+
+<p>In the above query, the 'last_seen' column of Mr. Hobo's record is changed from Dickson Park to Tracy's.</p>
+
+<h2>Math operations in UPDATE columns</h2>
+
+<p>Say we have a table filled with drinks and their prices. We want to update the prices of some drinks so that they come off sale and are now $1 more expensive. We could do this by hand for each record, or we could run the following query:</p>
+
+<pre>
+<code>
+UPDATE drink_info
+SET cost = cost + 1;
+WHERE
+drink_name = 'Blue Moon'
+OR drink_name = 'Oh My Gosh'
+OR drink_name = 'Lime Fizz';
+</code>
+</pre>
+
+<p>In the query above, we are adding 1 to the cost column for drinks that are called 'Blue Moon', OR 'Oh My Gosh', OR 'Lime Fizz'</p>
+
+<p>While knowing how to update data is crucial because data does change, you can learn how to design your tables in such a way that you won't have to do as much updating.</p>

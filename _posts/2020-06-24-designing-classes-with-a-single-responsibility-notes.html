@@ -1,0 +1,340 @@
+---
+layout: post
+---
+
+<p>Notes from <a href="https://www.poodr.com/" target="_blank">Practical Object-Oriented Design in Ruby</a></p>
+
+<ul>
+  <li>What are your classes?</li>
+  <li>How many should you have?</li>
+  <li>How much do they know about other classes?</li>
+  <li>How much of themselves should they expose?</li>
+</ul>
+
+<p>These questions can be overwhelming. At this stage, your first obligation is to breath and <em>insist that it be simple.</em> Your goal is to model your application, using classes, such that it does what it is supposed to do right now and also be easy to change later.</p>
+
+<p>Much thought and research has gone into identifying the qualities that make an application easy to change. The techniques are simple; you only need to know what they are and how to use them.</p>
+
+<h2>Deciding what belongs in a class</h2>
+
+<p>Methods are defined in classes. The classes you create will affect how you think about your application forever. They define a virtual world. You are constructing a box that may be difficult to think outside of.</p>
+
+<p>Despite the importance of correctly grouping methods into classes, at this early stage of your project you cannot possibly get it right. You will never know less than you know right now. Many of the decisions you make today will need to be changed later.</p>
+
+<p>Design is about preserving changeability than the art of acheiving perfection.</p>
+
+<h3>Easy to change qualities</h3>
+
+<ul>
+  <li>Changes have no unexpected side effects.</li>
+  <li>Small changes in requirements require correspondingly small changes in code.</li>
+  <li>Existing code is easy to reuse.</li>
+  <li>The easiest way to make a change is to add code that in itself is easy to change.</li>
+</ul>
+
+<h3>Code qualities</h3>
+
+<ul>
+  <li>Transparent: The consequences of change should be obvious in the code that is changing and in distant code that relies upon it.</li>
+  <li>Reasonable: The cost of any change should be proportional to the benefits the change achieves.</li>
+  <li>Usable: Existing code should be usable in new and unexpected contexts.</li>
+  <li>Exemplary: The code itself should encourage those who change it to perpetuate these qualities.</li>
+</ul>
+
+<h2>Creating classes that have a single responsibility</h2>
+
+<p>A class should do the smallest possible useful thing; that is, it should have a single responsibility.</p>
+
+<p>If you read through the description of the bicycle problem looking for nouns that represents objects in the domain, you'll see words like <em>bicycle</em> and <em>gear</em>. These nouns represent the simplest candidates to be classes. Intuition says that <em>bicycle</em> should be a class, but nothing in the description lists any behaviour for bicycle, so right now, it doesn't qualify. <em>Gear</em> however, has chainrigs, cogs and ratios. It has both data and behaviour.</p>
+
+<pre>
+<code>
+class Gear
+  attr_reader :chainring, :cog
+  def initialize(chainring, cog)
+    @chainring = chainring
+    @cog = cog
+  end
+
+  def ratio
+    chainring / cog.to_f
+  end
+end
+
+puts Gear.new(52, 11).ratio
+puts Gear.new(30, 27).ratio
+</code>
+</pre>
+
+<p>You show this program to a cyclist friend and they find it useful but immediately ask for an enhancement. She has two bicycles. They have the same gearing but different wheel sizes. She would like you to also calculate the effect of the difference in wheels. A bike with huge wheels travels much farther during each wheel rotaton than one with tiny wheels.</p>
+
+<p>US cyclists use <em>gear inches</em> to compare bicycles that differ in both gearing and wheel size. The formula:</p>
+
+<p>gear inches = wheel diameter * gear ratio</p>
+
+<p>Where</p>
+
+<p>wheel diameter = rim diameter + twice tire diameter</p>
+
+<pre>
+<code>
+class Gear
+  attr_reader :chainring, :cog, :rim, :tire
+  def initialize(chainring, cog)
+    @chainring = chainring
+    @cog       = cog
+    @rim       = rim
+    @tire      = tire
+  end
+
+  def ratio
+    chainring / cog.to_f
+  end
+
+  def gear_inches
+    #tire goes around rim twice for diameter
+    ratio * (rim + (tire * 2))
+  end
+end
+
+puts Gear.new(52, 11, 26, 1.5).gear_inches
+puts Gear.new(52, 11, 24, 1.25).gear_inches
+</code>
+</pre>
+
+<p>The bug in this code is that <code>puts Gear.new(30, 27).ratio</code> no longer works. Changing the number of arguments that a method requires breaks all existing callers of the method.</p>
+
+<p>An application that is easy to change is like a box of building blocks; you can select just the pieces you need and assemble them in unanticipated ways.</p>
+
+<p>If you want to reuse some (but not all) of a classes behaviour, it's impossible to get at only what you need.</p>
+
+<p>To determine if a class contains behaviour that belongs somewhere else, you can pretend that it's sentient and interrogate it. If you rephrase every one of its methods as a question, asking the question should make sense. e.g. "Please Mr.Gear, what is your ratio", while "Please Mr.Gear, what are your gear_inches" is on shaky ground, and "Please Mr.Gear, what is your tire (size)" is ridiculous.</p>
+
+<p>Another way to hone in on what a class is actually doing is to attempt to describe it in one sentence. A class should do the smallest possible useful thing. If the simplest description you can devise uses the word "and", the class has more than one responsibility.</p>
+
+<h2>Techniques for creating code that embraces change</h2>
+
+<h3>Depend on Behaviour, Not Data</h3>
+
+<h4>Hide Instance Variables</h4>
+
+<p>Data can be accessed in one of two ways; You can refec directly to the instance variable, or you can wrap the instance variable in an accessor method.</p>
+
+<p>Always wrap instance variables in accessor methods instead of directly referring to variables (@instanceVariable is a no-go). Hide the variables, even from the class that defines them, by wrapping them in methods.</p>
+
+<p>Because it's possible to wrap every instance variable in a methad and to therefore treat any variable as if it's just another object, the distinction between data and a regular object begins to disappea.</p>
+
+<p><strong>Send messages to access variables, even if you think of them as data</strong>.</p>
+
+<h4>Hide Data Structures</h4>
+
+<p>If being attached to an instance variable is bad, depending on a complicated data structure is worse:</p>
+
+<pre>
+<code>
+class Object
+  attr_reader :data
+  def initialize(data)
+    @data = data
+  end
+
+  def diameters
+    data.collect { |cell|
+      cell[0] + (cell[1] * 2) }
+  end
+end
+</code>
+</pre>
+
+<p>This call expects to be initialized with a two-dimensional array of rims and tires. The diameter method knows not only how to calculate diameters, but also where to find rims and tires in the array. It explicitly knows that if it iterates over data that rims are at [0] and tires are at [1]. It depends on the arrays structure. If that structure changes, then this code must also change.</p>
+
+<p>In Ruby, it's easy to seperate structure from meaning. Just as you can use a method to wrap an instance variable, you can use the Ruby struct class to wrap a structure.</p>
+
+<pre>
+<code>
+class Object
+  attr_reader :wheels
+  def initialize(data)
+    @wheels = wheelify(data)
+  end
+
+  def diameters
+    data.collect { |wheel|
+      wheel.rim + (wheel.tire * 2) }
+  end
+
+  Wheel = Struct.new(:rim, :tire)
+  def wheelify(data)
+    data.collect { |cell|
+      cell[0] + (cell[1] * 2) }
+  end
+end
+</code>
+</pre>
+
+<p>All knowledge of the structure of the incoming arrays has been isolated inside the wheelify method, which converts the array of Arrays into an array of Structs. The official Ruby documentation describes Struct as "a convenient way to bundle a number of attributes togather, using accessor methods, without having to write an explicit class."</p>
+
+<p>The wheelify method contains the only bit of code that understands the structure of the incoming array. If the input changes, the code will change in just this one place.</p>
+
+<p>If you can control the input, pass in a useful object, but if you are compelled to take a messy structure, hide the mess even from yourself.</p>
+
+<h3>Enforce Single Responsibility Everywhere</h3>
+
+<h4>Extract Extra Responsibilities From Methods</h4>
+
+<pre>
+<code>
+def diameters
+  data.collect { |wheel|
+    wheel.rim + (wheel.tire * 2) }
+end
+</code>
+</pre>
+
+<p>This method has two responsibilities: it iterates over the wheels and it calculates the diameter of each wheel. Simplify the code by seperating it into two methods, each with one responsibility.</p>
+
+<pre>
+<code>
+# First - iterate over the array.
+def diameters
+  wheels.colloct { |wheel| diameter(wheel) }
+end
+
+# Second - calculate the diameter of ONE wheel
+def diameter(wheel)
+  wheel.rim + (wheel.tire * 2))
+end
+</code>
+</pre>
+
+<p>Another example</p>
+
+<pre>
+<code>
+def gear_inches
+  ratio * (rim + (tire * 2))
+end
+</code>
+</pre>
+
+<p>Hidden inside gear_inches is the calculation for wheel diameter. Extracting that calculation into this new diameter method will make it easier to examine the class's responsibilities.</p>
+
+<pre>
+<code>
+def gear_inches
+  ratio * diameter
+end
+
+def diameter
+  rim + (tire * 2)
+end
+</code>
+</pre>
+
+<p>Do these refactorings even when you do not know the ultimate design. They are needed, not because the design is clear, but because it isn't. You don't have to know where you're going to use good practices to get there. Good practices reveal design.</p>
+
+<p>This simple refactoring makes the problem obvious. Gear is definitely responsible for calculating gear_inches, but gear should not be calculating the wheel diameter.</p>
+
+<p>Methods that have a single responsibility confer the following benefits:</p>
+
+<ul>
+  <li>Exposing previously hidden qualities: Refactoring a class so that all of its methods have a single responsibility has a clarifying effect on the class. Even if you don't intend to reorganize the methods into other classes today, having each of them serve a single purpose makes the set of things the class does more obvious.</li>
+  <li>Avoid the need for comments: If a bit of code inside a method needs a comment, extract that bit into a seperate method. The new method name serves the same purpose as the old comment.</li>
+  <li>Encourage reuse: Small methods encourage coding behaviour that is healthy for your application. Other programmers ill reuse the mtehods instead of duplicating the code. They will follow the patter you have established and create small, reusable methods in turn.</li>
+  <li>Easy to move to another class: When you get more design information nad decide to make changes, small methods are easy to move. you can rearrange behaviour without doing a lot of method extraction and refactoring. Small methods lower the barriers to improving your design.</li>
+</ul>
+
+<h3>Isolate extra responsibilities in classes</h3>
+
+<p>The gear class has some wheel-like behaviour, but it doesn't mean your application needs to have a wheel class right this seconds. If you create one, you then have a new, permanent, publicly available class. Your goal is to preserve single responsibility in gear while making the fewest design commitments possible. Because you're writing changable code, you're best served by postponing decisions until you're absolutely forced to make them. Preserve your ability to make a decision later.</p>
+
+<p>Ruby allows you to remove the responsibility for calculating tire diameter from Gear without committing to a new class. The following example extends the previous Wheel Struct with a block that adds a method to calculate diameter.</p>
+
+<pre>
+<code>
+class Gear
+  attr_reader :chainring, :cog, :wheel
+  def initialize(chainring, cog, rim, tire)
+    @Chainring = chainring
+    @cog = cog
+    @wheel = Wheel.new(rim, tire)
+  end
+
+  def ratio
+    chainrig / cog.to_f
+  end
+
+  def gear_inches
+    ratio * wheel.diameter
+  end
+
+  Wheel = Struct.new(:rim, :tire) do
+    def diameter
+      rim + (tire * 2)
+    end
+  end
+end
+</code>
+</pre>
+
+<p>Now we have a Wheel that can calculate its own diameter. Embedding the Wheel in Gear is not the long-term design goal; it's more an experiment in code organization. It cleans up Gear but defers the decision about the wheel.</p>
+
+<p>Embedding Wheel inside of Gear suggest that you expec that a Wheel will only exist in the context of a gear.</p>
+
+<p>If you identify extra responsibilities that you cannot yet remove, isolate them. Don't allow extraneous responsibilities to leak into your class.</p>
+
+<h3>The Real Wheel</h3>
+
+<p>You show your calculator to your cyclist friend again and she tells you that it's great but that she'd also like to have one for "bicycle wheel circumference". She has a computer on her bike that calculates speed; This computer has to be configured with the bicycle's wheel circumference to do its job.</p>
+
+<p>This is the information you've been waiting for; a new feature request that supplies the exact information you need to make the next design decision.</p>
+
+<p>The circumference of a wheel is PI times its diameter. Your embedded wheel already calculates diameter, it'll be simple to add a new method to calculate circumference. These changes are minor, but now your application has an explicit need for a Wheel class that it can use independently of Gear.</p>
+
+<p>Because you have already carefully isolated the Wheel behaviour inside of the Gear class, this change is painless. Simply convert the Wheel Struct to an independent Wheel class and add the new circumference method:</p>
+
+<pre>
+<code>
+class Gear
+  attr_reader :chainrig, :cog, :wheel
+  def initialize(chainrig, cog, wheel=nil)
+    @chainring = chainring
+    @cog       = cog
+    @wheel     = wheel
+  end
+
+  def ratio
+    chainring / cog.to_f
+  end
+
+  def gear_inches
+    ratio * wheel.diameter
+  end
+end
+
+class Wheel
+  attr_reader :rim, :tire
+  def initialize(rim, tire)
+    @rim     = rim
+    @tire    = tire
+  end
+
+  def diameter
+    rim + (tire * 2)
+  end
+
+  def circumference
+    diameter * Math::Pi
+  end
+end
+
+@wheel = Wheel.new(26, 1.5)
+puts @wheel.circumference
+
+puts Gear.new(52, 11, @wheel).gear_inches
+
+puts Gear.new(52, 11).ratio
+</code>
+</pre>
+
+<p>Classes that do one thing isolate that thing from the rest of your application. This isolation allows change without consequence and reuse without duplication.</p>

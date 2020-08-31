@@ -1,0 +1,70 @@
+---
+layout: post
+title: Setting up book collection page using Jekyll, including Twitter share links!
+---
+
+<p>My site currently runs on Github Pages. It's a static site, but I'm seeing how far I can push it, and make it a truly awesome site that no one will realise is actually static.</p>
+
+<p>My current aim, is to create a page which lists a bunch of books that I have read and have provided an overview, raw notes and tips for. This post assumes that you already know how to use Jekyll.</p>
+
+<h2>Collections</h2>
+
+<p>In Jekyll, you can create individual <em>posts</em> and <em>pages</em>. Collections are for things that don't fall into those categories, like books and recipies etc.</p>
+
+<p>Gah, I have a bit of a headache going on so will just capture the code for now and write a proper tutorial once I've finished the book page.</p>
+
+<h2>_config.yml</h2>
+
+<pre>
+<code>
+collections:
+  books:
+    output: true
+    permalink: /books/:path
+</code>
+</pre>
+
+<h2>_books/the-pragmatic-programmer.html</h2>
+
+<pre>
+<code>
+---
+title: The Pragmatic Programmer
+authors: David Thomas and Andrew Hunt
+quote: '"Kaizen" is a Japanese term that captures the concept of continuously making many small improvements.'
+img_url: /assets/img/book-covers/the-pragmatic-programmer.jpg
+share_link:
+category: Tech
+---
+
+&lt;article class="overview"&gt;
+  &lt;h1&gt;Overview&lt;/h1&gt;
+  &lt;p&gt;My favourite book on programming! Filled with actionable advice for levelling up your career as a developer.&lt;/p&gt;
+&lt;/article&gt;
+
+&lt;article class="tips"&gt;Tips&lt;/article&gt;
+&lt;article class="raw-notes"&gt;Raw Notes&lt;/article&gt;
+</code>
+</pre>
+
+<h2>books.html</h2>
+
+<pre>
+<code>
+---
+layout: default
+title: Books
+permalink: /books/
+---
+{% for books in site.books %}
+  &lt;article class="book_card"&gt;
+    &lt;h1&gt;{{ books.title }}&lt;/h1&gt;
+    &lt;p&gt;{{ books.authors }}&lt;/p&gt;
+    &lt;blockquote&gt;{{ books.quote }}&lt;/blockquote&gt;
+    &lt;img src="{{ books.img_url }}" alt="{{ books.title }} book cover"&gt;
+    &lt;a href="https://twitter.com/intent/tweet?text=[What is your favourite takeaway from {{ books.title }}]&url={{ site.url }}{{ books.url }}&via=becca9941&related=becca9941" rel="nofollow" target="_blank" title="Share on Twitter"&gt;Share&lt;/a&gt;
+    &lt;a href="{{ books.url }}"&gt;read more&lt;/a&gt;
+  &lt;/article&gt;
+{% endfor %}
+</code>
+</pre>

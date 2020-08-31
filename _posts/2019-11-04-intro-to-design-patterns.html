@@ -1,0 +1,157 @@
+---
+layout: post
+title: Object-oriented design principles. 
+---
+
+<h2>Identify the aspects of your application that vary and seperate them from what stays the same.</h2>
+
+<p>This concept forms the basis for almost every design pattern. All patterns provied a way to let some part of a system vary independently of all other parts.</p>
+
+<p>Take what varies and 'encapsulate' it so it won't affect the rest of your code. If you notice that some part of your code changes a lot, then you know you have a behaviour that needs to be pulled out and seperated from all of the stuff that doesn't change. This allows you to be able to change or extend the parts that vary without affecting the things that don't.</p>
+
+<h2>Program to an interface, not a implementation</h2>
+
+<p>Program to an interface really means 'program to a supertype'. The point is to exploit polymorphism by programming to a supertype so that the actual runtime object isn't locked into the code. Or in other words "The declared type of the variables should be a supertype so that the objects assigned to those variables can be of any concrete implementation of the supertype". This means the class declaring them doesn't have to know about the actual object types.</p>
+
+<pre>
+<code>
+class Quack
+  def quack
+    "Quack"
+  end
+end
+
+class Squeak
+  def quack
+    "Squeak"
+  end
+end
+
+class Silence
+  def quack
+    "Silence..."
+  end
+end
+
+class Duck
+  def initialize(quack_behaviour)
+    @quack_behaviour = quack_behaviour
+  end
+
+  def quack
+    @quack_behaviour.quack
+  end
+end
+
+quackyDuck = Duck.new Quack.new
+
+puts quackyDuck.quack
+</code>
+</pre>
+
+<p>In the code above, we have three individual quack behaviour classes, each of which have a 'quack' method, though each of them implements their own quack differently. In the Duck class, we have created an instance variable called 'quack_behaviour', which can hold any quack object (instance of any of our three or more quack classes). Then we have a method called 'quack', which calls the 'quack' method on whatever is stored in our 'quack_behaviour' instance variable.</p>
+
+<h2>Relationships between classes are important</h2>
+
+<ul>
+  <li>Is-a (inheritance)</li>
+  <li>Has-a (composition)</li>
+  <li>Implements (interface)</li>
+</ul>
+
+<p>When you put two classes together like this (giving a duck a quack behaviour class), this is known as <em>composition</em>. Our ducks are getting their behaviour by being composed with the right behaviour object.</p>
+
+<p><strong>Favour composition over inheritance</strong></p>
+
+<p>Composition gives you a lot more flexibility because it allows you to encapsulate a family of algorithms (quack behaviours) into their own set of classes, but it also lets you change behaviour at runtime as long as the object you're composing with implements the correct behaviour interface (quack method).</p>
+
+<h2>The Strategy Pattern</h2>
+
+<p>The strategy pattern defines a family of algorithms, encapsulates each one, and makes them interchangeable</p>
+
+<h2>The observer pattern</h2>
+
+<ul>
+  <li>A newspaper publisher (SUBJECT) begins publishing</li>
+  <li>You subscribe to a particular publisher. Every time there is a new edition, it gets delivered to you as long as you remain a subscriber.</li>
+  <li>You unsubscribe when you don't want papers anymore.</li>
+  <li>People, businesses, hotels, airlines etc also subscribe to the newspaper (OBSERVERS).</li>
+</ul>
+
+<p>The observer pattern defines a one-to-many dependency between objects so that when one object changes state, all of its dependents are notified and updated automatically.</p>
+
+<p>The observers are dependent on the subject such that when the subject's state changes, the observers get notified. Depending on the style of notification, the obserer may also be updated with new values.</p>
+
+<p>There are a few different ways to implement the observer pattern, but most revolve around a class design that includes Subject and Observer interfaces.</p>
+
+<p>The observer pattern provides an object design where subjects and observers are loosely coupled. The only thing the subject knows about an observer is that it implements a certain interface. It doesn't need to know the concrete class of an observer.</p>
+
+<p><strong>Strive for loosely coupled designs between objects that interact.</strong></p>
+
+<h3>My implementation of the observer pattern</h3>
+
+<p>Instead of following the examples, I like to convert real world examples that matter to me into the programs I am building. It helps me understand what's going on a bit better too. In this case, Andy and I have recently become kitten foster carers. So we have a FosterKittens group (subject) that we can add foster carers (observers) to. The FosterKittens group notifies the carers who are on the list when they get a new kitten (which in this case is a randomly chosen kitten from a list of kittens). The responses from the foster cares depends on the type of kitten who is sent in the notification.</p>
+
+<pre>
+<code>
+class FosterKittens
+  attr_accessor :kitten, :kittens
+
+  def initialize
+    @observers = []
+    @kittens = ['Ginger kitten with white paws', 'Grey kitten', 'White kitten']
+    @kitten
+  end
+
+  def register_observer(observer)
+    puts "SWARS: We have a new kitten foster carer signed up!"
+    @observers << observer
+  end
+
+  def remove_observer(observer)
+    puts "SWARS: One of our kitten foster carers has left the group, cry cry."
+    @observers.delete(observer)
+  end
+
+  def notify_observers
+    @observers.each { |observer| observer.update(self) }
+  end
+
+  def some_business_logic
+    puts "\nSWARS: Kitten update!"
+    @kitten = kittens.sample
+
+    puts "SWARS We have a new #{@kitten} available to foster/adopt!"
+    notify_observers
+  end
+end
+
+class Rebecca
+  def update(subject)
+    puts 'Rebecca: Says can we adopt this kitten????' if subject.kitten == "Ginger kitten with white paws"
+  end
+end
+
+class Andy
+  def update(subject)
+    puts 'Andy: Says we can foster and see how it goes...' if subject.kitten == "Ginger kitten with white paws"
+  end
+end
+
+swars = FosterKittens.new
+
+rebecca = Rebecca.new
+andy = Andy.new
+
+swars.register_observer(rebecca)
+swars.register_observer(andy)
+
+swars.some_business_logic
+swars.some_business_logic
+
+swars.remove_observer(andy)
+
+swars.some_business_logic
+</code>
+</pre>
+

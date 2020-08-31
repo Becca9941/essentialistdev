@@ -1,0 +1,295 @@
+---
+layout: post
+title: Limitation breeds creativity - 9-26 Ruby experiments
+---
+
+<p>I'm reading <a href="http://poignant.guide/" target="_blank">Why's Poignant Guide to Ruby</a>, and am going to do a 'limitation breeds creativity' experiment.</p>
+
+<p><strong>RULE:</strong> I can only build programs by choosing from the pool of concepts contained in each of the code snippets I encounter in the book I am reading so far. The more code snippets I encounter, the larger the pool will be to draw from.</p>
+
+<p>I'll include the code experiments and comments on each of them. To start with, the code is going to be pretty ick, but the whole point is to get all the bad programs out so that the good ones can make an appearance later.</p>
+
+<h2>Print shopping list</h2>
+<pre>
+  <code>
+  shoppingList = ["milk", "eggs", "bread", "coffee", "cereal"]
+
+shoppingList.each { |item|
+  print item.capitalize
+}
+
+  </code>
+</pre>
+<p>All we do here is store shopping list items in an array before printing them all out using an each block. This makes the iteration block easier to read because it's obvious that we are looking through a shopping list because of the variable name, instead of having to read the items to infer what they represent as a whole instead.</p>
+
+
+<h2>Print total cost of orphan and his teddy bear</h2>
+<pre>
+  <code>
+  orphan_fee = 2000
+teddy_bear_fee = 121.08
+gratuity = 50
+
+total = orphan_fee + teddy_bear_fee + gratuity
+print total
+
+  </code>
+</pre>
+<p>Fifth code snippet in Why's Poignant Guide to Ruby shows you how to store data in variables and concatenate them in a print statement. In this case we have three variables, one for an orphan, one for his teddy bear and one for the gratuity (wow, harsh example).</p>
+
+
+<h2>You can use underscores in numbers</h2>
+<pre>
+  <code>
+  population = 12_000_000_000
+print population
+
+  </code>
+</pre>
+<p>You can use underscores instead of commas when writing numbers into your Ruby programs. I probably wouldn't do this though as I don't think it's all that necessary.</p>
+
+
+<h2>Symbols are strings that are not printed</h2>
+<pre>
+  <code>
+  :ImNotGoingToBePrintedToTheScreen
+
+  </code>
+</pre>
+<p>Symbols are strings that will not be printed to the screen in a Ruby project.</p>
+
+
+<h2>Constants are capitalised variables that cant be changed</h2>
+<pre>
+  <code>
+  EmpireStateBuilding = "350 5th Avenue, NYC, NY"
+
+  </code>
+</pre>
+<p>Constant varibles contain values that are read-only, they stay the same. Constant variables all start with a capital letter.</p>
+
+
+<h2>Loop through a bunch of hard coded sentences</h2>
+<pre>
+  <code>
+  loop do
+  print "Much better."
+  print "Ah. More space!"
+  print "My back was killin' me in those crab pincers."
+end
+
+  </code>
+</pre>
+<p>This is a terrible program which doesn't stop printing out three sentences. An example in the book to demonstrate that if there are multiple lines in a block, then it's better to use 'do' and 'end' to denote the start and end of a block instead of just curly braces '{}'.</p>
+
+
+<h2>Print numbers between range of one and five</h2>
+<pre>
+  <code>
+  (1..5).each { |number|
+  print number
+}
+
+  </code>
+</pre>
+<p>We can loop through a range of numbers using the range operator in combination with an each block. The '..' range operator prints all numbers including the first and last number specified in the range.</p>
+
+
+<h2>Print range of numbers excluding last number in the range</h2>
+<pre>
+  <code>
+  (1...5).each { |number|
+  print number
+}
+
+  </code>
+</pre>
+<p>We can use the range operator '...' to print all of the numbers in a range, excluding the last number of the range.</p>
+
+
+<h2>Print alphabet from range</h2>
+<pre>
+  <code>
+  ('A'..'Z').each { |letter|
+  print letter
+}
+
+  </code>
+</pre>
+<p>You can use the range operator '..' to print the alphabet from 'a' to 'z' or 'A' to 'Z' (lowercase or uppercase). You cannot use the range operator to print the alphabet backwards.</p>
+
+
+<h2>Hashes are dictionaries surrounded by curly braces</h2>
+<pre>
+  <code>
+  person = { "name" => "Peter", "profession" => "lion tamer", "great love" => "flannel" }
+
+print person["name"]
+print person["profession"]
+print person["great love"]
+
+  </code>
+</pre>
+<p>We can use hashes to store words and their definitions. In this case, we have used a hash to store information about a person, including his name, profession and greatest love, along with the values for those attributes.</p>
+
+
+<h2>Get the ruby license page and print it to the screen</h2>
+<pre>
+  <code>
+  require 'net/http'
+Net::HTTP.start('www.ruby-lang.org', 80) do |http|
+  print(http.get('/en/about/license.txt').body)
+end
+
+  </code>
+</pre>
+<p>This program opens the Ruby language website and gets the license page, then prints the contents of the page (not the HTML, but the content inside the HTML tags).</p>
+
+
+<h2>Get and print ruby faq page</h2>
+<pre>
+  <code>
+  require 'net/http'
+Net::HTTP.start('www.ruby-lang.org', 80) do |http|
+  print(http.get('/en/documentation/faq/2/').body)
+end
+
+  </code>
+</pre>
+<p>This program opens the ruby language web page, gets the ruby FAQ page and prints it's contents to the console, including its HTML tags. I did the same thing in the last program but thought it didn't include the HTML tags, was wrong after doing it on a different page.</p>
+
+<h2>Madlibs</h2>
+<pre>
+  <code>
+  print "Enter a holiday:"
+holiday = gets.chomp()
+
+print "Enter a person, place or thing:"
+noun1 = gets.chomp()
+
+print "Enter a place:"
+place = gets.chomp()
+
+print "Enter a person, place or thing:"
+personOrThing = gets.chomp()
+
+print "Enter a characteristic of a person, place or thing:"
+adjective1 = gets.chomp()
+
+print "Enter a body part that you have more than one of:"
+bodyPartPlural = gets.chomp()
+
+print "Enter an action:"
+verb = gets.chomp()
+
+print "Enter a characteristic of a person, place or thing:"
+adjective2 = gets.chomp()
+
+print "Enter a person, place or thing:"
+noun2 = gets.chomp()
+
+print "Enter a food:"
+food = gets.chomp()
+
+print "Enter a body part that you have more than one of:"
+bodyPartPlural = gets.chomp()
+
+print "I can't believe its already #{holiday}! I can't wait to put my #{noun1} and visit every #{place} in my neighbourhood. This year, I am going to dress up as a #{personOrThing} with #{adjective1} #{bodyPartPlural}. Before I #{verb}, I make sure to grab my #{adjective2} #{noun2} to hold all of my #{food}. Finally, all of my #{bodyPartPlural} are ready to go!"
+
+  </code>
+</pre>
+<p>This is a fill-in-the-blanks game where a person is asked to enter a series of words, and then those words are used to fill in the blanks of a mini story. The results end up being pretty funny.</p>
+
+
+<h2>Sort kitty toys by fabric</h2>
+<pre>
+  <code>
+  kitty_toys =
+  [:shape => 'sock', :fabric => 'cashmere'] +
+  [:shape => 'mouse', :fabric => 'calico'] +
+  [:shape => 'eggroll', :fabric => 'chenille']
+sortedByFabric =  kitty_toys.sort_by { |toy| toy[:fabric] }
+sortedByFabric.each { |toy|
+  puts toy[:shape] + " " + toy[:fabric]
+}
+
+  </code>
+</pre>
+<p>This program starts with a dictionary of kitty toys that each have a shape and a fabric they are made from. We first sort the kitty toys by their fabric in alphabetical order, and then print those toys to the screen.</p>
+
+
+<h2>Sort blog titles by date added</h2>
+<pre>
+  <code>
+  blog_articles =
+  [:title => 'limitation breeds creativity - 1-8 Ruby experiments', :dateAdded => '2019-09-28'] +
+  [:title => 'work conversations', :dateAdded => '2019-07-19'] +
+  [:title => 'building a memory game in pharo using bloc', :dateAdded => '2019-09-02'] +
+  [:title => 'Starting the TDD test-driving cycle', :dateAdded => '2019-08-22']
+
+blog_articles.sort_by { |article| article[:dateAdded] }.each do |article|
+  puts "#{article[:dateAdded]} - #{article[:title].capitalize}"
+end
+
+  </code>
+</pre>
+<p>This program starts with a list of articles, and then sorts them by most recent date before printing them out in that order.</p>
+
+
+<h2>Display articles that contain search query</h2>
+<pre>
+  <code>
+  blog_articles = [
+  { :title => "Writing first failing, failing and failing test in ruby using rspec" },
+  { :title => "Refactoring user interfaces" },
+  { :title => "Test-driven calculator app using ruby and rspec" },
+  { :title => "Mini design system and book note screen designs" },
+  { :title => "ruby koans" },
+  { :title => "Getting started with kotlin koans offline" }
+]
+
+
+print "Search article titles for:"
+query = gets.chomp
+matches = ""
+
+blog_articles.each do |article|
+  next unless article[:title].include? query
+  matches +=  "#{article[:title]}\n"
+end
+
+if matches != ""
+  puts matches
+else
+  puts "0 matches for #{query}"
+end
+
+  </code>
+</pre>
+<p>This program has a list of blog article titles, and then prints only the titles that contain the users search query, or '0 matches for [query]' if there were no matches.</p>
+
+
+<h2>Create html template by scraping files</h2>
+<pre>
+  <code>
+  Dir['*.rb'].sort.each do |filename|
+  template = <<-TEMPLATE
+
+<h2>#{filename.tr('0-9', '').gsub('-', ' ')[1..-4].capitalize}</h2>
+<pre>
+  <code>
+  #{File.read(filename)}
+  </code>
+</pre>
+<p></p>
+
+TEMPLATE
+    File::open("code-snippets-for-blog-post-captured.html", "a") do |f|
+      f << template
+    end
+end
+
+  </code>
+</pre>
+<p>This program creates a template that contains a title of a program experiment, the program code and a paragraph explaining what the program does by scraping the files in my local program experiments directory.</p>
+

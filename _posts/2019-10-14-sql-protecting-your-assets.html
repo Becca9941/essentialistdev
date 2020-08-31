@@ -1,0 +1,195 @@
+---
+layout: post
+title: SQL protecting your assets
+---
+<p>Notes based on <a href="https://www.oreilly.com/library/view/head-first-sql/9780596526849/" target="_blank">Head First SQL</a></p>
+
+<p>You can prevent other people from inserting or updating something incorrectly or from deleting the wrong data.</p>
+
+<h2>Protect the root user account</h2>
+
+<p>By default, the first user - the root user - has complete control over everything in the database. This is important because the root user needs to be able to create user accounts for all other users. We don't want to limit what they can do but we do want to give them a password. We can do this with the following command:</p>
+
+<code>SET PASSWORD FOR 'root'@'localhost = PASSWORD('b4dc10wnz');</code>
+
+<p>In the command above, the username of our root user is 'root', 'localhost' indicates that this is where the SQL software is installed and running, and the password inside the parentheses is the password we chose for our root user.</p>
+
+<p>Localhost means that the computer you are using to run your queries is the same computer that your SQL RDBMS is installed on. localhost is the default value for this parameter, so it is optional.</p>
+
+<p>If you are using an SQL client on a machine somewhere else (remote access), then you will have to tell the query where the computer is. You can do that with an IP address or a hostname instead of localhost. If your SQL software was installed on a machine called unicorn on the rainbows network, you might use something like root@unicorn.rainbows.com</p>
+
+<h2>Adding a new user</h2>
+
+<p>SQL stares information about users in a table. SQL keeps a database of data about itself, including user ids, usernames, passwords and what each user is allowed to do in each database.</p>
+
+<pre>
+<code>
+CREATE USER elsie
+IDENTIFIED BY 'c13v3rp4s5w0rd';
+</code>
+</pre>
+
+<p>New users by default have no permissions to do anything.</p>
+
+<p>We could have restricted Elsie from certain tables at the same time that we created her as a user. However, sometimes we don't know exactly what access we need to grant from the very beginning. So we can do one thing at a time. We can grant the specific access they need, and then modify that access later if needed.</p>
+
+<h2>Deciding what the user needs</h2>
+
+<p>When we create a user for the first time, they have no permission to do anything. We have to use a GRANT statement to give them permission to even SELECT from a table.</p>
+
+<pre>
+<code>
+GRANT SELECT ON
+clown_info
+TO elsie;
+</code>
+</pre>
+
+<p>In the command above, we are granting elsie the permission to SELECT from the clown_info table</p>
+
+<p>Elsie also needs SELECT permission on the other clown-tracking tables so that she can use joins and subqueries in here SELECT statements. So we need seperate GRANT permission statements for each of the child tables too.</p>
+
+<pre>
+<code>
+GRANT SELECT ON activities TO elsie;
+GRANT SELECT ON location TO elsie;
+GRANT SELECT ON info_activities TO elsie;
+GRANT SELECT ON info_location TO elsie;
+</code>
+</pre>
+
+<h2>GRANT variations</h2>
+
+<ul>
+  <li>You can name multiple users in the same GRANT satement. Each of the users named will get the same permission granted to them.</li>
+  <li>WITH GRANT OPTION gives users permission to give other users the permission they were just given. So if a user was given permission to SELECT from a specific table, then this command allows them to give someone else the ability to SELECT from the same table.</li>
+  <li>A specific column, or columns in a table can be used instead of the entire table.</li>
+  <li>You can specify more than one permission on a table, just list each permission you want to grant on a table using a comma after each.</li>
+  <li>GRANT ALL gives users permission to SELECT, UPDATE, INSERT and DELETE from the specified table.</li>
+  <li>You can specify every table in a database with database_name.* - the * wildcard in a SELECT statement specifies all the tables in a database.</li>
+</ul>
+
+<h2>Revoke priviliges</h2>
+
+<p>The revoke syntab is almost identical to the GRANT statement. Instead of GRANT we use REVOKE, and instead of TO we use FROM.</p>
+
+<pre>
+<code>
+REVOKE SELECT ON
+clown_info
+FROM elsie;
+</code>
+</pre>
+
+<p>We can also revoke the ability for users to grant the same permissions they have to other users (GRANT OPTION), whilst still keeping their original priviliges intact:</p>
+
+<pre>
+<code>
+REVOKE GRANT OPTION ON
+DELETE ON chores
+FROM happy, sleepy;
+</code>
+</pre>
+
+<p>The code above revokes happy's and sleepy's abilities to give other users their ability to DELETE from the chores table, without removing their ability to delete from the chores table.</p>
+
+<p>When you use this, you also revoke this ability from all of the users that happy and sleepy granted this privilige to. This is a side effect of the REVOKE statement. You can have more control over what happens when you revoke privilidges using the RESTRICK and CASCADE options.</p>
+
+<code>REVOKE DELETE ON chores FROM sleepy CASCADE;</code>
+
+<p>The cascade command removes the privilege from the user you are targeting (in this case Sleepy), as well as anyone else that user gave permission too. Hmm, that seems the same as revoking without the CASCADE keyword.. Looked it up, cascade is the default, but it can be useful to add as an extra declaration of intent.</p>
+
+<code>REVOKE DELETE ON chores FROM sleepy RESTRICT;</code>
+
+<p>Using RESTRICT when you want to remove a privilege from a user will return an error if that user has granted privileges to anyone else.</p>
+
+<code>GRANT SELECT ON *.* TO elsie;</code>
+
+<p>The code above grants global privileges. The first asterist refers to all databases, while the second asterisk refers to all tables.</p>
+
+<pre>
+<code>
+GRANT SELECT, INSERT, DELETE
+ON gregs_list.*
+TO jim;
+</code>
+</pre>
+
+<p>The statement above grants Jim select, insert and delete privileges to all of the tables contained in the 'gregs_list' database.</p>
+
+<h2>Roles</h2>
+
+<p>If you have a lot of users, you may have groups of users who are responsible for different things. You can give groups of people the privileges they need whilst at teh same time giving each user a seperate account with a role.</p>
+
+<code>CREATE ROLE data_entry;</code>
+
+<p>To add privileges to the role, you can treat it as you would a username:</p>
+
+<code>GRANT SELECT, INSERT ON some_table TO data_entry;</code>
+
+<p>To assign the role, we can do the following:</p>
+
+<code>GRANT data_entry TO elsie;</code>
+
+<p>To delete the role, we can do the following:</p>
+
+<code>DROP ROLE data_enty;</code>
+
+<p>To revoke a role, we can do the following:</p>
+
+<code>REVOKE data_entry FROM elsie;</code>
+
+<h3>Using role WITH ADMIN OPTION</h3>
+
+<p>Just like the GRANT statement has WITH GRANT OPTION, a role has WITH ADMIN OPTION, which allows anyone with that role to grant that role to anyone else.</p>
+
+<code>GRANT data_entry TO elsie WITH ADMIN OPTION;</code>
+
+<h3>Combining CREATE USER and GRANT</h3>
+
+<pre>
+<code>
+CREATE USER elsie
+IDENTIFIED BY 'c13v3rp4s5w0rd';
+GRANT SELECT ON
+clown_info
+TO elsie;
+</code>
+</pre>
+
+<h2>Connecting to a database with PHP</h2>
+
+<pre>
+<code>
+&lt;?php
+$conn = mysql_connect("localhost", "greg", "gr3gzpAs");
+if(!$conn) {
+  die('Did not connect: ' . mysql_error());
+}
+
+mysql_select_db("my_db", $conn);
+
+$result = mysql_query("SELECT first_name, last_name FROM my_contacts");
+
+while($row = mysql_fetch_array($result)) {
+  echo $row['first_name'] . " " . $row['last_name'];
+  echo "&lt;br /&gt;";
+}
+
+mysql_close($conn);
+?&gt;
+</code>
+</pre>
+
+<ul>
+  <li><code>&lt;?php</code> tells the web server that php code follows.</li>
+  <li><code>$conn = mysql_connect("localhost", "greg", "gr3gzpAs");</code> connects to gregs_list database by telling the web server where the RDBMS is located, what our username is and what our password is. We store this connection string in a variable called 'conn' which stands for 'connection'. The PHP function 'mysql_connect()' takes this information and reaches out with the RDBMS to see if it can communicate with it.</li>
+  <li><code>if(!$conn) { die('Did not connect: ' . mysql_error()); }</code> returns an error message telling us why we couldn't connect if there was a problem.</li>
+  <li><code>mysql_select_db("my_db", $conn);</code> tells PHP which database we are interested in using.</li>
+  <li><code>$result = mysql_query("SELECT first_name, last_name FROM my_contacts");</code> is where we write our query, execute it and then store the results of that query in a variable called 'result'.</li>
+  <li><code>while($row = mysql_fetch_array($result)) {</code> gets all of the rows from our 'result' variable and displays them on a web page using a while loop.</li>
+  <li><code>echo $row['first_name'] . " " . $row['last_name'];</code> this echo statement prints out the values contained in the 'first_name' and 'last_name' columns, seperated by a space.</li>
+  <li><code>echo "&lt;br /&gt;";</code> adds a new line at the end of the row so that each row is printed on seperate lines.</li>
+  <li><code>mysql_close($conn);</code> closes the connection to the database when we are done with it, like logging out.</li>
+  <li><code>?&gt;</code> ends the PHP script</li>
+</ul>

@@ -1,0 +1,191 @@
+---
+layout: post
+title: SQL outer joins, self joins and unions
+---
+<p>Notes based on <a href="https://www.oreilly.com/library/view/head-first-sql/9780596526849/" target="_blank">Head First SQL</a></p>
+
+<h2>Outer joins</h2>
+
+<p>You can use an outer join to return all of the rows from one of your tables, along with matching information from another table.</p>
+
+<p>Outer joins have more to do with the relationship between two tables than inner joins.</p>
+
+<p>The LEFT OUTER JOIN matches every row in the left table with a row from the right table, which is usefel when the left table and right table have a one-to-many relationship.</p>
+
+<p>In a left outer join, the table that comes after FROM and BEFORE the join is the LEFT table, and the table that comes AFTER the join is the RIGHT table.</p>
+
+<pre>
+<code>
+SELECT g.girl, t.toy
+FROM girls g
+LEFT OUTER JOIN toys t
+ON g.toy_id = t.toy_id;
+</code>
+</pre>
+
+<p>In the query above, we have used a left outer join to find out which girl has which toy. The difference between an inner join and an outer join in this case is the an outer join will give you a row whether there is a match with the other table or not. A NULL value in the results tells you that no match exists, which is useful information.</p>
+
+<pre>
+<code>
+SELECT g.girl, t.toy
+FROM toys t
+RIGHT OUTER JOIN girls g
+ON g.toy_id = t.toy_id;
+</code>
+</pre>
+
+<p>The RIGHT OUTER JOIN is exactly the same thing as the left outer join, except that it compares the right table to the left one.</p>
+
+<p>Changing the word LEFT to RIGHT is easier than changing the order of the tables in the query. You only have to change one word rather than swap the two table names and their aliases.</p>
+
+<p>You can also use the same table as both the right and left table in an outer join.</p>
+
+<h2>Self-referencing foreign key</h2>
+
+<p>A self-referencing key is the primary key of a table that in used in the same table for another purpose. For example, imagine we have a table filled with employees from a company. Some of those employees are the managers of other employees. So we might have a primary key id column which represents each individual employee. Then we might have another column called 'manager_id' in the same table, which references the id column.</p>
+
+<p>To illustrate this a bit more, say we have an employee table with three people in it. Person one is Elsie, who has an id of 1 and a boss id of 2. Person two is Pickles, who has an id of 2, which is the same id referenced in Elsie's boss id column, meaning that Pickles is Elsie's boss. Pickles has a boss id of 3. The third person is Zippo, and he has an id of three, which means that he is Pickles boss. Zippo is the CEO of the company, so he doesn't have a manager. So his boss_id is 3, which references himself. He is his own boss. We could have used NULL here, but this way is better.</p>
+
+<p>To list each employee and who their boss is, we can join the same table to itself by using the self-referencing foreign key (the primary key which is also the foreign key in this join).</p>
+
+<h3>Self join</h3>
+
+<p><strong>The self-join allows you to query a single table as though there were two tables with exactly the same information in them.</strong></p>
+
+<pre>
+<code>
+SELECT e1.name, e2.name AS boss
+FROM employee_info e1
+INNER JOIN employee_info e2
+ON e1.boss_id = e2.id;
+</code>
+</pre>
+
+<p>There is a lot going on in the query above. Writing this out, I realised that aliases are pretty powerful when it comes to self table joins. To break down what is going on, in the first line, we are selecting the name column twice from the same table. The first time we select it 'e1.name', we are using an alias name for the table 'e1'. The second time we select it we are using an alias name for the table 'e2' as well as an alias name for the name column 'boss'. If we didn't do this, then the results table would return a name and a name column instead of a name and a boss column.</p>
+
+<p>The table aliases are used here to make the table more readable, whilst the column alias is used to make the results more meaningful. So to recap, in the first line we are selecting the names of the people in the employee table, where the first name selected will represent the employee and the second name selected will reference the boss.</p>
+
+<p>The second line says that we are selecting the names from the employee_info table, which we are giving the alias 'e1' to mean employee one.</p>
+
+<p>The third join says that we are selecting names from the employee_info table, which we are giving the alias 'e2' to mean employee one, and we are going to display that column right next to the first one using an INNER JOIN.</p>
+
+<p>The last line says that we are going to match these columns based on the boss_id and id for each employee. In other words, in the first name column, we will display the first person, and in the second column, we will display the second person whose id matches the boss id of the first person.</p>
+
+<h2>Union</h2>
+
+<p>A UNION combines the results of two or more queries into one table, based on what you specify in the column list of the SELECT. You can think of the results of the union as the values for each SELECT that overlaps.</p>
+
+<pre>
+<code>
+SELECT title FROM job_current
+UNION
+SELECT title FROM job_desired
+UNION
+SELECT title FROM job_listings
+ORDER by title;
+</code>
+</pre>
+
+<p>In the query above combines the results from three seperate queries into one table. So in the results for this query, we will get one table containing all of the job titles listed in each of those three tables, without any duplicates.</p>
+
+<h3>Rules of UNION</h3>
+
+<ul>
+  <li>The number of columns in each SELECT statement must match. You can't select two columns from the first statement and one from the next.</li>
+  <li>You must use the same expressions and functions in each of the SELECT statements you are using. In other words, each SELECT statement must do the same thing.</li>
+  <li>The order of the SELECT statements doesn't matter.</li>
+  <li>By default, SQL suppresses duplicate values from the results of a union.</li>
+  <li>The data types in the columns need to either be the same, or be convertible to each other (be careful of this, you could lose data if one is a VARCHAR and the other is a CHAR).</li>
+  <li>If you DO want to see duplicates, you can use UNION ALL instead of just UNION, it returns every match, not just the distinct ones.</li>
+</ul>
+
+<p>We can't easily see what data type we are returning with our union because no title is given. So we can add a <code>CREATE TABLE table_name AS</code> statement as the first line of our union to store our results into a named table.</p>
+
+<h2>INTERSECT and EXCEPT</h2>
+
+<p>INTERSECT and EXCEPT are similar to UNION in that they are used to find parts of queries that overlap.</p>
+
+<p>INTERSECT returns only those columns that are in the first query and also in the second query.</p>
+
+<pre>
+<code>
+SELECT title FROM job_current
+INTERSECT
+SELECT title FROM job_desired;
+</code>
+</pre>
+
+<p>The query above returns a list of titles that show up in both tables. If there are any titles that appear in only one of the tables, they are excluded from the results.</p>
+
+<p>EXCEPT returns only those columns that are in the first query, but NOT in the second query</p>
+
+<pre>
+<code>
+SELECT title FROM job_current
+EXCEPT
+SELECT title FROM job_desired;
+</code>
+</pre>
+
+<p>The query above returns a list of titles that show up in the first table but not in the second table.</p>
+
+<h2>Turning a subquery into a join</h2>
+
+<p>Anything you can do with a subquery you can do with a join.</p>
+
+<pre>
+<code>
+SELECT mc.first_name, mc.last_name, mc.phone, jc.title
+FROM job_current AS jc
+NATURAL JOIN my_contacts as mc
+WHERE jc.title
+IN
+(SELECT title FROM job_listings);
+</code>
+</pre>
+
+<p>To convert the subquery in the query above into a join, you can replace the WHERE containing the subquery with an inner join.</p>
+
+<pre>
+<code>
+SELECT mc.first_name, mc.last_name, mc.phone, jc.title
+FROM job_current AS jc
+NATURAL JOIN my_contacts as mc
+INNER JOIN job_listings j1
+ON jc.title = j1.title;
+</code>
+</pre>
+
+<p>While joins are faster, sub queries can make it easier to see what is the inner part and the outer part of the query more easily, but not always. It's up to us to decide which one is better for our specific case.</p>
+
+<p>Joins are better when you need columns from multiple tables in your results, while subqueries are better when you want to use aggregates in a WHERE clause (an aggregate function is a function where the values of multiple rows are grouped together as input on certain criteria to form a single value of more significant meaning)</p>
+
+<h2>A self-join as a subquery</h2>
+
+<p>You can also convert a self-join into a subquery.</p>
+
+<h3>Before</h3>
+
+<pre>
+<code>
+SELECT c1.name, c2.name AS boss
+FROM clown_info c1
+INNER JOIN clown_info c2
+ON c1.boss_id = c2.id;
+</code>
+</pre>
+
+<p>We identified the first instance of clown_info and then the second instance of clown_info.</p>
+
+<h3>After</h3>
+
+<pre>
+<code>
+SELECT c1.name,
+(SELECT name FROM clown_info
+WHERE c1.bass_id = id) AS boss
+FROM clown_info c1;
+</code>
+</pre>
+
+<p>When we turn the self-join into a subquery, the subquery is CORRELATED since it depends on the result of the outer query to get the correct boss_id, and it shows up in the SELECT column list.</p>

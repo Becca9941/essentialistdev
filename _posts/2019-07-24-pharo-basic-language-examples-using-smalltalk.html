@@ -1,0 +1,213 @@
+---
+layout: post
+title: Pharo basic language examples using Smalltalk
+categories: [syntax, installation]
+tags: [Smalltalk, Pharo, keyword, cascade, block, loop, conditionals]
+---
+
+<p>Notes are based on Pharo by Example, a free book suggested by a Mooc called <a href="https://www.canal-u.tv/producteurs/inria/cours_en_ligne/live_object_programming_in_pharo">Live Object Programming in Pharo</a></p>
+
+<h2>Pharo basics tutorial commands</h2>
+
+<p>The following examples show you how to run commands, print commands and
+inspect commands, as well as what they do.</p>
+
+<p class="note">It looks like Smalltalk statements are finished with a
+fullstop.</p>
+
+<ul>
+  <li><code class="lang-smalltalk">GTPlayground open.</code> opens a new
+    playground window.</li>
+  <li><code class="lang-smalltalk">SmalltalkImage current aboutThisSystem</code>
+  brings up a window that gives you information about Pharo.</li>
+  <li><code class="lang-smalltalk">1 + 2.</code> Returns 3 when you print it to
+  the screen (Command-P)</li>
+  <li><code class="lang-smalltalk">Date today.</code> Returns 24 July 2019 (or
+    whatever the current date is).</li>
+  <li><code class="lang-smalltalk">Time now.</code> Returns the current time in
+  this format - 12:38:44.64634 pm</li>
+  <li><code class="lang-smalltalk">SmalltalkImage current datedVersion.</code>
+    Returns 'Pharo6.0 of 13 May 2016' (or the most recent version).</li>
+  <li><code class="lang-smalltalk">1/2.</code>Inspecting this using Command-I
+    brings up a window containing information about the object. The window
+    contains two tabs. The first tab is called "Raw", and contains information
+    about the variables contained within the object. In this case there are 3
+    variables: self = (1/2), numerator = 1, denominator = 2. In the "Meta" tab
+    we can see what types the object belongs to. In this case the types are:
+    Fraction, Number, Magnitude, Object, ProtoObject.</li>
+  <li><code class="lang-smalltalk">DateAndTime today.</code> When inspecting
+    this object, there is an additional tab called "Details" that shows a bunch
+  of key value pairs.</li>
+  <li><code class="lang-smalltalk">Float Pi.</code> When inspecting this object,
+  instead of a details tab there is a "Float" tab which also shows key value
+  pairs.</li>
+</ul>
+
+<h2>Messages</h2>
+
+<p>There are three types of messages in Smalltalk: Unary, Binary and
+keyword. Unary messages are executed first, then binary messages and finally
+keyword messages: Unary &gt; Binary &gt; Keywords. Messages that contain equal
+precedence are executed left to right unless parentheses are used to change the
+order of evaluation.</p>
+
+<h4>Unary message examples</h4>
+
+<p>Unary messages are formatted like this: "anObject aMessage"
+<ul>
+  <li><code class="lang-smalltalk">1 class.</code> Returns SmallInteger</li>
+  <li><code class="lang-smalltalk">false not.</code>Returns true</li>
+  <li><code class="lang-smalltalk">Time now.</code>Returns timestamp
+		(2:29:33.63093 pm)</li>
+  <li><code class="lang-smalltalk">Date today.</code>Returns todays date in this
+	format: 24 July 2019</li>
+  <li><code class="lang-smalltalk">Float pi.</code>Returns 3.141592653589793</li>
+  <li><code class="lang-smalltalk">"And of course:"</code>Didn't return anything</li>
+</ul>
+
+<h4>Binary message examples</h4>
+
+<p>Binary messages are formatted like this: "anObject + anotherObject"</p>
+
+<ul>
+  <li><code class="lang-smalltalk">3 * 2.</code>Returns 6</li>
+  <li><code class="lang-smalltalk">Date today + 3 weeks.</code>Returned 14
+		August 2019</li>
+  <li><code class="lang-smalltalk">false | false</code>Returned false</li>
+  <li><code class="lang-smalltalk">true & true.</code>Returned true</li>
+  <li><code class="lang-smalltalk">true & false.</code>Returned false</li>
+  <li><code class="lang-smalltalk">10 @ 100.</code>Returned (10@100)</li>
+  <li><code class="lang-smalltalk">10 $lt;= 12.</code>Returned true</li>
+	<li><code class="lang-smalltalk">'ab', 'cd'.</code>Returned 'abcd'</li>
+	<li><code class="lang-smalltalk">Date today &lt; Date
+			yesterday.</code>Returned false</li>
+</ul>
+
+<h4>Keyword message examples</h4>
+
+<p>Keyword messages are messages with arguments, they look like this: anObject
+akey: anotherObject akey2: anotherObject2</p>
+
+<ul>
+	<li><code class="lang-smalltalk">4 between: 0 and: 10.</code>Returned true.
+		This means: between 0 and 10 is the message sent to the 4 object.</li>
+	<li><code class="lang-smalltalk">1 max: 3.</code>Returns 3</li>
+	<li><code class="lang-smalltalk">Color r:1 g:0 b:0.</code>Returned Color red</li>
+</ul>
+
+<h4>Cascade operator</h4>
+
+<p>The semi colon is the cascade operator. It is used to send multiple messages
+to the same receiver.</p>
+
+<code class="lang-smalltalk">ProfStef next; next.</code>
+
+<p>The above code in the tutorial goes to the next page and then to the next
+page by sending two next messages to the same ProfStef object. This part of the
+tutorial was confusing to me because a transcript example was used which made it
+difficult to figure out what was needed. I forgot that 'next' was the message
+and 'ProfStef' was the object so kept trying to write "ProfStef next; ProfStef
+next".</p>
+
+<h4>Blocks</h4>
+
+<p>Blocks are anonymous methods that can be stored into variables and executed
+on demand. A block is contained within square brackets. Blocks are only executed
+when you send it a value message/s</p>
+
+<figure>
+	<figcaption>Block with variable</figcaption>
+	<pre>
+	<code class="lang-smalltalk">
+	|b|
+	b := [:x | x+2].
+	b value: 12.
+	</code>
+	</pre>
+</figure>
+
+<p>This is what is happening:</p>
+
+<ul>
+	<li>First we create a variable named 'b' that does not have a value assigned
+		to it yet.<code class="lang-smalltalk">|b|</code>.</li>
+	<li>We use the <code class="lang-smalltalk">:=</code>to assign a block to our
+		b variable. A block is a method that is executed when it is given a
+		value.</li>
+	<li>We give our block (now contained in our b variable) a value of 12.
+		Everything in Smalltalk is an object, so 12 is an integer object.</li>
+	<li>Now that the block has a value, it executes. The left hand side of the
+		block statement is a placeholder for an object, so it becomes our 12
+		object.</li>
+	<li>The right hand side of the block statement is a message that we send to our
+		object (messages are methods that our object knows how to execute). In this
+		case, the message we are sending to our object is '+2'. If our object was a
+		string, then it wouldn't be able to accept the message because it doesn't
+		know how to add 2 to itself.</p></li>
+	<li>When the block is executed, it returns 14 (another integer object).</li>
+</ul>
+
+<h2>Conditionals</h2>
+
+<p>Conditionals are just messages that are sent to Boolean objects.</p>
+
+<figure>
+  <figcaption>Conditional example</figcaption>
+  <pre>
+  <code class="lang-smalltalk">
+  1 &lt; 2
+    ifTrue: [100]
+    ifFalse: [42].
+  </code>
+  </pre>
+</figure>
+
+<p>This is what is happening:</p>
+
+<ul>
+  <li>First we create a binary message (anObject + anotherObject), that returns
+   a True or False Boolean object depending on the result of the binary message
+   (in this case, is 1 less than 2).</li>
+  <li>This boolean object is then passed as a message to the ifTrue object which
+    returns 100 if the boolean object it received was True. If the boolean
+    object was not true, then it is passed to the ifFalse object which returns
+    42 if the object was False.</li>
+</ul>
+
+<h2>Loops</h2>
+
+<p>Loops are known as 'high level collection iterators' in the Smalltalk
+language. You can have to:do loops and to:by:do loops.</p>
+
+<p>The following example is a to:do loop which returns a list of numbers from 1
+to 100. Each number was converted to a string object in the process.</p>
+
+<code class="lang-smalltalk">1 to: 100 do: [:i | Transcript show: i asString;
+  cr].</code>
+
+<p>The following example is a to:by:do loop. This loop starts with the number
+100 and counts backwards by -2 until it gets to zero. The result is a list of
+even numbers from 100 to 0. Each number was converted to a string in the
+process.</p>
+
+<code class="lang-smalltalk">100 to: 0 by: -2: [:i | Transcript show: i
+  asString; cr].</code>
+
+<p>The message 'do:' is sent to a collection of objects (collections can be an
+Array, Set, OrderedCollection). The do: message evaluates the block that follows
+for each element in the collection.</p>
+
+<p>Here are a few more loop examples which replace the do: keyword messages with
+alternative keyword messages like ":collect", ":select" and ":reject".</p>
+
+<ul>
+  <li><code class="lang-smalltalk">#(11 38 3 -2 10) collect: [:each | each
+      odd].</code>returns the following array: #(true, false true false false).</li>
+  <li><code class="lang-smalltalk">#(11 38 3 -2 10) select: [:each | each
+      odd].</code>Returns the following array: #(11 3)</li>
+  <li><code class="lang-smalltalk">#(11 38 3 -2 10) select: [:each &gt;
+      10].</code>Returns the following array: #(11 38).</li>
+  <li><code class="lang-smalltalk">#(11 38 3 -2 10) reject: [:each | each &gt;
+      10].</code>Returns the following array: #(3 -2 10)</li>
+</ul>
+

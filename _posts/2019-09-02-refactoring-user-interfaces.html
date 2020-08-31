@@ -1,0 +1,177 @@
+---
+layout: post
+title: Refactoring User Interfaces
+---
+
+<p>Was sent a link to a YouTube video at work about <a href="https://www.youtube.com/watch?v=7Z9rrryIOC4" target="_blank">Refactoring User Interfaces</a> by Steve Shoger at CSS day 2019. This entry documents notes and thoughts while watching it.</p>
+
+<p>My tasks after watching this video are:</p>
+
+<ul>
+  <li>What have we already managed to do successfully?</li>
+  <li>Is there something that we need to do urgently?</li>
+  <li>What things would be good for the next pass through the system?</li>
+</ul>
+
+<p>I answer these questions at the conclusion of this post.</p>
+
+<h2>Practical Solutions to Common UI Design Problems</h2>
+
+<p>Steve Shoger says that he is the guy that teaches you tactics instead of talent for designing user interfaces.</p>
+
+<h3>Flight-booking application</h3>
+
+<p>The example up on screen is of a flight booking aapplication design. It includes text, radio options for return trips, one-way or multi-city, a couple input fields for city and destination, drop down options for dates and number of passengers, checkboxes for adding a hotel or a car and a search button.</p>
+
+<h4>My design improvement suggestions before watching</h4>
+
+<p>I paused the video at this point to share my own thoughts on this design, before Steve shares his tips for refactoring it.</p>
+
+<p>You have to read the text in all of the input fields to understand what they are for. The text is all black and this clashes with the background image that spans the page. There is no wow feeling when viewing this page.</p>
+
+<p>To improve this design, I would seperate the background image from the text so that it compliments the form, whilst at the same time making the form stand out as important to focus on it it's own right.</p>
+
+<p>I like that the title and tagline indicates a visual hierarchy (the title is bigger than the tagline). I'd emphasise this by making the title bold and use a darker brand color for it, whilst using a lighter shade of the same brand color for the tagline. Brand colors are useful for making a design instantly recognasable as belonging to a company.</p>
+
+<p>I would also group the origin and destination input fields below each other. At the moment, when reading from the top to the bottom of the page we start on the origin city input, then to the departure/return dates, then to the destination and then to the number of travellers. There would be less jumping around if they were below each other.</p>
+
+<p>I might add icons to make it a little clearer what each of the input fields are for.</p>
+
+<p>I'd use custom radio buttons and check boxes that match brand colors so that there is more personality - it's not just a generic box solution. Custom radios and boxes are easy to rebrand and reuse too. Just a bit of thoughtful effort doing it the first time.</p>
+
+<p>The whole thing right now feels unoriginal, not bad but not the best experience it could be either.</p>
+
+<h4>Design improvement suggestions from talk</h4>
+
+<p>Steve scrolled down and showed that the site includes cards, forms, a sign up form etc. The site is built using Bootstrap defaults.</p>
+
+<p>He says there are a lot of quick wins available that will help make this site more polished and to take it to the next level.</p>
+
+<h3>Background and color theory</h3>
+
+<ul>
+  <li>The background is interfering with the text overlaying it, poor contrast. You can add a semi-transparent overlay to the background image to make it darker or lighter than the text. You can also colorise your image with your existing brand colors. If its a dark color, change the text color to white.</li>
+  <li><a href="https://duotone.shapefactory.co" target="_blank">Duotone by Shapefactory</a> allows you to convert your image into two tones (you can pick a light and dark color). The light color converts the highlights in your image to that color whilst the dark color converts the shadows in your image to that color.</li>
+  <li>Dribbble.com has a 'colours' option that lets you search for designs based on a specific color.</li>
+  <li>He changed the color of the navigation bar so that instead of a black barground it was transparent, so that it matches the header and gives a sense of cohesion.</li>
+  <li>Create more contrast between the heading and the tagline by handpicking a color that matches a lighter color in the background. This is instead of reducing the opacity so that it doesn't look washed out.</li>
+  <li>Make a color brighter by rotating it's hue to the nearest bright color instead of increasing the lightness value. This keeps the color's intensity.</li>
+  <li>The tagline is replaced with this new brighter color based on hue. Already the design looks so much better than it did at the start, huuuuge difference</li>
+</ul>
+
+<h4>Inputs and whitespace</h4>
+
+<ul>
+  <li>He put a white background color behind the form inputs to pull them out from the background. This made all of the elments look really bunched up even though their positioning stayed the same.</li>
+  <li>It's a great idea to seperate things with a lot more whitespace than you need, and bring them closer gradually until the spacing looks right, roomy with space to breath.</li>
+  <li>Input space should be an affordance. He reduced the input field length by half sa that they all went on the same line. They read from left to right really well now. He also increased the height of the input fields to give them more space too.</li>
+  <li>Add a suble offwhite background to input if they are on a white background to make it more obvious that they are inputs (great advice, need to do this on the mobile app screens at work).</li>
+  <li>Added icons to the inputs too. Give the icons a softer color so they don't look too dark next to the text when they are the same color - they take up more surface area so appear darker.</li>
+  <li>Change the default radios and checkboxes to custom ones using brand colors. Make them bigger too.</li>
+  <li>Make use of the vertical space. The search button is added to the right of the 'add a hotel' and 'add a car' input fields. The button is also just under the last form input that the user is likely to interact with.</li>
+  <li>Increase the height of the button so that it's consistent with the inputs. He also added a search icon to the button and changed the name from 'Search' to 'Search Flights' to make it a little more clear.</li>
+  <li>Changed the color of the blue search button to yellow, and inverted the text from white on a dark background to dark on a light background. Instead of using black as the dark color, he used a darker contrast color, looks much nicer.</li>
+  <li>He seperated the checkboxes and search button by using the same color as the input field background color. This creates a very subtle divide.</li>
+</ul>
+
+<h3>Drop Shadow and light Advice</h3>
+
+<ul>
+  <li>Very close drop shadows for elements that are closer to the background of the page, like buttons and inputs.</li>
+  <li>A drop shadow a tiny bit bigger for things like drop-down boxes and things like that.</li>
+  <li>A next level drop shadow for panels like a form or something.</li>
+  <li>A large drop shadow for modals</li>
+  <li>Shadows have two parts. When you look at objects in real life, there is often a darker shadow with a short blur radius, as well as a lighter, diffused shadow with a longer blur radius.</li>
+  <li>Things that are lighter feel closer to us, so adding an offwhite background and making the raised elments white is a good way to change depth using colour.</li>
+</ul>
+
+<h3>Styling tables</h3>
+
+<p>Styling tables can be tricky because it's styling a lot of data in a condensed space.</p>
+
+<ul>
+  <li>Align with readability in mind.</li>
+  <li>Most things can be aligned to the left but it's a good idea to align things like dates and dollar signs (etc) in a way that makes them more readable.</li>
+  <li>A good trick for dollar amounts is to use the 'font-feature-settings: "tnum";' which changes the dollar amounts to tabular numbers. This aligns all of the digits as if they were each in their own individual table cell. All of the decimal points line up, and it's easy to scan down the list.</li>
+  <li>Whenever possible, use fewer borders. Using zebra striping can be a good alternative when it comes to tables.</li>
+  <li>The headings are there to support the content. The content itself is more important so the headings should be a bit more subtle. Steve acheived this by fading out the color of the text from black to a grey color. Small bold soft uppercase.</li>
+  <li>Think outside of the database. If columns don't need to be sortable, consolodate some of the information into the same columns to open up the table and give it more space.</li>
+  <li>Then de-emphasize the consolodated data by fading the color of the info that was combined into the column.</li>
+  <li>If the data calls for it, try and enhance it using images.</li>
+  <li>De-emphasise the 'Book now' buttons by giving them a soft solid grey outline based on the text color so that they don't look as heavy or draw attention away from the main content in the table.</li>
+</ul>
+
+<h3>Links</h3>
+
+<p>Instead of styling the link with an underline, Steve removed the underline, changed the link color to a brand color and added a chevron icon to the right of the link to make it look more clickable.</p>
+
+<h3>Cards (vacation package deals)</h3>
+
+<ul>
+  <li>Instead of cropping an image before uploading, you can keep them all the same size by centering the image inside a container of a fixed size and hiding the stuff that doesn't fit.</li>
+  <li>You don't have to include buttons in cards because they look inherently clickable.</li>
+  <li>You don't always have to present data with labels. A price doesn't need a price label because it is obvious by it's currency sign. Same with a website, the url format makes it obvious that it is a website.</li>
+  <li>At the end of one of the blog card titles it said 'Only 5 left', so Steve extracted that into a little faded red pill with burgundy text on the top right of the card.</li>
+</ul>
+
+<h3>Newsletter Signup</h3>
+
+<ul>
+  <li>Steve used a navy background color to distinguish the sign up form from the rest of the page. He also used a dark blue grey background-color for the footer to do the same thing.</li>
+  <li>You can also add a background pattern using <a href="https://www.heropatterns.com/" target="_blank">Hero Patterns</a> which is a site that Steve developed.</li>
+  <li>He changed the signup tagline to the same color as the heading tagline. Changed the 'Subscribe' button to the same yellow color and increased the size of the input to be consistent with the rest of the site.</li>
+  <li>Steve seperated the sign-up text and the subscribe input into columns to better utilize the horizontal space.</li>
+</ul>
+
+<h3>Footer</h3>
+
+<ul>
+  <li>If you have a large sitemap, it can be good to add subtle headers to the top to section the links out.</li>
+  <li>Steve used a top white low opacity border to seperate the copyright and social media icons from the rest of the footer.</li>
+</ul>
+
+<h3>Final tips</h3>
+
+<ul>
+  <li>Greys don't have to be 'grey'. Saturate with a little blue or brown to change the temperature of the page. Or use a very faded version of your primary brand color.</li>
+</ul>
+
+<h2>Summarising refactoring UI in relation to our system at work</h2>
+
+<p>This was an amazing talk. I love that Steve started with a design and then made a series of small changes that had a massive impact on the overall design by the end.</p>
+
+<p>At work, we have a mobile app and a web portal. The mobile app uses web-based languages, and is converted into a mobile app using Cordova. So all CSS-based tips are applicable.</p>
+
+<h3>What have we already managed to do successfully?</h3>
+
+<ul>
+  <li>We have used fewer borders in the drop-down menu that displays a lot of client data.</li>
+  <li>We have used color to emphasize action.</li>
+  <li>Our color pallette consists of brand colors including lighter and darker shades of those colors.</li>
+  <li>The warning, complete, pending etc labels all use colors that users would expect to see for each og those things.</li>
+  <li>We have made good use of white space.</li>
+  <li>We have made good use of visual hierarchy. The most important things are emphasized whilst the least important things are de-emphasized.</li>
+  <li>We have used icons in appropriate places to make input things easier to interpret at a glance.</li>
+  <li>All of the input fields have been made bigger, and are consistent accross the app.</li>
+</ul>
+
+<h3>Is there something that we need to do urgently?</h3>
+
+<ul>
+  <li>The table advice will be especally useful for the web portal. This is the most important thing UI-wise when we do start working on it, but otherwise I wouldn't say there's anything that is truly urgent at this stage.</li>
+  <li>In terms of the mobile app, there are a lot of tweaks I want to make and further design research to do. Nothing is urgent - we have already done the urgent stuff, which was getting everything to look consistent and professional.</li>
+</ul>
+
+
+<h3>What things would be good for the next pass through the system?</h3>
+
+<ul>
+  <li>Exploring the use of cards to display status items will be worth while.</li>
+  <li>Will be worth looking at all of the list areas and consider whether the borders need to be removed in favour of a more subtle sectioning approach.</li>
+  <li>The app looks a little flat right now because it is all white, very minimalist. I liked Steve's advice about using a slight offwhite background, then white sections and various levels of drop-shadows to create a sense of depth.</li>
+  <li>I thought the advice on contrast was amazing. So I want to look at all of the disabled button styles and experiment with ways for improving them in terms of contrast.</li>
+  <li>Had planned to substitute the default radio input options with custom-made ones. I think it's a great idea to oversize them to make them look more clickable instead of just thinking about the brand colors.</li>
+  <li>I feel like there are a lot of areas for improvement with the app. So think it would be worth buying the 'refactoring UI' book to look at all of the other tips that were not included in the book.</li>
+  <li>Another useful thing to do would be to look at some mobile app designs on dribble and pick out the features that stand out as being particularly nice. We might be able to apply them to our own design.</li>
+</ul>
+

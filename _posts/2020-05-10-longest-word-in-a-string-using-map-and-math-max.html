@@ -1,0 +1,76 @@
+---
+layout: post
+---
+
+<h2>Problem Statement</h2>
+
+<p>Return the length of the longest word in the provided sentence.</p>
+
+<h2>Solution</h2>
+
+<p>This is my second solution after I asked for feedback on my original solution where I used a reduce method. In this solution, first we split the sentence into an array of words using the str.split() method, which seperates the sentence by the spaces in it (we passed in a space as an argument).</p>
+
+<p>Then we use Math.max to return the biggest number in an array of numbers. We used the spread operator to expand our passed in array into individual array elements. We created our array of numbers inside the math.max method, using a map method on our words array.</p>
+
+<p>The map method calls a function on every element in an array, and creates a new array the same length of the original array with the transformed values. In this case, we are creating a new array with the word lengths of each or the words in our original array. The math.max function returns the biggest of these numbers - so only a single result is returned.</p>
+
+<p>I posted my original solution on Twitter, and a friend pointed out that this wouldn't work for sentences that have non-alphanumeric characters. So happy they pointed that out, so added a regex to remove non-alphanumeric characters before splitting into words.</p>
+
+<pre>
+<code>
+function findLongestWordLength(str) {
+
+  str.replace(/\W/g, '');
+  const words = str.split(" ");
+
+  return Math.max(...words.map(word =&gt; word.length));
+}
+
+findLongestWordLength("The quick brown fox jumped over the lazy dog");
+</code>
+</pre>
+
+<p>The first time I solved this problem, I used a reduce function. The reduce function lets you run another function on each element in your array, and then provide a single output.</p>
+
+<p>In this solution, first we split the sentence into an array of words using the str.split() method, which seperates the sentence by the spaces in it (we passed in a space as an argument).</p>
+
+<p>Then, we create a variable called 'longest_word', we we store the result of our reduce function, where we passed in our own function which returns the length of the longest word encountered so far. This function is run on every word in our array, and the longest word length is output at the end.</p>
+
+<pre>
+<code>
+function findLongestWordLength(str) {
+
+  const words = str.split(" ");
+
+  const longest_word = words.reduce(function(word1,word2) {
+    return word1.length &gt; word2.length ? word1 : word2;
+  });
+
+  return longest_word.length;
+}
+
+findLongestWordLength("The quick brown fox jumped over the lazy dog");
+</code>
+</pre>
+
+<h2>Largest number in each sub array</h2>
+
+<p>In the kata immediately following the one above, I was able to apply what I just learned to the new problem, which was an extremely satisfying feeling.</p>
+
+<h3>Problem statement</h3>
+
+<p>Return an array consisting of the largest number from each provided sub-array. For simplicity, the provided array will contain exactly 4 sub-arrays.</p>
+
+<p>Remember, you can iterate through an array with a simple for loop, and access each member with array syntax arr[i].</p>
+
+<h3>Solution</h3>
+
+<pre>
+<code>
+function largestOfFour(arr) {
+  return arr.map(largest_num =&gt; Math.max(...largest_num));
+}
+
+largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
+</code>
+</pre>

@@ -1,0 +1,41 @@
+---
+layout: post
+---
+
+<h2>Problem Statment</h2>
+
+<p>Create a function that looks through an array (first argument) and returns the first element in the array that passes a truth test (second argument). If no element passes the test, return undefined.</p>
+
+<h2>Solution</h2>
+
+<p>I was pretty happy with my original solution, then asked for feedback and was shown an even cooler way of doing it! Here's the cool solution:</p>
+
+<pre>
+<code>
+function findElement(arr, func) {
+  return arr.find(func);
+}
+
+findElement([1, 2, 3, 4], num =&gt; num % 2 === 0);
+</code>
+</pre>
+
+<p>The find method returns the value of the first element in the provided array that satisfies the provided testing function.</p>
+
+<p>When I first solved this problem, I didn't know that Array.find() existed, so I did it in a few extra steps, as follows:</p>
+
+<pre>
+<code>
+function findElement(arr, func) {
+  const test_results = arr.map(e =&gt; func(e));
+
+  return arr[test_results.indexOf(true)];
+}
+
+findElement([1, 2, 3, 4], num =&gt; num % 2 === 0);
+</code>
+</pre>
+
+<p>In the solution above, I mapped each item in the original array to a new array where each element is either true or false depending on whether the elements in the array met the conditions in the passed-in function.</p>
+
+<p>Then, it returns the first element which meets the true condition.</p>

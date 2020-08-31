@@ -1,0 +1,109 @@
+---
+layout: post
+title: Using Sockets and WebSockets to connect a faulty printer to a web-jangled android app
+---
+
+<h2>Problem space context</h2>
+
+<p>We have an app that is built in HTML, CSS and JavaScript that we are running on an android phone with the help of Cordova. (An inherited codebase, to be converted to Kotlin at some point).</p>
+
+<p>Cordova acts as a container for a web application that can be installed on an android, IOS or Windows phone. Cordova gives our web app access to device functionality like the Camera, GPS, Accelerometer, Contacts etc, which our web app would not be able to access otherwise.</p>
+
+<p>One of the functions on our app provides is to allow users to print labels from a printer. However, the wifi on our printer was not reliable because of a manufacturing issue. We were just about to go to launch so had to find a way to print labels from our portable device without it having to be physically connected to the printer.</p>
+
+<p>We solved this first problem by attaching a raspberry pi to the printer to act as a go-between the app and the printer, which required using sockets.</p>
+
+<p>Our second problem is that Browsers are not able to access servers and sockets, but we needed to find a way to print labels from our browser-based interface as well. We used a web socket to solve this problem.</p>
+
+<p>If you happen to be using sockets and WebSockets to connect a faulty printer to a web app converted to an android app, then this beginner-friendly, jargon-detangling article is perfect for you.</p>
+
+<h2>Sockets</h2>
+
+<p>A socket is like a plug socket in the wall. To access the electricity, we first need to insert a plug into the socket, and then we need to plug the other end of the cable into the socket on our device to power it.</p>
+
+<p>Sockets allow clients to request services from a server. Services are identifiable by their port numbers. Overall, sockets are a combination of a port and an IP address (An IP address is an identifying number for device like a computer. Every device must have an IP address).</p>
+
+<h2>Servers</h2>
+
+<p>A server is a computer program or device that provides a service to another program, known as a client.</p>
+
+<p>Imagine that you are standing in a mall filled with different types of shops. Each of the shops are sockets. You go up to the socket and see a server (cashier) patiently waiting and listening out for your request. You ask the server for sushi, and then they bring you the sushi you requested (unless they were a clothes shop).</p>
+
+<p>If you went to a different socket, they might serve something different, like shoes or stationary. Each of these sockets (shops) have their own port number (addresses) tied to them. In the computer world, different ports are associated with different services.</p>
+
+<h2>Network Cards and Interface Cards</h2>
+
+<p>Our printer has a network interface card and a wifi interface card (part of the hardware), both of which have a socket that are listening on port 9100. There are 65,000+ other ports available to be used on each of the cards, but the printer services for our printer are found on port 9100.</p>
+
+<p>To print our labels, we could either connect the network card in our device that sends the print label command to the network card in the printer. We need a physical network cable to do this. Or we could connect to the wifi card in our device to the wifi card in the printer.</p>
+
+<p>In our case, the wifi card in our printer is faulty, so we had to rely on connecting our device to the printer through the network card. The problem with this is that our devices are portable android phones that need to be carried around to different work stations.</p>
+
+<p>So to get around this, we got a raspberry pi and used a network cable to connect the network card on the pi to the network card on the printer. Then we connected the wifi card on our android device to the wifi card on the raspberry pi.</p>
+
+<p>This let us send our print request to the wifi card on the raspberry pi, which sent it to the network card on the raspberry pi, which in turn sent it to the network card on the printer.</p>
+
+<p>Our printer’s network card was set up to listen on port 9100, which is the port that handles print requests on our printer. This port only accepts a specific request in the form of a formatted text file that tells the printer how to format the text that will be printed on the label.</p>
+
+<h2>Problem Printing from Browsers Context</h2>
+
+<p>While this solved the problem of connecting our android device to the printer, we were still unable to print labels from the browser. This meant that people in the office on computers would have to get a production device to print labels off, which wasn’t practical.</p>
+
+<p>If we remember, our app was converted to an android app using Cordova, which allows us to connect to the devices hardware, including network and wifi cards. The browser itself is unable to do this, so we needed a solution for that too.</p>
+
+<p>
+One of the solutions we thought of was using Cordova to convert our browser interface into an app that would let us interact with the network and wifi cards on our computer. We decided against this because every new computer would have to have the app manually installed.</p>
+
+<p>This wasn’t a problem for the android device because we needed to do that ourselves before giving it to our client. Our aim has always been to make our client’s life easier, so being able to print directly from the browser was the next problem to solve.</p>
+
+<p>To achieve this, we ended up using web sockets. Much like Cordova is a container that coverts our HTML, CSS and JavaScript into an android app, a WebSocket is a container that wraps around our normal socket and makes it accessible to the browser.</p>
+
+<h2>WebSockets</h2>
+
+<p>If we remember, general sockets allow clients to request services from a server. Browsers are not able to use sockets to communicate to the server by themselves.</p>
+
+<p>Websockets bridge the gap between the browser and the server so that they can communicate with each other.</p>
+
+<p>A request to a WebSocket connection is sent to a server from one or more clients in a process called the WebSocket handshake.</p>
+
+<p>The WebSocket handshake starts with the client (our browser) making a HTTP (https:// en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) request to a web server. This request includes an Upgrade header that if accepted, turns our Hyper Text Transfer Protocol into a WebSocket protocol that uses the same underlying TCP/IP protocol that general server sockets use (IP and Port).</p>
+
+<h2>HTTP Request</h2>
+
+<p>HTTP stands for Hyper Text Transfer Protocol, which allows web clients (usually browsers) and web servers to communicate with each other. Web servers are written in a language that web- clients can understand, unlike general servers which is why we need a WebSocket to translate.</p>
+
+<h3>Upgrade Header</h3>
+
+<p>An upgrade header lets you upgrade an already established connection to a different protocol. So instead of using the Hyper Text Transfer Protocol, we want to upgrade to a WebSocket protocol.</p>
+
+<h3>Protocol</h3>
+
+<p>A protocol is a set of rules that allow devices to communicate with each other. If two hardware devices support the same protocol, then they con communicate with each other.</p>
+
+<h3>TCP/IP Protocol</h3>
+
+<p>As mentioned earlier, IP addresses are identification numbers for individual devices. The IP Internet Protocol then is a set of rules that specifies the format of data that can be sent between different devices over the internet.</p>
+
+<p>TCP or the Transmission Control Protocol (https://searchnetworking.techtarget.com/definition/ TCP) is a set of rules that defines how to establish and maintain communications between applications programs that can share data.</p>
+
+<h2>Conclusion</h2>
+
+<p>TCP or the Transmission Control Protocol (https://searchnetworking.techtarget.com/definition/ TCP) is a set of rules that defines how to establish and maintain communications between applications programs that can share data.</p>
+
+<p>The WebSocket in this example allowed the browser to communicate with the general server to do all sorts of magical things that our browser-based app couldn’t do by itself.</p>
+
+<h2>Sources</h2>
+
+<ul>
+  <li><a href=" https://developer.mozilla.org/en-US/docs/Web/API/
+  WebSockets_API/Writing_WebSocket_servers" target="_blank">Writing your own server with a web socket</a></li>
+  <li><a href="https://searchnetworking.techtarget.com/definition/TCP" target="_blank">What is TCP</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol" target="_blank">Hypertext Transfer protocol</a></li>
+  <li><a href="https://www.merixstudio.com/blog/websockets-how-it-works-and-how-use-it/" target="_blank">Web sockets: How they work and how to use them</a></li>
+</ul>
+
+
+
+
+
+

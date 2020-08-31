@@ -1,0 +1,123 @@
+---
+layout: post
+title: Analysing the data structure performance of an Array (read, search, insertion and deletion
+---
+
+<h2>Array</h2>
+
+<p>An array is one of the most basic data structures. It is a list of data elements, say for example, a shopping list. The index of an array is the number that identifies where a piece of data lives inside the array. In most programming languages, we begin counting the index at 0.</p>
+
+<p>To understand the performance of a data structure, we need to analyze the common ways that our code might interact with that data structure.</p>
+
+<p>Most data structures are used in four basic ways, which we refer to as <strong>operations.</strong>
+
+<ul>
+  <li><strong>Read:</strong> refers to looking something up from a particular spot within the data structure. In an arrays case, looking up which grocery item is located at index 2 would be reading from an array.</li>
+  <li><strong>Search:</strong> refers to looking for a particular value within a data structure. With an array, this would mean checkinf to see if a particular grocery item, e.g. "chocolate", exists within the array, and if so, which index it can be found at.</li>
+  <li><strong>Insert:</strong> refers to adding another value to our data structure. In the case of an array, this would mean adding a new value to an additional slot within the array.</li>
+  <li><strong>Delete:</strong> refers to removing a value from our data structure. With an array, this would mean removing one of the vaules from the shopping list.</li>
+</ul>
+
+<p>When we measure how fast an operation takes, we don't refer to how fast the operation takes in terms of pure time, but instead in how many steps it takes. The amount of time something takes will differ from computer to computer. Whereas we can assume that operation A that takes 5 steps to complete will always be faster than operation B that takes 10 steps to complete on all pieces of hardware.</p>
+
+<h3>Four operations of an array</h3>
+
+<h4>Reading (1 step)</h4>
+
+<p>Reading is where we look up what value is contained at a particular index inside an array.</p>
+
+<p>Reading an array takes just one step, because the computer has the ability to jump to any particular index in the array and look inside.</p>
+
+<p>A computer's memory can be viewed as a giant collection of cells.When a program declares an array, it allocates a contiguous set of empty cells for use in the program. So if you were creating an array meant to hold five elements, then your computer would find any group of five empty cells in a row and designate it to serve your array.</p>
+
+<p>Every cell in a computers memory has a specific address (kind of like a street address). Each cells memory address is one number greater than the previous cell.</p>
+
+<p>When the computer reads a value at a particular index of an array, it can jump straight to that index in one step because recorded in each array is the memory address which it begins at (e.g. our array might begin with index 0 at memory address 1010). Index 3 will be exactly three slots past index 3 (1013).</p>
+
+<p>An operation with just one step is the fastest type of operation, which is why an array is such a powerful data structure, because we can look up the value at any index in a single step.</p>
+
+<h4>Searching N steps (linear search)</h4>
+
+<p>Searching an array is looking to see whether a particular value exists within an array and if so, which index it's located at.</p>
+
+<p>To search for a value within an array, the computer starts at index 0, checks the value, and if it doesn't find what it's looking for, moves on to the next index. It does this until it finds the value it's seeking.</p>
+
+<code>shopping_list = ["apples", "bananas", "cucumbers", "dates", "elderberries"]</code>
+
+<p>If we want to find if the shopping list contains "dates" and where it is in the list, we would have to check each index from 0 individually until we found the index containing the value dates. 1. Index 0 contains apples, not dates. 2. Index 1 also doesn't contain the value dates. 3. Neither does index 2. 4. Index 3 does contain the value dates!!! Finding dates, took a total of four steps.</p>
+
+<p>Checking each cell one at a time like this is called a <strong>linear search</strong>.</strong>
+
+<p>If the value we are seeking happens to be in the final cell in the array, then the computer would end up searching through every cell of the array until it finally finds the value it's lookinf for. Also, if the value we're looking for doesn't occur in the array at all, the computer would likewise have to search every cell so that it can be sure that the value doesn't exist within the array.</p>
+
+<p>So, for an array of five cells, the maximum number of steps that a linear search would take is 5.</p>
+
+<p>Another way of saying this is that for N cells in an array, linear search will take a maximum of N steps.</p>
+
+<p>Searching is less efficient than reading, because it can take many steps, whereas reading always takes just one step no matter how large the array.</p>
+
+<h4>Insertion (N + 1) steps</h4>
+
+<p>The efficiency of inserting a new piece of data inside an array depends on where inside the array you'd like to insert it.</p>
+
+<p>If we wanted to add "figs" to the end of our shopping list, this would only take one step, because the computer knows how many elements the array currently contains, and it knows which memory address the array begins at, so it can calculate where to insert the item in just one step.</p>
+
+<p>Whereas inserting a new piece of data at the beginning or the middle of an array takes a lot more steps, because in these cases, we need to shift many pieces of data to make room for what we're inserting.</p>
+
+<p>If we wanted to add "figs" to index 2 of our array, we'd need to move "cucumbers", "dates" and "elderberries" to the right by one cell in order to make room for the figs (3 steps to acheive this). Finally, we can insert "figs" into the now empty cell at index 2. This entire process for this particular small array took 4 steps. Three of the steps were shifting data to the right, while one step was th eactual insertion of the new value.</p>
+
+<p>The worst-case scenario for inserting into an array is where we insert data at the beginning of the array, because we have to move all of the other values to the right.</p>
+
+<p>So we can say that insertion in the worst-case scenario can take up to N + 1 steps for an array containing N elements (shifting every data element in the array, plus one assertion).</p>
+
+<h4>Deletion N steps</h4>
+
+<p>Deletion is the process of removing the value at a particular index. Deletion is like insertion, but in reverse.</p>
+
+<p>If we want to delete the value at index 2, first we'd have to delete the value at index 2, and then we'd have to shift all of the elements to the left of their original index until we get to the end of the array.</p>
+
+<p>Like insertion, the worst-case scenario of deleting an element is deleting the very first element of the array, because we would first remove the first element, and then we would have to shift all following elements to the left by 1 until the gap where the deletion was made is closed.</p>
+
+<p>For an array of 5 elements, we'd spend one step deleting the first elements, and then four steps shifting the four remaining elments. For an array containing N elements, the maximum number of steps that deletion would take is N steps.</p>
+
+<h2>Kotlin example</h2>
+
+<pre>
+<code>
+val num = arrayOf(1,2,3,4,5) //implicit type declaration
+val num = arrayOf&lt;Int&gt;(1,2,3,4,5) //explicit type declaration
+
+//using an array constructor
+val num = Array(3, {i-&gt; i*1})
+
+//initializes an array where each index is given the value of the array index * 1. So in this case 1,2,3
+
+//factory methods to create arrays of primitive types
+val num = intArrayOf(1,2,3,4,5)
+byteArrayOf()
+charArrayOf()
+shortArrayOf()
+longArrayOf()
+</code>
+</pre>
+
+<ul>
+  <p>Read: 1 step</p>
+  <p>Search: 5 steps</p>
+  <p>Insertion: 6 steps</p>
+  <p>Deletion: 5 steps</p>
+</ul>
+
+<p>Performance steps in worst case scenario where each operation is performed only once: 17 steps</p>
+
+<h2>Sets</h2>
+
+<p>Sets are just like arrays, except sets are arrays that contain no duplicate values. For example, you wouldn't want a phone book that lists your phone number twice for different people.</p>
+
+<p>The performance for a set is the same as an array in all operations except for the insertion operation.</p>
+
+<p>If we want to add an item to our shopping list which is stored in a set, we would first have to check to see whether the item already exists in the array by checking all of the indexes for the value, then shift all elements following the insertion index to the left by one, and finally insert your element in the newly emptied index.</p>
+
+<p>If we wanted to insert an element to the start of our set, the performance would be 2N + 1.</p>
+
+<p>In this case, we know that the array would be more efficient, but in the case of a phone book application, the set would be better despite the performance tradeoff for the insertion operation.</p>

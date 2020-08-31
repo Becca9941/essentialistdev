@@ -1,0 +1,82 @@
+---
+layout: post
+title: Reading and noting observations for tests written in the Ruby Warrior game
+---
+
+<p>I have been really struggling to test-drive my own projects, because coming up with tests is difficult. So I'm going to try it from a different angle.</p>
+
+<p>I'm going to attempt to reverse engineer someone else's program from their tests.</p>
+
+<h2>Step 1. Find a program to reverse engineer</h2>
+
+<p>I went onto GitHub and entered 'Ruby' into the search bar to find Ruby projects. I clicked in and out of a few of them and had a quick look to see if they contained tests, and whether I thought I would be able to reverse engineer any of them. Even just a couple tests would be enough to try this out.</p>
+
+<p>The project I chose was <a href="https://github.com/ryanb/ruby-warrior" target="_blank">Ruby Warrior</a>. It's fun, and the code all seems to be very well written. Every part of the system is written in small chunks where everything appears to do one thing well and is easy to read (it's okay to glance at the source code to see how you feel about working with it). The tests are similarly well-written.</p>
+
+<h2>Step 2. Explore and note test code observations</h2>
+
+<p>The Ruby Warrior tests are written in RSpec, which is a Ruby testing framework. All of the tests for Ruby Warrior are contained in a folder called 'spec'.</p>
+
+<p>The spec folder contains a folder called 'fixtures' and a folder called 'ruby_warrior'. It also contains a file called 'spec_helper.rb'. The spec helper is for customising the test reporter which is what tells you which of your tests have passed or failed in the command line.</p>
+
+<h3>Fixtures folder</h3>
+
+<p>The fixtures folder stores sample data that are used to test against. In this case, there is a file called 'walking_player.rb', which contains a Player class with a 'play_turn' method that accepts a Warrior object as an argument and makes it walk. I don't know enough about fixtures right now to explain what this is for.</p>
+
+<p>The fixtures folder also contains a folder called 'short-tower' which contains two files: 'level_001.rb' and 'level_002.rb'. These files contain a level description and variables used in the program, as well as a method.</p>
+
+<p>According to <a href="http://www.betterspecs.org/#factories" target="_blank">Better Specs</a>, it is better te use factories (a design pattern) that fixtures because they are easier to control and help you reduce the verbosity of creating new data. I'll keep that in mind for when I attempt to refactor the code after passing a test that relies on the fixtures.</p>
+
+<h3>Ruby Warrior folder</h3>
+
+<p>The Ruby Warrior folder contains the main tests for the program. There is a lot going on here. There are two folders 'abilities' and 'units' inside this folder, as well as a number of test files. I will list the files below as well as a quick description of what I think they tell you about the programs capabilities based on a quick read-through of the tests. I have ommitted the '_spec.rb' extension from the file names below.</p>
+
+<ul>
+  <li>core_additions: wraps text at whitespace when over a specific character length.</li>
+  <li>floor_spec: creates floors containing units and things like stairs etc. Handles corner bounds.</li>
+  <li>game_spec: Handles loading profiles, exiting the game, choosing towers and level mechanics.</li>
+  <li>level_loader: Handles contructing levels</li>
+  <li>level: Handles game events like when the level is complete, grade points, bonuses and creating players with abilities (I think)</li>
+  <li>player_generator: this doesn't seem to generate players. Only one test with a templates path.</li>
+  <li>position_spec: handles player turning around and where objects are in relation to the player. The way the tests are written here tell me a lot about how the code is structured. I know I want to refactor this code. I wrote a rover program where position and orientation were seperate objects. This would remove a lot of the duplication in these tests.</li>
+  <li>profile: Sets up base player details like their abilities, characteristics, name, starting level etc. There are also tests for scores, level details etc. A lot of the tests include implementation details in the descriptions, which isn't good.</li>
+  <li>space: makes sure spaces in the game either do contain the right game object, or does not contain the wrong game objects.</li>
+  <li>tower: tower name should be 'tower' and use name when converting to a string. Hmm, not sure whether these tests are useful.</li>
+  <li>turn: These are tests for the method turn which belongs to the warrior class. Handles warrior abilities.</li>
+  <li>ui: user interface specific tests such as the formatting of output.</li>
+</ul>
+
+<h3>Thoughts after test observations</h3>
+
+<p>While there are a lot of tests, they don't feel right. They focus too much on the implementation details and not so much on the behaviours associated with the program. However, these tests are a great starting point. After passing them, I can decide whether or not I would do them differently. I can see myself rebuilding this whole program from scratch after doing this because I'll have a lot more ideas for what I'd want to do differently.</p>
+
+<p>However, I'm not sure if I'll be able to recreate the program based on these tests alone. My feeling is that the TDD style is a little off so it's possible that some critical parts of the game are not captured in the tests. But it'll be useful to do this anyway.</p>
+
+<h2>Setting up empty starter project</h2>
+
+<p>Now that I have read through the tests, I'm going to set up a simple starter project with one file that I can start writing tests in. This project is going to be grown from the ground up. I'll record what I do below, it'll be handy to be able to look back on it.</p>
+
+<ul>
+  <li>I created a folder called 'ruby-warrior' in my home directory using the command line: <code>mkdir ruby-warrior</code></li>
+  <li>Inside the folder (<code>cd ruby-warrior</code>) I initialised it as a Git repository: <code>git init</code></li>
+  <li>Then I created a folder called 'spec' to store all of the tests: <code>mkdir spec</code></li>
+  <li>The next step is to create a test file. To do this, I need to look at the Ruby Warrior tests and pick the file that I think is best to start with.</li>
+</ul>
+
+<h2>Choosing which test file to start with</h2>
+
+<p>Looking at the tests I outlined earlier. I realised that all of them contain dependencies on other classes. So I had a look at the units file and saw that it contained classes for characters, whilst the abilities folder contained abilities for those characters.</p>
+
+<p>I'm going to focus on the Warrior spec because the game is called Ruby Warrior to start with. I'll probably try out an abilities class after that.</p>
+
+<p>Let's go!</p>
+
+<h2>Player Tests</h2>
+
+<p>The first thing I did was create a test file in my Specs folder called "player_spec.rb".</p>
+
+<p>Ah, I read the tests in the player_spec.rb and I'm choosing not to try and build this program from the tests. I think the tests were written after the program was made, and potentially before TDD was a thing.</p>
+
+<p>Reading this code has really boosted my confidence. I have been thinking that I'm not a very good programmer of the last few weeks because I don't really 'get' tdd. The fact that most of my observations triggered things I wanted to change has made me think that I know more than I think, so just need to try.</p>
+
+<p>I'm going to try and build my own game inspired by The Legend of Zelda. It doesn't have to be perfect.</p>

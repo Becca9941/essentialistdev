@@ -1,0 +1,231 @@
+---
+layout: post
+title: Blog Content Management System - All The Pieces That Make It Work
+---
+
+<p>&ensp;I decided to build a blog content management system because hard coding and then uploading articles manually to the server was a time consuming process that made me feel less motivated to write. Secondly, I am the kind of person who does find joy in reinventing the wheel. Doing so has allowed me to create an expandable CMS that does exactly what I want it to do and no more.</p>
+
+<p>&ensp; Even if you feel like you are nowhere near ready to build a CMS, have a look through the complete resource list at the bottom of this page. You'll be surprised at how prepared they will make you feel. P.s. I knew very little PHP and SQL before attempting this project, but am far more confident in both now.</p>
+
+<video class="video" width="400" controls>
+  <source src="/web/20190112204252im_/http://webdevbecca.com/images/article-uploads/webdevbecca-launch.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+
+<h2>CSS</h2>
+
+<ul class="resource-list">
+    <li><a href="https://web.archive.org/web/20190112204252/https://css-tricks.com/snippets/css/" target="_blank">CSS Tricks: A ton of bitesize tutorials for doing pretty much anything with CSS</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.webdesignerdepot.com/2009/05/10-best-css-practices-to-improve-your-code/" target="_blank">10 Best CSS Practices</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.smashingmagazine.com/2013/10/challenging-css-best-practices-atomic-approach/" target="_blank">Smashing Magazine: Challenging CSS Best Practices</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://css-tricks.com/the-art-of-comments/" target="_blank">CSS Tricks: The art of Comments</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.w3schools.com/css/css3_mediaqueries_ex.asp" target="_blank">W3Schools -&gt; Media Queries</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://medium.freecodecamp.org/everything-you-need-to-know-about-css-variables-c74d922ea855" target="_blank">Free Code Camp: An extensive guide for using CSS variables</a></li>
+</ul>
+
+<h3>Comments</h3>
+
+<p>&ensp;I used <strong>comments</strong> to logically separate my styles into categories that make sense for my website. </p>
+
+<img src="/web/20190112204252im_/http://webdevbecca.com/images/article-uploads/css-example.png" alt="screenshot of css stylesheet where comments are used to create headings that structure content">
+
+
+<h3>Media Queries</h3>
+
+<p>&ensp;I used <strong>media queries</strong> to make the layout responsive. Particularly useful for simplifying complicated desktop blog card layouts for mobile users.</p>
+
+<img src="/web/20190112204252im_/http://webdevbecca.com/images/article-uploads/desktop-vs-mobile.png" alt="side by side screenshots of desktop vs mobile version of blog landing page layout">
+
+<h3>CSS Variables</h3>
+
+<p>&ensp;I used <strong>CSS variables</strong> to store brand colours.</p>
+
+<img src="/web/20190112204252im_/http://webdevbecca.com/images/article-uploads/css-variables.png" alt="screenshot of css variable declarations">
+
+<h2>JavaScript</h2>
+
+<ul class="resource-list">
+
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.w3schools.com/howto/howto_js_scroll_to_top.asp" target="_blank">W3Schools -&gt; How to create a back to top button</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://stackoverflow.com/questions/12237529/count-how-many-elements-in-a-div" target="_blank">Counting how many elements are inside a another element (e.g. how many paragraphs inside a div)</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.w3schools.com/howto/howto_js_slideshow.asp" target="_blank">W3Schools -&gt; How to create a slideshow (Carousel)</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.abeautifulsite.net/adding-and-removing-elements-on-the-fly-using-javascript" target="_blank">A Beautiful Site -&gt; Creating and removing elements with JavaScript</a></li>
+
+</ul>
+
+<h3>Back To Top Button</h3>
+
+<p>&ensp;I followed <a href="https://web.archive.org/web/20190112204252/https://www.w3schools.com/howto/howto_js_scroll_to_top.asp" target="_blank">this tutorial</a> from W3Schools to make the back to top button. I am in the process of making my own animated and slowly scrolling version, and will update this once it is done.</p>
+
+<img src="/web/20190112204252im_/http://webdevbecca.com/images/article-uploads/back-to-top.png" alt="small blue circle with white arrow pointing upwards">
+
+<h3>Coming Soon Image</h3>
+
+<p>&ensp;I wanted to display a friendly image to the user if they clicked on a category that didn't have any articles written for it yet. So I added an image of a panda to my page, and used CSS to hide it from the page (display: none).</p> 
+
+<p>&ensp;I used JavaScript to check if any articles had been displayed on the page yet by looking inside the articles div and seeing if there were any h2 elements inside (for displaying article titles). If no titles were inside, then the panda would be revealed (using JavaScript to change value of display to "block"). If there was one or more titles found, then the panda would be hidden again.</p>
+
+<img src="/web/20190112204252im_/http://webdevbecca.com/images/article-uploads/panda.png" alt="cartoon panda drawn in paint with a thought bubble next to him saying 'new thought cuddles coming soon.'">
+
+<h3>Problem Solving Carousel</h3>
+
+<p>&ensp;The problem solving carousel is an interactive tutorial I created to help people learn how to break down programming problems into input, output, sequences and decisions. The functionality for this one deserves its own article, one that is in the making and will be linked to here once it is done.</p>
+
+<img src="/web/20190112204252im_/http://webdevbecca.com/images/article-uploads/prob-analysis.png" alt="screenshot of problem solving carousel">
+
+<h2>SQL</h2>
+
+<ul class="resource-list">
+
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.codecademy.com/articles/sql-commands" target="_blank">Code Academy -&gt; List of SQL Commands</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/http://webvaultwiki.com.au/Default.aspx?Page=Create-Mysql-Database-User-Phpmyadmin&amp;NS=&amp;AspxAutoDetectCookieSupport=1" target="_blank">Web Vault Wiki -&gt; Creating database tables in PHPMyAdmin</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.youtube.com/watch?v=P2lU3f3UyNo&amp;vl=en" target="_blank">How to move database from local server to website server</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.tutorialspoint.com/dbms/relational_algebra.htm" target="_blank">Relational Algebra for writing SQL queries</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.dummies.com/programming/sql/how-to-design-a-sql-database/" target="_blank">How to Design an SQL database</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/http://sqllessons.com/categories.html" target="_blank">Creating a categories and sub categories table in SQL</a></li>
+
+</ul>
+
+<h3>Select Statement</h3>
+
+<p>&ensp;The select statement works on a single table, and creates a new table containing only the rows that meet a condition statement. I used it to select only the categories whose parent_id was set to NULL, which meant they were the main categories. If the parent id was set to a number, then it is a subcategory of a category whose id matches the parent_id.</p>
+
+<img src="/web/20190112204252im_/http://webdevbecca.com/images/article-uploads/select.png" alt="screenshopt of sql select statement">
+
+<h3>Left Join Statement</h3>
+
+<p>&ensp;The left-join statement returns all rows from the left table, even if there are no matches in the right table. I used it to join the articles and categories table by article id and category id. Allows me to access category names for each post in the article (whose category names are represented by integers in that table).</p>
+
+<img src="/web/20190112204252im_/http://webdevbecca.com/images/article-uploads/left_join.png" alt="screenshot of SQL left-join statement">
+
+<h3>Inner Join Statement</h3>
+
+<p>&ensp;The inner-join statement selects all rows from both participating tables as long as there is a match between the columns. This combined both of the tables so that all category names in the category table matched up to the posts in the articles table. Allows me to access all of the other attributes in both tables too, which was important for displaying blog cards and blog posts.</p>
+
+<img src="/web/20190112204252im_/http://webdevbecca.com/images/article-uploads/inner_join.png" alt="screenshot of SQL inner-join statement">
+
+<h2>PHP</h2>
+
+<ul class="resource-list">
+
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.w3schools.com/php/php_mysql_connect.asp" target="_blank">PHP Connect to MySQL</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://stackoverflow.com/questions/29968425/how-to-use-foreach-get-data-from-the-database-table" target="_blank">How to use foreach to display data from a database</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.affilorama.com/site-building/php-includes" target="_blank">Simplifying navigation menus with PHP includes method</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.youtube.com/watch?v=gdEpUPMh63s" target="_blank">Create pagination in PHP and SQL</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://teamtreehouse.com/community/im-trying-to-loop-through-a-color-array-and-apply-the-colors-to-each-list-item-in-a-ul-my-code-isnt-working" target="_blank">Loop through a colour aray and apply as background colour</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/http://php.net/manual/en/function.date.php" target="_blank">PHP Date Formatting</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://birchtree.me/blog/reading-time-wp-php/" target="_blank">How to make a reading time calculator for WordPress with PHP</a></li>
+
+</ul>
+
+<h3>Includes() Method</h3>
+
+<p>&ensp;The includes() method allows you to include other files into your document. I used it to add the navigation menu to the top of each page, so if I needed to make any changes to the menu, I only need to edit the original navigation menu file. I also used it to add the database connection scripts to the top of every page that needed access to the database.</p>
+
+<img src="/web/20190112204252im_/http://webdevbecca.com/images/article-uploads/includes.png" alt="screenshot of php includes method">
+
+<h3>Foreach Loop and Echo</h3>
+
+<p>&ensp;The foreach loop and echo statements are used to cycle through each of the articles and display their data values.</p>
+
+<img src="/web/20190112204252im_/http://webdevbecca.com/images/article-uploads/foreach.png" alt="screenshot of foreach and echo statements">
+
+<h3>Pagination</h3>
+
+<p>&ensp;I created a set of page number buttons. The number of page number buttons created depends on how many articles were selected using an sql query. The number of articles would be different depending on which category was selected. I created a variable called articles_per_page which stored the number of articles I want to display on each page. The number of articles divided by the articles_per_page, then rounded up gives the number of pages there should be. Each of the page buttons were assigned a link that takes you to "index.php?page=" + number. </p>
+
+<img src="/web/20190112204252im_/http://webdevbecca.com/images/article-uploads/pages.png" alt="screenshot of pagination buttons">
+
+<p>&ensp;I then used the $_GET method to check which page we were currently on. When we click on each of the page buttons, a number corresponding to that page gets added to the URL. If the page number in the url matches the page number of the button we have clicked on, then we are on this page so the background colour for that button is changed to purple to show that it is active, whereas the background colour of all other buttons are changed to grey to show that we are not on any of those pages. If we have just visited the index page for the first time (and no page number has been added to the url by clicking on a page button), then we set the page number to one and change the colour of page number button one to purple.</p>
+
+<p>&ensp;In order to display 4 articles on one page, the next 4 articles on the next page and so on, I created a variable called $start, which contained the page number we are on - 1, multiplied by the articles per page variable (which contained the value 4). If we were on page one, (1 - 1) * 4 would give us zero, which when used in the LIMIT part of the SQL query, means that we would be displaying articles starting from index 0. If we were on page two (2-1) * 4 would give us four. So on page two we would be displaying articles from index four.</p>
+
+<h3>Random Colour Assignment</h3>
+
+<p>&ensp;I created an array of colours and a variable called index set to 0. I then created an if statement that said if the index number was bigger than the number of colours in the list, set the index number back to o to start from the beginning again. This if statement was contained inside the foreach loop that I used to display data from each article, so the if statement then became a bit of a loop itself. The background colour of each category was set to one of the colours inside the list, accessed using the index.</p>
+
+<img src="/web/20190112204252im_/http://webdevbecca.com/images/article-uploads/categories.png" alt="screenshot of colourful category list">
+
+<h3>Date Formatting</h3>
+
+<p>&ensp; I used the <strong>date_create()</strong> method to turn the date string inside the article database into a date object, then used the <strong>date_format()*</strong> method to convert the date into the right format. In my case I created three separate date_format objects for the month, day and year so that I could target them individually using CSS.</p>
+
+<img src="/web/20190112204252im_/http://webdevbecca.com/images/article-uploads/date.png" alt="screenshot of css styled date">
+
+<h3>Word Count to Read Time Converter</h3>
+
+<p>&ensp;The word count to read time converter gets article word count using the <strong>str_word_count()</strong> method, divides the result by 250 (average number of words people read a minute), and then rounds the number up using the <strong>ceil()</strong> method to get a whole read time number.</p>
+
+<img src="/web/20190112204252im_/http://webdevbecca.com/images/article-uploads/read.png" alt="screenshot of readtime">
+
+<h2>Complete Resource List</h2>
+
+<p>&ensp;All of the resources in this list gave me aha moments when I was stuck trying to figure out a problem. If you want to build your own blog CMS, reading through these first will give you a huge step up. I have also included a list of useful tools that also came in handy during the build process, but are not directly related to the CMS.</p>
+
+<h3>CSS</h3>
+
+<ul class="resource-list">
+    <li><a href="https://web.archive.org/web/20190112204252/https://css-tricks.com/snippets/css/" target="_blank">CSS Tricks: A ton of bitesize tutorials for doing pretty much anything with CSS</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.webdesignerdepot.com/2009/05/10-best-css-practices-to-improve-your-code/" target="_blank">10 Best CSS Practices</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.smashingmagazine.com/2013/10/challenging-css-best-practices-atomic-approach/" target="_blank">Smashing Magazine: Challenging CSS Best Practices</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://css-tricks.com/the-art-of-comments/" target="_blank">CSS Tricks: The art of Comments</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.w3schools.com/css/css3_mediaqueries_ex.asp" target="_blank">W3Schools -&gt; Media Queries</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://medium.freecodecamp.org/everything-you-need-to-know-about-css-variables-c74d922ea855" target="_blank">Free Code Camp: An extensive guide for using CSS variables</a></li>
+</ul>
+
+<h3>JavaSript</h3>
+
+<ul class="resource-list">
+
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.w3schools.com/howto/howto_js_scroll_to_top.asp" target="_blank">W3Schools -&gt; How to create a back to top button</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://stackoverflow.com/questions/12237529/count-how-many-elements-in-a-div" target="_blank">Counting how many elements are inside a another element (e.g. how many paragraphs inside a dib)</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.w3schools.com/howto/howto_js_slideshow.asp" target="_blank">W3Schools -&gt; How to create a slideshow (Carousel)</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.abeautifulsite.net/adding-and-removing-elements-on-the-fly-using-javascript" target="_blank">A Beautiful Site -&gt; Creating and removing elements with JavaScript</a></li>
+
+</ul>
+
+<h3>SQL</h3>
+
+<ul class="resource-list">
+
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.codecademy.com/articles/sql-commands" target="_blank">Code Academy -&gt; List of SQL Commands</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/http://webvaultwiki.com.au/Default.aspx?Page=Create-Mysql-Database-User-Phpmyadmin&amp;NS=&amp;AspxAutoDetectCookieSupport=1" target="_blank">Web Vault Wiki -&gt; Creating database tables in PHPMyAdmin</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.youtube.com/watch?v=P2lU3f3UyNo&amp;vl=en" target="_blank">How to move database from local server to website server</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.tutorialspoint.com/dbms/relational_algebra.htm" target="_blank">Relational Algebra for writing SQL queries</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.dummies.com/programming/sql/how-to-design-a-sql-database/" target="_blank">How to Design an SQL database</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/http://sqllessons.com/categories.html" target="_blank">Creating a categories and sub categories table in SQL</a></li>
+
+</ul>
+
+<h3>PHP</h3>
+
+<ul class="resource-list">
+
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.w3schools.com/php/php_mysql_connect.asp" target="_blank">PHP Connect to MySQL</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://stackoverflow.com/questions/29968425/how-to-use-foreach-get-data-from-the-database-table" target="_blank">How to use foreach to display data from a database</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.affilorama.com/site-building/php-includes" target="_blank">Simplifying navigation menus with PHP includes method</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://www.youtube.com/watch?v=gdEpUPMh63s" target="_blank">Create pagination in PHP and SQL</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://teamtreehouse.com/community/im-trying-to-loop-through-a-color-array-and-apply-the-colors-to-each-list-item-in-a-ul-my-code-isnt-working" target="_blank">Loop through a colour aray and apply as background colour</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/http://php.net/manual/en/function.date.php" target="_blank">PHP Date Formatting</a></li>
+    <li><a href="https://web.archive.org/web/20190112204252/https://birchtree.me/blog/reading-time-wp-php/" target="_blank">How to make a reading time calculator for WordPress with PHP</a></li>
+
+</ul>
+
+<h3>Useful Tools</h3>
+
+<ul>
+
+<li><a href="https://web.archive.org/web/20190112204252/https://fontawesome.com/" target="_blank">Font Awesome:</a> An icon set that I used to display social media icons (GitHub, Codepen, Twitter). I chose font awesome because it lets you change the colours of icons as if you were changing the font colour of text, which makes hover effects easier to implement.</li>
+
+<li><a href="https://web.archive.org/web/20190112204252/https://fonts.google.com/" target="_blank">Google Fonts:</a> Lets you add a unique font to your website that will render properly on all machines. Instead of having to rely on web safe fonts only. I used this to make my introduction text look like handwriting.</li>
+
+<li><a href="https://web.archive.org/web/20190112204252/https://bennettfeely.com/clippy/" target="_blank">CSS Clippy</a> Lets you change the shape of elements (all elements are typically rectangular) into unusual shapes. I used this to turn my introduction text into a speech bubble. </li>
+
+<li><a href="https://web.archive.org/web/20190112204252/https://www.canva.com/" target="_blank">Canva: </a> A really awesome resource for creating images and inforgraphics. All of my featured images were made using this</li>
+
+<li><a href="https://web.archive.org/web/20190112204252/https://screencast-o-matic.com/" target="_blank">Screencast-O-Matic:</a> Used to record your screen which you can then download as a video file.</li>
+
+<li><a href="https://web.archive.org/web/20190112204252/http://gifmaker.me/" target="_blank">Gif Maker: </a> I used this to create an animated walking duck. I drew two images of a duck, uploaded them to this website and turned them into a GIF animation</li>
+
+</ul>
+

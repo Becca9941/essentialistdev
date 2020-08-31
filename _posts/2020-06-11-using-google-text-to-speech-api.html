@@ -1,0 +1,77 @@
+---
+layout: post
+---
+
+<p>I just spent a couple hours using <a href="https://apps.ankiweb.net/" target="_blank">Anki</a> to create a flashcard deck where each card has a Google Translate audio file attached. I used four apps in all to do this, so thought it would be better in the long run for me to just create an app to do all the things I want it to do myself.</p>
+
+<p>So first things first, I need to know how to use Googles <a href="https://codelabs.developers.google.com/codelabs/cloud-text-speech-python3/index.html?index=..%2F..index#1" target="_blank">Text To Speech API</a> so I can use the audio files in my app. This tutorial is for python, but I'll be using Ruby instead.</p>
+
+<h2>Setup API Environment</h2>
+
+<p>First, I created an account on <a href="console.cloud.google.com" target="_blank">Google's Cloud Console</a>. Then I created a new project  with a name, and saved my project ID which was provided once I had created the project.</p>
+
+<p>Then I opened up the menu on the left side of the page, and clicked on the 'Dashboard' option under the 'APIs & Services' menu.</p>
+
+<p>At the top of the dashboard, I clicked on the option '+ Enable APIs and Services', and searched for the text-to-speech api, which I then enabled.</p>
+
+<p>In the meantime, I found a decent <a href="https://cloud.google.com/text-to-speech/docs?hl=en_US" target="_blank">tutorial for getting started with text-to-speech</a></p>
+
+<h2>Create Audio from Text using the command-line</h2>
+
+<p>Create a json file called request.json. Inside that file, you will have a json file with the following properties: input, which is where you'll include the text you want google to turn into speech for you; Voice, where you can set the kind of voice who'll read out your text and in what language (provided the input is in the same language). <a href="https://cloud.google.com/text-to-speech/docs/voices" target="_blank">Voice options can be found here</a>, and finally an audioConfig property that sets the encoding for your audio, preset to MP3.</p>
+
+<p>To send the request, I use curl for Mac. The original curl request looks like this:</p>
+
+<pre>
+<code>
+curl -X POST \
+-H "Authorization: Bearer "$(gcloud auth application-default print-access-token) \
+-H "Content-Type: application/json; charset=utf-8" \
+-d @request.json \
+https://texttospeech.googleapis.com/v1/text:synthesize
+</code>
+</pre>
+
+<p>When you run this, you get a huge response back as a json object with one property called 'audioContent'. The value it contains is huge. The next step tells you to copy the value of the audioContent propery (no quotes) and save it into a new file. This was tedious to do by hand, and there's no way I'm going to remember the curl command. So I modified the request to the following:</p>
+
+<pre>
+<code>
+curl -X POST \
+-H "Authorization: Bearer "$(gcloud auth application-default print-access-token) \
+-H "Content-Type: application/json; charset=utf-8" \
+-d @request.json \
+https://texttospeech.googleapis.com/v1/text:synthesize | jq -r '.audioContent' &gt; synthesize-output-base64.txt
+</code>
+</pre>
+
+<p>The curl request stays mostly the same, except for the end, where I added on <code>| jq -r '.audioContent' &gt; synthesize-output-base64.txt</code>.</p>
+
+<p>I used <a href="https://brew.sh/" target="_blank">Homebrew</a> to install jq, which lets you format json terminal output so it's easier to read. It also lets you access properties and their values if you want to. I used it to get the content of the 'audioContent' property <code>jq '.audioContent'</code> in it's raw state (without the string quotes) using the <code>-r</code> flag. The greater than sign pipes the property value into a new file whose name is specified at the end of the command. Whew.</p>
+
+<p>I saved the curl command in a file called <code>curl-command.txt</code> which I can run by prefixing the filename with the bash command, like this:</p>
+
+<code>bash curl-command.txt</code>
+
+<p>The final step is to decode the json audioContent value into an audio file, using the following command:</p>
+
+<code>base64 synthesize-output-base64.txt --decode &gt; synthesized-audio.mp3</code>
+
+<p>I saved this command into a file called 'convert-to-mp3.txt', which I can also run using the bash command without having to remember what it is.</p>
+
+<h2>Improvements</h2>
+
+<p>To create a new audio file, all I need to do is edit the request.json file with the russian text I want translated, and then run 'bash curl-command.txt' and then run 'bash convert-to-mp3.txt'. I have to do those steps manually, and that's still a bit clunky to me.</p>
+
+<p>I can immediately make that easier by merging the bash files into one called 'create-mp3.txt', so I'll do that.</p>
+
+<p>I also don't care about the base64 audioContent file, I just care about the finished mp3 file. So I'll delete the base64 after the audio file has been created in the same 'create-mp3.txt' file. The deletion command I used was <code>rm -rf [filename]</code></p>
+
+<p>Then, I changed my default audio file name to 'audio-file' instead of 'synthesized-audio.mp3'</p>
+
+<p>I showed my code to a more experienced dev, who gave me some more colol suggestions! First, is that I can change my "create-mp3.txt" to a bash file in a couple steps. First, change the extention to 'create-mp3.bash'</p>
+
+<p>Then, at the top of the file, we include the following comment: <code>#!/bin/bash</code>, which says that this file is meant to be be run with bash (so we don't have to use the bash command when running it).</p>
+
+<p>Finally, we enter <code>chmod 755 create-mp3.bash</code> to make the file executable. 755 sets it to read write and execute for the owner (7), read and execute for the group (5) and read and execute for the world (5). Whilst the chmod command changes the modifiers, which are the properties of the file (read, write, execute properties).</p>
+
+<p>To run the file, all we need to do now is run './filename.bash'. The ./ says look in this directory for this file. The bash command handles that for you in the background.</p>

@@ -1,0 +1,100 @@
+---
+layout: post
+title: Strategies for seperating concerns and creating layers of abstraction in object-oriented code 
+---
+
+<p class="note">Reading notes based on <a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627" target="_blank">Growing Object-Oriented Software, Guided by Tests</a> by Steve Freeman and Nat Pryce</p>
+
+<blockquote>Always design a thing by considering it in its next larger context - a chair in a room, a room in a house, a house in an environment, an environment in a city plan</blockquote>
+
+<p>A really useful way to build software that can continue to be understood and maintained at scale, is to bundle your functionality into objects, <q>objects into packages, packages into programs and programs into systems.</q>. In order to evolve this kind of solution, we can employ two useful principles: Separation of concerns and higher levels of abstraction."</p>
+
+<h2>Separation of concerns</h2>
+
+<p>When you make changes, you only want to have to make changes in one place, instead of those changes cascading throughout your system in unpredictable ways. Seperation of concerns means grouping together code that is likely to change for the same reasons.</p>
+
+<h2>Higher levels of abstraction</h2>
+
+<p>Portraits that have been painted by Picasso are obviously recognisable as faces, even though the features that make up the face are distorted and in some cases, not in the place you would expect them to be. When writing software, we want to aim to write blocks of code that are easily recognisable as the features that they represent, whilst at the same time hiding the complexity of the code so that the abstract idea is forefront, and the low-level details are not. We want to write code that is easy for other people to read. Layers of abstraction help us to make sense of this code.</p>
+
+<p>When implemented together, these principles result in software where the code expressed in language used by the domain experts is seperate from the underlying technicalities like databases and user interfaces. These are linked together by a series of bridges.</p>
+
+<ul>
+  <li>This style of architecture resembles <a href="https://softwarecampament.wordpress.com/portsadapters/" target="_blank">Cockburn's Ports and Adapters Pattern (Hexagonal Architecture)</a></li>
+  <li>Bridging idea is called an "anticorruption layer" by Eric Evans which you can read more about <a href="https://markhneedham.com/blog/2009/07/07/domain-driven-design-anti-corruption-layer/" target="_blank">here</a></li>
+</ul>
+
+<h3>Example</h3>
+
+<blockquote>For example, a bridge might map an order book object to SQL statements so that the orders are persisted in a database. To do so, it might query values from the application object or use an object-relational tool like Hibernate to pull values out of objects using Java reflection.</blockquote>
+
+<h4>Things I want to look into</h4>
+
+<ul>
+  <li>object-relational tool like <a href="https://hibernate.org/" target="_blank">Hibernate</a></li>
+  <li><a href="https://docs.oracle.com/javase/tutorial/reflect/index.html" target="_blank">Java Reflection</a></li>
+  <li>How do you pull values out of objects using Java reflection?</li>
+  <li>How does hibernate use Java reflection?</li>
+</ul>
+
+<h2>Dividing our code cleanly</h2>
+
+<p>In order to find the aspect of a behaviour where our interface/s should slot in to divide our code cleanly, we can employ the help of a couple of second level principles to guide us:</p>
+
+<h3>Encapsulation</h3>
+
+<p>The behaviour of an object can only be affected through it's API</p>
+
+<p class="note"> An API is defined (by a quick Google search) <q>a set of functions and procedures allowing the creation of applications that access the features or data of an operating system, application, or other service.</q></p>
+
+<h3>Information hiding</h3>
+
+<p>Information hiding is where we hide how and object implements it's functionality behind the abstraction of its API.</p>
+
+<p>Objects can break encapsulation by sharing references to mutable objects, and effect known as aliasing. Aliasing is essential for objects to be able to communicate, but accidential aliasing can join unrelated parts of a system, which can have unexpected consequences as well as being difficult to change.</p>
+
+<p class="note">Mutable objects have fields that can change, whereas immutable objects fields do not change once the object has been created (like const variables in JS can't be changed but let variables can).</p>
+
+<h4>Practices that help us maintain encapsulation</h4>
+
+<ul>
+  <li>Define immutable value types</li>
+  <li>Avoid global variables and singletons</li>
+  <li>copy collections and mutable values when passing them between objects</li>
+</ul>
+
+<h2>Internals vs peers</h2>
+
+<p>Objects hide their internals from other objects behind an abstract API that is the only thing visible to other objects. Objects communicate to each other by sending 'messages' (which are method names that they can understand). All of the other objects that an object can send messages to are called 'peers'.</p>
+
+<p>As we are organising our system, we need to decide what is inside an object (its internals) and what is outside an object (its peers). This is an important decision because it affects how easy an object is to use and contributes to the internal quality of the system. We don't want to end up with objects doing the work of other objects, making this decision reduces the probability of this happening.</p>
+
+<h4>More useful tips</h4>
+
+<ul>
+  <li><strong>Helper Methods:</strong> It's worth writing 'helper methods' which are small methods that clarify the meaning of the feature they represent.</li>
+  <li><strong>Distinguishing between value and object types</strong></li>
+  <li>Use a message-passing style <em>between</em> objects, but a more functional style <em>within</em> an object.</li>
+</ul>
+
+<h2>Choosing the right features for an object</h2>
+
+<p>Every object should haev a single, clearly defined responsibility (the single responsibility principle).</p>
+
+<q>When we're adding behaviour to a system, the single responsibility principle helps us decide whether to extend an existing object or create a new service for an object to call.</q>
+
+<h2>An object's peers can be loosely categorised into three types of relationship</h2>
+
+<h3>Dependencies</h3>
+
+<p>A service that an object cannot function without. It cannot do it's single job without it.</p>
+
+<h3>Notifications</h3>
+
+<p>Peer objects that care about the state or actions of another object. The object firing the notification doesn't care who hears them. The firing object also doesn't know what the listeners will do after hearing the notification.</p>
+
+<h3>Adjustments</h3>
+
+<p>Peer objects that change the behaviour of other objects. For example, a renderer object might tell an object to draw a color with RGB values, or it can change the behaviour so that the colors are rendered using HSB values.</p>
+
+<p class="note">The Adjustments relationship is the least clear to me of these three</p>

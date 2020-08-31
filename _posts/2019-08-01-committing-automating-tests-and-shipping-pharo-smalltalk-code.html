@@ -1,0 +1,127 @@
+---
+layout: post
+title: Writing and committing first Pharo (smalltalk) code and shipping for others to use
+categories: [dev environment, installation]
+tags: [Pharo, Smalltalk, Github, Tests, TDD, Shipping code]
+---
+
+<p>The instructions below are part of a course called "<a href="https://online-training.jbrains.ca/p/wbitdd-01" target="_blank">The World's Best Intro to TDD</a>" by J.B. Rainsberger, which for me is definitely living up to it's name. The first few sections of the course are free. It's a time investment that'll keep paying off if you choose to work through them.</p>
+
+<blockquote>Before reading any further, set up your working environment. Set up a new, empty project, write a single failing test, run the test and watch the test fail with at most a single keypress,
+ commit the failing test to version control, and publish your single failing test offsite.</blockquote>
+
+<p>The genius behind this approach for me is that you are still writing a 'simple' Hello World program, but with all of the things that are essential for bigger projects right from the start.</p>
+
+<p>I'm learning a new language called Pharo, which is a pure Object-Oriented language based on Smalltalk. This entry documents my process of setting up my dev environment in Pharo, but the high-level steps are transferable to other languages.</p>
+
+<p>The tools you need to set up your dev environment according to the course are listed below. I have included the tools I chose in parentheses).</p>
+
+<ul>
+  <li>A version control system with an off-site backup (Github)</li>
+  <li>A testing frameword or library for your programming language (SUnit for Pharo)</li>
+  <li>A text editor or IDE that you want to master (Pharo has it's own IDE, my usual choice is Vim - still learning that one).</li>
+  <li>A mechanism for runnig tests wih (at most) a single keypress whilst still in your editor (Iceberg which is built into Pharo)</li>
+  <li>Pen, paper, index cards (this is more for the TDD part of the course, but also useful for quickly documenting your installation steps for future reference.</li>
+</ul>
+
+<h2>Create a bare repo to push to on GitHub:</h2>
+
+<ol>
+  <li>Go onto your GitHub account and click on the '+' button on the top, right-hand side of your screen next to your profile photo.</li>
+  <img src="/assets/img/click-new-repo-github.png" class="small-img" alt="where to start a new repo on GitHub">
+  <li>In the drop-down menu that appears, click the 'New repository' button.</li>
+  <li>Enter the name of your repository (project), which is the only required field. In this case, I named my repo 'pharo-projects'.</li>
+  <li>Select whether you want your repo to be public (available to anyone) or private (only you can access it).</li>
+  <li>Finish creating your repository by clicking on the green 'Create repository' button. We are not going to initialize the project with a README file or add a description at this point.</li>
+</ol>
+  <img src="/assets/img/create-new-repo-github.png" class="medium-img" alt="creating new repo on GitHub">
+
+<h2>Create an empty Project in Pharo</h2>
+
+<ol>
+  <li>Open the 'Pharo Launcher' application and double click on the 'Pharo 6.0 (stable) &gt;&gt; latest-64' image template to create a new image for your project. I'm using a 64-bit Mac computer, which is why I chose this image template. An image is a snapshot of the current state of your program, including all of the packages, classes, methods and logic that have been added to it. When you open an image that you previously saved, it will look the same as when it did just before you closed it.</li>
+  <li>When prompted to name your image, I called mine "Unicorn rover". After naming your image, you will be able to double click on it. This will open the 'World' for your project where you can start building your project.</li>
+</ol>
+
+<h2>Set up version control for your Pharo project.</h2>
+
+  <ol>
+    <li>Clicking anywhere on your 'World' screen will bring up the 'World Menu'. Click on the 'Tools' option in the World Menu and then on 'Iceberg', which is one of two built-in version control managers for Pharo. I find this one more intuitive to use than 'Monticello', but have not used either enough to make a fair comparison at this stage.</li>
+    <img src="/assets/img/open-iceberg-pharo.png" class="medium-img" alt="opening iceberg version control manager in Pharo">
+    <li>Once you have clicked on 'Iceberg', a window will pop up showing you the repositories that are linked to your project. At the moment, there are no repositories linked. To add a repository, click on the green '+' button on the right-hand side of the menu bar. Then click on the 'Clone from github.com' option (there are options for adding repos from other version control managers like Gitlab and Gitbucket too).</li>
+    <li>Fill in your username and project name exactly as they appear of GitHub. Then select 'HTTP' or 'SSH' from the dropdown near the bottom of the form depending on which clone method you are using. I'm using 'HTTP'.</li>
+    <img src="/assets/img/location-of-repo-for-iceberg.png" class="medium-img" alt="specifying location of repo for iceberg in Pharo">
+    <li>Clicking on 'Ok' will clone your repository into Pharo. If successful, you should see your project name listed in the repositories list. The name of your repository will be green with a little asterisk next to it. The asterisk indicates that there are uncommitted changes to your repository. At the moment, we have nothing to commit, so next to the repository, there will also be red text that says 'No project found'. We are now ready to create our first package.</li>
+  </ol>
+
+  <p>We will show you how to make commits once we have created our first package.</p>
+
+<h2>Create a package your Pharo project</h2>
+
+<p>A package is a way for us to organise all of the classes for our project in one place. To create a package, we first need to open the 'System Browser' by using the keybord shortcut 'Command-o-b' (or by clicking anywhere on the World and selecting it from the World Menu.</p>
+
+<img src="/assets/img/system-browser.png" class="medium-img" alt="Pharo's system browser when you first open it">
+
+<p>When you open the System Browser for the first time in a new Image, there will be four panels along the top and a single panel spannig the lower half of the screen. The first panel contains a list of all the packages that are available for you to use within your project.</p>
+
+<p>The panel on the far left of the System Browser lists all of the packages that are available to use within your project. We will create our own package by right-clicking on the packages pane and selecting the '+ New package' option from the drop-down list.</p>
+
+<p>You will then be prompted to name your package. I called mine 'Unicorn-Rover' because I am building a solution to the <a href="https://code.google.com/archive/p/marsrovertechchallenge/" target="_blank">Mars Rover</a> problem.</p>
+
+<h2>Committing your code</h2>
+
+<p>Now we have something that we can commit to version control. I like to commit at the first possible moment at the start of a new project, just so that if there are any problems there is less to troubleshoot.</p>
+
+<p>To commit our package, the first thing we need to do is open the 'Iceberg' version control manager again from the World Menu.</p>
+
+<p>Then we need to tell it what package we want it to track in our project. We can do this by first clicking on our repository name (the green one with an asterisk next to it), and then by clicking on the 'Add package' button and selecting your package from the drop-down list.</p>
+
+<p>Once you have added the package, you will see the package name in green with a little asterisk next to it, as well as a status message that says 'Uncommitted changes'.</p>
+
+<img src="/assets/img/track-package-with-pharo-version-control.png" class="medium-img" alt="adding a package to be tracked with Pharo version control">
+
+<p>After adding our package to be tracked, we can go back to the System Browser, right click on our package in the packages pane, and select the "commit" option.</p>
+
+<img src="/assets/img/select-commit-pharo.png" class="medium-img" alt="where to find commit button in pharo">
+
+<p>A new window will pop up with a list of all of the things that have changed in your project. You can write your commit message in the panel spanning the lower half of the window. Once you have written the commit message, you can then commit your code by clicking on the 'Commit' button at the bottom-right corner of the window.</p>
+
+<img src="/assets/img/commit-message-pharo.png" class="medium-img" alt="entering a commit message in pharo">
+
+<p>After clicking the "Commit" button, we will be taken back to our System Browser. We can check that our code has been committed successfully by opening Iceberg and checking that our repository and package names are now up to date (green color and asterisk are gone).</p>
+
+<h2>Pushing your code</h2>
+
+<p>It was tricky figuring out how to push code to the remote repository on Pharo. I accidentally stumbled upon the solution by spending a fair while exploring options. Google wasn't much help here.</p>
+
+<p>Our repository at the moment has a status written in red text that says "No project found". I started by double-clicking on that to bring up the list of packages that have been added to our repository for tracking. The only one in this list right now is the one that we added earlier, called 'Unicorn Rover'.</p>
+
+<p>I then clicked on the 'Repair' option on the far left of the toolbar menu, which showed the following message: "Cannot find a project in your repository. Please edit your repository meta-data to indicate the source code directory of change a location to a valid iceberg repository.</p>
+
+<p>The reason this message is showing is because our remote repository is completely empty, on purpose. We want our Pharo project code to be the content of our repository.</p>
+
+<img src="/assets/img/repair-repo-pharo.png" class="medium-img" alt="message shown by repair repo option">
+
+<p>Below the error message (known as critic text in Pharo, there are two options that Pharo provides to help you fix this problem. The one I chose was 'Create project meta-data'.</p>
+
+<p>When you click on this option, Pharo tells you that this creates a '.project' file in the root of your repostitory along with additional meta information such as src code directory, project name etc.</p>
+
+<p>Double-clicking on this option brings up a new window, which shows you a preview of what the file structure for your repository will be. Click 'Ok' to accept this.</p>
+
+<img src="/assets/img/preview-repo-pharo.png" class="medium-img" alt="repo preview in pharo">
+
+<p>Once you have clicked 'Ok', your toolbar above your package will now show 5 additional options: push, pull, fetch, branch and merge. (happy danced at this moment!)</p>
+
+<p>Next to the 'push' option, there is a little red circle with an asterisk inside it. Hovering over the push option showed the following tooltip text "Pushes pending commits to the origin repository (in current branch).</p>
+
+<img src="/assets/img/git-options-pharo.png" class="medium-img" alt="git options in pharo">
+
+<p>Clicking on the push button will bring up a preview of your push (including all of the individual commits). If you are happy with the preview, you can confirm it by clicking on the 'push' button at the bottom of this new window. You will be prompted for your GitHub username and password for your first push.</p>
+
+<img src="/assets/img/preview-git-push-pharo.png" class="medium-img" alt="preview of git push in pharo">
+
+<p>If you refresh your repository page on your Github account now, you should see your pharo package and code files. YAYYYY!</p>
+
+<img src="/assets/img/github-after-first-push-pharo.png" class="medium-img" alt="Github repo after first push from pharo">
+
+<p>We are now ready to start <a href="{{ site.baseurl }}{% post_url 2019-08-06-writing-your-first-test-tdd-style-in-pharo %}">Writing and passing our first test in Pharo</a></p>

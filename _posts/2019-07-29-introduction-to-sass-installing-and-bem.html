@@ -1,0 +1,57 @@
+---
+layout: post
+title: Setting up SASS
+categories: [web development]
+tags: [CSS, SASS, SCSS, BEM, installation, node]
+---
+
+<p>SASS is a CSS framework that helps your organise the structure of your CSS files better by allowing you to seperate them and reuse CSS code in the form of mixins, variables etc. My favourate part of SASS is the ability to nest rules, which is especially awesome when used in conjunction with the "<a href="http://getbem.com/" target="_blank">Block Element Modifier (BEM)</a> methodology.</a>
+
+<p>I'm setting up SASS at work so these are just going to be quick notes with commands and little explanation. It helps to document things like this when you can't spent too much time writing up why's.</p>
+
+<p>I'm setting SASS up at work, so will start by creating a new branch to work from called "restyle/sass"</p>
+
+<code class="lang-bash">git checkout -b restyle/css</code>
+
+<p></p>
+
+<code class="lang-bash">npm install node-sass --save-dev</code>
+<code class="lang-bash">mkdir sass && cd sass</code>
+<code class="lang-bash">touch main.scss</code>
+
+<p>Create a new package.json in root directory. <a href="https://docs.npmjs.com/creating-a-package-json-file" target="_blank">source</a></p>
+
+<code class="lang-bash">npm init</code>
+
+<p>Open package json and add the compile:sass key value pair shown below in the scripts section:</p>
+
+<figure>
+  <figcaption>Compile SASS automatically script</figure>
+  <pre>
+  <code class="lang-css">
+  "scripts": {
+    "compile: sass": "node-sass sass/main.scss css/style.css -w"
+  }
+  </code>
+  </pre>
+</figure>
+
+<p>When you run "npm compile:sass" in your terminal, the imported sass files inside your main.scss file will be compiled inside of your main css stylesheet.</p>
+
+<p>The watch flag at the end of the command (-w) watches for any changes to your sass files. When a change is made (recognised when your sass files are saved), the sass is compiled automatically, so that you don't have to run the compile command every time you want to see the changes you made.</p>
+
+<code class="lang-bash">npm compile:sass</code>
+
+<p>Add the base folder to your sass folder</p>
+
+<code class="lang-bash">mkdir base && cd base</code>
+
+<code class="lang-bash">touch _reset.scss</code>
+
+<p>Add css reset code to _reset.scss. I used <a href="https://meyerweb.com/eric/tools/css/reset/" target="_blank">Eric Meyers</a> reset.</p>
+
+<p>Import the _reset.scss file into the main.scss adding the following import statement to your main.scss file:</p>
+
+<code class="lang-scss">@import 'base/reset';</code>
+
+<p>Official <a href="https://sass-lang.com/documentation" target="_blank">SASS Documentation</a></p>

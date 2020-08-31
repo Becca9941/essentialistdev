@@ -1,0 +1,148 @@
+---
+layout: post
+title: Thinking about Test driving the 3 n plus 1 problem solution
+categories: [programming problem]
+tags: [pharo, smalltalk, operatiors, numbers, integers]
+---
+
+<p>Problem source: <a href="https://www.amazon.com/Programming-Challenges-Contest-Training-Computer/dp/0387001638" target="_blank">Programming Challenged: The Programming Contest Training Manual</a></p>
+
+<blockquote>Start with an integer <em>n</em>. If <em>n</em> is even, divide by 2. If <em>n</em> is odd, multiply by 3 and add 1. Repeat this process with the new value of <em>n</em>, terminating when the value is 1. For an input <em>n</em>, the <em>cycle length</em> of <em>n</em> is the number of numbers generated up to and <em>including</em> the 1. The cycle length of 22 is 16. Given any two numbers <em>i</em> and <em>j</em>, you are to determine the maximum cycle length over all numbers between <em>i</em> and <em>j</em>, <em>including</em> both endpoints.</blockquote>
+
+<p>I'm building the solution to the above problem using Pharo, which is a pure object-oriented language based on Smalltalk. I am not confident with object-oriented design or test-driving solutions, so I'm trying to correct that by building out as many solutions as I can.</p>
+
+<p>First, I solve the problem myself. Then I ask for feedback from developers who know object-oriented design and test-driving better than I do. This entry is the solution I built first by myself.</p>
+
+<p>The first thing I did was read through the problem to <a href="{{ site.baseurl }}{% post_url 2019-08-09-understanding-three-n-plus-one-problem %}">make sure I understood it properly.</a></p>
+
+<p>The second thing I did was <a href="{{ site.baseurl }}{% post_url 2019-08-01-committing-automating-tests-and-shipping-pharo-smalltalk-code %}">set up an empty Pharo project with version control and a test environment.</a></p>
+
+<h2>Setting up Test class</h2>
+
+<p>I started my program by creating a class called <code>Test3nPlusOne</code></p>
+
+<p>I wrote a class comment which explains what the class represents, what it's responsibilites are and what other classes it collaborates with. This is based on the <a href="{{ site.baseurl }}{% post_url 2019-07-22-teaching-object-oriented-thinking-with-crc-cards-article-notes %}">CRC approach</a> developed by Kent Beck and Ward Cunningham (who argue that index cards are better than a digital representation for this). Here is what the comment says:</p>
+
+<hr>
+
+<h3>Class</h3>
+
+<p>I represent the test suite for the 3nPlusOne class.</p>
+
+<h3>Responsibility</h3>
+
+<p>I make sure that:</p>
+
+<ul>
+  <li>Even numbers are correctly divided by two</li>
+  <li>Odd numbers are correctly multiplied by three with one added to the result.</li>
+  <li>That a range of numbers is correctly converted to an array representing collatz conjecture values</li>
+  <li>That the number of cycles it takes for a number to reach one is correctly returned</li>
+  <li>That the largest cycle number from each individual numebr in the range of numbers is correctly returned</li>
+</ul>
+
+<h3>Collaborators</h3>
+
+<p>I work with the 3nPlusOne class API</p>
+
+<hr>
+
+<p>The code for my test class initilization was:</p>
+
+<pre>
+<code class="lang-smalltalk">
+TestCase subclass: #TestthreeNPlusOne
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: '3-n-plus-one'
+</code>
+</pre>
+
+<ul>
+  <li>The test class inherits from a parent class called 'TestCase'.</li>
+  <li>The name of the class is the same as the name of the class we are testing with it, but with the capitalised word 'Test' prefixed so that Pharo knows it is a class for tests.</li>
+  <li>No instance variables or class variables were set.</li>
+  <li>The test class belongs to the project package which I named '3-n-plus-one'. I could also have called it 'collatz-conjecture'. but that is a math jargon term that is less intuitive to understand unless you happen to know the term for this type of problem.</li>
+</ul>
+
+<h2>First failing test: if even divide by two</h2>
+
+<p>The first message (method) I gave my test class was initialized as follows:</p>
+
+<pre>
+<code class="lang-smalltalk">
+testIfEvenDivideByTwo
+  | threeNPlusOne |
+  threeNPlusOne := ThreeNPlusOne new.
+  self assert: (threeNPlusOne ifEvenDivideByTwo: 2) equals: 1.
+</code>
+</pre>
+
+<p>I decided to test that numbers can be correctly divided by two as my first test. My assumption is that this is a behaviour that my program needs to be able to perform. I'm not sure if I'm able to identify the 'right' kind of behaviours to test yet. So I'm just doing it this way and will rely on feedback to steer me in a better direction if needed.</p>
+
+<p>It's pretty scary being this open with my development process when I know I still have a lot to learn so may not be doing things in the best way. But later down the line, this documentation will serve as a record of improvement and capture the changes in thought processes as I learn more, which is going to be really interesting to look back on.</p>
+
+<ul>
+  <li>The message is called 'testIfEvenDivideByTwo'. As with our test class name, the message name is the same as the real message we are testing, this time prefixed with the lowercase word 'test' so that Pharo knows it is a test message.</li>
+  <li>I created a variable called 'threeNPlusOne' to store a new instance of a 'ThreeNPlusOne' class that I haven't created yet. This is so that when I write multiple test assertions, I don't have to create a new instance every time.</li>
+  <li>The final line is a test assertion which says: When our threeNPlusOne class recieves the message 'if even divide by 2' with the number two as the message argument, then the result returned should be equal to 1.</li>
+</ul>
+
+<p>When I saved and ran this test, the test successfully failed (I love that phrasing haha).</p>
+
+<p>The quality assistant provided a bunch of messages (called critic text) to inform me of the reasons why my test failed. It is a good idea to get in the habit of reading all of these messages and understanding how to fix them. So I'm going to write them down along with the explanation of what they mean, and how I fixed them one by one.</p>
+
+<h3>Fixing my failing test step-by-step</h3>
+
+<ul>
+  <li>
+    <h4>[ThreeNPlusOne] References an undeclared variable.</h4>
+    <p><em>You are referencing a variable that is not declared anywhere. There is no temp, instance var, class var, or a global variable that can be bound to by this reference. Most likely you got into this state by writing an entirely correct code, but then the variable was removed.</em></p>
+    <p>Firstly, how cute was that message!? I wrote my test before writing any code, so the ThreeNPlusOne class doesn't exist yet. Creating the class removed this message.</p>
+  </li>
+  <li>
+    <h4>[assert:ifEvenDivideByTwo:equals:]Messages sent but not implemented.</h4>
+    <p><em>Checks for messages that are sent by a method, but no class in the system implements such a message. Reported methods will certainly cause a doesNotUnderstan: message when they are executed.</em></p>
+    <p>Same problem, I have send a message to threePlusOne which divides even numbers by two, but the code which implements this message does not exist yet. Creating a message in the 'ThreeNPlusOne' class that accepts an argument removes this message.</p>
+  </li>
+  <li>
+    <h4>[assert:ifEvenDivideByTwo:equals:] Super and Self Messages sent but not implemented.</h4>
+    <p><em>Checks if messages sent to self or super exist in the hierarchy, since these can be statically typed. Reported methods will certainly cause a doesNotUnderstand: message when they are executed.</em></p>
+    <p>This critic text is a little more complicated for me to understand, so I'll break it down. Super refers to the class that our current class inherits from. All classes in Pharo inherits from a super class. Self refers to the current class we are working within, the reciever of our message and not the message itself.</p>
+    <p>I don't know what the messages being statically typed has anything to do with whether the super or self exists in the hierarchy, so will google the error message to find out more. Googling the error messages provided the same information already given. So I'll google 'pharo statically typed inheritance' to see if that leads anywhere.</p>
+    <p>Found some info <a href="https://en.wikipedia.org/wiki/Top_type" target="_blank">here</a>. This article says that statically typed languages have a universal base class, so if an object inherits from that, it can also inherit from any other class in the hierarchy. So what the critic text was saying is does the message exist in either the self or the parent class, and because the language is statically typed, this could mean looking for the message in the universal base class. Writing the message in the self class will remove this critic text.</p>
+  </li>
+</ul>
+
+<p>To make my test pass, I created a class called 'ThreeNPlusOne', whose CRC comment was written as follows:</p>
+
+<hr>
+
+<h3>Class</h3>
+<p>I represent the 3-n-plus-one-problem, otherwise known as the 'Collatz Conjecture'.</p>
+
+<h3>Responsibility</h3>
+<p>I have a number range. For that number range I count how many cycles it takes for each individual number to reach 1 using the collatz conjecture math approach. Then I return the longest of those cycles.</p>
+
+<h3>Collaborators</h3>
+<p>I'm not sure who I collaborate with yet.</p>
+
+<hr>
+
+<p>Then I added the if even divide by two message to the class which returns the number one, as follows:</p>
+
+<pre>
+<code class="lang-smalltalk">
+ifEvenDivideByTwo: evenNumber
+  ^ 1.
+</code>
+</pre>
+
+<ul>
+  <li>The message is a binary message that accepts an argument. Our argument is a variable named 'evenNumber' because that is what the message will be working on.</li>
+  <li>The message returns one. When test driving code, you only write the simplest, bare-minimum code you need to get the test to pass. In this case, we only needed to return 1 to get the test to pass. We can use additional tests to force our messages to be more general, which we will do later.</li>
+</ul>
+
+<p>We now have a passing test, which I committed to version control.</p>
+
+<p>After writing the first few tests, I realised that I need to spend some time working through some Pharo solution examples because I have no idea how to use the language properly, which was preventing me from moving forward. So I'm going to work through <a href="https://books.pharo.org/learning-oop/" target="_blank">Learning Object-Oriented Programming, Design with TDD Pharo</a> which will get me to a better place.</p>

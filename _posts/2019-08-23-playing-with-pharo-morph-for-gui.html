@@ -1,0 +1,67 @@
+---
+layout: post
+title: Displaying a Color object as a user interface element in Pharo, a look under the hood
+---
+
+<p>One of the things I want to be able to do in Pharo is build user interfaces so that non-programmers can interact with and use the programs that I am building to learn object-oriented programming. There are a few options for this but GUI support for Pharo doesn't have much documentation.</p>
+
+<p>There is a chapter in a free book called <a href="https://books.pharo.org/updated-pharo-by-example/" target="_blank">Pharo by example</a> which introduces us to some of the things we can do with Morphic in terms of user interface.</p>
+
+<p>The first example given in the book was displaying a color. This is an extremely simple example.</p>
+
+<p>I'm the kind of person who installs an npm package like sass and then spends a good while looking up what each of the dependencies are and whether they are needed.</p>
+
+<p>So of course I over analysed everything under the hood of these very simple code snippets and shared it all below, now you know too, yayy!</p>
+
+<h2>Creating User Interface for the Color object</h2>
+
+<p>A 'morph' is a user interface representation of an object. Everything in Pharo is an object, and every object can be made into a 'morph', including the objects that you write yourself.</p>
+
+<h3>Message to turn Color object into UI with Morph in Pharo</h3>
+
+<p>Following a quick example, I turned a Color object into a morph 'user interface' element by adding a method to it called 'asMorph'. This method returns an instance of the 'Morph' class that is sent the current object as a message. The Morph class knows how to turn the object it is send into a user interface element. You can turn any object into a morph by writing a similar method. The steps I followed to add the 'asMorph' method to the Color class are:</p>
+
+<ol>
+  <li>I opened the System Browser (Command-b), then searched for 'Color' in the package list.</li>
+  <li>One of the results that showed up in the package list was 'Colors', so I clicked on that.</li>
+  <li>A list of all the classes belonging to the 'Colors' package appeared in the classes pane, 'Color' was one of the class names. I clicked on that.</li>
+  <li>A list of all of the methods belonging to the Color class appeared in the message pane. I clicked on the 'instance side' option which opened up a method template in the editor spanning the lower half of the System Browser screen.</li>
+  <li>Finally, I replaced the method template code with the following method and 'accepted' it by saving.</li>
+</ol>
+
+<pre>
+<code>
+  asMorph
+    ^ Morph new color: self
+</code>
+</pre>
+
+<h3>asMorph explanation</h3>
+
+<ul>
+  <li>The first line is the name of our method (called messages in Pharo because we send them as messages to objects that can 'recieve' them).</li>
+  <li>The second line returns a new Morph object that is given the color value stored in the Color object we are sending this message to.</li>
+</ul>
+
+
+<h3>Displaying Color object as User Interface element</h3>
+
+<p>To display our Color object as a user interface element on the 'World' in Pharo, we can send the 'asMorph' message we wrote to an instance of the Color class that we write in the Playground.</p>
+
+<pre>
+<code>
+  Color red asMorph openInWorld
+</code>
+</pre>
+
+<p>The code above sends three messages to the Color class.</p>
+
+<ul>
+  <li><strong>red</strong> - the Color class has a set of default color names that it can recieve as messages, of which red is one. Behind the scenes, all default color method returns a registered color object. (I found this out by looking for the 'red' message in the class side methods of the Color class. It was listed under 'defaults'.</li>
+  <li><strong>asMorph</strong> - the asMorph message is the one that we defined on the Color class. It returns an instance of a Morph user interface for our Color object.</li>
+  <li><strong>openInWorld</strong> - the final message 'openInWorld' does just what it says. It opens the interface element in the World so that we can see it.</li>
+</ul>
+
+  <img src="/assets/img/morph-color.png" alt="pharo dev environment screenshot with color object displayed as user interface element">
+
+  <p>Yep, this is all the code did, and I spent an hour writing an in-depth explanation about it and actually had a ton of fun. Okay, time to step away from the computer...</p>

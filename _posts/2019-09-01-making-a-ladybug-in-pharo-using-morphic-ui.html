@@ -1,0 +1,120 @@
+---
+layout: post
+title: Building a ladybug using Morphic ui elements in Pharo (inspired by pure CSS images)
+---
+
+<p>When I first started learning CSS, I came across an amazing tutorial for making <a href="https://medium.com/coding-artist/a-beginners-guide-to-pure-css-images-ef9a5d069dd2" target="_blank">Pure CSS images</a>. Pure CSS images are cute little characters that have been drawn using pure HTML elements that have been styled into different colored shapes using CSS.</p>
+
+<p>Making CSS images like this really helped me to understand how to change the shape of, add gradients to, layer (with z-index) and position (absolute/relative) HTML elements. These skills were transferable to web page layouts.</p>
+
+<p>There is a <a href="http://dailycssimages.com/" target="_blank">Daily CSS Image</a> challenge that's gives you 50 days worth of pure CSS image prompts which are quite fun</p>
+
+<p>I am going to use this same approach to learn how to use Morphic, which allows you to make graphical interfaces in Pharo. I absolutely love Pharo as a language, so I want to learn how to build a user interface that looks amazing.</p>
+
+<h2>Ladybug</h2>
+
+<p>The first pure Morphic image I'm going to create is a Ladybug. In order to make this, I have to know how to make circles and half circles, color those circles in and position them exactly where I want them to be. I also need to be able to add a border bottom to each of the red circles so that when they are positoned together, it looks like the wing seam line that runs down the ladybug's back.</p>
+
+<img src="/assets/img/ladybug-pharo.png" alt="cartoon ladybug created in Pharo">
+
+<h2>Ladybug code in Pharo Playground</h2>
+
+<p>I learned a lot about the capabilities of Pharos graphical interface Morphic by trying to create this ladybug. I discovered some problems with border radius and that it is difficult to make shapes like half-circles. However, I was still able to create a ladybug and could spend some time writing my own methods to deal with these problems down the line.</p>
+
+<h3>Ladybug body</h3>
+
+<p>After failing to make two half circles, the next thing I tried was making a square with the border radius set high on to of the corners, which is another way to make a semi-circle. After a lot of exploring, I found that you could target which corners you wanted to add a border radius to by sending the 'roundedCorners:' message to the rectangle, with an array as an argument. The array values 1 and 4 targeted the top left and top right corners.<p>
+
+<pre>
+<code>
+  elem roundedCorners: #(1 4) .
+</code>
+</pre>
+
+<p>To set the border radius, you have to create a new instance of the RoundedBorder class and set it's cornerRadius instance variable value to anything between 1 and 8. Then you send this as an argument inside the 'borderStyle:' message that is sent to the element you are changing the border radius for.</p>
+
+<pre>
+<code>
+  elem borderStyle: (RoundedBorder new cornerRadius: 8) .
+</code>
+</pre>
+
+<p>The problem with this is that the cornerRadius message does not allow you to make a fully rounded border radius. An 8 pixel border radius is the maximum you can do in Pharo without writing one yourself. For now, this is a limitation I have found when it comes to styling UI elements.</p>
+
+<p>I ended up making a big red circle instead of two seperate half circles. I made the circle by writing the following code:</p>
+
+<pre>
+<code>
+  ladybug := CircleMorph new .
+  ladybug extent: 120@120 ;
+      top: 50 ;
+      borderColor: Color transparent ;
+      fillStyle: Color red ;
+      openInWorld .
+</code>
+</pre>
+
+<ul>
+  <li>First, I created an instance of 'CircleMorph', which creates a circle UI element that you can display in the World. I assigned this to a variable called 'ladybug' so that I could modify the way it looks by sending it a series of messages.</li>
+  <li>Then I changed the width and height of the circle using the 'extent:' message that accepts a point object '120@120' as an argument (the 120 is sent an @ message which accepts another number object as an argument '120').</li>
+  <li>The remaining messages were sent as a cascade following the extent message.</li>
+  <li>I used the 'top:' message to position the ladybug circle 50px from the top of the screen.</li>
+  <li>I used the 'borderColor' message to change the default black border to 'transparent'. I could have done this by setting the borderStyle to a SimpleBorder but it does exactly the same thing so might as well do it directly.</li>
+  <li>Then I changed the default light green color of CircleMorphs to a red color for this specific instance.</li>
+  <li>Finally, I displayed the ladybug circle using the 'openInWorld' message.</li>
+</ul>
+
+<h3>Ladybug's head</h3>
+
+<p>After making the ladybug's body, I made another slightly smaller black circle for the head, positioned it to the center of the body and pushed it down until only the top half of the circle peeked out from behind the body. I moved the head creation commands before the body creation commands so that it would appear below the body when displayed on the World.</p>
+
+<pre>
+<code>
+  head := CircleMorph new .
+  head extent: 70@70 ;
+       top: 25 ;
+       left: 25 ;
+       fillStyle: Color black ;
+       openInWorld .
+</code>
+</pre>
+
+<p>Note: I didn't set the border color to transparent here because by default the border is black, which matches the color of the head.</p>
+
+<h3>Ladybug's wing seam</h3>
+
+<p>To make the wing seam, I used the 'Morph' class to create an instance of a rectangle. Much like every element in HTMl, every UI elment in Pharo is rectangular shaped by default. There is a Rectangle class in the Morphic Base Class, but it is greyed out (I think because it's automatically being used, but not too sure on the greying out reason).</p>
+
+<pre>
+<code>
+  wingSeam := Morph new .
+  wingSeam extent: 10@120 ;
+           top: 50 ;
+           left: 55 ;
+           fillStyle: Color black ;
+           openInWorld .
+</code>
+</pre>
+
+<h3>Ladybug's spots</h3>
+
+<p>Finally, I made four tiny black polkadots to form the ladybug's spots. As I was using the Playground to make this ladybird, I just duplicated them and modified their positioning instead of using a block or something to reuse the code. One of the dot examples is included below.</p>
+
+<pre>
+<code>
+  dot := CircleMorph new .
+  dot extent: 15@15 ;
+      top: 80 ;
+      left: 25 ;
+      fillStyle: Color black ;
+      openInWorld .
+</code>
+</pre>
+
+<h3>Final Thoughts</h3>
+
+<p>I thought it would be cool to have a bunch of different color squares shown below the ladybug, which would allow user's to change it's color. We'd just have to target the ladybug variable and change it's fillStyle to the current color being clicked, but that is something to do another time.</p>
+
+<p>I'd like to improve this ladybug by nesting the elements inside each other somehow so that the inner elements are positioned relative to the body.</p>
+
+<p>Finally, building this ladybug helped me understand the capabilities of Pharo's graphical interface Morphic a little better. While there are a few limitations, it looks like there is also a fair amount of freedom for building user interfaces that have a bit of personality. Looking forward to exploring this more.</p>

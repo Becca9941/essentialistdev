@@ -1,0 +1,209 @@
+---
+layout: post
+title: The essentialist developer, part one
+---
+
+<p>Over the last 5 months, I have published well over 100 articles. Now that I have enough content, it's time to build my new site. I decided to stick with using Jekyll, as it's pretty powerful and will let me do all of the things I have in mind at the moment for my new site.</p>
+
+<p>I'm going to document the whole process for building my new site.</p>
+
+<h2>Setup blank Jekyll Site.</h2>
+
+<code>mkdir the-essentialish-developer && cd the-essentialist-developer</code>
+<code>git init</code>
+<code>bundle init</code>
+<code>vim Gemfile</code>
+<p>Add the following line to the end of the Gemfile, to enable jekyll on my project:</p>
+<code>gem "jekyll"</code>
+<code>bundle</code>
+<p>I use the <a href="https://github.com/carloscuesta/gitmoji" target="_blank">Gitmoji command-line client</a> to write commit messages. It lets you add an emoji to the start of your commit message (you can add them yourself, but I like that this provides a searchable list of emojis attached to meanings for consistent commit message types). I follow an imperative style with my commit messages "Do this so that".</p>
+<code>vim index.html</code>
+<p>Add "Hello World!" to the index</p>
+<code>bundle exec jekyll serve</code>
+<code>vim .gitignore</code>
+<p>Add following to .gitignore:</p>
+<pre>
+<code>
+_site/
+.jekyll-cache/
+.jekyll-metadata
+</code>
+</pre>
+
+<h2>Setup node-sass</h2>
+<code>npm install node-sass --save-dev</code>
+<code>npm init</code>
+<code>echo node_modules &lt;&lt; .gitignore</code>
+<code>mkdir sass && cd sass</code>
+<code>touch main.scss</code>
+<p>Add following script to "scripts" section of the package.json file, so that my sass files automatically compile on every sass file save after running the "sass-watch" command in the terminal (npm run sass-watch)."</p>
+<code>"sass-watch": "node-sass sass/main.scss css/style.css -w"</code>
+<p>In root directory add place to automatically compile CSS code:</p>
+<code>mkdir css && cd css && touch style.css</code>
+<p>Then add css directory to .gitignore file so that it can't be committed (as it will be automatically generated from the sass files.</p>
+<code>echo css/ &lt;&lt; .gitignore</code>
+
+<h2>Setup accessibility test git hooks (can't commit without passing accessibility tests</h2>
+
+<p>Full article on how I did this <a href="{{site.baseurl}}{% post_url 2019-10-04-setting-up-pre-commit-hook-to-prevent-commits-unless-accessibility-lint-etc-scripts-pass %}">here</a></p>
+
+<p>That's the initial setup (Yak Shaving) done. Next step is to create a default layout for each of my pages (boilerplate html with metadata)</p>
+
+<h2>Boilerplate HTML (default layout) for Jekyll pages</h2>
+
+<p>Create a folder called "_layouts" and add a file to that folder called "default.html". Inside that file, include the following code:</p>
+
+<pre>
+<code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+
+    &lt;meta name="author" content="Rebecca Williams"&gt;
+    &lt;meta name="description" content="{{ page.description }}"&gt;
+
+    &lt;meta property="og:image" content="/assets/images/og-images/{{ page.image }}"&gt;
+    &lt;meta property="og:description" content="{{ page.description}} "&gt;
+    &lt;meta property="og:title" content="{{ page.title }}"&gt;
+
+    &lt;title&gt;{{ page.title }}&lt;/title&gt;
+
+    &lt;link rel="stylesheet" href="style.css"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    {{ content }}
+  &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
+
+<p>The front matter for each of the pages must contain:</p>
+
+<ul>
+  <li>Title: Less than 90 characters, reflects purpose of the page.</li>
+  <li>Description: Less than 150 characters - Do X to acheive Y.</li>
+  <li>Image: 1200 x 628 (1.91:1) pixel dimensions, and less than 5mb in size.</li>
+</ul>
+
+<h2>Setup Index page like this:</h2>
+
+<p>My home page just has a title and a link to the book collection page that I want to work on first for my site.</p>
+
+<pre>
+<code>
+---
+layout: default
+title: The Essentialist Developer
+description: Essentialism is a disciplined, systematic approach for determining where your highest point of contribution lies, so that you can make it a reality.
+image: the-essentialist-dev.png
+---
+
+&lt;h1&gt;{{ page.title }}&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href="books.html"&gt;Inspiring Books&lt;/a&gt;&lt;/p&gt;
+</code>
+</pre>
+
+<h2>Create books.html with following markup:</h2>
+
+<pre>
+<code>
+---
+layout: default
+title: Inspiring books
+---
+
+&lt;h1&gt;{{ page.title }}&lt;/h1&gt;
+&lt;p&gt;Whenever you read a book, experiment with the ideas in them. They have the power to change your life, if you take action.&lt;/p&gt;
+
+&lt;section&gt;
+  &lt;div&gt;Tech&lt;/div&gt;
+  &lt;div&gt;Design&lt;/div&gt;
+  &lt;div&gt;Life-Strategies&lt;/div&gt;
+  &lt;div&gt;Tools&lt;/div&gt;
+&lt;/section&gt;
+
+&lt;article&gt;
+  &lt;h1&gt;The Pragmatic Programmer&lt;/h1&gt;
+  &lt;p&gt;David Thomas and Andrew Hunt&lt;/p&gt;
+  &lt;a href="#"&gt;S&lt;/a&gt;
+  &lt;img src="#" alt="The Pragmatic Programmer Book Cover"&gt;
+  &lt;p&gt;&lt;q&gt;Kaizen&lt;/q&gt; is a Japanese term that captures the concept of continuously making many small improvements.&lt;/p&gt;
+  &lt;a href="#"&gt;Read Notes&lt;/a&gt;
+&lt;/article&gt;
+</code>
+</pre>
+
+<p>I already have a design mocked up for my book collection page. So I just wrote the raw HTML to make this happen, no classes, and the data for the only book on the page is hard-coded.</p>
+
+<p>There are a few things I'm going to need to do to the book page to make it work. I need a CSS reset and some decent styles, but that's secondary to the behaviour right now, so that's what I'll focus on first. I'm going to start by creating a book collection in Jekyll, so that the book cards will be generated from that. Then I'll turn each of the filters into links, and make it so that only books that contain the selected category (books can be in more than one category) will be displayed.</p>
+
+<p>Before I do that, I'm going to make a quick READme file, containing the API information I caught for my boilerplate HTML. I want to turn that into documentation at some point, so that there are a list of tutorials for adding new pages and collections to my site. But for now, a README.md is enough.</p>
+
+<p>The first step is to add a 'books' collection to my site, by creating a '_config.yml' file in the root directory of my site, and then adding the following:</p>
+
+<pre>
+<code>
+collections:
+  books:
+    output: true
+    permalink: /books/:path
+</code>
+</pre>
+
+<p>Then I created a <code>_books</code> directory. Inside the _books directory, I created a file for my book <code>the-pragmatic-programmer.html</code> with the following code inside:</p>
+
+<pre>
+<code>
+---
+title: The Pragmatic Programmer
+authors: David Thomas and Andrew Hunt
+quote: '"Kaizen" is a Japanese term that captures the concept of continuously making many small improvements.'
+img_url: /assets/images/book-covers/the-pragmatic-programmer.jpg
+category: Tech
+---
+&lt;h1&gt;{{ page.title }}&lt;h1&gt;
+</code>
+</pre>
+
+<p>Then I went back onto my books.html page and added <code>permalink: /books/</code> to the front matter, which meant I had to change the 'books.html' link in the index page to 'books'. Then I replaced the hard-coded book information with the following:</p>
+
+<pre>
+<code>
+{% for book in site.books %}
+  &lt;article&gt;
+    &lt;h1&gt;{{ book.title }}&lt;/h1&gt;
+    &lt;p&gt;{{ book.authors }}&lt;/p&gt;
+    &lt;a class="book_card__share-twitter" href="https://twitter.com/intent/tweet?text=[What is your favourite takeaway from {{ book.title }}]&url={{ site.url }}{{ book.url }}&via=becca9941&related=becca9941" rel="nofollow" target="_blank" title="Share on Twitter"&gt;Share&lt;/a&gt;
+    &lt;img src="/assets/images/book-covers/{{ book.cover }}" alt="{{ book.title }} Book Cover"&gt;
+    &lt;p&gt;{{ book.quote }}&lt;/p&gt;
+    &lt;a href="{{ book.url }}"&gt;Read Notes&lt;/a&gt;
+  &lt;/article&gt;
+{% endfor %}
+</code>
+</pre>
+
+<p>Okay, so we know that we can display books by adding a new book with the following information to the book collection folder:</p>
+
+<ul>
+  <li>Title: title of the book</li>
+  <li>Authors: All authors of the books</li>
+  <li>Quote: My favourite quote from the book.</li>
+  <li>Cover: The filename of the book cover image (book-cover.jpg).</li>
+  <li>Category: Main category the book belongs to.</li>
+</ul>
+
+<p>At the moment the book cover is huge. Once I have resized the card to fit on mobile screens during the restyling phase, I'll resize the image itself to the same dimensions because there will never be a need for it to be that big.</p>
+
+<p>The next thing I want to do is make sure that the category filter list only shows categories that are actually assigned to books. In the 'books.html' page, I swapped out the individual category divs with the following:</p>
+
+<pre>
+<code>
+  {% for book in site.books %}
+    &lt;div&gt;{{ book.category }}&lt;/div&gt;
+  {% endfor %}
+</code>
+</pre>
+
+<p>The next step is to filter the books by the active filter chips. Will save that for the next post! :)</p>

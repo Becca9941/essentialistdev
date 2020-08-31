@@ -1,6 +1,12 @@
-highlighter: rouge
+plugins: [jekyll-paginate]
+paginate: 25
+paginate_path: /page:num/
+permalink: /:categories/:title
 
-plugins:
- - jekyll-feed
- - jekyll-sitemap
- - jekyll-seo-tag
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+      type: "posts" # now we are getting all files in the _posts directory
+    values:
+      layout: "post"

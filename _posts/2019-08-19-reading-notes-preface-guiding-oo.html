@@ -1,0 +1,50 @@
+---
+layout: post
+title: Reading notes from preface to growing oo software
+---
+
+<p class="note">Reading notes based on <a
+href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627"
+   target="_blank">Growing Object-Oriented Software, Guided by Tests</a> by
+ Steve Freeman and Nat Pryce</p>
+
+<p>These are just some quick notes about what is covered in the preface. Usually, authors condense their preface into the key things that they want you to take away from a book. I'm capturing them here so that I can look out for them in the book itself.</p>
+
+<h2>Problems this book addresses</h2>
+
+<ul>
+  <li>How do I fit test-driven development into a software project?</li>
+  <li>Where do I start?</li>
+  <li>Why should I write both <em>unit</em> and <em>end-to-end</em> tests?</li>
+  <li>What does it mean for tests to "drive" development?</li>
+  <li>How do I test difficult feature x?</li>
+  <li>The authors say that they have seen teams that can do the <em>raw practices (writing and running tests)</em> but struggling because they haven't also adopted the <em>deeper processes</em> that lie behind it.</li>
+  <li>Mock objects are often misunderstood - they are an expression of our approach to writing software.</li>
+</ul>
+
+<h2>Why's</h2>
+
+<ul>
+  <li>The authors used the term 'growing' because it gives a sense of incremental development. There is something working at all times, something that is as well-structured as possible and thoroughly tested.</li>
+  <li>They follow Alan Kay's concept of objects being similar to biological cells that send each other messages.</li>
+  <li>We write tests first because it forces us to clarify our intentions.</li>
+  <li>The <em>process</em> of writing tests first helps the authors to see when a design is too rigid or unfocused.</li>
+  <li>Tests give us a safety net of regression coverage</li>
+  <li>The authors use the word "guided" because the technique requires skill and experience</li>
+  <li>TDD is an effective <em>design support tool.</em> It requires understanding and <em>sustained effort</em> to work.</li>
+  <li>Use the contents of the tests to stay focused on making progress and feedback from the tests to raise the quality of the system.</li>
+  <li>The original motivation for writing the book was to explain <em>the technique</em> of using <em>mock objects.</em></li>
+  <li>They show how the mock objects technique works. More specifically, they show where they fit into the TDD process and how it makes sense in the context of object-oriented development.</li>
+</ul>
+
+
+<h2>Structure of the book</h2>
+
+<ol>
+  <li>A high-level introduction to TDD, mock-objects and object-oriented design.</li>
+  <li>The process of TDD, including how to get started and how to keep moving. How the principles of TDD and OO support each other, and how to work with external code.</li>
+  <li>How the authors develope an object-oriented application in a test-driven manner, including trade-offs and motivations for the decisions that are made. Also shows how some features of TDD become more significant as the code starts to scale up.</li>
+  <li>Some practices for keeping a system maintainable, clean and expressive. Also discusses some practices the authors have adopted and why</li>
+  <li>More advanced topics that look at areas where TDD is more difficult: complex test data, persistence, concurrency. Showing how the authors deal with these issues and how this affects the design of the code and tests.</li>
+  <li>Appendices include some supporting material on jMock and Hamcrest.</li>
+</ol>

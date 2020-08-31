@@ -1,0 +1,85 @@
+---
+layout: post
+title: Researching user stories and brainstorming some for my fitness app. 
+---
+
+<p>The other day, I was looking around for a fitness app that was cute, empowering and tailorable. I wanted it to be easy to use and let me do a few of the things I had in mind. I couldn't find one that fit my needs. So I have decided to build it myself, which is one of my favourite things about being a developer.</p>
+
+<p>At the same time, I want to use this app as an opportunity to get better at Test-driven development.</p>
+
+<p>The recommended starting place for building a test-driven app is to start with a bunch of stories that tell you more about the system. More specifically, start with stories about your user, their needs and how they want to use the program. These kind of stories are known as user stories.</p>
+
+<p>I don't know much about coming up with or writing good user stories. So I looked around for a couple of articles. The first one gave a few examples of user stories and I immediately knew they were not good examples. The examples given talked about what the system should do at an implementation level, rather than what the users needs are. There is more than one way to implement a user's need. Focusing on implementation details is restrictive, and eclipses the user and their needs. Hmm, perhaps I know more about them than I think.</p>
+
+<p>After coming across a few more articles like this, I decided to look for articles written by trusted sources. This is a shame, because these articles are supposed to be written for beginners who may not be able to tell the difference between what makes a good user story or not. I searched for user story articles written by Kent Beck, who I didn't know actually invented the term in his Extreme Programming book which is what came up in the search results.</p>
+
+<p>Instead of clicking through to the book page, I spotted another article on user stories written by Martin Fowler, who has worked closely with Kent Beck and has written some amazing content that I have read before. So that is the article I started with.</p>
+
+<p>In Martin Fowler's article on <a href="https://martinfowler.com/bliki/UserStory.html" target="_blank">User Stories</a>, he says that user stories are <q>chunks of desired behavior of a software system</q>. He says that they are generally used to divide up large chunks of functionality into smaller pieces for planning purposes.</p>
+
+<h2>Formulating User Stories</h2>
+
+<p>According to Martin Fowler, he and Kent Beck prefer to write user stories on very small post-it notes on purpose to avoid capturing implementation details. We only flesh out their detail when they are ready to be developed. We use them to prioritize which elements of our software system should be developed first.</p>
+
+<p>A technique mentioned for writing user stories is filling in the blanks in the following phrase:</p>
+
+<p><strong>As a ... I want ... So that</strong></p>
+
+<ul>
+  <li>As a ... represents whom the user story is referring to - who is the user?</li>
+  <li>I want ... represents the functionality of the system, or what they would like to accomplish with it.</li>
+  <li>So that ... represents the reason why they want to accomplish what they want to accomplish.</li>
+</ul>
+
+<p>This way of phrasing the user story puts the user first, highlights their needs and a potential solution for meeting those needs.</p>
+
+<p><a href="https://www.industriallogic.com/blog/whole-stories-for-whole-teams/" target="_blank">Industrial Logic</a> use a different template for creating user stories: Role, action and context (optional).</p>
+
+<ul>
+  <li><strong>Role</strong> is the user triggering the story.</li>
+  <li><strong>Action</strong> is what happens.</li>
+  <li><strong>Context</strong> (optional) is when, where and how.</li>
+</ul>
+
+<h2>Principles behind a good user story</h2>
+
+<p>There is a helpful mneumonic which describes the characteristics of good user stories. This mneumonic was invented by Bill Wake: <a href="https://xp123.com/articles/invest-in-good-stories-and-smart-tasks/" target="_blank">INVEST</a></p>
+
+<ul>
+  <li><strong>Independent</strong> means that each story does not have any <a href="https://xp123.com/articles/independent-stories-in-the-invest-model/" target="_blank">dependencies</a> on any other story. Each story can be developed in any order. Independent stories help both the business domain and technical experts. The user stories are framed in terms of business goals, in the language of the business. While the technical team are not restricted by implementation details. In fact, the stories encourage minimal implementation, and support a loosely coupled system, which is easier to extend and maintain.</li>
+  <li><strong>Negotiable</strong> means that the stories are not fixed. They can be changed over time, and can be deliberated by all members of the team, and the users themselves (as they are written in their language). <q>By starting stories at a high level, expanding details as necessary, and leaving room to adjust as we learn more, we can more easily evolve to a <a href="https://xp123.com/articles/negotiable-stories-in-the-invest-model/" target="_blank">solution that balances all our needs.</a></li>
+  <li><strong>Valuable</strong> asks whether or not the story offers enough value for it to be worth developing. The <a href="https://xp123.com/articles/valuable-stories-in-the-invest-model/" target="_blank">IRACIS</a> acronym provides a few examples of value sources: <strong>I</strong>ncrease <strong>R</strong>evenue, <strong>A</strong>void <strong>C</strong>osts, <strong>I</strong>mprove <strong>S</strong>ervice. There are lots of other ways software can ad value. Ultimately, we want to make sure that the story has value to the person <em>using</em> the software. In a callcenter, the direct user could be the agent, while an indirect user could be the caller.</li>
+  <li><strong>Estimable</strong> means that our story must be stable enough to be able to make some good guesses in terms of time and cost. Many companies invest (haha) too heavily in this principle for the least gains. It's difficult to <a href="https://xp123.com/articles/estimable-stories-in-the-invest-model/" target="_blank">estimate stories</a> because their are so many unknowns (plus the stories are negotiable - adaptable to change). Some strategies for making estimates are getting an expert opinion, learning from past experience, breaking the story into smaller parts (don't forget the cost of combining them), and applying some kind of formula, but this assumes thourough knowledge of the problem, solution or situation. You can also estimate stories by taking a bunch of numbers representing the size of stories, take a random sample of them, then the average of the sample in an approximation of the average of the original set, so use that average as the estimate of the size of every story (call it 1). Then the estimate for the total is the number of stories tiems the sample average (invented by Don Wells).</li>
+  <li><strong>Small</strong> or as preferred by the author after having written the principles, <a href="https://xp123.com/articles/small-scalable-stories-in-the-invest-model/" target="_blank">scalable.</a>This means that we want our stories <q>to be able to be changed in size or scale</q>. High level stories are things that someone can't just go off and implement it because they are so big (e.g. analytics). Middle level stories are the stories we are interested in. These stories follow the Role, Action, Context pattern by Industrial Logic (mentioned earlier) - e.g. Customer purchases item, or customer purchases item with debit card. Low-level stories are where the implementation details are at.</li>
+  <li><strong>Testable</strong> stories are where we can agree on the expected system behavior and/or outputs. We don't have to actually write these tests (unless TDDing), but we must be confident that we <em>could</em> define and agree on them.</li>
+</ul>
+
+<h2>Brainstorming user stories for my fitness app</h2>
+
+<p>As I am primarily building this app for myself, I will be the user of my system. However, instead of using 'I want to... so that', I'll use a different identity phrase to make it a bit more general. What categories can I fit into? Software engineer, beginner trainee, recreational athlete, professional woman, minimalist, etc, etc.</p>
+
+<p>Of all of those categories, the 'professional woman', and 'beginner trainee' category stood out. Both of those names still don't feel right for this app though. I used the word 'professional' because I work full time and have been struggling to plan my fitness journey and meals etc. The 'beginner trainee' refers to the fact that I am not an experienced sportsperson. I don't want an app that uses a lot of jargon that is difficult to understand. Okay, I'll just use 'fitness newbie' for now.</p>
+
+<ul>
+  <li>As a <em>fitness newbie</em> I want to <em>track calories</em> so that <em>I can make a calory deficit meal plan</em></li>
+  <li>As a <em>fitness newbie</em> I want to <em>track macros</em> so that <em>I can plan a balanced diet.</em></li>
+  <li>As a <em>fitness newbie</em> I want to <em>track nutrition information for individual foods</em> so that I can <em> plan a balanced diet.</em></li>
+  <li>As a <em>fitness newbie</em> I want to <em> quickly calculate the nutrition information of the meals I am making</em> so that I can save time preparing meals without having to do all of the math.</li>
+</ul>
+
+<p>Okay, that was a lot harder to do than I thought it would be. I keep thinking at an implementation detail level. I need to think about this more and try again, because the stories I have written above still feel a little 'wrong'.</p>
+
+<p>It might help to think about some of the problems I am currently having and start from there:</p>
+
+<ul>
+  <li>I want to be able to plan my own meals, but in order to make sure that I am eating the right amount of calories and macro nutrients, I have to work out the calories and macros for each of the individual ingredients that go into the food I am eating. Most of the ingredients are used in different quantities for different meals, so I have to find the amount relative to 100g/ml. This takes a really long time and it takes long enough to cook the meals over the weekend. I don't have time to myself. So I want to do this to save myself time, but also have the freedom to make my own meal plans easily.</li>
+  <li>I could download a fitness app like 'my fitness pall', but I don't want to have to search their large database of foods. There are lots of variations of the same thing. I just want to see the nutritional information for the food that I buy in my local supermarkets. No more, no less.</li>
+  <li>I want to be able to create custom 'meals' that I can create a daily, weekly, monthly schedule with. It would be awesome if it could generate a shopping list of those items for me.</li>
+  <li>I have a lot of 'needs' ideas for down the line, like cool analytics and the such, but really the main thing I want is to be able to add the nutrition info for the foods I have, then create meals by selecting a bunch of ingredients, entering the amount I am using and have it calculate the calories and macros for me.</li>
+</ul>
+
+<p>As a fitness newbie with little time to herself, I want to calculate the calories and macros for custom meals easily, so that I can save time at the weekend.</p>
+
+<p>As a nutrition newbie, I want to see the nutritional information for custom meals, so that I can save hours of meal planning at the weekend.</p>
+
+<p>I like the bottom one better as it is less implementation-based. Still not sure though, will ask for feedback on twitter.</p>

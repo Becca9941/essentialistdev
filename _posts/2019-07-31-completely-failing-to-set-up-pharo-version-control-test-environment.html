@@ -1,0 +1,92 @@
+---
+layout: post
+title: completely failing to set up pharo version control test environment
+categories: [dev environment, installation]
+tags: [Pharo, Smalltalk, GitHub, Tests, TDD, Shipping code]
+---
+
+<p class="note">UPDATE - I figured out where I went wrong on this one, I used double quotes instead of single quotes!! Two days to figure that out haha. I played around with things to get grounded and make mistakes, and have rewritten the official (and much more helpful) version of this post <a href="2019-08-01-committing-automating-tests-and-shipping-pharo-smalltalk-code.html">here.</a></p>
+
+<p class="note">UPDATE - Ooo this one is difficult, keep hitting roadblocks and getting stuck, but it feels good. There's a learning curve and the click moment is going to be awesome! Will put this aside for now and build a program in Ruby, then get back to it. The context switch could help.</p>
+
+<p>I am currently working through a fantabulous online course (the first few sections are free) called <a href="https://online-training.jbrains.ca/p/wbitdd-01" target="_blank">The World's Best Intro To TDD</a> by <a href="https://twitter.com/jbrains" target="_blank">J.B. Rainsberger.</a></p>
+
+<p>In the <a href="https://online-training.jbrains.ca/courses/wbitdd-01/lectures/133270" target="_blank">Before You Begin</a> section of the course, we are encouraged to set up our testing environment to make it as easy as possible to write and run tests for our code, commit our code to version control, and make our project shippable for others to use.</p>
+
+<p>I'm going to be trying out all of these steps for a new language I am learning called <a href="https://pharo.org/" target="_blank">Pharo</a>, which is based on a pure object-oriented language called Smalltalk. Smalltalk was created by Alan Kay, who said that he regretted callng it an "Object-oriented" language because <a href="https://t.co/YJBNKHO04c?amp=1" target="_blank">it's really about messages.</a></p>
+
+<p>The reason I'm experimenting with this language is because I struggle with understanding the object-oriented paradigm. I think too imperatively right now, so this language might move me closer to unlocking the mental shift I need to be able to think from an Object-Oriented perspective properly.</p>
+
+<h2>My tools</h2>
+
+<p>These are the tools I'm going to be using for my developer environment:</p>
+
+<ul>
+	<li>A version control system with an off-site backup (Git and GitHub)</li>
+	<li>A testing framework or library for your programming language ()</li>
+	<li>A text editor or IDE that you want to master (Pharo Launcher has it's own
+		IDE built in)</li>
+	<li>A mechanism for running tests with (at most) a single command whilst still
+		in your editor ()</li>
+	<li>Pen, paper, index cards</li>
+</ul>
+
+<h2>Starting a new project in Pharo</h2>
+
+<p>This is going to be a simple "Hello world" project. To start this project, I
+opened the "Pharo Launcher" application and double clicked on the "Pharo 6.0
+(stable) >> latest-64" image template to create a new <a
+	href="http://book.seaside.st/book/getting-started/pharo/what-is-image"
+	target="_blank">image</a> for my project, which I called "Hello-World". It is a Double
+clicking on the Hello-World image brings up the World for your project where you
+can start playing with your code.</p>
+
+<p>Before we are able to write our first test, we need to set up a package for
+our project. To do this, we first need to bring up the "System Browser" using the
+keyboard shortcut Command-o-b. You can also click anywhere on the World window
+and select "System Browser" from the world menu.</p>
+
+<img src="/assets/img/system-browser.png" alt="Pharo's system browser when you first open
+it">
+
+<p>When you open the System Browser for the first time in a new Image, there
+will be four panels along the top and a single panel spanning the lower half of
+the screen. The first panel contains a list of all the packages that are
+available for you to use within your project.</p>
+
+
+<h2>Writing your first test</h2>
+
+<p>We are going to write our first test BEFORE we write any code. This is a
+Test-Driven Development (TDD) style approach where we write a failing test
+first, then the simplest code we can to pass a test, and then refactor to remove
+duplicationions.</p>
+
+<p>We are going to be writing tests in the style of Test-Driven Development (TDD), where we write a test before we write any code. There are three steps to this process:</p>
+
+<ol>
+  <li>Write a failing tests BEFORE you write any code</li>
+  <li>Write the simplest code you can to pass your test</li>
+  <li>Refactor your code to remove duplication/code smells etc</li>
+</ol>
+
+<h3>Creating our test class stub</h3>
+
+<p>To write our first test, we need to first click on the "Hello-World" package that we have just created. In the bottom panel of the Sytem Browser, you will see a class stub that you can use to set up your first failing test class.</p>
+
+<p>All we are going to do in this first test is check that we can create a new instance of our "Hello World" class. To name our test, replace the "#NameOfSubclass" text in the class stub with the name of the class you want to test, followed by the word "Test". The name will be written without any spaces, and in pascal case (upper case letters for the first letter of each word). We named our test "HelloWorldTest".</p>
+
+<p class="note">Naming our class in this way means that the your classes and tests for your classes will be shown together in alphabetical order in the package manager. This will make them easier to find and work with.</p>
+
+<p class="note">Usually, you would be writing a larger program with more than one class. It's generally unlikely that your class name will be the same of your package name. We are only building a simple "Hello World" program in this case which is why we are writing a single class with the same name as our package.</p>
+
+<p>We won't write any instance or class variable names for our class for this simple test. The package value should be the name of the package that our class will be a part of. Usually, this is automatically filled in for you in the class stub. If it isn't, then the package name should be "Hello-World".</p>
+
+<p>Saving our class stub with Command-S will create a new class inside of your package. This class will show up in the class panel to the right of the package panel. When we click on it, we will see the phrase "no messages" in the messages (methods) panel to the right of the class panel.</p>
+
+<h3>Write our first test method</h3>
+
+<p>Every time we write a new test for our test class, we need to create a new method with the name "testNameOfTest". The test method starts with the lowercase word "test" so that SUnit (Pharo's built in test suite) will know to collect them into test suites. It's important to know that test methods do not accept arguments.</p>
+
+<p>To create our first method, we click on the "no messages" text in the message panel. This will bring up a method stub just like it did when we clicked on the package to create a class. We renamed the name of this method from "messageSelectorAndArgumentsNames to "testHelloWorld".</p>
+

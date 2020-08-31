@@ -1,0 +1,26 @@
+---
+layout: post
+title: Hello world kotlin program turned into a rabbit hole that lead to lambdas
+---
+
+<p>Playing with a few <a href="https://play.kotlinlang.org/koans/Introduction/Hello,%20world!/Task.kt" target="_blank">kotlin koans</a> to get familiar with the language.</p>
+
+<p>My approach here is making the koan test/s pass, then looking into the documentation and writing notes on some of the new concepts covered. I know very little about kotlin right now so will be explaining most things. Starting from the Hello World Koan</p>
+
+<h2>Function that returns "OK"</h2>
+
+<code>fun start(): String = "Ok"</code>
+
+<p><a href="https://kotlinlang.org/docs/reference/functions.html">Function declaration documentation</a></p>
+
+<ul>
+  <li>Funtions are declared using the 'fun' keyword.</li>
+  <li>You can call functions using the traditional approach: <code>double(2)</code></li>
+  <li>Member functions (that belong to a class) can be called using the dot notation: <code>Stream().read()</code></li>
+  <li>Function parameters must be explicitly typed 'name: type' <code>fun powerOf(number: Int, exponent: Int) {}</code></li>
+  <li>Default arguments: default values if argument is not provided when one is expected 'off: Int = 0'</li>
+  <li>Overriding methods have the same default values as base method. So don't include default parameters in the override method</li>
+  <li>If you have a function with two arguments, and the first argument has a default value but the second argument does not, the default value can only be used if you call the function using named arguments: <code>say(greeting = "Hi")</code> where the default bye argument was "Goodbye".</li>
+  <li>I struggled to understand the lambda section of the documentation, so had a chat with CTO who said that lambdas are anonymous functions, and they can be passed as arguments to functions. Map, reduce and filter are examples of lambdas. In map for example you might have an array of numbers and say arr.map(square) - this isn't the proper syntax. Then this will return an array of squared numbers from the previous array. You can also write your own lambdas and pass them as parameters in your own functions.</li>
+  <li>Just did a hello world program in Kotlin and went down a rabbit hole that ended up in lambdas. That escalated quickly.</li>
+</ul>

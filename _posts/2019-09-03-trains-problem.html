@@ -1,0 +1,129 @@
+---
+layout: post
+title: Writing first failing, failing and failing test in Ruby using RSpec
+---
+<p>This week I have had horribly low confidence in my coding ability. I work at a start-up alongside two world-class developers. I'm still at the start of my journey when it comes to programming the way they can. It frustrates me that I am not able to come up with clean solutions the way they can. My negative self-talk on this has gotten a bit out of hand, so I'm going to stop thinking about how much I can't do, and start trying out the things that scare me.</p>
+
+<p>This entry is going to be rough documentation of my attempt at breaking down a problem into tiny pieces and solving it using a test-driven development approach.</p>
+
+<p>For this entry, all I'm going to do is write a first failing test that I'm going to throw away at the end. This is to refresh my memory of how Ruby testing works - have played with it before but am by no means an expert.</p>
+
+<p>Instead of writing down what I did after I did it, I'm going to write down what I'm going to do before I did it.</p>
+
+<h2>Setting up empty project linked up to version control</h2>
+
+<ul>
+  <li>Make a folder on my desktop called 'trains'</li>
+  <li>Inside the folder, make another folder called 'spec' (I'm going to be using RSpec - a Ruby testing framework)</li>
+  <li>Inside the spec folder, make a file called 'first-test.rb' and include the following code:</li>
+</ul>
+
+<pre>
+<code>
+  describe 'First test' do
+    it "should fail and pass as expected" do
+      expect(FirstTest.toConfirmTestsWork()).to eql('Yep we can write a test that passes')
+    end
+  end
+</code>
+</pre>
+
+<ul>
+  <li>Run the test from the root with <code>rspec spec/first-test.rb</code>. Once you have done this the first time, you can run them with <code>rspec</code>.</li>
+  <li>This should fail because 'FirstTest' doesn't exist. Yep, 'uninitialized constant 'FirstTest'.</li>
+  <li>Add a <code>require 'FirstTest'</code> to the top of the first-test.rb file. Oh, that's why the test didn't run when I tried <code>rspec</code> the first time. My first-test.rb file doesn't end with '-spec' so rspec wouldn't have recognised it. Will delete project and do all these steps again to confirm...</li>
+  <li>I changed the first test slightly:</li>
+</ul>
+
+<pre>
+<code>
+describe "First test should" do
+  it "fail and pass as expected" do
+    expect(FirstTest.toPass()).to eql('Yep, we can write a test that passes')
+  end
+end
+</code>
+</pre>
+
+<ul>
+  <li>I removed the 'should' from the end of the it block and added it to the end of the describe block. That way I don't have to write 'should' at the start of every it block.</li>
+  <li>I also changed the method name from 'toConfirmTestsWork' to 'toPass' because that explains what is happening better.</li>
+  <li>Okay, the <code>rspec</code> command didn't work the first time here either. Glad I quickly found out my assumption was wrong.</li>
+</ul>
+
+<p>Back to writing what I'm going to do before I do it.</p>
+
+<ul>
+  <li>Add a require statement to the top of the 'first-test.rb' file that links to 'firstTest', a class that I haven't written yet. The reason I didn't already include this is because I wanted to know if it would change the error message to something different. I don't think it will, but here's to finding out.</li>
+  <li>I can't remember if I'm supposed to specify the full filepath to the place where I'm going to put the FirstTest class file. I have just included the name of the file and not the filepath, will see what happens.</li>
+  <li>Got the error message 'cannot load such file', so maybe it needs the filepath.</li>
+  <li>Tried making it work for a while, ended up looking at the <a href="https://github.com/rspec/rspec-core" target="_blank">RSpec docs</a>, I had written the test wrong. It doesn't call the RSpec class. You don't need to specify the filepath</li>
+  <li>Correct the test by writing the following code:</li>
+</ul>
+
+<pre>
+<code>
+RSpec.describe "First test should" do
+  it "fail and pass as expected" do
+    expect(FirstTest.toPass()).to eql('Yep, we can write a test that passes')
+  end
+end
+</code>
+</pre>
+
+<ul>
+  <li>When I ran the tests again after making this change (I deleted the require statement), it showed the same 'uninitialized constant FirstTest' error message as before.</li>
+  <li>Add the require statement and run the test again, I'm guessing the error message will be the same</li>
+  <li>I was wrong, the new error message was: 'cannot load such file -- firstTest'. In the RSpec tutorial, it says to create a 'lib' folder to store your code it. I'm not going to do this for now because it only makes sense if you want to seperate your code from other seperate parts of your application. I don't have anything I need to seperate it from right now so will just save the files in the root for now. Going to create an empty file called 'firstTest.rb' there then run the test again. I'm not sure if it will be findable outside a lib folder, let's find out.</li>
+  <li class="note">Andy says that a lib folder is where you put the bulk of your files. You might also have a bin folder where you put your executables (if you have anything you want to run from the command line). You'd also usually have a spec directory. This is how Ruby gems are structured, so if you want to turn your program into a Gem, it's better to structure your files like this so that you don't have to mess around with things later.</li>
+  <li>The file wasn't found, so I'll create a 'lib' folder, move the file into that and try again. This worked, okay the lib folder matters to RSpec. What if I wanted my code in a different folder? There will be a way to configure that probably. Don't need to now though.</li>
+  <li>We are back to the same error message 'unititialize constant FirstTest'. I'm going to write a class stub. After doing this, I'm expecting a new error that says that the 'toPass' method doesn't exist.</li>
+</ul>
+
+<pre>
+<code>
+class FirstTest
+end
+</code>
+</pre>
+
+<ul>
+  <li>Oh yay I got one right! The error message said 'undefined method 'toPass' for FirstTest:Class</li>
+  <li>I'll write a quick method stub to pass this one. After this one passes, I'm expecting the error message to tell me that the test fails because it doesn't return 'Yep, we can write a test that passes' (kind of want to add 'finally' to the end of that haha).</li>
+</ul>
+
+<pre>
+<code>
+class FirstTest
+  def toPass
+  end
+end
+</code>
+</pre>
+
+<ul>
+  <li>The error message didn't change, not sure why. I'll add parentheses to the end of the method though I don't think that's the reason because I think it's okay to leave them off if there are no arguments.</li>
+  <li>Yeah adding parentheses didn't solve the problem. What did I do wrong? Will look at how methods are defined in the docs. I defined it right. Will look at the test. Oh, I included parentheses when calling the method in the test. Odd that it didn't work when the parentheses were defined in the class too. I actually run this test before predicting what would happen, removing the parentheses from both worked. The new error method is ... oh no, I read the error message wrong, it still says the same thing, I just read the it block statement and forgot it wasn't what the toPass method was actually returning, hmmm.</li>
+  <li>Ah! Looking at the doc test example more clearly, they created an instance of a class with the new keyword before calling the method. Of course they did, because that's how classes work, oops.</li>
+  <li>New error message says 'expected: "Yep, we can write a test that passes" got: nil'. If I return that string inside the method the first test should pass.</li>
+  <li>Yep that worked. Will just quickly make a spelling error and check that the test passed for the right reasons, and not because it didn't return something that just wasn't nil.</li>
+  <li>Yep, spelling error caused a failure, correcting it again made it pass, fantabulous!</li>
+  <li>I'm going to commit the passing test and the code with the commit message 'we can write a test that passes'.</li>
+  <li>Then I'm going to delete all of the code we just wrote, and the test for it. It was a throwaway test just to make sure I could write a failing and passing test. It isn't really relevant to the trains problem I'm solving.</li>
+</ul>
+
+<h2>Review</h2>
+
+<p>While this whole post highlights all the mistakes I made, it also captures a few really useful things to know about RSpec, Ruby and error messages. I also implemented some advice from TDD articles and colleages without really being concious of it until reading back over this. Will recap those here:</p>
+
+<ul>
+  <li>Write a throw-away test to check that you can actually write and pass a failing test. As you can see from this entry, it could teach you a lot.</li>
+  <li>Write the bare minimum code to pass the test. Or as I like to look at it, write the bare minimum code to pass the error message. If the error message tells you a class isn't defined, just create the class stub and not it's methods. If something goes wrong here it doesn't take long to figure out because it can only be caused by the code you wrote to define your class. Which is what happened to me when trying to make the method doesn't exist error message pass.</li>
+  <li>If your test passes, can you double check that it has passed for the right reason? For example, when I finally passed this first test, I deleted a couple of characters in the output to check that it failed as expected, so that I knew it was passing for the right reasons.</li>
+  <li>As soon as you have an assumption, can you prove whether or not you are right? e.g. I assumed adding '_spec' to the end of your test file would make it possible to run your tests with 'rspec' instead of having to specify the filepath first. I deleted the project and tried it out to find that that was not the case. Assumptions can be harmful if you don't check them. If you haven't checked them, assume your assumptions are faulty.</li>
+  <li>Add 'should' to the end of the describe block instead of the it blocks so that you don't have to repeat yourself whenever you write a new test case for a class you are testing.</li>
+</ul>
+
+<p>I feel a little embarrassed about sharing this one, because I literally documented everything that went wrong, as it went wrong. That happened a lot. But the probability of me making these same mistakes will be reduced for the next post I write.</p>
+
+<p>I was thinking about automating my tests, but leaving it for now. The trains program I'm writing is a learning exercise. Will be pairing on it because while I can make it happen myself, I need someone who knows how to write well-principled code to help change the way I think about solving problems. So this experiment is messy, raw, ugly - to help make the benifits of the pairing sessions even more obvious.</p>

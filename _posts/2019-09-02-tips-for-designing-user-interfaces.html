@@ -1,0 +1,137 @@
+---
+layout: post
+title: Tips for designing user interfaces
+---
+<p>Notes inspired by <a href="https://refactoringui.com/book/#get-refactoring-ui" target="_blank">Refactoring UI</a></p>
+
+<p>This book is packed with really amazing, concise advice about how to design user interfaces using an iterative approach, constrained by your own systems. I had to leave out a lot of the advice in the book so as not to infringe copyright. The advice I kept in is supplemented with my own thoughts and ideas.</p>
+
+<h2>Starting your user interface design</h2>
+
+<p>Instead of designing a user interface in it's entirety, start with designing the most important features first until you have enough that you can build a layout from.</p>
+
+<p>Ignore low-level details when designing the functionality. It can help to draw it out with a sharpy because you can't draw find details with it.</p>
+
+<p>Then design the app in your favourite application using no color at all. Using greyscale colors will force you to get the contrast and spacing right. Then it will be easy to use color when it comes to the app design later on.</p>
+
+<p>Make sure to design and build out the simplest version of your app. Ignore non-critical aspects of your feature, especially those that take more of a time commitment to implement. E.g. A comment system without the ability to upload attachments is better than no comment system; A raw HTML website is better than a fully designed site that takes you months or years to be happy with.</p>
+
+<p>Come up with a series of design systems so that you don't have to make any low-level design decisions multiple times. You want design systems for:</p>
+
+<ul>
+  <li>Font size</li>
+  <li>Font weight</li>
+  <li>Line height</li>
+  <li>Color</li>
+  <li>Margin</li>
+  <li>Padding</li>
+  <li>Width</li>
+  <li>Height</li>
+  <li>Box shadows</li>
+  <li>Border radius</li>
+  <li>Border width</li>
+  <li>Opacity</li>
+</ul>
+
+<p class="note">The book goes into detail regarding how the authors set up each of these systems for themselves.</p>
+
+<h3>Ideas:</h3>
+
+<ul>
+  <li>All of this advice is applicable to designing the backend of systems to. Focus on the most important features (behaviours) that the users are interested in, build thesimplest version and iterate to improve.</li>
+  <li>Go on to Dribbble and pick out a bunch of app designs that I really like the look of, then list the different features that are included in the design.</li>
+  <li>Analyse app at work and isolate pieces of functionality.</li>
+  <li>Come up with pieces of functionality for my own hobby apps.</li>
+</ul>
+
+<h2>Hierarchy</h2>
+
+<p>You don't have to have any design talent to create high quality designs. There are lots of little tips that when combined, create a design that looks like it has been taken to the next level.</p>
+
+<p>The most effective tool for making something feel designed is the <q><em>visual hierarchy</em> [which] refers to how the important elements in an interface appear in relation to one another.</q></p>
+
+<p>Don't rely on font-size alone to indicate visual hierarchy. You can also use font-weight, transforms (e.g. capitalize) and color to do the same thing.</p>
+
+<ul>
+  <li>A dark color for primary content.</li>
+  <li>A grey for secondary content.</li>
+  <li>A lighter grey for tertiary content.</li>
+  <li>Don't use grey on color backgrounds to prevent reduced contrast, instead pick a lighter color that is similar to the background color..<li>
+</ul>
+
+<p>Say you have a navigation bar where the active item doesn't stand out compared to the rest of them. Instead of trying to find ways to emphasize the active item, think about how you can de-emphasize the non-active items surrounding it.</p>
+
+<h3>Labels</h3>
+
+<p>You might not always need labels for information that is self explanatory. For example, a price does not need a price label, because the currency symbol makes it obvious that it is a price. This can be the same for information about a person such as their name, job-title, email and phone number.</p>
+
+<p>You can also combine labels. E.g. Instead of 'In stock: 12' you can write '<strong>12</strong> left in stock'.</p>
+
+<p>Labels are supporting information, make sure that they are de-emphasized compared to the data they are supporting (unless you know the user will be looking for thm, like in a technical spec where the user wants to know the height/width/depth of their smart phones).</p>
+
+<h3>HTML hierarchy</h3>
+
+<p>Seperate document (markup) hierarchy from visual hierarchy. A h1 element may be important from a semantic perspective, but not from a visual perspective.</p>
+
+<p>A good rule of thumb is to <q>pick elements for semantic purposes and style them however you need to create the best visual hierarchy.</q></p>
+
+<h3>Surface area</h3>
+
+<p>Elements that take up more surface area appear to be more important, which is why bold text stands out more than regular text. This can also effect icons. Text takes up less space than icons, so icons can look heavier than the text they appear next to. To de-emphasize icons, give them a softer color.</p>
+
+<h3>Actions</h3>
+
+<p>Most pages only have one main primary action, a couple of secondary actions and a few least used tertiary actions. It is important that your Calls to Action (CTAs) reflect this hierachy.</p>
+
+<ul>
+  <li>Primary - Solid, high contrast background.</li>
+  <li>Secondary - Lower contrast/outline styles.</li>
+  <li>Tertiary - Styled like links.</li>
+</ul>
+
+<p>A delete button may not be he most important, so instead of making it big, red and bold, give it a red font and outline it with grey and a ghosted style. Then combine this with a confirmation step where the action is primary.</p>
+
+
+<h3>Ideas:</h3>
+
+<ul>
+  <li>When writing a CV, don't include labels for name, job-title, email etc. It's self explanatory.</li>
+</ul>
+
+<h2>Layout and Spacing</h2>
+
+<p>Start with too much white space and reduce slowly until happy, otherwise you might stop when the design looks just about not cramped instead of roomy enough.</p>
+
+<p>Establish a spacing and styling system. Start with a base number, 16px is a good one because it's the default web font-size. Here is an example of a scale built with this number:</p>
+
+<ul>
+  <li>4px (16 x 0.25)</li>
+  <li>8px (16 x 0.5)</li>
+  <li>12px (16 x 0.75)</li>
+  <li>16px (16 x 1)</li>
+  <li>Multiply in increasing amounts to get the higher end of the scale. The book includes the full scale.</li>
+</ul>
+
+<p>To use the scale, everytime you want to add margin or padding, pick one of these multiples and try it out. If it's just a little off, try out the value before or after the one you just tried out and chances are it'll be the one you need. Use the smaller multiples for elements with smaller pixel dimensions, and larger multiples for elements with larger pixel dimensions.</p>
+
+<p>Use the amount of space that makes sense for the feature you are building. Don't make something full width if it doesn't need to be.</p>
+
+<p>It makes sense to give some things, like a sidebar, a fixed width that makes sense for the content it contains. That way the main content can flex to take up the remaining space.</p>
+
+<p>Likewise, don't shrink an element until it needs to be shrunk.</p>
+
+<p>Make sure that your section headings are closer to the content it is linked to.</p>
+
+<p>Add more space between bullets in a list.</p>
+
+<h2>Text design</h2>
+
+<p>Hand pick font-size values to create your own scale. e.g. 12,14,16,18,20,24,30,36,48,60,72</p>
+
+<p>Avoid using <em>em</em> sizes because the font-size becomes relative to the parent. The computed values of nested elments will not be what you expect them to be. Stick to rems and px instead.</p>
+
+<p>Don't pick fonts that have less than 5 font-weight options, because chances are the designers cared less about crafting a good font.</p>
+
+<p>These are some great strategies for improving user interfaces. There is a lot more amazing advice in the book, well worth buying :)</p>
+
+<p><a href="{{site.baseurl}}{% post_url 2019-09-03-more-tips-for-designing-user-interfaces %}">More tips for designing user-interfaces</a></p>

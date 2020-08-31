@@ -1,0 +1,140 @@
+---
+layout: post
+title: Introduction to SmallTalk Object-Oriented Programming (Book notes)
+categories: [principles, syntax] 
+tags: [object-oriented, smalltalk, messages, unary, binary, keyword, class]
+---
+
+<p>Notes are heavily based on reading <a
+                                        href="https://www.springer.com/gb/book/9783658068226"
+                                        target="_blank">Programming Smalltalk -
+                                        Object-Oriented from the Beginning: An
+                                        introduction to the principles of
+                                        programming</a> by Johannes Brauer</p>
+
+<p>This article follows on from a previous post: <a href="{{ site.baseurl }}{% post_url 2019-07-23-reading-programming-smalltalk-object-oriented %}">An introduction to
+  object-oriented programming (Book Reading).</a>
+
+<h2>Messages in SmallTalk</h2>
+
+<p>The basic format for a message expression in Smalltalk is:</p>
+
+<code class="lang-smalltalk">&lt;object&gt; &alt;message&gt;</code>
+
+<p>The <code class="lang-smalltalk">&lt;object&gt;</code> signifies the object that is
+recieving a <code class="lang-smalltalk">&alt;message&gt;</code> (not the object
+that is sending the message).</p>
+
+<p>Messages that do not take an argument are called 'unary messages', while
+messages that contain exactly one argument are known as 'binary messages'.</p>
+
+<p>Unary message examples:</p>
+
+<ul>
+  <li><code class="lang-smalltalk">2 negated</code> produces the result -2.</li>
+  <li><code class="lang-smalltalk"> Window new</code> produces a new window on
+    the screen.</li>
+</ul>
+
+<p>Binary message examples:</p>
+
+<ul>
+  <li><code class="lang-smalltalk">(b = 7) ifTrue: [do this]</code></li>
+  <li><code class="lang-smalltalk">(2 * 3)</code></li>
+</ul>
+
+<p>Unary messages are always represented by a single word, while binary messages
+include arithmetic and comparison operators.</p>
+
+<p>The third (and last) type of message in the SmallTalk language are 'keyword
+messages'. Keyword messages are characterised by a simple word with a colon
+attached to it.</p>
+
+<p>Keyword message examples:</p>
+
+<ul>
+  <li><code class="lang-smalltalk">iftrue: [do something]</code></li>
+  <li><code class="lang-smalltalk">a max: b</code></li>
+</ul>
+
+<p>Keyword messages can contain multiple keywords as a chain. They must also be
+followed by an argument that is written after the colon.</p>
+
+<h2>Order in which messages are sent in SmallTalk</h2>
+
+<p>The following list is extracted from the book</p>
+
+<ol>
+  <li>Messages within parentheses are always evaluated first.</li>
+  <li>Unary messages are evaluated before binary ones.</li>
+  <li>Binary messages are evaluated before keyword messages.</li>
+  <li>If an expression contains multiple messages of the same type, they are
+    always processed from left to right.</li>
+</ol>
+
+<h2>Case-by-case Distinctions</h2>
+
+<p>Case by case distinctions is similar to if then else conditionals, except
+that the cases are determined using keyword messages.</p>
+
+<code class="lang-smalltalk">(a = 0) ifTrue; [do this]</code>
+
+<p>In this example, if the object is equal to '0' then return the result of the
+expression contained in the square brackets, otherwise return nil.</p>
+
+<h2>Blocks</h2>
+
+<p>A block is a sequence of messages contained withing square brackets, where
+the messages are not immediately evaluated. Only the recieving object can
+determine whether the block of code may be evaluated. Blocks are only used in
+cases where sequences of messages are only to be executed under specific
+conditions.</p>
+
+<h2>Classes in Smalltalk</h2>
+
+<p>When using objects, it's important to consider which messages they can
+understand. For example, a Boolean object would not understand a message to
+square it's result.</p>
+
+<p>Which message an object can understand depends on the class that it belongs
+to. The list of all methods in a class is called its 'method protocol'.</p>
+
+<p>Different classes may accept the same message but execute that message
+differently. For example, both number and string classes accept comparison
+methods but execute them in different ways.</p>
+
+<p>In SmallTalk, classes are also objects that have methods at their disposal,
+these are called 'class methods'.</p>
+
+<h3>Creating a new class using a constructor in Smalltalk</h3>
+
+<a href="http://onsmalltalk.com/objects-classes-and-constructors-smalltalk-style" target="_blank">Source: Object, Classes, Constructors, Smalltalk style</a>
+
+<figure>
+  <figcaption>Creating a class</figcaption>
+  <pre>
+  <code class="lang-smalltalk">
+  Person class>>firstName: aFirstName lastname: aLastName
+    ^(self new)
+      firstName: aFirstName;
+      lastName: aLastName;
+      yourself.
+    </code>
+  </pre>
+</figure>
+
+<h3>Creating an instance of the class</h3>
+
+<code class="lang-smalltalk">person := Person firstName: 'Ramon' lastName: 'Leon'.</code>
+
+
+<h2>Literals</h2>
+
+<p>Objects that you do not have to write yourself because they are built in are
+called literals. There are five types of literals: Numbers, characters,
+character strings, symbols and arrays.</p>
+
+<p>There is lot of information about syntax in the book. I skimmed through that
+quickly instead of intensively studying it. I'll pick up the syntax as I need it
+when it comes to writing actual programs. For me the more important thing right
+now is understanding object oriented programming as a paradigm.</p>

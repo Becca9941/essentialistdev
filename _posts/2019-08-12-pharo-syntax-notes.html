@@ -1,0 +1,422 @@
+---
+layout: post
+title: Pharo Syntax notes
+categories: [reading notes]
+tags: [pharo, smalltalk, blocks, closures, objects, messages, classes]
+---
+
+<p>Notes are heavily based on <a href="https://books.pharo.org/learning-oop/" target="_blank">Learning Object-Oriented Programming, Design and TDD with Pharo</a></p>
+
+<p>Pharo is a pure object-oriented language based on Smalltalk, the original object-oriented language developed by Alan Kay in the 1970s.</p>
+
+<h2>Key facts about Pharo</h2>
+
+<ul>
+  <li>The syntax of Pharo can fit on a single postcard. The sytax and language model is explained in <a href="http://files.pharo.org/media/pharoCheatSheet.pdf" target="_blank">two pages.</a></li>
+  <li>The language is based on <strong>objects</strong>, <strong>messages</strong> and <strong>closures.</strong></li>
+  <li>Closures are a central conerstone of the language which are the foundation for conditional statements and loops.</li>
+  <li>There are 6 reserved words</li>
+  <li>There are 15 syntactic constructs</li>
+  <li>Bodmas does not apply to mathematical operations in Pharo, message precedence determins the order. You have to use parentheses to enforce bodmas</li>
+  <li>Collections (e.g. arrays) start at 1, not 0</li>
+</ul>
+
+<table>
+  <tr>
+    <th>Reserved Words</th>
+  </tr>
+  <tr>
+    <td>nil</td>
+    <td>the undefined object</td>
+  </tr>
+  <tr>
+    <td>true, false</td>
+    <td>boolean objects</td>
+  </tr>
+  <tr>
+    <td>self</td>
+    <td>the receiver of the current message</td>
+  </tr>
+  <tr>
+    <td>super</td>
+    <td>the receiver, in the superclass context</td>
+  </tr>
+  <tr>
+    <td>thisContext</td>
+    <td>the current invocation on the call stack</td>
+  </tr>
+</table>
+
+<br>
+
+<table>
+  <tr>
+    <th>Reserved syntactic constructs</th>
+  </tr>
+  <tr>
+    <td>"comment"</td>
+    <td>comment</td>
+  </tr>
+  <tr>
+    <td>'string'</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>#symbol</td>
+    <td>unique string</td>
+  </tr>
+  <tr>
+    <td>$a, Character space</td>
+    <td>The character a and a space</td>
+  </tr>
+  <tr>
+    <td>12 2r1100 16rc</td>
+    <td>12 (decimal, binary, hexidecimal)</td>
+  </tr>
+  <tr>
+    <td>3.14 1.2e3</td>
+    <td>floating point numbers</td>
+  </tr>
+  <tr>
+    <td>#(abc 123)</td>
+    <td>literal array with the symbol #abc and the number 123</td>
+  </tr>
+  <tr>
+    <td>{foo . 3 + 2}</td>
+    <td>dynamic array built from two expressions</td>
+  </tr>
+  <tr>
+    <td>#[123 21 255]</td>
+    <td>byte array</td>
+  </tr>
+  <tr>
+    <td><em>expl. exp2</em></td>
+    <td>expression seperator (period)</td>
+  </tr>
+  <tr>
+    <td>;</td>
+    <td>message cascade (semicolon)</td>
+  </tr>
+  <tr>
+    <td>var := expression</td>
+    <td>assignment</td>
+  </tr>
+  <tr>
+    <td>^ expr</td>
+    <td>return a result from a method (caret)</td>
+  </tr>
+  <tr>
+    <td>[ :e | expr]</td>
+    <td>code block with a parameter</td>
+  </tr>
+  <tr>
+    <td>| var1 var2 |</td>
+    <td>declaration of two temporary variables</td>
+  </tr>
+</table>
+
+<h2>Messages</h2>
+
+<p>Message syntax in Pharo is minimalist, but are central to all computations in Pharo. There are three kinds of messages: unary, binary and keyword-based messages.</p>
+
+<p>In Pharo, messages are sent to a reciever, which is always to the left of the message. You can send different messages by using different message names (known as <em>selectors</em>.</p>
+
+<code class="lang-smalltalk">'hello' reversed</code>
+
+<p>In the code sample above, the message 'reversed' is sent to a reciever, which is a string object containing the characters 'hello'. The output of this message sending is a new string with the same characters in reverse order.</p>
+
+<h3>Unary messages</h3>
+
+<p>Unary messages involve only one object (their reciever), and do not take any arguments.</p>
+
+<h3>Keyword messages</h3>
+
+<p>Keyword messages pass arguments to the reciever.</p>
+
+<code class="lang-smalltalk">'hello' at: 2</code>
+
+<p>The above keyword message sends the message 'at:' to the reciever string object along with an argument, which is an integer object. The reciever object then returns the character object at position 2.</p>
+
+<p>Keyword messages end with a colon to signify that it should be followed by an argument.</p>
+
+<p>Keyword messages can pass more than one argument. A single message can have as many colon terminated keywords as necessary, each followed by an argument.</p>
+
+<code class="lang-smalltalk">'hello' copyFrom: 1 to: 3</code>
+
+<p>In the example above, the keyword message is 'copyFrom: to:'. The output of the code is the first three characters of the reciever string object.</p>
+
+<h3>Binary Messages</h3>
+
+<p>Binary messages can only be composed of symbols. They only expect a single argument, even though they do not end in a colon.</p>
+
+<code class="lang-smalltalk">1 + 2</code>
+
+<p>The main use of binary messages is for arithmetic operations like in the example above where we have sent the message '+' to an integer with '2' as an argument. The code above returns an integer object with the value of 3.</p>
+
+<code class="lang-smalltalk">'Hello' , ' World!'</code>
+
+<p>There are some examples outside of arithmetic operations that use binary messages. In the example above, we sent the ',' message with the argument ' World!' to the reciever string object. The ',' message represents a string cocatenation message.</p>
+
+<h3>Order of message execution</h3>
+
+<p>Unary >> Binary >> Keyword</p>
+
+<h3>Sending multiple messages to the same object</h3>
+
+<p>To send multiple messages to the same object in quick succession, we can group messages into a <em>message cascade</em>, which are seperated with semi-colons. When we do this, we only state the reciever once at the beginning of the cascade.</p>
+
+<pre>
+<code class="lang-smalltalk">
+| aStream |
+aStream := (String new: 100) writeStream.
+aStream
+  nextPutAll: 'Today, ';
+  nextPutAll: Date today printString;
+  contents
+</code>
+</pre>
+
+<p>In the example above we have created a variable called 'aStream' which is assigned a new String object that is passed a message selector called 'writeStream'. Then we send the 'aStream' reciever a series of three messages. The first two messages are keyword messages 'nextPutAll:', 'nextPutAll:' and a unary message 'contents'. The output of this cascade of messages is 'Today, 28 January 2017'.</p>
+
+<p>The cascade as a whole returns the value of it's last message. If the last message you send to the reciever is a selector called 'yourself', then it will return the object the messages were sent to. This is necessary when assigning elements to an array so that you get the array back and not just the last element that was assigned to it.</p>
+
+<h2>Objects / Classes</h2>
+
+<p>In Pharo, everything is an object and computation happens by sending messages to objects. Objects are created by sending messages to particular objects named classes, which define the structure and behaviour of the objects they create, also known as their instances.</p>
+
+<p>We can create a new object by sending a message to the class itself.</p>
+
+<code class="lang-smalltalk">String new</code>
+
+<p>In the example above, we are creating a new string object by sending the unary message 'new' to the reciever which is a 'String' class.</p>
+
+<h4>Literal Objects</h4>
+
+<p>Some objects can be expressed directly in the code without having to use the 'new' message.</p>
+
+<code class="lang-smalltalk">#(1 2 3)</code>
+
+<p>In the example above, we have created an Array object containing three integer objects '1, 2' and '3'.</p>
+
+<h2>Variables</h2>
+
+<p>Variables are declared by writing their names between two pipe lines.</p>
+
+<pre>
+<code class="lang-smalltalk">
+  | myKittensNameIs |
+  myKittensNameIs := 'Berry'.
+</code>
+</pre>
+
+<p>Variables can be assigned using the ':=' assignment statement. Statements are seperated by a full-stop, which makes Pharo code look like English sentences.</p>
+
+<h2>Blocks</h2>
+
+<p>Blocks (also known as lexical closures) are pieces of code to be executed later on. A block of code is surrounded by [ square brackets ].</p>
+
+<p>Blocks represent anonymous methods that can be sorted, passed as arguments and axecuded on demand using the message selector 'value', which we see in the following code:</p>
+
+<pre>
+<code class="lang-smalltalk">
+| adder |
+adder := [ :x | x + 1 ].
+adder value: 100
+</code>
+</pre>
+
+<p>I the code above, we create a variable called 'adder' and assign it a block which accepts a value which is stored in a variable we can give any name on the left hand side of the pipe. In the right hand pipe we are passing the message '+' to the reciever 'x' with an argument of '1'. This block add one to it's reciever that we pass in with the value message that accepts the argument which then becomes the reciever in the block.</p>
+
+
+<h2>Control Structures</h2>
+
+<p>Blocks are used to express all control structures like conditionals and loops.</p>
+
+<pre>
+<code class="lang-smalltalk">
+  n := 1.
+  10 timesRepeat: [ n := n * 2 ].
+  n
+</code>
+</pre>
+
+<p>In the code above, we are multiplying by 2 a number 10 times.</p>
+
+<p>Conditionals are expressed by sending one of the following messages: 'ifTrue:', 'ifFalse:'. 'ifTrue:ifFalse:', or 'ifFalse:ifTrue:' to the result of a boolean expression.</p>
+
+<pre>
+<code class="lang-smalltalk">
+  (17 * 13 > 220)
+    ifTrue: [ 'bigger' ]
+    ifFalse: [ 'smaller' ]
+</code>
+</pre>
+
+<p>The boolean expression at the start of the code above returns true or false depending on whether 17 * 13 is greater that 220. The message 'ifTrue:ifFalse' executes a different block of code depending on the result. If the result was true then in returns the string object 'bigger', otherwise it returns the string object 'smaller'.</p>
+
+<pre>
+<code class="lang-smalltalk">
+  allSatisfy: aBlock
+    self do: [:each | aBlock value: each) ifFalse: [^ false]].
+    ^ true
+</code>
+</pre>
+
+<p>In the code above, we have created a block message which returns false if one item in the block passed in as the reciever contains a value of 'false'. Otherwise it returns 'true'.</p>
+
+<pre>
+<code class="lang-smalltalk">
+  | count |
+  count := 0.
+  do: [:c | c == $i ifTrue: [count := count + 1]].
+  count
+</code>
+</pre>
+
+<p>The code above counts all of the 'i' characters in a givin string.</p>
+
+<pre>
+<code class="lang-smalltalk">
+  #(2 4 6 8 16 32) allSatisfy: [ :each | each even ]
+</code>
+</pre>
+
+<p>The code above returns true if every element in the array is 'even'.</p>
+
+<p>In the last couple of examplse, we used a message called 'allSatisfy', which is one of many super powerful behaviours implemented in the Collection class. This one is known as an iterator. We defined this message in the first of the last two code examples.</p>
+
+<code class="lang-smalltalk">[ condition ] whileTrue; [ action. anotherAction]</code>
+
+<p>The above code is an example of how we would write a while loop in Pharo.</p>
+
+<h2>Files and streams</h2>
+
+<pre>
+<code class="lang-smalltalk">
+  work := FileSystem disk workingDirectory.
+  stream : (work / 'foo.txt') writeStream.
+  stream nextPutAll: 'Hello World'.
+  stream close.
+  stream : (work / 'foo.txt') readStream.
+  stream contents.
+  >>> 'Hello World'
+  stream close.
+</code>
+</pre>
+
+<p>With just the syntax outlined above, we can understand 95% of Pharo.</p>
+
+<h3>Further video resources</h3>
+
+<ul>
+  <li><a href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W1/C019SD-W1-S5-v2.mp4" target="_blank">Pharo syntax in a nutshell</a></li>
+  <li><a href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S1-v3.mp4" target="_blank">Understanding messages</a></li>
+  <li><a href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S2-v3.mp4" target="_blank">Pharo for the Java Programmer</a></li>
+  <li><a href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S3-v3.mp4" target="_blank">Message Precedence</a></li>
+  <li><a href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S3-v3.mp4" target="_blank">Sequence and cascade</a></li>
+  <li><a href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S6-v2.mp4" target="_blank">Blocks</a></li>
+  <li><a href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S7-v2.mp4" target="_blank">Loops</a></li>
+  <li><a href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W1/C019SD-W1-S6-v3.mp4" target="_blank">Class and Method Definition</a></li>
+  <li><a href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W3/C019SD-W3-S11-v1.mp4" target="_blank">Understanding the return</a></li>
+  <li><a href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S9-v3.mp4" target="_blank">Parentheses</a></li>
+  <li><a href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W2/C019SD-W2-S10-v3.mp4" target="_blank">Yourself</a></li>
+  <li><a href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W3/C019SD-W3-S3-v3.mp4" target="_blank">Variables</a></li>
+  <li><a href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W3/C019SD-W3-S7-v3.mp4" target="_blank">Essential Collections</a></li>
+  <li><a href="http://rmod-pharo-mooc.lille.inria.fr/MOOC/Videos/W3/C019SD-W3-S9-v3.mp4" target="_blank">Iterators</a></li>
+</ul>
+
+<h2>Syntax Challenges</h2>
+
+<h3>Message Identification</h3>
+
+<p>For each of the messages below, identify the reciever object, the message selector, the argument/s and the result returned by the expression execution.</p>
+
+<code class="lang-smalltalk">3 + 4</code>
+<code class="lang-smalltalk">Date today</code>
+<code class="lang-smalltalk">#('' 'World') at: 1 put: 'Hello'</code>
+<code class="lang-smalltalk">#(1 22 333) at: 2</code>
+<code class="lang-smalltalk">#(2 33 -4 67) collect: [:each | each abs]</code>
+<code class="lang-smalltalk">20 @ 50</code>
+<code class="lang-smalltalk">SmallInteger maxVal</code>
+<code class="lang-smalltalk">#(a b c d e f) includesAll #(f d b)</code>
+<code class="lang-smalltalk">true | false</code>
+<code class="lang-smalltalk">Point selectors</code>
+
+<h2>Literal Objects</h2>
+
+<p>What kind of object does the following literal expressions return?</p>
+
+<code class="lang-smalltalk">1.3</code>
+<code class="lang-smalltalk">#node1</code>
+<code class="lang-smalltalk">#(2 33 4)</code>
+<code class="lang-smalltalk">'Hello, Berry'</code>
+<code class="lang-smalltalk">[ :each | each scale: 1.5 ]</code>
+<code class="lang-smalltalk">$A</code>
+<code class="lang-smalltalk">true</code>
+<code class="lang-smalltalk">1</code>
+
+<h2>Kind of messages</h2>
+
+<p>Are the following messages unary, binary or keyword-based?</p>
+
+<code class="lang-smalltalk">1 log</code>
+<code class="lang-smalltalk">Browser open</code>
+<code class="lang-smalltalk">2 raisedTo: 5</code>
+<code class="lang-smalltalk">10@20</code>
+<code class="lang-smalltalk">point1 x</code>
+<code class="lang-smalltalk">point1 distanceFrom: point2</code>
+
+<h2>Results</h2>
+
+<p>What is the value returned by the executions of the following expressions?</p>
+
+
+<code class="lang-smalltalk">1 + 3 negated</code>
+<code class="lang-smalltalk">1 + (3 negated)</code>
+<code class="lang-smalltalk">2 raisedTo: 3 + 2</code>
+
+<pre>
+<code class="lang-smalltalk">
+  | anArray |
+  anArray := #('first' 'second' 'third' 'fourth').
+  anArray at: 2
+</code>
+</pre>
+
+<code class="lang-smalltalk">#(2 3 -10 3) collect: [:each | each * each]</code>
+<code class="lang-smalltalk">6 + 4 / 2</code>
+<code class="lang-smalltalk">2 negated raisedTo: 3 + 2</code>
+<code class="lang-smalltalk">#(a b c d e f) includesAll: #(f d b)</code>
+
+<h3>Unneeded parentheses</h3>
+
+<p>Rewrite the following expressions using the least number of parentheses.</p>
+
+<code class="lang-smalltalk">x between: (pt1 x) and: (pt2 y)</code>
+
+<pre>
+<code class="lang-smalltalk">
+  (x isZero)
+    ifTrue: [...]
+  (x includes: y)
+    ifTrue: [...]
+</code>
+</pre>
+
+<pre>
+<code class="lang-smalltalk">
+  (OrderedCollection new)
+    add: 56;
+    add: 33;
+    yourself
+</code>
+<pre>
+
+<code class="lang-smalltalk">((3 + 4) + (2 * 2) + (2 * 3))</code>
+<code class="lang-smalltalk">(Integer primesUpTo: 64) sum</code>
+<code class="lang-smalltalk">('http://www.pharo.org' asUrl) retrieveContents</code>
+<code class="lang-smalltalk"></code>
+<code class="lang-smalltalk"></code>
+<code class="lang-smalltalk"></code>
+<code class="lang-smalltalk"></code>
+<code class="lang-smalltalk"></code>

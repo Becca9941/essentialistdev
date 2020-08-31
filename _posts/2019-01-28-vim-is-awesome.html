@@ -1,0 +1,356 @@
+---
+layout: post
+title: Vim is Awesome! A Basic Helpsheet For Getting Started
+---
+
+<p>Vim is a lightweight and power-packed text editor. Use it to write and edit text files straight on your server. While Vim has a steep learning curve if you want to be an expert at it, it's easy to get started for your every day projects, here is how .</p>
+
+<h2>What is Vim?</h2>
+
+<p>&ensp;Vim is an extremely powerful and lightweight text editing program that strongly encourages you to write and edit text files using the keyboard only. It contains a number of shortcuts that allow you to navigate your text file and to perform repetitive tasks easily.</p>
+
+<p>&ensp;Vim also contains a vim.rc file that allows you to add features and little code snippets that your editor will run for you. This can include anything from custom syntax highlighting to allowing keywords to run specific functions, basically anything you can think of.</p>
+
+<p>&ensp;Another advantage of learning Vim is that it is installed on any Unix-based system, which means that you can edit files directly on your server. Also, as Vim is designed to work on slow terminals, it feels incredibly fast to use.</p>
+
+<h2>How to Install Vim</h2>
+
+<p>&ensp;A quick and easy way to install the latest version of Vim is by using Homebrew, which you can use to install most applications to your Unix-based systems easily. You can install it here: <a href="https://web.archive.org/web/20190112204343/https://brew.sh/">https://brew.sh/</a> Though generally unix-based systems come with Vim pre-installed.</p>
+
+<p>&ensp;Once you have Homebrew installed, open your terminal and enter the following command to install Vim:</p>
+
+<p>$brew install vim</p>
+
+<h2>How to Learn Vim</h2>
+
+<p>&ensp;There is a huge learning curve to learning Vim at an expert level, though it is relatively easy to get started with it for your everyday projects pretty quickly by running vimtutor in the command line.</p>
+
+<p>&ensp;Vim comes with Vimtutor when you install it, and it consists of 7 short tutorials that help you get to grips with the basic and most commonly used features of Vim. To run Vimtutor, open your terminal and enter the following command:</p>
+
+<p>$vimtutor</p>
+
+<img src="/web/20190112204343im_/http://webdevbecca.com/images/article-uploads/vimtutor.png" alt="screenshot of vimtutor lesson">
+
+<p>&ensp;The remainder of this post is a reference to the Vimtutor tutorial that is easy to come back to. You may find it useful to use this post as a basic Vim helpsheet after following the tutorial yourself. At the end of this post you will find a list of alternative more advanced/interactive resources for learning Vim.</p>
+
+<h2>Lesson 1.1. Moving the cursor</h2>
+
+<ul>
+  <li><p>K &#8593;</p></li>
+  <li><p>J &#8595;</p></li>
+  <li><p>H &#8592;</p></li>
+  <li><p>L &#8594;</p></li>
+</ul>
+
+<h2>Lesson 1.2. Exiting Vim</h2>
+
+<ul>
+  <li><p>Enter normal mode: <esc><p></li>
+  <li><p>Exit editor and discard changes: :q!</p></li>
+</ul>
+
+<h2>Lesson 1.3. Text Editing - Deletion</h2>
+
+<p>&ensp;To delete the character under the cursor: x</p>
+
+<h2>Lesson 1.4. Text Editing - Insertion</h2>
+
+<ul>
+  <li><p>Move cursor to first character after place where you want to insert text.</p></li>
+  <li><p>Go into insertion mode: i</p></li>
+  <li><p>Enter text</p></li>
+  <li><p>&lt;ESC&gt;</p></li>
+  <li><p>Repeat until done.</p></li>
+</ul>
+
+<h2>Lesson 1.5: Text Editing - Appending</h2>
+
+<ul>
+  <li><p>Move to line that you want to append text to, doesn't matter where your cursor is in the line.</p></li>
+  <li><p>Go into append mode: A</p></li>
+  <li><p>Enter text to append</p></li>
+  <li><p>&lt;ESC&gt;</p></li>
+</ul>
+
+<h2>Lesson 1.6. Editing a file</h2>
+
+<ul>
+  <li><p>Open a file vim [filename]</p></li>
+  <li><p>Edit using commands in previous lessons</p></li>
+  <li><p>Save a file and exit: :wq</p></li>
+  <li><p>Open file again to see changes you saved.</p></li>
+</ul>
+
+<h2>Lesson 1 Summary</h2>
+
+<img src="/web/20190112204343im_/http://webdevbecca.com/images/article-uploads/vim-l1-summary.png" alt="screenshot of vimtutor lesson">
+
+<h2>Lesson 2.1: Deletion Commands</h2>
+
+<ul>
+  <li><p>Enter normal mode: <esc></p></li>
+  <li><p>Move cursor to beginning of word</p></li>
+  <li><p>Delete word: dw</p></li>
+</ul>
+
+<h2>Lesson 2.2: More Deletion Commands</h2>
+
+<ul>
+  <li><p>Move cursor to end of line to be deleted</p></li>
+  <li><p>Delete to end of line: d$</p></li>
+</ul>
+
+<h2>Lesson 2.3: On Operators and Motions</h2>
+
+<ul>
+  <li><p>d - is a delete operator</p></li>
+  <li><p>motion - what the operartor will operate on</p></li>
+  <li><p>dw - delete until the start of the next word</p></li>
+  <li><p>de - delete to the end of the current word</p></li>
+  <li><p>d$ delete to the end of the line</p></li>
+</ul>
+
+<h2>Lesson 2.4: Using a Count for a Motion</h2>
+
+<ul>
+  <li><p>Typing a number before a motion repeats it that many times</p></li>
+  <li><p>2w - move the cursor two words forward</p></li>
+  <li><p>3e - move cursor to the end of the third word forwards</p></li>
+  <li><p>0 - move to the start if the line</p></li>
+</ul>
+
+<h2>Lesson 2.5: Using a Count to Delete More</h2>
+
+<ul>
+  <li><p>Typing a number with an operator repeats it that many times</p></li>
+  <li><p>Move cursor to start of first word you want to delete</p></li>
+  <li><p>d2w - delete next two words</p></li>
+  <li><p>d4w - delete next four words</p></li>
+  <li><p>d3w - delete next three words</p></li>
+</ul>
+
+<h2>Lesson 2.6: Operating On Lines</h2>
+
+<ul>
+  <li><p>Delete a line: dd</p></li>
+  <li><p>Delete two lines: 2dd</p></li>
+  <li><p>Delete four lines 4dd</p></li>
+</ul>
+
+<h2>Lesson 2.7: The undo Command</h2>
+
+<ul>
+  <li><p>Undo last command: u</p></li>
+  <li><p>Undo changes to a whole line: U</p></li>
+  <li><p>Redo: CTRL-R</p></li>
+</ul>
+
+<h2>Lesson 2 Summary</h2>
+
+<img src="/web/20190112204343im_/http://webdevbecca.com/images/article-uploads/vim-l2-summary.png" alt="screenshot of vimtutor lesson">
+
+<h2>Lesson 3.1: The Put Command</h2>
+
+<ul>
+  <li><p>Move cursor to line and delete it: dd</p></li>
+  <li><p>Add line directly below cursor: p</p></li>
+</ul>
+
+<h2>Lesson 3.2: The Replace Command</h2>
+
+<ul>
+  <li><p>Move cursor so that is on top of the character you want to replace</p></li>
+  <li><p>Replace new character with n character: rn</p></li>
+  <li><p>Replace new character with a character: ra</p></li>
+</ul>
+
+<h2>Lesson 3.3: The Change Operator</h2>
+
+<ul>
+  <li><p>Move cursor to start of word/characters you want to change</p></li>
+  <li><p>Replace with new word characters: ce</p></li>
+  <li><p>Enter replacement word/characters</p></li>
+  <li><p>&lt;ESC&gt;</p></li>
+</ul>
+
+<h2>Lesson 3.4: More Changes Using c</h2>
+
+<ul>
+  <li><p>Replace from cursor to end of line: c$</p></li>
+</ul>
+
+<h2>Lesson 3 Summary</h2>
+
+<img src="/web/20190112204343im_/http://webdevbecca.com/images/article-uploads/vim-l3-summary.png" alt="screenshot of vimtutor lesson">
+
+<h2>Lesson 4.1: Cursor Location and File Status</h2>
+
+<ul>
+  <li><p>Show location in file (line number) and file status: CTRL-G</p></li>
+  <li><p>Move to bottom of file: G</p></li>
+  <li><p>Move to start of file: gg</p></li>
+  <li><p>Move to line 506 in file: 506 G</p></li>
+</ul>
+
+<h2>Lesson 4.2: The Search command</h2>
+
+<ul>
+  <li><p>Search for character, word or phrase starting from it's first appearance in the file: / [search term]</p></li>
+  <li><p>Search for character, word or phrase starting from it's last appearance in the file: ? [search term]</p></li>
+  <li><p>Search for the same phrase again: n</p></li>
+  <li><p>Search for the same phrase in the opposite direction: N</p></li>
+  <li><p>Go back to where you came from: CTRL-O</p></li>
+  <li><p>Go forward: CTRL-I</p></li>
+</ul>
+
+<h2>Lesson 4.3: Matching Parenthesis Search</h2>
+
+<ul>
+  <li><p>Place cursor over parenthesis or bracket</p></li>
+  <li><p>Go to matching bracket: %</p></li>
+</ul>
+
+<h2>Lesson 4.4: The Substitute Command</h2>
+
+<ul>
+  <li><p>Change the first occurrence of the word 'thee' to 'the' on the line with the cursor: :s/thee/the</p></li>
+  <li><p>Change all occurrences of the word 'thee' to 'the' on the line with the cursor: :s/thee/the/g</p></li>
+  <li><p>Change every occurrence of 'thee' to 'the' between the lines 33 and 74: :33,74s/thee/the/g</p></li>
+  <li><p>Change every occurrence in the whole file: :%s/old/new/g</p></li>
+  <li><p>Find every occurrence in the whole file, and prompt user to decide whether to substitute or not: :%s/old/new/gc</p></li>
+</ul>
+
+<h2>Lesson 4 Summary</h2>
+
+<img src="/web/20190112204343im_/http://webdevbecca.com/images/article-uploads/vim-l4-summary.png" alt="screenshot of vimtutor lesson">
+
+<h2>Lesson 5.1: How to Execute an External Command</h2>
+
+<ul>
+  <li><p>Enter an external command as though you are typing in your command prompt: :! followed by command.</p></li>
+  <li><p>List files in directory: :!ls or :!dir</p></li>
+  <li><p>Finish command and go back to file: <enter></p></li>
+</ul>
+
+<h2>Lesson 5.2: More on Writing Files</h2>
+
+<ul>
+  <li><p>Save file under name TEST: :w TEST</p></li>
+  <li><p>Remove/Delete file named test: :!rm TEST</p></li>
+</ul>
+
+<h2>Lesson 5.3: Selecting Text to Write</h2>
+
+<ul>
+  <li><p>Highlight text: Press v and move the cursor to highlight text</p></li>
+  <li><p>Press : then w FILENAME to save highlighted text to a new file with a new filename.</p></li>
+</ul>
+
+<h2>Lesson 5.4: Retrieving and Merging Files</h2>
+
+<ul>
+  <li><p>Add contents of file just below where your cursor is: :r FILENAME </p></li>
+  <li><p>Add output of command line statement just below where your cursor is: :r !ls</p></li>
+</ul>
+
+<h2>Lesson 5 Summary</h2>
+
+<img src="/web/20190112204343im_/http://webdevbecca.com/images/article-uploads/vim-l5-summary.png" alt="screenshot of vimtutor lesson">
+
+<h2>Lesson 6: The Open Command</h2>
+
+<ul>
+  <li><p>Move cursor to a line, to start a new line below it: o</p></li>
+  <li><p>Move cursor to a line, to start a new line above it: O</p></li>
+</ul>
+
+<h2>Lesson 6.2: The Append Command</h2>
+
+<ul>
+  <li><p>Insert text after the cursor: a</p></li>
+</ul>
+
+<h2>Lesson 6.3: Another Way To Replace</h2>
+
+<ul>
+  <li><p>Move cursor over the first character you want to replace, then to start replacing characters: R</p></li>
+  <li><p>&lt;ESC&gt;</p></li>
+</ul>
+
+<h2>Lesson 6.4: Copy and Paste Text</h2>
+
+<ul>
+  <li><p>Highlight text: v and move cursor</p></li>
+  <li><p>Copy highlighted text: y</p></li>
+  <li><p>Move cursor to end of next line: $j</p></li>
+  <li><p>Paste copied highlighted text: p</p></li>
+  <li><p>&lt;ESC&gt;</p></li>
+</ul>
+
+<h2>Lesson 6.5: Set Option</h2>
+
+<ul>
+  <li><p>Search for a word by entering: /word</p></li>
+  <li><p>Ignore case in word search: :set ic</p></li>
+  <li><p>/word</p></li>
+  <li><p>Ignore case for just one command: /word\c</p></li>
+  <li><p>Highlight all matching words: :set hls is</p></li>
+  <li><p>Disable ignore case: :set noic</p></li>
+  <li><p>Disable highlight: :nohlsearch</p></li>
+</ul>
+
+<h2>Lesson 6 Summary</h2>
+
+<img src="/web/20190112204343im_/http://webdevbecca.com/images/article-uploads/vim-l6-summary.png" alt="screenshot of vimtutor lesson">
+
+<h2>Lesson 7.1: Getting Help</h2>
+
+<ul>
+  <li><p>Go to the vim help text file: :help</p></li>
+  <li><p>Quit vim text file: :q</p></li>
+  <li><p>Get definition of commands: :help w, :help c_CTRL-D, :help insert-index, :help user-manual</p></li>
+</ul>
+
+<h2>Lesson 7.2: Create a Startup Script</h2>
+
+<ul>
+  <li><p>Start editing the vimrc file: :e ~/.vimrc</p></li>
+  <li><p>Read the vmrc file contents: :r $VIMRUNTIME/vimrc_example.vim</p></li>
+  <li><p>Write the file: :w</p></li>
+  <li><p>Get more help with running startup feature scripts: :help vimrc-intro</p></li>
+</ul>
+
+<h2>Lesson 7.3: Completion</h2>
+
+<ul>
+  <li><p>Make sure vim is in no compatible mode: no cp</p></li>
+  <li><p>Start typing a command: :e</p></li>
+  <li><p>Show list of commands that start with :e: CTRL-D</p></li>
+  <li><p>Autocomplete command: <tab></p></li>
+</ul>
+
+<h2>Lesson 7 Summary</h2>
+
+<img src="/web/20190112204343im_/http://webdevbecca.com/images/article-uploads/vim-l7-summary.png" alt="screenshot of vimtutor lesson">
+
+
+<h2>Further reading recommended by vimtutor</h2>
+
+<ul>
+  <li><p>User Manual: :help user-manual</p></li>
+  <li><p>Vim - Vi Improved book by Steve Qualline (New Riders Publisher)</p></li>
+  <li><p>Learning the Vi Editor by Linda Lamb (more about Vi than Vim but still useful)</p></li>
+</ul>
+
+<h2>More Advanced/Interactive Resources For Learning Vim</h2>
+
+<ul>
+  <li><p><a href="https://web.archive.org/web/20190112204343/https://pragprog.com/book/dnvim/practical-vim">Pragmatic Vim by the Pragmatic Bookshelf</a></p></li>
+  <li><p><a href="https://web.archive.org/web/20190112204343/https://vim-adventures.com/">Vim Adventures</a>: Zelda Meets Text editing Game</p></li>
+  <li><p><a href="https://web.archive.org/web/20190112204343/https://www.openvim.com/">Interactive Vim Tutorial</a></p></li>
+  <li><p><a href="https://web.archive.org/web/20190112204343/http://vimgenius.com/">Vim Genius</a></p></li>
+  <li><p><a href="https://web.archive.org/web/20190112204343/http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/">Learn Vim Progressively</a></p></li>
+  <li><p><a href="https://web.archive.org/web/20190112204343/https://www.ibm.com/developerworks/library/l-vim-script-1/index.html">Scripting The Vim Editor</a></p></li>
+</ul>
+
+

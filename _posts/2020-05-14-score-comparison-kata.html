@@ -1,0 +1,75 @@
+---
+layout: post
+---
+
+<h2>Problem Statement</h2>
+
+<p>We are given two arrays, called a and b with 3 elements each. Our task is to compare elements of the same index with each other from both arrays. If a number stored in one index is greater than the number stored in the other, then a point is awarded to the person the first array belongs too. At the end, we return a tally of points for the first and second person.</p>
+
+<h2>Solution</h2>
+
+<p>My first solution loops through the first array and compares each element with the second array. We have two guard clauses to do this. I feel like we should be able to do this without using a loop, will try in my next attempt.</p>
+
+<pre>
+<code>
+function compareTriplets(a, b) {
+    const scores = [0,0];
+    for(let i = 0; i &lt; a.length; i++) {
+        if(a[i] &gt; b[i]) { scores[0]++ }
+        if(a[i] &lt; b[i]) { scores[1]++ }
+    }
+    return scores;
+}
+</code>
+</pre>
+
+<p>My second attempt swaps the loop for a map. I looked up how to zip two arrays together in JavaScript and adapted the map example to this problem. I still don't like the if statement. Maybe a sort of some kind could help.</p>
+
+<pre>
+<code>
+// Complete the compareTriplets function below.
+function compareTriplets(a, b) {
+    let scores = [0,0];
+    a.map(function(e,i) {
+      if(e &gt; b[i]) { scores[0]++ }
+      if(e &lt; b[i]) { scores[1]++ }
+    });
+    return scores;
+}
+</code>
+</pre>
+
+<p>Couldn't find any info on sorting. There was a ternary option but I don't like those because they're harder to read. I'll ask for feedback.</p>
+
+<p>The feedback I got was to only use Map when I'm going to use the returned array, otherwise use forEach. So I did that. That was the only feedback. Though I decided to switch out the characters a and b for alice and bob to make it clearer who the scores belonged to.</p>
+
+<pre>
+<code>
+function compareTriplets(alice, bob) {
+    let scores = [0,0];
+    alice.forEach((alice,i) =&gt; {
+      if(alice &gt; bob[i]) { scores[0]++ }
+      if(alice &lt; bob[i]) { scores[1]++ }
+    });
+
+    return scores;
+}
+</code>
+</pre>
+
+<p>More feedback! This is really cool. We assigned the numbers 0 and 1 (indexes) to AlICE and BOB const variables, so it's clearer who the scores are being assigned to.</p>
+
+<pre>
+<code>
+function compareTriplets(alice, bob) {
+    const [ALICE,BOB] = [0,1];
+    let scores = [0,0];
+    alice.forEach((alice,i) =&gt; {
+      if(alice &gt; bob[i]) { scores[ALICE]++ }
+      if(alice &lt; bob[i]) { scores[BOB]++ }
+    });
+
+    return scores;
+}
+</code>
+</pre>

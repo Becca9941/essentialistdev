@@ -1,0 +1,162 @@
+---
+layout: post
+title: Testing a walking skeleton
+---
+
+<p>Notes based on <a href="http://www.growing-object-oriented-software.com/" target="_blank">Growing Object-oriented software guided by tests</a></p>
+
+<p>The difficulty in writing and passing a first acceptance test is that it is hard to build the test environment and the feature it is testing at the same time. We can deal with this situation by first working out how to build, deploy and test a 'walking skeleton', and then use the infrastructure to write the acceptance tests for the first <em>meaningful</em> feature.</p>
+
+<blockquote>A walking skeleton is an implementation of the thinnest possible slice of real functionality that we can automatically build, deploy, and test end-to-end... For example, in a database-backed web application, a skeleton would show a flat web page with fields from the database.</blockquote>
+
+<p>The walking skeleton and its supporting infrastructure are there to help us work out how to start test-driven development. The first test is disposable. The first test for our first feature is the proper 'test that we want to read'.</p>
+
+<p>We should be able to draw the design for the walking skeleton in a few minutes on a whiteboard.</p>
+
+<p>Once you have a walking skeleton in place (have kickstarted the TDD process), we then start a new feature by writing a failing acceptance test. This failing acceptance tests demonstrates that the system does not yet have the feature we're about to write, and lets us track our progress towards the completion of the feature.</p>
+
+<p>Start by testing the simplest success case (don't start with failure cases because that makes it harder to test domain assumptions earlier).</p>
+
+<p>We start developing a feature by considering the events coming into the system that will trigger the new behaviour. The end-to-end tests will simulate these events arriving.</p>
+
+<p>Write tests that are focused on behaviour, not method names. What is the outcome the object is trying to acheive in different scenarios. Test for those.</p>
+
+<h2>Object-oriented style</h2>
+
+<p>Designing for maintainability:</p>
+
+<ul>
+  <li><strong>Seperation of concerns:</strong> Gather together code that will change for the same reason. When we have to change the behaviour of a system, we want to change as little code as possible.</li>
+  <li><strong>Higher levels of abstraction:</strong> People order food from a menu in terms of dishes, rather than detail the recipes that are used to create them.</li>
+</ul>
+
+<h2>Acheiving object-oriented design</h2>
+
+<p>Starting with a test means we have to describe <em>what</em> we we want to acheive before we consider <em>how</em>. It also helps with information hiding as we have to decide what needs to be visible from outside the object.</p>
+
+<p>We focus our design effort on how objects collaborate to deliver the functionality we need. The communication patterns between objects are more important.</p>
+
+<h3>Splitting a large object into a group of collaborating objects</h3>
+
+<p>When starting a new area of code, we might just write code without trying to impose too much structure. This lets us gain more experience and understanding regarding the domain. After a short while, the code may start to become a bit too complex, this is where you start pulling out related units of functionality into smaller collaborating objects.</p>
+
+<p>Sometimes, you could consider this practice a <em>spike</em> which you then throw away and implement cleanly.</p>
+
+<h2>Commissioning an auction sniper</h2>
+
+<p>Build an application that automatically bids in auctions. It automatically bids slightly higher whenever the price changes, until it reaches a stop price or the auction closes.</p>
+
+<h3>Step one: need to agree on basic terms</h3>
+
+<ul>
+  <li>Item: something that can be identified and bought.</li>
+  <li>Bidder: a person or organization that is interested in buying an item.</li>
+  <li>Bid: a statement that a bidder will pay a given price for an item.</li>
+  <li>Current price: is the current highest bid for the item.</li>
+  <li>Stop price: is the most a bidder is prepared to pay for an item.</li>
+  <li>Auction: is a process for managing bids for an item.</li>
+  <li>Auction house: is an institution that hosts auctions.</li>
+</ul>
+
+<h3>Step two: Focus on getting a basic application working first.</h3>
+
+<h4>Communicating with an auction</h4>
+
+<ul>
+  <li>Join (command): A bidder joins an auction. The sender of the XMPP message identifies the bidder, and the name of the chat session identifies the item.</li>
+  <li>Bid (command): A bidder sends a bidding price to the auction. Auctions send events, which can be one of the following two:</li>
+  <li>Price (event): An auction reports the currently accepted price. This event also includes the minimum increment that the next bid must be raised by, and the name of the bidder who bids this price. The auction will send this event to a bidder when it joins and to all bidders whenever a new bid has been accepted.</li>
+  <li>Close (event): An auction announces that it has closed. The winner of the last price event has won the auction.</li>
+</ul>
+
+<h4>Slicing</h4>
+
+<p>A critical technique with incremental development is learning how to slice up the functionality so that it can be built a little at a time. Each slice should be significant and concrete enough that the team can tell when it’s done, and small enough to be focused on one concept and achievable quickly</p>
+
+<p>Their working skeleton will cut a minimum path through Swing, XMPP and their application, just enough to show that they can plug these components together.</p>
+
+<p>Here is a list containing a sequence of features to build:</p>
+
+<ul>
+  <li>Single item: join, lose without bidding.</li>
+  <li>Single item, join, bid and lose</li>
+  <li>Single item, join, bid and win.</li>
+  <li>Show price details.</li>
+  <li>Multiple items</li>
+  <li>Add items through the user interface.</li>
+  <li>Stop bidding at the stop price.</li>
+</ul>
+
+<p>The buyers prioritized the user interface over the stop price, partly because they want to make sure they feel comfortable with the application, and partly because there won't be an easy way to add multiple items, each with its own price without a user interface.</p>
+
+<p>Once the above is stable, they can start working on more complicated scenarios, such as retrying if a bid failed or using different strategies for building.</p>
+
+<h2>Creating the walking skeleton</h2>
+
+<p>We start our walking skeleton by writing a test. The thinnest slice that the authors could imagine testing, is the first item on their to do list. That the auction sniper can join an auction and wait for it to close.</p>
+
+<p>An outline of the test the authors want:</p>
+
+<ol>
+  <li>When an auction is selling an item.</li>
+  <li>And an auction sniper has started to bid in that auction.</li>
+  <li>Then the auction will receive a join request from the auction sniper.</li>
+  <li>When an auction announces that it is closed,</li>
+  <li>Then the auction sniper will show that it lost the auction.</li>
+</ol>
+
+<p>The fake auction (stub) will be as simple as possible. It will connect to an XMPP message broker, receive commands from the sniper to be checked by the test, and allow the test to send back events.</p>
+
+<p>We want our skeleton test to exercise our application as close to end-to-end as possible, to show that the main() method initializes the application correctly and that the components really work together... We also want our tests to be clear about what is being checked, written in terms of the relationship between a sniper and its aucton... We'll start by writing the test as if all the code it needs exists and will fill in the implementations afterwards.</p>
+
+<pre>
+<code>
+public class AuctionSniperEndToEndTest {
+  private final FakeAuctionServer auction = new FakeAuctionServer("item-54321");
+  private final ApplicationRunner application = new ApplicationRunner();
+
+  @Test public void sniperJoinsAuctionUntilAuctionCloses() throws Exception {
+    auction.startSellingItem();
+    auction.startBiddingIn(auction);
+    auction.hasReceivedJoinRequestFromSniper();
+    auction.announceClosed();
+    application.showsSniperHasLostAuction();
+  }
+
+  @After public void stopAuction() {
+    auction.stop();
+  }
+
+  @After public void stopApplication() {
+    application.stop()
+  }
+
+</code>
+</pre>
+
+<p>Naming conventions adopted in the above code:</p>
+
+<ul>
+  <li>If a method triggers an event to drive the test, its name will be a command <em>startBiddingIn()</em>.</li>
+  <li>If a method asserts that something should have happened, its name will be descriptive <em>showsSniperHasLostAuction()</em>.</li>
+</ul>
+
+<p>One of the assumptions that are made in the code above is that a FakeAuctionServer is tied to a given item. Where an auction house hosts multiple auctions that each sell a single item.</p>
+
+<p>The test is only concerned with snippers and auctions, no user interfaces or messaging layers/components, which protects us from implementation changes.</p>
+
+<h3>Making the end-to-end test pass</h3>
+
+<p>We need to find or write four components: an XMPP message broker, a stub auction that can communicate over XMPP, a GUI testing framework, and a test harness that can cope with the multithreaded, asynchronous architecture. Also need to get the project under version control with an automated build/deploy/test process.</p>
+
+<blockquote>End-to-end testing for event-based systems have to cope with asynchrony. The tests run in parallel with the application and do not know precisely when the application is or isn't ready. This is unlike unit testing, where a test drives an object directly in the same thread and so can make direct assertions about its state and behaviour.</blockquote>
+
+<p>An end-to-end test can't peek inside the target application, so it must wait to detect some visible effect, such as a user interface change or an entry in a log. The usual technique is to poll for the effect and fail if it doesn't happen within a given time limit. There's a further complexity in that the target application has to stabilize after the triggering event long enough for the test to catch the result. An asynchronous test waiting for a value that just flashes on the screen will be too unreliable for an automated build, so a common technique is to control the application and step through the scenario.</p>
+
+<p>While unit tests must all pass every time, some teams only report end-to-end tests that fail several times in a row.</p>
+
+<p>Going to stop here for now, the end-to-end test code is going to take a fresh session to process properly.</p>
+
+<p>It has really helped me to read this and not get stuck over the things that I don't know how to do yet. The first few attempts at reading this book has been really slow going. This time I skipped to the chapters that I could try and outline the key stuff I might need to do when attempting to do this myself. Finding it difficult to even do this tells me that the book is targeted at someone with a lot more experience that me. But that's okay, as I get more experience, a lot of this will just click. It's already getting easier to understand than it was before.</p>
+
+<p>Takeaway action: I'm going to attempt to set up my own, if clumsy end-to-end test in Ruby. Will probably look for a tutorial to copy first, then try and do one for my own project.</p>

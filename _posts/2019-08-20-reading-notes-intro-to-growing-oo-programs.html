@@ -1,0 +1,204 @@
+---
+layout: post
+title: reading notes -  introduction chapter to growing object-oriented software
+---
+
+<p class="note">Reading notes based on <a
+href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627"
+   target="_blank">Growing Object-Oriented Software, Guided by Tests</a> by
+ Steve Freeman and Nat Pryce</p>
+
+<p class="note">Most of the concepts I have written about are covered in the book, but they are worded and illustrated using my own examples. I capture the things that stand out as being most important (from my own perspective). If you read the book (it's great!) then you are likely to get insights that are unique to you.</p>
+
+<p>Test-driven development challenged the assumptions of the software industry when it was first introduced. Tests used to be thought of as a means to protect users from bugs in the products they were using. Whereas the test-driven approach views tests as a way to help developers better able to understand the needs of their users, as well as to help them produce those features more reliably.</p>
+
+<p>An interesting idea that the authors mentioned as an aside is that Test-driven development can be used to help us explore ideas in projects that are purely research-based, not intended for production. Am interested in exploring this.</p>
+
+<h2>Software Development as a Learning Process</h2>
+
+<p>As software engineers, we are constantly working on projects that have never been seen before. We build custom solutions to a wide variety of problems that reveal nuances as our exposure to the domain increases.</p>
+
+<p>Often, we are working with technologies that we don't fully understand. We learn new principles, languages and tools whilst we are working on the project. A lot of the time, we are applying techniques we have learned to an unfamiliar context. For more complicated systems, often we only see and understand a small part of the entire system as a whole. We have to work with components that interact with other parts of a system that we might not have encountered yet.</p>
+
+<p>From a customer perspective, it's even more difficult because often the development process reveals aspects of their organisation that they might not have had to deeply consider before. Working together to identify solutions that might be different to the solutions everyone initially had in mind is an iterative process, where effortful communication needs to happen on both sides.</p>
+
+<p>Consequently, the entire development process is also a learning process for eeveryone who is involved. There is a huge amount of uncertainty in this process as people learn to understand each other and the domain better.</p>
+
+<p>To cope with all of this uncertainty, we need a process that helps us prepare for unexpected changes.</p>
+
+<h2>Feedback is the fundemental tool</h2>
+
+<p>Iterative feedback loops is essential to helping us to better understand the system and apply the things we have learned back into the system. One strategy is for team members to split their work into <em>time boxes</em>, where they can add new features and get feedback on both the quantity and quality of those features. For each cycle, the team aims to analyze, design, implement and deploy as many features as they can.</p>
+
+<p>The critical part of the feedback loops is actual deployment. Actually deploying something allows the team to check their assumptions against reality, instead of spending weeks or months building features only to find out that they were founded on the wrong assumptions. Regular deployment cycles allow us to quickly identify course corrections and prevent us from building ourselves into corners that are difficult to back out of.</p>
+
+<p>There are many different types of feedback loops that we can adopt in our projects, including (but not limited to):</p>
+
+<ul>
+  <li>Pair programming</li>
+  <li>Unit tests</li>
+  <li>Acceptance tests</li>
+  <li>Daily meetings</li>
+  <li>Iterations</li>
+  <li>Releases</li>
+</ul>
+
+<p>These feedback loops can be grouped into inner loops and outer loops. Inner loops focus on the technical details of what the code does and whether it collaborates with other parts of the system as intended. Whereas outer loops focus on the domain and reveal whether the system meets the users needs effectively.</p>
+
+<p>The more feedback loops you have, the more opportunities you are provided with to know that you are on the track, doing the right thing and doing it in an effective way.</p>
+
+<h3>Development using an iterative and incremental approach.</h3>
+
+<p>Iterative development is where you refine your implementation of features based on feedback that you receive from real users.</p>
+
+<p>Incremental development is where a system is built feature by feature. There is always a stable version of the system ready for deployment. Each new feature is integrated fully into the existing system. Instead of making your users wait for a new car that meets all of their current specifications, you can start them with a skateboard so that they have something to get around on. Then you can keep upgrading them until they get a much more personalised car, because they would have had a chance to discover things that would make their experience better in stages of most important.</p>
+
+<h2>Practices that support change</h2>
+
+<p>To reliably cope with unexpected and unavoidable changes in our system, we need two technical foundations: Testing and simplicity.</p>
+
+<p>Testing allows us to build a safety net that tells us the moment when something in our system stops working. This is especially useful when we want to add a new feature without breaking one that already exists in the system <em>(regression errors).</em> We should aim to automate tests as much as possible to reduce costs associated with building, deploying and changing our system</p>
+
+<p>Simplicity means always trying to write code that is easy to read and understand. This means avoiding 'clever' solutions that require effort to understand exactly what it is doing. If there are slight performance gains to the 'clever' solution, these will be lost in the time it takes for your future self and colleagues to decipher the cryptic instructions.</p>
+
+<p>Code that is simple to read is not easy to write. It require a fair amount of time revisiting the system regularly and asking whether anything needs to be regactored in light of new changes. Is there any duplication that needs to be removed, can the design be simplified, is everything expressed clearly etc. Our tests give us a safety net that allows us to simplify our code with confidence. If we have taken too much away they will let us know.</p>
+
+
+<h2>Test-driven development in a nutshell</h2>
+
+<p>Testing used to be an activity that few people enjoyed, because it was something you did after you finished the fun part (adding new features). Tests were often viewed as a process that while necessary, prevented the progression of 'real work'.</p>
+
+<p>Whereas TDD is an aid to writing your best code, because it forces you to clarify your intentions by writing tests before you write any code. A test-first approach also gives us access to rapid feedback that let's us know if our design ideas actually work in practice, because those ideas are verified or not at every stage of the build.</p>
+
+<p>There are three main stages of TDD:</p>
+
+<ol>
+  <li>Write a failing unit test before you write any code</li>
+  <li>Make the test pass in the simplest way you can (obvious implementation)</li>
+  <li>Refactor (remove duplication with the rule of three, simplify, etc)</li>
+</ol>
+
+<h3>Refactoring</h3>
+
+<p>Refactoring is where you improve code by changing it's structure without changing it's behaviour. This is similar to editing an article, where you change the way you phrase things without changing the underlying message that you are trying to convey.</p>
+
+<p>Changes that do not modify the codes behaviour is called a 'transformation' within the refactoring approach. There are many different transformations you can use when refactoring. Each of them are small, safe steps that can be verified with your tests to make sure that everything still works after each of them have been implemented.</p>
+
+<p>Refactoring is considered to be a 'microtechnique' that allows you to make a series of tiny improvements. If you do this consistently, then your system will be significantly improved. This is great advice for adopting any great habit too, tiny steps lead to massive change, almost without realising it.</p>
+
+<h3>Benefits of TDD</h3>
+
+<ul>
+  <li>Makes us clarify our intentions instead of just winging it.</li>
+  <li>Encourages you to write components that can be tested in isolation (reduce dependencies - loosly coupled)</li>
+  <li>The tests read like a list of specifications. It is a live snapshot of everything the system can do. Inside each test is the code that represents how you do the thing you are testing for in the real system.</li>
+  <li>You'll have complete regression coverage, so you can make changes and knowthe moment something is broken. This makes things easy to undo, unlike discovering bugs later in the process.</li>
+  <li>Testing also lets us know when we have done enough, which happens when we have finished testing that a feature behaves in the way that we want it to in as many situations as we can anticipate. The tests will let us know when we encounter an unexpected situation that we didn't account for.</li>
+</ul>
+
+<h2>The bigger picture</h2>
+
+<p>A critical benefit of the TDD process is that it makes us write tests for code that we actually need (write a failing test first). This is an advantage over the dominant testing approach before TDD was introduced, which is where you would write unit tests for the classes in your application, usually well after the original code for those classes were written.</p>
+
+<p>When building a new feature, you first start with an <em>acceptance test</em>, which actually uses the functionality of the feature as if it was already built. This allows you to design the API of the feature in exactly the way that you want to use it, instead of the API being an accidental end product of the code.</p>
+
+<p>In the context of this book, acceptance tests are defined as things that help us and the domain experts to understand and agree on what to build next. They are also used to make sure that new features that are being built do not break ony of the existing features.</p>
+
+<p>Once we have written an acceptance test for the first time, it will fail because we won't have written any code to pass it. So the acceptance test demonstrates that the feature is not yet in place.</p>
+
+<p>When working on a feature, we only write code that is directly relevant to the code contained within the acceptance test.</p>
+
+<p>When writing code to make the acceptance test pass, we write unit tests that follow the test/implement/refactor cycle that is inherent in TDD.</p>
+
+<p>The acceptance test represents an outer feedback loop which is at the business language level. While the unit tests represent inner feedback loops which are at the technical level.</p>
+
+<p>As acceptance tests can take a while to make pass, it is useful to distinguish between the acceptance tests that we are working on and the acceptance tests that are for finished features, which must always pass. If there are a lot of developers working on different features, you need some way to know whether an acceptance test is failing because it is in progress or because it is currently being built.</p>
+
+<p>It is okay to commit failing acceptance tests to a working repository while they are in progress, but it is never okay to commit a failing unit test.</p>
+
+<h2>Testing end-to-end</h2>
+
+<p>Acceptance tests should test the functionality of the system without directly calling the internal code of the system. This means that the tests can send messages to different parts of the system, and those system parts will carry out those messages (if they understand them), without the test code having access to the internal mechanism that they use to carry out the message that they received.</p>
+
+<h3>Riskiest test</h3>
+
+<p>The behaviour of a system must interact with it's external environment. This is the riskiest and most difficult part of a system. So it's important to test this.</p>
+
+<h3>What does end-to-end testing involve?</h3>
+
+<ul>
+  <li>The end-to-end tests should exercise the system</li>
+  <li>They should also exercise the process by which the system has been <em>built</em> and <em>deployed</em></li>
+  <li>Tests run automatically whenever code is checked into the repository. These automatic tests will check:</li>
+  <ul>
+    <li>Check out the latest version</li>
+    <li>compile and unit-test the code</li>
+    <li>integrate and package the system</li>
+    <li>perform a production-like deployment into a realistic envioronment</li>
+    <li>Exercise the system through its external access points</li>
+  </ul>
+</ul>
+
+<p>All of this takes a lot of effort to automate, but all of these things have to be done repeatedly so automating them is a really good use of time. Especially as many of these steps are likely to be prone to error.</p>
+
+<p>A system is ready to deploy when all of the acceptance tests pass, because they give us confidence that everything works.</p>
+
+<h2>Levels of Testing</h2>
+
+<ul>
+  <li><strong>Acceptance:</strong> Does the whole system work?</li>
+  <li><strong>Integration:</strong> Does our code work against code we can't change?</li>
+  <li><strong>Unit:</strong> Do our objects do the right thing, and are they convenient to work with?</li>
+</ul>
+
+<p>In the context of this book, the term 'integration tests' is used to talk about tests that check how some of the code we have written works with code from outside of the team that we are not able to change. Examples of code that can be tested with integration tests are frameworks or libraries from another team within the same organisation.</p>
+
+<p>Integration tests make sure that any abstractions that are built over third-party code works as expected. They can also help us discover configuration issues that can occur when trying to integrate third party code.</p>
+
+<p>This book is mainly concerned with unit testing, because unit testing techniques are common to the object-oriented programming style.</p>
+
+<h2>External and internal quality</h2>
+
+<h3>External Quality</h3>
+
+<blockquote><em>External</em> quality is how well the system meets the needs of its customers and users (is it functional, reliable, available, responsive etc).</blockquote>
+
+<p>End-to-end tests allow us to test the quality of our system and how well the team have understood the domain they have built the software for.</p>
+
+<h3>Internal Quality</h3>
+
+<blockquote><em>Internal</em> quality is how well it meets the needs of its developers and administrators (is it easy to understand, easy to change, etc).</blockquote>
+
+<p>Internal quality is just as important (though more difficult to make a case for), because it is what lets us cope with regularly occurring, unexpected changes. Maintaining internal quality will allow us to safely make changes to how our system behavies. Otherwise, we could risk changes that force us to spend a lot of time reworking the system to accomodate for changes that could cause a lot of breakages if preventative measures were not put in place.</p>
+
+<p>Unit tests give us a lot of feedback about the quality of our code and to make sure that we haven't broken anything. However, unit tests do <em>not</em> give us enough confidence that the system as a whole works, which is why the other levels of testing are just as important even though they are not covered in this book.</p>
+
+<h3>Unit tests for objects</h3>
+
+<p>A unit test for an object needs to:</p>
+
+<ul>
+  <li>Create an object</li>
+  <li>Provide it's dependencies</li>
+  <li>Interact with it</li>
+  <li>Check that it behaves as expected</li>
+</ul>
+
+<p>For a class to be easy to unit test, it must:</p>
+
+<ul>
+  <li>Have explicit dependencies that can easily be substituted</li>
+  <li>Clear responsibilities that can easily be invoked and verified</li>
+  <li>(Must be loosely coupled and highly cohesive)</li>
+</ul>
+
+
+<p>If your code makes it difficult to write tests, this is the perfect opportunity to investigate why the test is hard to write and refactor the code to improve it's structure. The authors call this approach "Listening to the tests".</p>
+
+<h3>Coupling and cohesion</h3>
+
+<p>Coupling and cohesion are metrics that indicate how easy it will be to change the behaviour of your code.</p>
+
+<p>Elements are <em>coupled</em> if changes in one forces a change in another.</p>
+
+<p>An element's <em>cohesion</em> is also a metric to measure whether it's resposibilities form a meaningful unit. Are all of their messages and behaviour directly relevant to the object that holds them? You don't want to build a washing machine that washes both clothes and dishes (haha, well now I do).</p>

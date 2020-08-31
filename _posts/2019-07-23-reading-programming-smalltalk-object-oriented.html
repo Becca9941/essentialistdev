@@ -1,0 +1,110 @@
+---
+layout: post
+title: An introduction to object-oriented programming (Book Reading)
+categoriees: [principles, reading notes]
+tags: [object-oriented, design]
+---
+<p>Notes are heavily based on reading <a
+                                        href="https://www.springer.com/gb/book/9783658068226"
+                                        target="_blank">Programming Smalltalk -
+                                        Object-Oriented from the Beginning: An
+                                        introduction to the principles of
+                                        programming</a> by Johannes Brauer</p>
+
+<h2>Software engineering</h2>
+
+<p>Programmers deal with processing information for the purpose of automating
+tasks and activities that were once performed by people. However, every part of
+a program down to the smallest details must be programmed by a person.</p>
+
+<blockquote>The computer performs a human task that needs to be automated
+  according to a firmly prescribed pattern of behavior laid out in a series of
+  ordered individual steps, which must be strictly adhered to. These patterns of
+  behaviour are called algorithms.</blockquote>
+
+<p>Designing algorithm takes two main steps. The first is formulating a method
+that can solve a problem. The algorithm can be formulated without worrying about
+what programming language will be used to implement it. The second step is
+converting that method into a language that the computer can understand and
+execute.</p>
+
+<blockquote>THe human must determine the method by which a solution can be
+  discovered. This can occur either by coming up upon the solution by analysing
+  the problem, that is, by thinking about it, or else by finding an existing
+  solution to the problem, either by researching it in a relevant text or by
+  remembering that one had already solved the problem at an earlier date. At
+  bottom, though, a human has to discover the method at least once.</blockquote>
+
+<h2>Basics of object-oriented programming</h2>
+
+<p>The major characteristic of SmallTalk programs are that "Programs consist
+exclusively of messages that are sent to objects".</p>
+
+<p>Objects themselves are things that have states and behaviours. States are
+characteristics that belong to the object, whilst behaviours are things that
+that object can do. Usually the behaviours involve manipulating the
+characteristics in some way (my assumption).</p>
+
+<p>Objects can also be more abstract in nature, they can be things like
+emotions, events, amounts, contracts etc.</p>
+
+<p>Object-oriented program allows us to create (to some extent) a replica of the
+real world with objects that mimic the objects that would carry out the tasks
+their person counter parts would if the job was not to be automated. This
+virtual replica of the real world is called a model within the object-oriented
+paradigm, and the process of creating it is called modelling, or model
+construction.</p>
+
+<p>An important distinction between objects in our model and the real world is
+that the objects in our model world will contain far less characteristics. The
+characteristics and behavior of a real world object is too complex to be
+captured in a model, and also uneccessary.</p>
+
+<p>Consequently, an important part of Object-oriented programming is
+abstraction.</p>
+
+<blockquote>Dictionary definition: Abstraction is the process of taking away or
+  removing characteristics from something in order to reduce it to a set of
+  essential characteristics.</blockquote>
+
+<p class="note">Could be an idea to look at the objects around me and reduce it
+down to what I think are the essential characteristics and behaviours associated
+with them.</p>
+
+<p>Input from colleague: Abstraction doesn't just mean simplifying something,
+but also means encapsulating data and coming up with metaphors that make the
+story of how the objects interact with each other easier to explain.</p>
+
+<blockquote>In object-oriented programming, a program is viewed as an ordered
+  series of messages directed toward a goal, which are sent to appropriate
+  objects.</blockquote>
+
+<p>In an object-oriented program, objects exchange messages. When an object
+recieves a message, it can react by providing information about its status, or
+by changing its status. The important thing here is that it'gives' its status or
+it changes its own status. Other objects can not interfere with the inner
+workings of other objects (at least they are not supposed to).</p>
+
+<p>This means that the status of an objects (the state of its characteristics)
+are not visible from the outside. They can only be seen by sending messages that
+ask (and are permitted) to see them, or ask (and are permitted) for them to be
+changed. This is an important characteristic in Object-oriented design, known as
+'information hiding'.</p>
+
+<p>Another important note, you can send messages to objects, but they have to be
+able to understand them. You can't send a message to an object that it doesn't
+understand. e.g you can't ask a fraction to add another fraction to itself if it
+doesn't know how to add.</p>
+
+<p>In object-oriented programming, messages are methods that objects can
+execute. Executing a method is sending a message.</p>
+
+<p>The methods that an object has form the externally visible surface
+(interface) of the object. Methods are only executed as a reaction to messages
+they have recieved. Messages are methods executed by other objects, also as a
+reaction to messages that they have recieved.</p>
+
+<p>When an object sends a message to another object who responds, the sender
+recieves an object as a result.</p>
+
+

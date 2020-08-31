@@ -1,0 +1,342 @@
+---
+layout: post
+title: Simple LightsOut game in Pharo Smalltalk (following tutorial)
+category: [programming project]
+tags: [Pharo, Smalltalk, game, LightsOut, objects, playground]
+---
+
+<img src="/assets/img/pharo-lights-on.png" class="small-img" alt="lighton board game I built using smalltalk. Yellow board with two sets of four squares">
+
+<p class="note">Notes are based on Pharo by Example, a free book suggested by a Mooc called <a href="https://www.canal-u.tv/producteurs/inria/cours_en_ligne/live_object_programming_in_pharo">Live Object Programming in Pharo</a></p>
+
+<p>At the moment I'm working through book examples to get familiar with the
+developer environment and interacting with the language itself. This is one of
+the exercises.</p>
+
+<p>The lightsOut game is a board of 100 'tiles' that are all one color. When you
+click on one of the tiles, the four surrounding cells change to a different
+color (lights have been turned on). When you click on the same cell again, the
+lights toggle off and on. The aim of the game is to turn as many lights on as
+possible.</p>
+
+<p>According to the chapter, this game contains two objects, the game board
+itself, and the individual cells. So we will be writing two classes, one for
+each of these.</p>
+
+<h2>Creating a new package</h2>
+
+  <p>The first step was to open the 'System Browser' from the 'World Menu'. To
+  create a new package, we right click on any of the existing packages in the
+  package panel and select "Add package...". Then we type in the package name
+  and click anter. I gave my package the same name as the example in the book
+  did: "PBE-LightsOut".</p>
+
+<h2>Defining the cell class</h2>
+
+<p>To create a new class, click on the package we want to create a class for.
+The main editing pane will display a template for creating a new class easier.
+This is the code for the class we are defining for our LightsOut Cells.</p>
+
+<figure>
+  <figcaption>LightsOut cell class creation</figcaption>
+  <pre>
+  <code class="lang-smalltalk">
+  SimpleSwitchMorph subclass: #LOCell
+    instanceVariableNames: 'mouseAction'
+    classVariableNames: ''
+    package: 'PBE-LightsOut'
+  </code>
+  </pre>
+</figure>
+
+<p>In this example, we are sending a message to the class SimpleSwitchMorph,
+asking it to create a subclass called LOCell, the message is in the form of a
+symbol (#LOCell).</p>
+
+<p>Then we defined an instance variable called 'mouseAction', which will be used
+to defined the behaviour that happened if the cell is clicked on with a
+mouse.</p>
+
+<p>We have not set any class variable names right now, the tutorial doesn't
+mention why it has been included in the code at all. A quick google shows that a
+<a
+href="https://stackoverflow.com/questions/36216470/what-is-the-difference-between-classvariablenames-and-instancevariablenames"
+     target="_blank">class variable</a> when added is applied to all instances of the class. I'm assuming
+we are going to use it to set the default color of all the cells but don't know
+that for sure yet. Whilst the instanceVariables can be set for each individual
+object that is created from that class (each instance).</p>
+
+<p>The last line of the class definition above specifies which package the
+object belongs to, in this case it was the package we created for our game
+(PBE-LightsOut).</p>
+
+<p>To actually send our subclass message, we save our code with Command-S, which
+results in our new class being compiled. The name of our compiled class then
+shows up in the class pane of the System Browser, which is right next to the
+Package pane.</p>
+
+<p>At this point you will also get a feedback from the Quality Assistent at the
+bottom of the screen. In this case, there were four messages:</p>
+
+<ul>
+  <li>Class not referenced</li>
+  <li>No class comment</li>
+  <li>[mouseAction] Instance variable not read or not written</li>
+</ul>
+
+<p>I like to really try and understand the meaning behind error
+messages, so usually google them one by one to find out what they mean. In this
+case they are self explanatory except for the 'No class comment' message, but
+it's always a good idea to look them up even if you think you know what they
+mean.</p>
+
+<p>We can find out the rationale behind the error messages by clicking on the
+question mark next to the error message (which I have just found out is actually
+called 'critic text'.</p>
+
+<ul>
+  <li>Class not referenced: Check if a class is referenced either directly or
+    indirectly by a symbol. If a class is not referenced, it can be
+    removed.</li>
+  <li>No class comment: Classes should have comments to explain their purpose,
+    collaborations with other classes, and optionally provide examples of
+    use.</li>
+  <li>[mouseAction] Instance variable not read or not written: This smell
+    (<a href="https://sourcemaking.com/refactoring/smells"
+        target="_blank">Reference to Code Smells</a>) arises when an instance
+      variable is not both read and written. If an instance variable is only
+      read, the reads can be replaced by nil, since it could not have been
+      assigned a value. If the variable is only written, then it does not need
+      to store the result since it is never used. This check does not work for
+      the data modal classes since they use the #instVarAt:put: messages to set
+      instance variables.</li>
+</ul>
+
+<p>Another thing I was interested is what the little icons represent next to the
+critic text. I looked up Pharo Quality Assistant and found a <a
+                                                                  href="https://github.com/Uko/QualityAssistant"
+                                                                  target="_blank">repo</a> which
+explains what they represent. The '(i)' icons represent information, '/!\' icons
+represent warnings and '(-)', '(!)' icons represent errors. There are a few more
+icons listed but those are the common icons.</p>
+
+<h2>Comments are important</h2>
+
+<p>According to the authors, good quality comments are a priority in Pharo
+as well as high code readability. This is to encourage people to be intentional
+about everything that they write.</p>
+
+<h3>Method comments</h3>
+
+<p>Method comments shoud explain what the method is doing, its context or the
+reasons behind it's implementation.</p>
+
+<h3>Class comments</h3>
+
+<p>A strong class comment is based on CRC cards (I wrote about these <a
+  href="2019-07-22-teaching-object-oriented-thinking-with-crc-cards-article-notes.html">here</a>).
+CRC cards stand for Class, Responsibility and Collaborators. Pharo has a build
+in class comment template that has the basic structure of CRC cards. However,
+Kent Beck and Ward Cunningham (the creators of the CRC method) advise you NOT to
+use digital versions of these, but to write them down on paper such as index
+cards so that you can get a personal connection to your object. Out of sight is
+out of mind.</p>
+
+<p>Though it could be a good idea to have both. To open the class comment, you
+can click on the '? Comment' menu option which was just above my main editor
+containing the class code. It was a little bunched up and hard to see.</p>
+
+<p>When you write your class comment using the CRC format, you are basically
+stating the responsibility of your class briefly, and how it collaborates with
+other classes to achieve the responsibilities. It can also be a good idea to
+include an API (messages that the object understands - a lightbulb moment for
+me), give an example, and some details about the internal representation or
+implementation rational.</p>
+
+<h2>Adding methods to our class</h2>
+
+<p>To add a new message to our class, we start by selecting a protocol from the
+protocol pane. In this case, the example told us to select the 'no messages' protocol. A quick
+google says that the 'no messages' protocol makes all of your subsequently added
+methods 'as yet unclassified', which removes any quality assistant messages like
+'no protocols' without having to include protocols. <a
+                                                      href="http://forum.world.st/protocol-pane-quot-no-messages-quot-Re-Pharo-users-setter-method-td4926382.html"
+                                                      target="_blank">Answer
+                                                      found here</a></p>
+
+<p>However, after right-clicking the protocals pane, selecting 'new protocol'
+and searching for 'no messages' with and without spaces, and with a capital NO
+like some of the other protocol names listed, I couldn't find the 'no messages'
+protocol. I also didn't see the no protocol message in my quality assistant
+panel so am assuming it was okay. Instead, I clicked on the '--all--' option in
+the protocol pane and replaced the method template that showed up in the editor
+with the following:</p>
+
+<figure>
+  <figcaption>cell method</figcaption>
+  <pre>
+  <code class="lang-smalltalk">
+  initialize
+    super initialize.
+    self label: ''.
+    self borderWidth: 2.
+    bounds := 0 @ 0 corner: 16 @ 16.
+    offColor := Color paleYellow.
+    onColor := Color paleBlue darker.
+    self useSquareCorners.
+    self turnOff
+  </code>
+  </pre>
+</figure>
+
+<p>Without reading ahead to see what this code does. Here are my thoughts. The
+initialize initialises the containing class (#LOCell) so that it can be used. The super
+initialize expression initializes the parent class (PBE-LightsOut). I know this
+after having worked with web components in JavaScript, which have the equivalent
+methods called Constructor() and super().</p>
+
+<p>I'm assuming the self label is assigning an empty label to the cell. I'm not
+sure why it's there if it's empty. My assumption is that it will be used to
+store a value like 'on' and 'off' for toggling purposes.</p>
+
+<p>The border width could be like setting the border to 2 pixels wide in CSS.
+The bounds is the most confusing expression to me. The whole expression is
+drawing the cell as 16 pixels by 16 pixels (I think). The offColor sets the cell
+to yellow when the cell is clicked 'off', whilst the onColor sets the cell color
+to blue when the cell is clicked 'on'. The cell is instructed to use square
+corners (in HTML corners are square by default, you set the border radius in CSS
+to set the roundness of the corners). I assume the turnOff expression will be
+used to toggle the cell 'off', though if that's the case, where is the
+equivalent 'turnOn' option?</p>
+
+<p>Okay, now I'll read and take note of what the example explains these to
+mean.</p>
+
+<ul>
+  <li>I was right about what initialize and superinitialize do. Some extra info
+    to keep note of. You call initialize super whenever you inherit from a
+    class. The initialize method on the super class may do things like set up
+    some needed variables or behaviour etc. If you don't initialize it, you'll
+    likely get unexpected behaviour from not having a 'clean' state.</li>
+  <li>The expression 0@0 represents a Point object with both x and y coordinates
+    set to 0. We are actually sending '@' as a message to the object 0 with an
+    argument of 0 here. Then we are sending the corner: 16@16 message to the
+    point object. This creates a rectangle with corners 0@0 and 16@16. I still
+    find this a little confusing, though the message explanation is still a
+    lightbulb moment.</li>
+  <li>The book says that the rest of the messages are self explanatory, which I
+    can agree with. The authors go on to say that it's a good idea to write your
+    code so that it reads like English as much as possible. They say it helps to
+    imagine the Object talking to itself so that it says things like "Self, use
+    square corners!". I like this idea.</li>
+  <li>The 'initialize' method we just created is listed in the methods pane.
+    There is a little green arrow next to it which meanst that the method exists
+    in thte superclass, and is overridden in your class.</li>
+</ul>
+
+<h2>Inspect your newly created object in the playground</h2>
+
+<p>You can inspect your object by opening the playground and typing the
+expression <code class="lang-smalltalk">LOCell new</code> and running the
+Command-I command.</p>
+
+<p>This opens an inspector that shows you the variables contained in your object
+as well as the values contained within those variables. Clicking on one of the
+variables will split the screen into two panels, the right panel showing the
+details of the instance variables you clicked on.</p>
+
+<p>In the bottom pane of the inspector, you can run expressions like you would
+in the playground. Typing in <code class="lang-smalltalk">self
+  openInWorld</code> and running it with the Do It command (Command-D) will add
+your cell object to the top left of the World window. When I clicked on the cell
+it changed from yellow to blue, and when I clicked on it again it changed back
+to yellow. I was surprised by this because I didn't expect it to actually work
+based on the code that we had written.</p>
+
+<p>On the World window, you can meta click on the cell (Control-shift-click) to
+bring up the Morphic halo, a bunch of handles that let you move the cell around
+and resize it etc. The bounds in the inspector will change to match the new
+positioning. You can also delete it with the 'x' handle.</p>
+
+<h2>Defining the board class</h2>
+
+<p>Add a new class called LOGame and write a class comment for it. Then
+initialize the game with the following code:</p>
+
+<figure>
+  <figcaption>Initialize board class</figcaption>
+  <pre>
+  <code class="lang-smalltalk">
+  initialize
+    | sampleCell width height n |
+    super initialize.
+    n := self cellsPerSide.
+    sampleCell := sampleCell width.
+    height := sampleCell height.
+    self bounds: (5 @ 5 extent: (width * n) @ height * n) + (2 * self
+    borderWidth)).
+    cells := Matrix new: n tabulate: [ :i :j | self newCellAt: i at: j]
+  </code>
+  </pre>
+</figure>
+
+<p>When you save this code, you will get an error message popup box that says
+"Unknown variable: cells please correct, or cancel:" with a list of options for
+correcting the problem. We chose the 'Declare new instance variable' option
+because we want our cells to be an instance variable.</p>
+
+<p>After selecting this, the following Critic texts were provided by the Quality
+Assistant:</p>
+
+<ul>
+  <li>[borderWidth] Super and Self Messages sent but not implemented: Checks if
+    messages sent to self or super exist in the hierachy, since these can be
+    statically typed. Reported methods will certainly cause a doesNotUnderstand:
+    message when they are executed.</li>
+  <li>The same message above was repeated for [bounds:], [cellsPerSide] and
+    [newCellAt:at;] x 2.</li>
+</ul>
+
+<p>The next step is to open the playground and type in <code
+                                                         class="lang-smalltalk">LOGame</code>
+and run it with the Do It (Command-D) command. A debugger method will pop up
+complaining that it doesn't know what some of the terms are. Instead of closing
+the debugger, click on the Create button and select "LOGame" which will contain
+the method and click "ok". When prompted for a method protocol, select
+"accessing". This will cause the debugger to create the method on the fly and
+invoke it for you immediately. The resulting method will look like the
+following:</p>
+
+<figure>
+  <figcaption>cellsPerSide method stub</figcaption>
+  <pre>
+  <code class="lang-smalltalk">
+  cellsPerSide
+    self shouldBeImplemented.
+  </code>
+  </pre>
+</figure>
+
+<p>Replace the code stub with the following method</p>
+
+<figure>
+  <figcaption>Cells per side method</figcaption>
+  <pre>
+  <code class="lang-smalltalk">
+  cellsPerSide
+    "The number of cells along each side of the game"
+    ^ 10
+  </code>
+  </pre>
+</figure>
+
+<p>All this code does is specify how many cells go along the side of the game
+board.</p>
+
+<p>Okay, so after trying to run this code, there was a bug. Turns out I made a
+mistake earlier in the process. So I went back and rewrote all of the code. I
+forgot to capture the steps again because I was so focused on getting it right.
+This is the finished result:</p>
+
+<img src="/assets/img/lightson-game-pharo.png" class="medium-img" alt="code editor with lights on game
+showing">

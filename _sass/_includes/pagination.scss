@@ -1,0 +1,33 @@
+.pagination {
+  text-align: center;
+  &__previous { margin-right: 1rem; }
+  &__next { margin-left: 1rem; }
+  &__previous, &__next {
+    display: inline-block;
+    height: 1rem;
+    line-height: 1rem;
+    border-radius: .2rem;
+    text-align: center;
+    color: color($bw-color-gray, 20);
+    padding: .2rem;
+    text-align: center;
+    margin-top: 1rem;
+    &:hover { color: color($bw-color-brand, 50); }
+  }
+  &__page {
+    display: inline-block;
+    text-decoration: none;
+    width: 1rem;
+    height: 1rem;
+    line-height: 1rem;
+    padding: .2rem;
+    text-align: center;
+    background-color: color($bw-color-gray, 20);
+    color: white;
+    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+    &:hover { background-color: color($bw-color-brand, 50); }
+    &--active {
+      background-color: color($bw-color-brand, 50);
+    }
+  }
+}

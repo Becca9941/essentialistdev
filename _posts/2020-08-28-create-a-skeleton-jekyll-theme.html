@@ -1,0 +1,231 @@
+<h2>Installation</h2>
+
+<p>It's pretty easy to get started with creating a <a href="https://jekyllrb.com/docs/themes/#creating-a-gem-based-theme" target="_blank">Jekyll Theme</a>, because Jekyll lets you generate a bare-bones theme directory.</p>
+
+<ul>
+  <li>Install Jekyll: <code>gem install bundler jekyll</code></li>
+  <li>Generate a theme skeleton: <code>jekyll new-theme your-theme-name</code></li>
+</ul>
+
+<p>When you run the <code>jekyll new-theme</code> command, you'll get a folder called <em>your-theme-name</em> which has the following directory structure:</p>
+
+<pre>
+<code>
+|-- Gemfile
+|-- LICENSE.txt
+|-- README.md
+|-- _includes
+|-- _layouts/
+|   |-- default.html
+|   |-- page.html
+|   |-- post.html
+|-- sass/
+|-- assets/
+|-- your-theme-name.gemspec
+</code>
+</pre>
+
+<p class="info"><strong>Tip:</strong> Run <code>tree</code> in the command-line to generate a directory structure tree like the one above.</p>
+
+<p>This directory structure is literally the bare bones of a Jekyll site. Most of the folders don't have anything in them, they're just there to help you organize your files</p>
+
+<h2>Commit your skeleton theme so far</h2>
+
+<p>Before going any further, commit these files to a repository for your theme. That way, you know that any changes you make after this commit are your own. Here are the steps for doing this:</p>
+
+<ul>
+  <li>Create a repository for your theme on <a href="gitlab.com" target="_blank">Gitlab</a> or <a href="github.com" target="_blank">Github</a> etc.</li>
+  <li>Set the remote origin of your theme to your theme's repository url, like this Gitlab example):</li>
+</ul>
+
+<code>remote add origin git@gitlab.com:UserName/your-theme-name.git</code>
+
+<ul>
+  <li>Check the remote url has been added correctly:</li>
+</ul>
+
+<code>git config --get remote.origin.url</code>
+
+<ul>
+  <li>Commit everything so far. My commit message was:</li>
+</ul>
+
+<code>🎉 Start Live developer Journal jekyll theme.</code>
+
+
+<div class="info">
+  <p><strong>Commit message tips:</strong></p>
+
+<ul>
+  <li>48 or less characters.</li>
+  <li>If applied, this commit will <code>🙈 Ignore auto-generated files.</code></li>
+  <li>Emoji that represents type of developer task (see [Gitmoji]<a href="https://gitmoji.carloscuesta.me/" target="_blank">Gitmoji</a>).</li>
+  <li>Message must start with a capital letter.</li>
+  <li>Message must end with a full stop.</li>
+</ul>
+</div>
+
+<h2>Further Setup</h2>
+
+<p>There are couple more things I like to set up before moving forward. Like changing the license if needed, adding a decent HTML boilerplate to the default layout, setting up my assets and sass folder to match my own organizational preferences.</p>
+
+<p>Below is a set of brief explanations and suggestions for each of the files/folders in our auto-generated theme.</p>
+
+<h3>Gemfile and Gemfile.lock</h3>
+
+<p>A Gemfile describes the gem dependencies required to execute associated Ruby code (<a href="https://bundler.io/v2.1/man/gemfile.5.html" target="_blank">source: Bundler Gemfile docs</a>)</p>
+
+<p>A Gemfile.lock file is used for recording the exact versions of the gems you installed when installing them. When you run `bundle install` to install Gems, bundler first looks inside the Gemfile.lock to install the version captured there before it looks in the Gemfile. This stops bugs happening where a project on one computer may install a version that is different to the one that was intended.</p>
+
+<p>We don't need to make any changes to these at the moment.</p>
+
+<h3>LICENSE.txt</h3>
+
+<p>The default license file generated is the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> license, which lets anyone use, modify, distribute, sell, merge etc projects they make from your project.</p>
+
+<p>It's up to you whether you want to use an <a href="https://choosealicense.com/" target="_blank">alternative license</a>.</p>
+
+<h3>_includes/</h3>
+
+<p>The "includes" folder is used to store partial templates that you can include in any of your files. You might have an individual file for a header, footer, forms and general components.</p>
+
+<p>Personally, I only add things here as an when needed. Every project is different.</p>
+
+<h3>_layouts/</h3>
+
+<p>The layouts folder contains three files. Each of them are templates that wrap around your content.</p>
+
+<h4>default.html</h4>
+
+<p>At the moment, the default layout contains the "content }}", which is a variable that represents the rendered content of the post or page being wrapped.</p>
+
+<p>I like to add in a <a href="https://gitlab.com/EssentialistDev/essentiasist-dev/-/snippets/2007555" target="_blank">HTML boilerplate</a> for every page, where the title is pulled from the page (`{{ page.title }}`), same with the description and keywords if you want.</p>
+
+<p>This is also a good place to add analytics, rss or seo scripts if you want to.</p>
+
+<h4>post.html and page.html</h4>
+
+<p>The post layout is intended to be used for the articles you write in the posts directory. While the page layout is intended to be used for main site pages like about pages, contact etc.</p>
+
+<p>Both of these layout templates inherit from the default layout because they contain the <a href="https://jekyllrb.com/docs/front-matter/" target="_blank">front matter</a>:</p>
+
+<pre>
+</code>
+---
+layout: default
+---
+</code>
+</pre>
+
+<p>So whenever you want to use a page or post layout, set the layout to any of those and they'll automatically inherit the default layout.</p>
+
+<p>It's up to you what default things you want for pages and posts. I like to include a heading with the page title for each of the posts so I don't have to do it manually on each page.</p>
+
+<h4>_sass/ and assetsl/</h4>
+
+<p>The sass folder is currently empty. So this is something worth setting up. Here's what I do:</p>
+
+<ul>
+  <li>Create a "main.scss" file inside the "sass" folder. The purpose of this file is to import all of our other sass files into one place.</li>
+  <li>Create a file called "<a href="https://meyerweb.com/eric/tools/css/reset/" target="_blank">reset.scss</a>" or "<a href="https://necolas.github.io/normalize.css/" target="_blank">normalize.scss</a>" depending on which you prefer to use (if you do)</li>
+  <li>Import the normalize or reset file into your "main.scss" file, like this: <code>@import "normalize";</code>. You don't need to include the underscore.</li>
+  <li>In the assets folder at the root of your project, create a "CSS" folder, and inside that, create a file called "styles.scss", containing the following code:</li>
+</ul>
+
+<pre>
+<code>
+---
+---
+@import "main";
+</code>
+</pre>
+
+<p>Now, all of your sass partial files are imported into a main sass file, which is then imported into the main styles file. Under the surface, Jekyll converts "styles.scss" to "styles.css" when we build our site.</p>
+
+<p>In our "layouts/default.html" file, add the link to your stylesheet: <code><link rel="stylesheet" href="/assets/css/styles.css"></code></p>
+
+<p>The assets folder is used to store things like CSS, JS, images, documents etc. We already created the CSS folder. It's up to you if you want to create folders for the rest at this stage.</p>
+
+<h4>_site</h4>
+
+<p>The site/ directory contains the generated files for our entire site. This folder is ignored in our ".gitignore" file. Don't change whats inside this.</p>
+
+<h4>your-theme-name.gemspec</h4>
+
+<p>The "*your-theme-name*.gemspec" file is the gem that is used to package up our theme for others to use once it's ready. We don't need to worry about it right now. Though I do like to update the following values:</p>
+
+<pre>
+<code>
+spec.summary = "provide a short description of your theme"
+spec.homepage = "link to theme repository or live demo"
+</code>
+</pre>
+
+<h2>Extra files/folders</h2>
+
+<p>Here are some extra things I think are important to add to the skeleton theme, that weren't included.</p>
+
+<h3>_posts/</h3>
+
+<ul>
+  <li>Create a posts directory in the root of the theme project: <code>mkdir posts</code></li>
+  <li>Inside the post directory, create a hello world post (<code>touch yyyy-mm-dd-hello-world-post.md</code>) that contains:</li>
+</ul>
+
+<code>
+{% raw %}&lt;h1&gt;{{ page.title }}&lt;/h1&gt;{% endraw %}
+</code>
+
+<h3>_config.yml</h3>
+
+<p>I also don't want to have to specify that the layout is a post every time I write a new post. So I can make all posts inherit a post layout by default, by creating a "config.yml" file at my projects root with the following settings:</p>
+
+<pre>
+<code>
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+      type: "posts" # now we are getting all files in the _posts directory
+    values:
+      layout: "default"
+</code>
+</pre>
+
+<h3>index.html</h3>
+
+<p>Create an "index.html" page in your project's root, with the following markup that displays all posts in your "posts" directory.</p>
+
+<pre>
+<code>
+---
+layout: default
+---
+
+&lt;ul&gt;{% raw %}
+{% for post in site.posts %}
+  &lt;li&gt;&lt;a href="{{ post.url }}"&gt;{{ post.title }}&lt;/a&gt;
+{% endfor %}{% endraw %}
+&lt;/ul&gt;
+</code>
+</pre>
+
+<h3>404.html</h3>
+
+<ul>
+  <li>Create a 404 page in the root with the following (edit to make a custom 404 if you want):</li>
+</ul>
+
+<pre>
+<code>
+---
+layout: default
+---
+
+&lt;h1&gt;404&lt;/h1&gt;
+
+&lt;p&gt;Page not found! :(&lt;/p&gt;
+</code>
+</pre>
+
+<p>That's it for now, woo woo! If you want to have a look at what this all looks like once it's done, <a href="https://gitlab.com/EssentialistDev/live-developer-journal-theme/-/tree/80de631583c5703dc8b8e62fbf4c47540168dd44" target="_blank">here's the finished skeleton theme</a></p>

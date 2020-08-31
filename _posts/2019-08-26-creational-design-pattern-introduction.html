@@ -1,0 +1,94 @@
+---
+layout: post
+title: creational design patterns introduction
+---
+
+<p>Notes are based on <a href="https://www.bookdepository.com/Design-Patterns-Erich-Gamma/9780201633610" target="_blank">Design Patters: Elements of Reusable Object-Oriented Software</a></p>
+
+<p>This weekend was a laptop free zone. The aim for the weekend was to take some real time off, and that's going to be a plan from now on. No screens at the weekend or after 6pm. Yesterday, I spent a few hours lying in the hammock outside in the sun, reading the Design patterns book on my Kindle (which doesn't count as screen time as it's a substitute for books).</p>
+
+<p>I took a bunch of notes. The first couple of chapters were pretty difficult for me to understand, but after reading them three or four times managed to get a better idea each time. I used to feel so bad when I didn't understand concepts in tech books, but can now understand books that I really struggled with a year or so ago so know that I will get this in my own time, and it's going to be SO MUCH FUN, yayy!</p>
+
+<h2>Creational patterns</h2>
+
+<p>There are three main categories of Design Patterns: Creational, Structural and Behavioural. Starting with the Creational patterns first. Each of the Design patterns can be applied to classes, or instances of those classes (objects)</p>
+
+<p><strong>Class Creational Patterns</strong> uses inheritance to vary the class that is intantiated. While <strong>Object Creational Patterns</strong> will delegate instantiation to other objects.</p>
+
+<h3>2 x themes</h3>
+
+<ol>
+  <li>They encapsulate knowledge about which concrete classes the system uses</li>
+  <li>They hide how instances of these classes ore created and put together</li>
+</ol>
+
+<p class="note">Concrete classes refer to classes that are not abstract classes. Abstract classes are like a bluprint of things you want your class to contain. A concrete class inherits from the abstract class, and MUST contain the behaviours that are specified in the abstract class blueprint. The concrete class can have additional behaviours too.</p>
+
+<p>The main purpose of creational classes is to remove explicit references to concrete classes from code that needs to instantiate them. So we don't say, we need to create an instance of this specific class in our code. Instead we say, we are going to create an instance of a non-specific class that can be substituted for other classes that use the same interface as each other (or part of the same interface). The interface is made up of the methods that we are calling (messages we are senting to) the object that we are using the class to create an instance of. As long as we use classes that can understand those method calls, then we can substitute the class with any of those classes instead of locking in a single class when we are defining which one should be instantiated at run time.</p>
+
+<h3>Problem Statement</h3>
+
+<p>To illustrate the how creational patterns are used, the authors provide an example of creating a Maze with the component objects (Room, Door and Wall) that make up the maze. The y start with code that does this without using any of the creational patterns. The subsequent chapters then show you how this code is refactored to use the creational patters.</p>
+
+<p>The following code is written in C++, and represents the class responsible for creating a Maze with two rooms. Below this code I will explain what each line is doing (mostly for my own benifit as someone not familiar with this language yet). Then I'll include the problems associated with hard-coding references to the concrete classes as mentioned in the chapter. After that, I'll include a brief summary of how each of the creational patterns approach removing the referenced to concreate classes.</p>
+
+<pre>
+<code>
+Maze* MazeGame:: CreateMaze() {
+  Maze* aMaze = new Maze;
+  Room* r1 = new Room(1);
+  Room* r2 = new Room(2);
+  Door* theDoor = newDoor(r1, r2);
+
+  aMaze -> AddRoom(r1);
+  aMaze -> AddRoom(r2);
+
+  r1 -> SetSide(North, new Wall);
+  r1 -> SetSide(East, theDoor);
+  r1 -> SetSide(South, new Wall);
+  r1 -> SetSide(West, new Wall);
+
+  r2 -> SetSide(North, new Wall);
+  r2 -> SetSide(East, new Wall);
+  r2 -> SetSide(South, new Wall);
+  r2 -> SetSide(West, theDoor);
+
+  return aMaze;
+}
+</code>
+</pre>
+
+<h4>Code explanation (for my own benefit)</h4>
+
+<p>I asked for help understanding the 'Maze*' pointer symbols and the difference between the first and second lines. It was explained to me three or four times in different ways until I finally understood it, because there is a lot going on there behind the scenes. So will start with the analogy that was told to me first.</p>
+
+<p>We are planning to return the address of the cupboard that is going to hold a cup of coffee. This plan is written down as 'Coffee*'. In this plan, we don't care how the coffee is made, just that there will be a cupboard that holds a cup of coffee. Then we make a simple cup of coffee (coffee and hot water) and place it into a cupboard. Before we return the location of that coffee, we first add some milk and sugar to it. After the coffee has been made just how we like it, we return the address. We have now fulfilled our plan to return the address that holds a cup of coffee.</p>
+
+<p>Following this analogy here is what the code above is doing.</p>
+
+<ul>
+  <li>First, we define a new method called 'CreateMaze' on the 'MazeGame' class (as denoted by the '::' characters). At the start of this method declaration there is a pointer 'Maze*'. The star character means that it is a pointer. A pointer is an address in memory that has been allocated by us. In C++ we have to define memory allocation because this isn't done automatically for usi (unlike languages like Java and Ruby etc, which frees up memory once it recognises that we are no longer using a class or variable etc). So the first line is just saying that we expect this method to return a pointer (adress of our cupboard) in memory where our Maze (our cup of coffee) will be found.</li>
+  <li>We then create our Maze (coffee) and store it in memory (a cupboard).</li>
+  <li>Before we return the address of where the Maze is stored, we first add a couple of rooms to it with the location of their doors and walls specified (adding milk and sugar).</li>
+  <li>Finally, we return the location of our Maze, which fulfulls the terms of our method plan (Maze*), which was to return the location of a Maze.</li>
+</ul>
+
+<h4>Problems</h4>
+
+<p>In this CreateMaze method, we have explicitly said that we are going to be using instances of specific classes (Room, Wall and Door). The problem with this is that we might want to create a new maze in the future with different components. We might use a different type of door that needs a spell to be opened, or a room that holds magical objects etc. Howeve
+r, in order to be able to do this we would have to rewrite this method to explicitly state that we want to use these other types of objects.</p>
+
+<p>Creational patterns allow you to easily substite classes so that you don't have to be explicit about which exact ones you are going to be using every time. This makes it easier t
+o create new Mazes that might vary from the one you created initially.</p>
+
+<h3>Five Creational patterns</h3>
+
+<p>There are five different creational patterns. Each of them will change the CreateMaze code above so that there are no longer explicit references to the classes that we are instantiating. There are subtle differences between how each of them do this, and they all have their own advantages and trade-offs. I'll briefly cover how they will solve this problem below, based on the introduction chapter, and not the individual chapters for each of these patterns. So nuances will be missing in this overview.</p>
+
+<ul>
+  <li><strong>Factory Method:</strong> CreateMaze calls virtual functions instad of constructor calls to create the rooms, walls and doors it requires. To change the classes that get instantiated, you can make a sub-class of MazeGame and redefine those virtual functions.</li>
+  <li><strong>Abstract Factory:</strong> CreateMaze is passed an object as a parameter to use to create the rooms, walls and doors. This allows you to change the classes of rooms, walls and doors by passing in a different object as a parameter.</li>
+  <li><strong>Builder:</strong> CreateMaze is passed an object that can create a Maze in it's entirety using operations for addingf rooms, doors and walls to the maze it builds. This allows you to use inheritance to change parts of the maze or the way the maze is built.</li>
+  <li><strong>Prototype:</strong> CreateMaze is parameterized by prototypical room, door and wall objects, which it then copies and adds to the maze. This allows you to change the Maze's composition by replacing these prototypical objects with different ones.</li>
+  <li><strong>Singleton:</strong> Ensures that there is only one Maze per game and that all game objects have ready access to it without resorting to global variables or functions. This allows you to easily extend or replace the maze without touchintg existingf code.</li>
+</ul>

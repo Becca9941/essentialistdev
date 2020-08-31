@@ -1,0 +1,108 @@
+---
+layout: post
+title: Notes on article - A laboratory for teaching object-oriented thinking
+categories: [principles, reading notes]
+tags: [Kent Beck, Ward Cunningham, Object-oriented, CRC cards, metaphors]
+---
+
+<p class="note">The notes in this article are heavily based on <a
+   href="https://c2.com/doc/oopsla89/paper.html" target="_blank">A Laboratory for Teaching
+   Object-oriented Thinking</a> by Kent Beck and Ward Cunningham.</p>
+
+<h2>Difficulties learning Object-Oriented Thinking</h2>
+
+<ul>
+  <li>It's difficult to teach beginner programmers and experienced procedural
+    programmers how to think with an anthropomorphic persective, which is needed
+    to understand Object-Oriented design. Anthropomorphic means treating animals
+    and objects as if they are human in appearance.</li>
+  <li>According to the authors, the most difficult thing about teaching
+    Object-oriented programming is getting the learners to let go of their
+    reliance on global knowledge that is common to a procedural programming way
+    of doing things.</li>
+  <li>Kent Beck and Ward Cunningham have found that the most effective way of
+    thinking in Objects is to immerse the learner in the "objectness" of the
+    material, which involves removing as much familiar material as possible.
+    They say that the syntax and programming environment operation will be
+    picked up quickly enough once the fundementals have been thoroughly
+    understood.</li>
+  <li>The authors use CRC cards to introduce Object-Oriented design. CRC stands
+    for Class, responsibility and Collaboration.</li>
+</ul>
+
+<p class="note">I am struggling to understand Object-oriented thinking for the
+same reasons that have been outlined above. The CTO of the startup I work at
+said it took him years to 'get' Object-oriented, but one day it all clicked into
+place and the click was probable audible to the people around him. Two other
+extremely experienced and talented developers confirmed the same thing happened
+for them. They said that working with someone who really gets it played a big
+part in helping them get to the click moment.</p>
+
+<p class="note">They also said not to feel like a
+bad programmer if I'm struggling to get it. That everything I'm learning and
+practicing is like a cube of sugar on a weighing scale. The first one you add
+does nothing to adjust the weight, the first dozen also do nothing. But at some
+point, the scales will suddenly tip and it'll all finally make sense.</p>
+
+<h2>CRC Cards (Class, responsibility and Collaboration</h2>
+
+<ul>
+  <li>It is important to choose a class name that really helps you to discuss
+    the design from an abstract/metaphorical perspective. Take your time finding
+    just the right set of words to describe your objects. Words that are close
+    to the business language so that non-programmers know exactly what you are
+    talking about even if really you are talking about code</li>
+  <li>Responsibilities identify problems that need to be solved. They serve as a
+    handle for discussing potential solutions. Responsibilities are written as
+    short phrases containing verbs (with at least one active verb). The better
+    that these phrases express potential solutions, the more powerful and
+    concise the design will be.</li>
+  <li>Kent Beck and Ward Cunningham say that one of the distinguishing features
+    of object-oriented design is that no object is an island. They all stand in
+    relationship to one another. They rely on each other for services and
+    control. They are each a collaborator who can send messages to each other
+    with the aim of satisfying responsibilities. The messages they send are tell
+    only, they don't tell another object what to do.</li>
+</ul>
+
+<p class="note">One of the really interesting things that happened at work was
+when the CTO was explaining his view of the system as a series of gates that
+were either open, closed or locked. The gates could only be locked by someone
+with authority who was in possession of a master key. The CEO (who is an
+executive chef) heard this metaphor and started using it to explain the system
+to his business partners. So while we were in fact discussing code, it was
+accessible to a non-programmer who was able to join in on the discussion and
+ask questions or offer course corrections to be discussed if needed.</p>
+
+<h2>Using CRC cards in practice</h2>
+
+<ul>
+  <li>CRC cards represent multiple objects at the same time. They don't just
+    outline messages that different objects might send to each other. They also
+    show the collaboration between objects. The messages are not written as
+    method names, but as english readable phrases that describe potential
+    solutions to problems.</li>
+  <li>The cards are used to help developers not only design their system, but to
+    tell the story of their system in plain english, with no reference to
+    programming syntax.</li>
+  <li>The cards themselves are written with a class name at the top. Then the
+    card is split into two sections. The left side contains responsibilities.
+    The right side contains other objects that the current object collaborates
+    with.</li>
+  <li>Before writing the cards, developers are presented with a simple scenario
+    and perhaps one or two objects. If a situation calls for a responsibility
+    that has not already been covered by one of the existing objects, then we
+    either add the responsibility to one of those objects or create a new object
+    to address that responsibility.</li>
+  <li>If one of the objects becomes too cluttered, then we copy the information
+    on its card, to a new card whilst searching for a more powerful and more
+    concise way of expressing what the object does. If it's not possible to
+    simplify the object further, then we consider creating a new object to
+    assume some of the responsibilites.</li>
+  </li>Finally, the authors stress the importance of creating objects not to
+  meet the mystical future needs that we can imagine, but only to meet the
+  demands of the current moment. If we design objects properly, it will be
+  easier to extend the system to accomodate new responsibilites at a later date.</li>
+</ul>
+</ul>
+

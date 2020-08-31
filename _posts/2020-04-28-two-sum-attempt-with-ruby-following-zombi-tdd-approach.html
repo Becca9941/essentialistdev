@@ -1,0 +1,215 @@
+---
+layout: post
+---
+
+<p>So I haven't written a post here in four months. Things have been a little rough, a lot rough, but getting back on track now.</p>
+
+<p>I totally lost my programming confidence, and have found it really difficult to do any non-web development-based coding. For months.</p>
+
+<p>So todays the first day in a long time that I feel ready to try again. I went onto <a href="https://leetcode.com" target="_blank">Leetcode</a> and found a list of easy problems. I picked the first one on the list, called <a href="https://leetcode.com/problems/two-sum/" target="_blank">Two Sum</a>.</p>
+
+<h2>Two Sum</h2>
+
+<h3>Problem statement</h3>
+
+<p><em>Reworded to be easier to understand</em></p>
+
+<p>You are given an array of integers, and a target number. Your task is to return the indices of the two numbers in the array that add up to the target number.</p>
+
+<p><strong>Constraints:</strong>You can't return the index of the same element more than once. You may assume that there is exactly one solution for the target number your are given.</p>
+
+<p>Example:</p>
+
+<pre>
+<code>
+Given nums = [2, 7, 11, 15], target = 9
+
+ruturn [0,1]
+</code>
+</pre>
+
+<h3>Thoughts on my approach</h3>
+
+<p>I am going to solve all of these problems following a TDD, Object-oriented approach. Once I've solved them, I'll get feedback and try them again. It's time to face my fear of not being good enough, so I can actually start improving again.</p>
+
+<p>I'm going to try out James Grenning's <a href="http://blog.wingman-sw.com/tdd-guided-by-zombies" target="_blank">TDD Guided by ZOMBIES</a> (2016) approach. Let's get started.</p>
+
+<h3>Step 1: Set up Ruby Dev environment</h3>
+
+<p>I created a project folder and opened it:</p>
+
+<code>mkdir two-sum && cd two-sum</code>
+
+<p>I created a test folder and a production code folder</p>
+
+<code>mkdir spec lib</code>
+
+<p>I created a two-sum test file and added a test scaffolding to it.</p>
+
+<pre>
+<code>
+require 'two-sum'
+
+describe TwoSum do
+  it "Does something" do
+  end
+end
+</code>
+</pre>
+
+<p>Then I went into the production code folder and created a two-sum file with a class scaffolding.</p>
+
+<pre>
+<code>
+class TwoSum
+end
+</code>
+</pre>
+
+<p>After that, I went back to the root and set up a command to auto run my tests for those two files every time I save one of them.</p>
+
+<code>ls **/*.rb | entr rspec</code>
+
+<p>This says, grab all the ruby files inside all of the directories (inside root), and run the command after '| entr' every time one of those files are changed.</p>
+
+<p>The original tweet for this solution is <a href="https://twitter.com/Becca9941/status/1254635805168959489" target="_blank">here</a>.</p>
+
+<h3>Step 2: Z is for Zero</h3>
+
+<p>Here's the explanation for 'Zero' in the article: <q>The first test scenarios are for simple post conditions of a just created object. These are the zero cases. While defining the Zero cases, take care to design the interface and capture the boundary behaviours in your test scenarios.</q></p>
+
+<p>Most of that didn't make any sense to me. Hello Google.</p>
+
+<p>First question, what are simple post conditions of a just created object?</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Postcondition" target="_blank">Wikipedia says</a> that <q> a postcondition in a condition or predicate that must always be true just after the execution of some section of code or after an operation in a formal specification... Example. A program that calculates factorials of an input number would have postconditions that the result after the calculation be an integer and that it be greater than or equal to 1</q></p>
+
+<p><a href="https://www.sciencedirect.com/topics/computer-science/postconditions" target="_blank">Science Direct says</a> that <q>a postcondition associated witth a method invocation is a condition that must be true when we return form a method.</q></p>
+
+<p><a href="http://people.cs.ksu.edu/~schmidt/301s11/Lectures/3procS.html" target="_blank">David Schmidt, 2008 [lecture] says</a> that <q>the precondition states the situation under which the function operates correctly, and the postcondition states what the function has accomplished when it terminates. </q></p>
+
+<a href="http://web.eecs.utk.edu/~bmaclenn/Classes/102/handouts/110419.pdf" target="_blank">Min H. Kao Dept. of Electrical Engineering & Computer Science</a> says that <q>postconditions are conditions that are true after a function returns or at the end of a code segment.</q></p>
+
+<p>Okay, that was my favourite explanation of what postconditions are. Felt like it clicked after that one.</p>
+
+<p>Okay, so the two sum program will return an array of two integers, both of which will be positive integers (because the index starts at 0). So in my mind, the postconditions will be:</p>
+
+<ul>
+  <li>Result must be an array</li>
+  <li>Array must containing two numbers</li>
+  <li>Numbers must be positive numbers (not negative)</li>
+</ul>
+
+<p>These preconditions I came up with don't feel exactly right, and I can't explain why. But it's a starting point that will get me moving.</p>
+
+<p>Before writing my first test, I replaced my class with a method, we don't need an object for this at the moment. Here's what it looks like now</p>
+
+<pre>
+<code>
+require 'two-sum'
+
+describe twoSum do
+  it "Does something" do
+  end
+end
+</code>
+</pre>
+
+<pre>
+<code>
+def twoSum
+end
+</code>
+</pre>
+
+<p>Oh fudge, I forgot to research the other things I didn't understand. James said 'take care to design the interface and capture the boundary behaviours in your test scenarios'.</p>
+
+<p>I know (think I know) that an interface is the messages that an object can understand (the methods that can be invoked on it - but messages is the way Alan Kay, the creator of OO intended it to be known as. <a href="http://wiki.c2.com/?AlanKayOnMessaging" target="_blank">Here's his C2 wiki on it</a>. I like to imagine my objects as little post boxes that other objects wander up to and feed message envelopes too with the question they want answered written on them. The post box can only choose to answer the messages that he can read. Communication is key.</p>
+
+<p>Right, next question, what are boundary behaviours?</p>
+
+<p>I wrote a Tweet thread asking for help on this <a href="https://twitter.com/Becca9941/status/1255143609529102338" target="_blank">here</a>.</p>
+
+<p>Here's what I wrote if you don't want to go there and see the replies (if there are any).</p>
+
+<p>Can anyone explain what 'boundary behaviour' means when it comes to object-oriented design? My current understanding: You have a post box object and the post man (a different object) delivers a message to it and realises the message belongs to next doors post box.</p>
+
+<p>Context: I'm trying out the ZOMBIE OO approach to solving a simple kata. The input is an array and a target number. The output is the indices of two numbers from the array that add up to the target number.</p>
+
+<p>So for the Zero part, I'm trying to understand what postconditions, interfaces and boundary behaviours are. So far, my postconditions are: Must be an array, must contain two numbers, must be positive numbers. The message (interface) could be 'twoSum.indices_of_target_sum().</p>
+
+<p>Not sure about the boundary behaviour part though.Not sure if I've got any of this right either, as it's my first time and haven't really come across these terms before. Would appreciate any feedback to know if I'm on the right track or not.</p>
+
+<p>While I'm waiting, I'll go ahead and write the first test based on my current understanding.</p>
+
+<p>Test code:</p>
+
+<pre>
+<code>
+require 'two-sum'
+
+describe 'indices_whose_sum_equals' do
+  it "returns two positive numbers in an array" do
+    expect(indices_whose_sum_equals.length).to eq(2)
+    expect(indices_whose_sum_equals[0]).to be_kind_of(Integer)
+    expect(indices_whose_sum_equals[1]).to be_kind_of(Integer)
+    expect(indices_whose_sum_equals[0]).to be >= 0
+    expect(indices_whose_sum_equals[1]).to be >= 0
+  end
+end
+</code>
+</pre>
+
+<p>Production code:</p>
+
+<pre>
+<code>
+def indices_whose_sum_equals
+  [0, 0]
+end
+</code>
+</pre>
+
+<p>The tests fails if there are less than two numbers, if one of the elements is not a number, or if a negative number is returned.</p>
+
+<p>I refactered the tests to remove duplication and to make them a little easier to read</p>
+
+<pre>
+<code>
+require 'two-sum'
+
+describe 'indices_whose_sum_equals' do
+  it "returns two positive numbers in an array" do
+
+    expect(indices_whose_sum_equals.length).to eq(2)
+
+    first_number = indices_whose_sum_equals[0]
+    second_number = indices_whose_sum_equals[1]
+
+    [first_number, second_number].each do |index|
+      expect(index).to be_kind_of(Integer)
+      expect(index).to be >= 0
+    end
+
+  end
+end
+</code>
+</pre>
+
+<p>Something about this first test feels wrong though. I think the implementation details are too tied into it. Like it shouldn't matter if it's an array or not, hmm. I'll keep going. Once it's all working can ask for ways to make it better :)</p>
+
+<h3>Step 3: O is for One</h3>
+
+<p>Ahh send halp I don't get this yet. The next part says <q>Once progress is made on the zero cases, move to the next special boundary case, testing the bhaviour desired when transitioning from zero to one.</p>
+
+<p>Okay, so what is a special boundary case?</p>
+
+<a href="https://softwareengineering.stackexchange.com/questions/125587/what-are-the-difference-between-an-edge-case-a-corner-case-a-base-case-and-a-b" target="_blank">Joonas Pulakka, 2011</a> cites Wikipedia, saying that a <q>boundary case occurs when one of inputs is at or just beyond maximum or minimum limits.</q>
+
+<p>Hmm, okay so the zero case are the conditions that must be true once it has been run. The returned integers can't be negative numbers.</p>
+
+<p>What's the next tiny step forward, working backwards? What do we need to get the result we are looking for?</p>
+
+<p>Ahhh cool! Got a bunch of awsesome replies to my question on Twitter. I especially love this one: <q>Consider is_empty, is_almost_empty, is_almost_almost empty.  Which of these is not like the others?</q> by <a href="https://twitter.com/VocumSineratio" target="_blank">Danil Suits</a> which felt like a total epiphany, also kindof got there in the couple sentences before this too, yayy!</p>
+
+<p>It's 2.30am, going to sign off for now, and carry on with this tomorrow, yay!</p>

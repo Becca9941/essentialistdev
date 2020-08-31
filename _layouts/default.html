@@ -1,56 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>{{ page.title }}</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="The Essentialist Dev | Action Plans For Developers">
-    <!-- Twitter card -->
-    <meta property="og:image" content="/assets/images/article-images/small/{{page.featured_image}}">
-    <!-- import the Material stylesheet -->
-    <link rel="stylesheet" href="/css/purified.css" async>
-    <!-- import Material Icons -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" async>
-
-    {% feed_meta %}
-    {% seo %}
-
-    <!-- Progress Bar -->
-    <script type="text/javascript" src="/assets/js/progress-bar.js" async></script>
-    <script type="text/javascript" src="/assets/js/openMobileNav.js" async></script>
-    <script type="text/javascript" src="/assets/js/search-bar.js" async></script>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156669333-1"></script>
-
-    <script>
-      window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-
-gtag('config', 'UA-156669333-1');
-    </script>
-
+    <meta name="author" content="author here">
+    <meta name="description" content="{{ page.description }}">
+    <meta name="keywords" content="{{ page.tags }}">
+    <link rel="stylesheet" href="/assets/css/styles.css">
   </head>
-  <body class="mdc-typography">
+  <body>
+    {% include landing-intro.html %}
 
-    <div class="site">
+    {{ content }}
 
-      <div class="mobile-nav" id="mobile-nav">
-        {% include navigation-drawer.html %}
-      </div>
-
-      <div class="main-content" id="main-content">
-        {% include navigation.html %}
-
-        {{ content }}
-
-        {% include footer.html %}
-      </div>
-
-    </div>
-
-    <!-- import the Material javascript file -->
-    <script src="/dist/bundle.js" async></script>
+    {% include footer.html %}
   </body>
 </html>

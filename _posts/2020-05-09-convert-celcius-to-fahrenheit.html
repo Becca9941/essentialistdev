@@ -1,0 +1,44 @@
+---
+layout: post
+---
+
+<h3>Problem Statement</h3>
+
+<p>The algorithm to convert from Celsius to Fahrenheit is the temperature in Celsius times 9/5, plus 32.</p>
+
+<p>You are given a variable celsius representing a temperature in Celsius. Use the variable fahrenheit already defined and assign it the Fahrenheit temperature equivalent to the given Celsius temperature. Use the algorithm mentioned above to help convert the Celsius temperature to Fahrenheit.</p>
+
+<h2>Test Cases</h2>
+
+<ul>
+  <li>convertToF(0) should return a number</li>
+  <li>convertToF(-30) should return a value of -22</li>
+  <li>convertToF(-10) should return a value of 14</li>
+  <li>convertToF(0) should return a value of 32</li>
+  <li>convertToF(20) should return a value of 68</li>
+  <li>convertToF(30) should return a value of 86</li>
+</ul>
+
+<h2>Solution</h2>
+
+<p>I Googled the Celsius to Fahrenheit formular to write this program. There isn't much to this program, but I want to make it more useful and fun, which I'll explain next.</p>
+
+<pre>
+<code>
+function convertToF(celsius) {
+  return (celsius * 9/5) + 32;
+}
+
+convertToF(30);
+</code>
+</pre>
+
+<h2>Improvement Ideas</h2>
+
+<p>It would be cool to add a fahrenheit to celcius converter too, which is a pretty standard improvement.</p>
+
+<p>The more fun idea that I have is to show little facts about different temperatures that are added in. Like '0 degrees represents the freezing point of water', or '100 degrees represents water's boiling point at the standard atmosphere' etc. Maybe even something about how the temperature scale was invented.</p>
+
+<p>What else could make this more fun? Hmm, maybe an oven temperature conversion table, which includes the gas marks vs fan settings.</p>
+
+<p>It would also be fun to have some kind of temperature sensor that tells you how hot your device is too.</p>

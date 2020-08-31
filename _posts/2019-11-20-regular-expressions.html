@@ -1,0 +1,44 @@
+---
+layout: post
+title: learning about regular expressions
+---
+
+<p>Source: <a href="https://regexcrossword.com/" target="_target">regexcrossword.com</a></p>
+
+<h2>Tutorial</h2>
+
+<p>This tutorial introduces us to some Regex patterns using a crossword-style approach.</p>
+
+<ul>
+  <li>A | Z, A | B. This means, the answer must satisfy two conditions. It must contain an A or a Z, and it must contain an A or a B. A matches both conditions.</li>
+  <li>[ABC], [BDF]. This means, the answer must contain an A, a B, or a C, and it must contain a B, a D or an F. B is the only thing found in both ranges.</li>
+  <li>[ABC], [^AB]. This means, the answer must contain an A or a B or a C, but it must NOT (^) contain an A or a B. The only answer that meets both these conditions is the letter C.</li>
+  <li>We have a two character answer. The first character must contain an A (A), and it must also contain 0 or more As (A*). The second character must contain 0 or more As or Bs. So the answer will be 'AA'.</li>
+  <li>We have a two character answer. The first character must contain an A or a C (A | C), and it must also contain zero or one As and zero or one Bs (A?B?). The second character must contain a B. So the answer is 'AB'.</li>
+  <li>We have a two character answer. The first character must have an A or a B (A|B), and it must have one or more As (A+). The second character must be an A or a Z, and also have one or more A characters (A|Z, A+). The answer is 'AA'.</li>
+  <li>We have a two character answer. Both the first and second character must contain an A or a B (A|B), and the second character must contain the results of th first capture group, which in this case happens to be an A. So the answer is AA.</li>
+  <li>We have a two character answer. The first caracter must contain 1 A. The second character must contain a B or an A. Both characters must contain 2 or mor As ({2,})</li>
+  <li>We have a one character answer. It must contain a space, and it must contain an A or a space.</li>
+</ul>
+
+<h2>Beginner problems</h2>
+
+<p>It's going to be too difficult to write out the whole logic process for solving the crossword-type problems in these examples. So instead I'll just record each of the rules and what they mean.</p>
+
+<ul>
+  <li>[^SPEAK]+ means must not contain one or more of the characters S,P,E,A or K.</li>
+  <li>[PLEASE]+ means must contain one or more of the characters P,L,E,A,S,E.</li>
+  <li>HE | LL | O+ means must contain 'HE' or 'LL' or one or more 'O's.</li>
+  <li>EP | IP | EF means must contain 'EP' or an 'IP' or an 'EF'.</li>
+  <li>(A|B|C)\1 means must be either an A or a B or a C</li>
+  <li>(AB | OE | SK) means must be 'AB', or an 'OE' or an 'SK'.</li>
+  <li>.*M?O.* means 0 or more of any character (.*), then 0 or one M (M?), then O, then 0 or more of any characters (.*).</li>
+  <li>(AN | FE | BE) means must be an 'AN' or an 'FE' or a 'BE'.</li>
+  <li>[COBRA]+ must contain one of any of these characters: C,O,B,R, or A.</li>
+  <li>(AB | O | OR)+ means must contain one or more of the character groups 'AB', 'O' or 'OR'.</li>
+  <li>(.)+\1 means the first character must be 0 or more of the following character, which must be the result of the first chracter.</li>
+  <li>[^ABRC]+ means, must not be one or more of one of the characters A,B,R or C.</li>
+  <li>[*]+ means must contain one or more of any character</li>
+  <li>[*]+ means one or more of the * character</li>
+  <li>.?.+ means character one must be 0 or more of any character. Character 2 must be 1 or more of any character.</li>
+</ul>

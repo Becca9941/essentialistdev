@@ -1,24 +1,52 @@
-![Full home page screen capture](/assets/images/logo-full.png)
+# live-developer-journal
 
-# Essentialist Dev | A Live Developer Journal
+Welcome to your new Jekyll theme! In this directory, you'll find the files you need to be able to package up your theme into a gem. Put your layouts in `_layouts`, your includes in `_includes`, your sass files in `_sass` and any other assets in `assets`.
 
-**Tags:** Blog, Website, Jekyll, Material Design, Katas, Wellbeing, Tech, Portfolio, Newsletter
+To experiment with this code, add some sample content and run `bundle exec jekyll serve` – this directory is setup just like a Jekyll site!
 
-## Essentialism
+TODO: Delete this and the text above, and describe your gem
 
-The name "Essentialist Dev" is inspired by Greg McKeown's Book [Essentialism: The Disciplined Pursuit of Less](https://gregmckeown.com/book/).
 
-It's easy to get overwhelmed by how much there is to learn as a developer. This book helped me realise that we can choose to do anything, but not everything.
+## Installation
 
-> Only once you stop giving yourself permission to do it all, to stop saying yes to everyone, can you make your highest contribution to the things that really matter. - Greg McKeown
+Add this line to your Jekyll site's `Gemfile`:
 
-## Site Content
+```ruby
+gem "live-developer-journal"
+```
 
-- [Action Plans](https://essentialistdev.com/action-plans.html): Step-by-step guides for core developer skills.
-- [Tech Journal](https://essentialistdev.com/tech-journal.html): Core developer techniques, tools, principles and philosophies (and the why behind them).
-- [Non Tech](https://essentialistdev.com/non-tech.html): The best transferable advice from other disciplines.
-- [Wellbeing](https://essentialistdev.com/wellbeing.html): Tips on how to improve your life right now!
+And add this line to your Jekyll site's `_config.yml`:
 
-## Preview
+```yaml
+theme: live-developer-journal
+```
 
-![Full home page screen capture](/assets/images/site-screenshots/essentialist-dev-full-home.png)
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install live-developer-journal
+
+## Usage
+
+TODO: Write usage instructions here. Describe your available layouts, includes, sass and/or assets.
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/hello. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+## Development
+
+To set up your environment to develop this theme, run `bundle install`.
+
+Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
+
+When your theme is released, only the files in `_layouts`, `_includes`, `_sass` and `assets` tracked with Git will be bundled.
+To add a custom directory to your theme-gem, please edit the regexp in `live-developer-journal.gemspec` accordingly.
+
+## License
+
+The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+

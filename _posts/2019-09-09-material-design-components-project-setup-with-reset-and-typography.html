@@ -1,0 +1,173 @@
+---
+layout: post
+title: Material design components project setup with reset and typography
+---
+
+<p>Material design is a design system developed by Google in 2014. This system is inspired by tme real world and it's textures, including how they reflect light and cast shadows. Material surfaces reimagine the mediums of paper and ink.</p>
+
+<p>After downloading the free <a href="https://www.sketchappsources.com/free-source/874-material-design-google-sketch-freebie-resource.html" target="_blank">Material Design sticker sheet</a> developed by google, I designed a few screens with it for my work's mobile app, and also a <a href="{{site.base_url}}{%post_url 2019-09-06-material-design-mobile-app-concepts-eeeeep%}" target="_blank">personal app.</a> I really love how they turned out.</p>
+
+<p>My plan then is to recreate the sticker sheet in HTML and SASS, so that I can easily reuse each of the components in live projects just by dragging and dropping the code snippets into my projects.</p>
+
+<p>I'm going to be using variables to represent the font-family, font-sizes, colors etc so that the entire site style can be rebranded just by changing the values in the main variables.</p>
+
+<p>When building the components, I will be looking at Google's guidelines for each of them so that they follow the standards as close as possible. I'll also be testing everything I build against accessability and quality standards. All of these components need to be as clean as possible.</p>
+
+<p>I'm going to start with a mobile version of all of these components, as the sticker sheet is intended for mobile apps. Then I'll look into styling them so that they become web responsive.</p>
+
+<p>I'm going to document the entire project build here because there is going to be a ton of useful information that will be good to revisit, especially as this project is entirely focused around best practices.</p>
+
+<h2>Project setup</h2>
+
+<p>The first thing I did was set up and empty project that uses node-sass. I also included a small script that recompiles the SASS into a CSS stylesheet every time a SASS file is saved. This means I don't have to recompile my SASS every time I want to see the changes I have made. Here is a tutorial I wrote previously for <a href="{{site.baseurl}}{%post_url 2019-07-29-introduction-to-sass-installing-and-bem%}" target="_blank">setting up an empty project with SASS.</a></p>
+
+<h3>First commit</h3>
+
+<p>After setting up my 'material-design-library' project, I wanted to ignore a couple files before making the first commit. Here are the files before ignoring any of them.</p>
+
+<img src="/assets/img/before-first-commit.png" alt="files to be committed">
+
+<p>I added the css directory to the gitignore file because sass automatically regenerates this (compiles) whenever a SASS file is saved, so we don't need to commit it. I ignored the css directory by running the following command:</p>
+
+<code>echo css &gt; .gitignore</code>
+
+<p>This command writes 'css' to a file called '.gitignore'. If there is not already a .gitignore file, this will create one for you as it did in this case.</p>
+
+<p>I also ignored the node_modules directory. If anyone else clones this project, running 'npm install' will add the node_modules directory as well as node-sass because I added it as a developer dependency to the package.json. No need to commit. To ignore this directory, I ran the following command:</p>
+
+<code>echo node_modules &gt; &gt;</code>
+
+<p>The double 'greater than' signs are used to append to a file instead of overwriting everything completely, which is what the single greater than sign does.</p>
+
+<p>To make the first commit, I ran <code>git add .</code> which stages all the files to be committed. Usually, I'd recommend against using this command because it's better to be explicit about the files you are going to commit. If I ran this command before ignoring any of the directories, then I would have accidentally committed things that should not be committed. Only use it if you intentionally want to commit all of the files listed. In this case, I wanted to bundle the rest of the files together in a single commit, because together they represent the project setup, which is ideal for a first commit.</p>
+
+<p>My first commit message for this project was:</p>
+
+<code>git commit -m '🎉 start material design component project, yayy!'</code>
+
+<p>This commit message follows two sets of guidelines. The first comes from a post about <a href="https://chris.beams.io/posts/git-commit/" target="_blank">How to write a git commit message</a> by Chris Beams, which provides seven rules plus tips. I especially like the advice to come up with a commit message by filling in the blank: "If applied, this commit will _____"</p>
+
+<p class="note">I like using <code>git log --oneline</code>To see a clean list of commit messages without all the extra meta data like author name and date etc</p>
+
+<p>The second set of guidelines I'm following here is a bit of fun. I use emoji's to represent what type of commit I am making, using the <a href="https://gitmoji.carloscuesta.me/" target="_blank">gitimoji</a> guide. The party popper emoji represents your first commit. I'm going to add a list of the ones I'm likely to, or might use in this project so that I don't have to sort through the list each time. This is not a complete list of the available emojis.</p>
+
+<p class="note">When using emojis in commit messages, make sure that your commit message is surrounded by single, not double quotes for it to work.</p>
+
+<h4>Emojis for commit messages</h4>
+
+<ul>
+  <li>🎉 Initial commit</li>
+  <li>♿ Accessibility (improvements - combine with test emoji when tested)</li>
+  <li>🔥 Removing code or files</li>
+  <li>🐛 Fixing a bug</li>
+  <li>🌱 Start of new feature</li>
+  <li>✨ Feature complete</li>
+  <li>💄 Updating the ui and style files</li>
+  <li>✅ Updating tests</li>
+  <li>🔖 Releasing version tags (adding tags to commits)</li>
+  <li>♻️  Refactoring code</li>
+  <li>🔧 Changing config files / adding code from external sources</li>
+  <li>✏️  Fixing typos</li>
+  <li>💩 Hacky code that needs to be fixed (open git issue for these too)</li>
+  <li>⏪ Reverting changes</li>
+  <li>🔀 Merging branches</li>
+  <li>🚚 Moving or renaming files</li>
+  <li>👌 Update code due to code review changes</li>
+  <li>🙈 Ignoring files (.gitignore)</li>
+  <li>⚗️  Experimenting</li>
+  <li>📱 Working on responsive design</li>
+  <li>🥚 Adding an easter egg</li>
+  <li>🚀 Deploying stuff (complete component)</li>
+</ul>
+
+<h2>Reset</h2>
+
+<p>The next thing I want to do before starting on any of the components is adding a reset to remove all styles from my CSS. I want my components to be consistent across all browsers, especially as this project is intended to be used by other developers who might not use conventional browsers. (I like using developer specific browsers, current favourites are <a href="https://blisk.io/" target="_blank">blisk</a> and <a href="https://sizzy.co/" target="_blank">sizzy.</a>.</p>
+
+<p>To make your CSS cross-browser compatible, you can use a CSS reset or a Normalize CSS. Here is a good breakdown of the <a href="https://medium.com/@elad/normalize-css-or-css-reset-9d75175c5d1e" target="_blank">difference</a> between the two. I'm choosing the reset over normalize because I want full control over all element sizes without having to override anything to match the material design guidelines.</p>
+
+<p>I'm using <a href="https://meyerweb.com/eric/tools/css/reset/" target="_blank">Eric Meyer's CSS reset.</a> because it is a widely tried, tested and recommended reset. There might be a better one, but for now this will do.</p>
+
+<p>I don't consider a reset to be a new feature, so will add it in without creating a new branch for it.</p>
+
+<p>I follow the <a href="https://sass-guidelin.es/#the-7-1-pattern" target="_blank">7-1 pattern</a> for organising my SASS folder architecture.</p>
+
+<ul>
+  <li>I created a folder called 'base' inside of my SASS directory. It will contain my reset and typography rules.</li>
+  <li>Inside of the base folder, I created a file called '_reset.scss'. The underscore is a convention that says that this file is 'private' and should only be accessed by the 'main.scss file'. The main.scss file is the only SASS file that does not start with an underscore. The only thing this file will contain is import statements for compiling other sass files together into a CSS stylesheet.</li>
+  <li>I pasted Eric Meyer's reset code into this file along with credit attribution. Then I imported the file into main.scss with the following statement: <code>@import 'base/reset'</code>. You don't need to include the underscore or the scss file extension when importing files into your main.scss file.</li>
+</ul>
+
+<p>Commit message: 💄 reset CSS files ready for material design specific styles</p>
+
+<p>The guidelines for the commit message says no more than 50 characters. This commit message is slightly longer, and also explains why the change is being made. This is more meaningful than 'reset CSS'. Now we know what the intent was at a glance. It's important not to follow guidelines blindly, if you need to modify them slightly so that they express your intent more clearly, do so. But make sure your reasons are stronger than the reason's for not diverging.</p>
+
+<h2>Typography</h2>
+
+<p>I consider the typgograhy to be a feature of material design. Usually, I would create a new branch for a new feature when I am working on a code base with other people. As I'm the only person working on this branch, I won't create any branches.</p>
+
+<p>Personally, I like to mark the start and completion of a new feature. To mark the start, I'll create an empty file called '_typography.scss' in the base folder and import it into the 'main.scss' file. Then I'll commit it: '🌱 start typography feature following material design guidelines'</p>
+
+<p>The end commit message for this feature will be along the lines of '✨ completed typography feature, responsive and semantic sizes'</p>
+
+<p>I like writing out the end commit message (which might change) before working on the feature. If I struggle to write it, then it means I don't have a clear idea of the end result, so need to either clarify the feature idea or consider whether it needs to be there at all.</p>
+
+<h3>Typography guidelines for material design</h3>
+
+<p>In the <a href="https://material.io/design/typography/the-type-system.html#type-scale" target="_blank">material design guidelines for typography</a> there are 13 categories of reusable categories of text. One for each of the heading sizes (x 6), 2 x subtitles, 2 x body text, 1 x button, 1 x caption and 1 x overline.</p>
+
+<p>For each of the text categories, there are font-weight, font-size, font-case (uppercase/lowercase etc) and letter spacing. In addition to this type scale information, there are also conversion charts for font-size units. They show you how to translate the units to work on Android (sp), iOS (pt) and Web (rem).</p>
+
+<p>To incorporate the type scale, I want to match each type scale category with it's own set of styles. For the headings 1 - 6, I'll target them directly with their HTML equivalent tags instead of applying classes. This will ensure that every time I use one of these headings, the size will be consistent. If I want to change it, I'll have to override it, so this will force me to think about why I'd want to override the text.</p>
+
+<p>Before doing this, I am interested in what this will mean for the card components which use headings. Will be interested in how the sizes are used there. At the moment, it seems like the visual hierarchy is a direct match for the document hierarchy, when seperating them is useful if you want a smaller heading in terms of size whilst keeping the semantics the same. Will look into this.</p>
+
+<p>I'm making these material design components for the web. The conversion charts say I need to multiple the font size units by 0.0625. The web units are written as 'REM' units which is based on the root size, which by default is 16px.</p>
+
+<p>The reason we are not using pixels, is so that the user can change the default text size if they want. Pixels prevent them from being able to do this.</p>
+
+<h4>Importing fonts from Google fonts</h4>
+
+<p>The typography scale suggest three font weights, 'light', 'medium' and 'regular'. The font family used here is the Roboto font.</p>
+
+<p>While I can use the Roboto font family in CSS, I can't specify the three specific font sizes mentioned in the type scale by name or number value. So to use it I need to import the font.</p>
+
+<p>I searched for 'Roboto google font' in my search engine, and then clicked on the red plus button with 'SELECT THIS FONT' written next to it. This created a pop up list menu, closed by default with the title '1 Family Selected'.</p>
+
+<p>I clicked on the '-' sign at the top left of this bar to open it. The resulting window showed an embed link for CSS. There is also a tab for customising the font. I clicked on the customize tab and selected the three font sizes specicified by the type scale. Then I copied the new embed link, which I'll need to add to all of the web pages I create that uses that font.</p>
+
+<p>I added an 'index.html' page to the root folder of the project, added a minimal HTML boilerplate and pasted the embed link into the head section. I also added a link to the 'css/style.css' stylesheet which will contain the compiled SASS styles.</p>
+
+<p>Commit: 🔧 import Roboto google font with light, regular and medium weights</p>
+
+<h4>Using Font-weights</h4>
+
+<p>Inside of the '_typography.scss' file, I used the 'body' selector and set the font-family to 'Roboto', sans-serif. All of the text categories in the type scale use this font, so I applied it to the body to prevent dupication (applying it to each text case).</p>
+
+<p>The typography guidelines provide guidance on selecting fonts for each of these use-cases if you want to deviate.</p>
+
+<p>Then I added selectors for each of the heading sizes (h1-h6) and set the font-sizes to the sizes specified in the type scale. As I was doing this, I struggled to remember what the font-size values meant (light: 300, regular: 400, medium: 500). So I created variables with those names in 'abstracts/_variables.scss'. The abstracts folder and _variables file was created to do this, then imported into the main.scss file.</p>
+
+<pre>
+<code>
+$light: 300;
+$regular: 400;
+$medium: 500;
+</code>
+</pre>
+
+<p>I then converted the font-sizes and font-weights to rems and applied these styles to the headings in the typography file</p>
+
+<p>I did the same thing for the remaining typography cases.</p>
+
+<p>Finally, I opened the sketch file and got the line heights for each of the typography cases. When I used the CSS reset, all of the line-heights were removed, so I have to add them back in.</p>
+
+<p>Completed typography feature.</p>
+
+<h2>Color scale</h2>
+
+<p>Next feature is the color scale. I set them up using this color palette system I designed:</p>
+
+<img src="/assets/img/color-palette-hack.png" alt="color palette hack">
+
+<p>Wow this all took a huge amount of time to do, but when it's all done will make future design build projects so much easier.</p>

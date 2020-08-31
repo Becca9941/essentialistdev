@@ -1,0 +1,40 @@
+---
+layout: post
+title: Playing with the concept of abstract factory (creational design pattern)
+---
+
+<p>Over the last week, I have spent a lot more time taking time out from the computer (outside work). I am using this time to have space to think about programming concepts without being constantly bombarded by tech. These notes were first captured in a notebook.</p>
+
+<p>This post is an example of one of these thought experiments. Without knowing anything about the 'Abstract Factory' creational design pattern, I explored my ideas about what the concepts mean to me in isolation, as well as in combination. While my understanding of the Abstract Factory design pattern may not be accurate after doing this, I now have a solid base to build on. I am now in a better position to compare the authors subsequent ideas to my own and identify any mismatches. Then for the mismatches, I can compare both perspectives and articulate which I think is better.</p>
+
+<h3>What is an abstract factory</h3>
+
+<p>Abstract is something that represents an idea, but also a distorted reflection of reality. If we use Picasso's portraits as an example, we can clearly see that he has drawn a face, even though the features that make up the face are distorted versions of reality. What makes these features recognisable, is that they capture the essential, bare minimum characteristics that make a face identifiable as a face.</p>
+
+<p>This could be a fun thing to do with the objects around us too. Can we identify a single characteristic and behavior that can make an object recognisable without any other context? For example, what single characteristic or behavior would make it obvious that the thing we are thinking about is a cat? Would a paw be enough? No, because there are lots of animals who have paws. What about the 'meow' behavior. That could belong to a big cat as well as a house cat but is pretty obvious that we are talking about some kind of cat. Then there are things like 'I can has a cheezeburger', which can only represent a cat but only if you happen to be familiar with cat memes that use this phrase.</p>
+
+<p>A factory is a building whose primary purpose is to mass produce items that are all identical, ensuring that the copies are free of defects. The immediate thought that came to mind were ammunition factories in the world wars, because that is the strongest association I have with the word 'factory' based on my upbringing.</p>
+
+<p>Another interesting thought here is what happens if something goes wrong with an item and it turns out defective? Well first off, we need to know why it was defective in the first place. If there is something wrong with the materials that made up the item, then we could focus on improving the quality of the materials used to make the item, and this is likely to be a smaller job than the next scenario. Alternatively, the item could be defective because the machinery itself has been poorly built. If this is the case, then we would need to repair, or redesign and build the machines that form the production line themselves. This is a lot more expensive than a defective item.</p>
+
+<p>Based on these thoughts, an abstract factory is a way to create many Picasso portraits. The factory produces ideas that represent reality, but are a little vague and distorted. From a software perspective, I think abstract items will have bare essential characteristics that can then be extended by items that each have their own more specific characteristics as well as the essential characteristics that are comman to themselves and other items that are related in some way. Not sure though.</p>
+
+<h3>Thoughts on 'Design Patterns'.</h3>
+
+<p>My understanding of patterns are informed by my extensive crochet toy design experience. Before designing toys, I used to follow a lot of crochet toy patterns. A pattern in this context is a set of instructions that if followed correctly, should produce a toy animal that looks similar to the toy made by the author of that pattern.</p>
+
+<p>Most toys consist of a series of basic shapes like spheres, tubes, pyramid-like shapes for horns etc. Once you have followed enough patterns, you start getting a feel for how these basic shapes are formed and how they fit together. At this point, you are able to start experimenting with the pattern and changing parts of it to see if you can create new forms.</p>
+
+<p>One of the interesting things that start to happen at this point, is that you can end up coming up with better ways of doing things. For example, one pattern asked you to make three balls and a tube seperately, and then sew them together at angles to form the jaw of a dinosaur. When I started making this (as a break from designing patterns), I realised that it would be easier to just make the whole jaw as a single piece, instead of a lot of pieces sewn together. This knowledge only came from a lot of experience though, it isn't easy to just make something like this unless the process has become intuitive through a lot of trial and error in other projects.</p>
+
+<p>Another interesting insight is that a pattern may not be enough for you to be able to produce a product that is as high quality as the product produced by the author who wrote the pattern. For example, I couldn't understand why some people would follow my toy patterns stitch for stitch, only to end up with a toy that just looks off somehow. After making the toy again and again I tried to identify what I was doing differently. It turned out that I was doing a lot of things differently that were not obvious because they had become intuitive to me, but actually make a huge difference to the finished toy. A few examples:</p>
+
+<ul>
+  <li>Guage is more than just having the right size hook and the right size yarn. It means knowing how to use the both together properly. For every single stitch, you have to make sure that the loop of yarn around the hook lies flush to the stem of the hook, without being too tight or too loose. This takes a lot of practice to acheive.</li>
+  <li>The way you stuff a toy has a huge impact on it's final shape as well as how it keeps its shape over time (especially when played with). Most people grab bits of stuffing and shove them inside the toy. The key is to wad up a ball and put it in the middle of the toy. Then you create a depression in the middle of the ball and add more stuffing inside the existing ball of stuffing. You do this until the stuffing has expanded to fill the nooks and crannies of the toy. As the toy is played with, the stuffing compresses to the center whilst keeping it's shape. Whereas stuffing it in bits and pieces will cause the toy to become lumpy as different areas compress at different rates.</li>
+  <li>Another important tip is for sewing the various pieces of your toy together. There is a grain that runs through your toy, and it's important to sew with this grain instead of against it. Another tip is to sew stitch for stitch. When you sew through one of the open stitches on a toy piece, it's important to match it with one of the closed stitches on your toy body (it's natural to skip stitches here but makes huge difference not to). If you skip stitches, the parts stretch and become deformed.</li>
+</ul>
+
+<p>While all of these subtle techniques do not create a noticable difference in the finished toy alone, the combination of a few or more of these add up to have a noticable effect on the overall quality of the toy.</p>
+
+<p>Based on this understanding of patterns, design patterns will contain a lot of value for learning the basic shapes of designing good software. However, they will be limited in terms of lacking nuances of understanding that a lot of experience and trial and error instills. In the meantime, they will be extremely valuable for helping people build a foundation of first principles that they can then experiment with and use as a launching pad.</p>

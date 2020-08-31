@@ -1,0 +1,95 @@
+---
+layout: post
+title:
+---
+<h2>Setting up pre-commit hook to run pa11y</h2>
+
+<p class="note">Co-written with <a href="https://twitter.com/AndyPalmer" target="_blank">Andy Palmer</a></p>
+
+<p>Git hooks are scripts that Git executes before or after events such as: commit, push and receive. These scripts can do anything you want them to.</p>
+
+<p>In my case, I wanted to make sure that I'm not allowed to make a commit, unless my project code passes all of the <a href="https://github.com/pa11y/pa11y-ci" target="_blank">pa11y-ci</a> accessibility tests.</p>
+
+<p>I absolutely love pa11y. The first time I ran it on one of my projects, I got 5 error messages related to color contrast. The error message read: "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ration of 4.4.7. Recommendation: change text color to #017faf".</p>
+
+<p>It told me what color contrast was expected, what the color contrast actually was and then recommended a solution. Here are a bunch of great tutorials all about <a href="https://pa11y.org/tutorials/" target="_blank">setting up and configuring pa11y</a> in your own projects.</p>
+
+<p>To automate my pa11y tests, I created an npm script in my <code>package.json</code> to run the pa11y tests every time I run <code>npm run test-pa11y</code> in the terminal. We can add this same command to our pre-commit script file so that it is run every time we write a commit message. If the tests fail, commit is aborted (by choice). Below is a quick example of a skeleton package.json file with the script added to it:</p>
+
+<pre>
+<code>
+{
+  "name": "Name",
+  "version": "1.0.0",
+  "description": "Why my project exists",
+  "main": "index.js",
+  "scripts": {
+    "test-pa11y": "./node_modules/.bin/pa11y-ci"
+  },
+  ...
+}
+</code>
+</pre>
+
+<h3>Setting up Git pre-commit hooks</h3>
+
+<p>I paired with a colleague (<a href="https://twitter.com/AndyPalmer" target="_blank">Andy Palmer</a>) to set up Git hooks. I noted down the commands we used to get everything running. Then wrote up an explanation for what each of the commands below did with them.</p>
+
+<code>mkdir -p ~/bin</code>
+
+<p>The first thing we did was create a local bin directory, inside of our home directory (represented by the tilda '~'. The -p says 'make this/these directories' even if they don't exist'. If you tried to run <code>mkdir a/b/c</code> and none of those directories existed, we would get an error message about them not existing, so we would have to make the 'a' directory, then cd into it and make a 'b' directory and then cd into that and make a 'c' directory. Whereas <code>mkdir -p a/b/c</code> would just create them all for you without you having to cd into them.</p>
+
+<p>A local bin directory is a place to store commands that you want 'bash' to recognise. For example 'mkdir' is a command that bash recognises. If we wanted to make a custom command like 'boo', which prints out 'AHH you scared me' every time you ran the command 'boo' in your terminal, you could set 'boo' as an environment variable (a variable that we can run in your bash environment). If we wanted to make more bash commands, it's easier to set up a directory to store them all in, and then create an environment variable which stores the path to that directory, which is what we did in the command above.</p>
+
+<code>curl -o ~/bin/git-hooks https://raw.githubusercontent.com/icefox/git-hooks/master/git-hooks</code>
+
+<p>The next thing we did was download a git hooks script from the website mentioned in the above command. To break it down, 'curl' stands for 'command line url', which allows us to fetch things from the web by their urls. The '-o' flag tells curl where to write the information it has downloaded. In this case, we are writing it to a 'git-hooks' file insido of the 'bin' directory we created earlier.</p>
+
+<p>The Git hooks script that we downloaded allows us to have multiple scripts that we want to run per Git hook. This means that we can attach an accessibility test script to our pre-commit hook, as well as a linter script or any other scripts that we want to add. Whereas Git only allows us to run one script per Git hook. We could get around this by adding the accessibility/linter/etc scripts to the single script file, but that would quickly become unmanageable. This way, we can keep all of our scripts seperated, and run as many as we want.</p>
+
+<p>To explain a bit more about what the git hook script we have downloaded does, it takes the place of the single Git hook script for each of the Git hooks available, and then delegates to any number of scripts that we have chosen.</p>
+
+<code>chmod 755 ~/bin/git-hooks</code>
+
+<p>The next thing we did was make the Git hooks script we downloaded executable. By default, scripts are not executable. For example, if you wanted to run a ruby program, you couldn't execute the program with 'my-program.rb', you have to execute it with 'ruby my-program.rb'. The command above allows us to execute the script.</p>
+
+<p>I asked a gazillion questions about this because I need to know what everything means! So on a more technical level, here is a breakdown of the command as explained by my fantabulous colleague. 'chmod' is an abbreviation of 'change mode', which can be used to change special mode flags or change the access permissions of file system objects (files and directories). We are using it to change permissions.</p>
+
+<p>There are three types of permissions that a file can have: 'read, write and execute'. They are given values of 'read = 4', 'write = 2' and 'execute = 1'. A file also has permissions for the owner of the file, the group the file belongs to and everybody else (anyone else who has access to the system). The command above sets '7' to the owner of the file, which in order is 4 + 2 + 1 (read, write and execute). Then it sets '5' for both the group and everybody else, which means they can read and execute the file, but not write to it. The file we are setting permission for is 'git-hooks', which we specify by including the filepath.</p>
+
+code>export PATH=$PATH:~/bin</code>
+
+<p>Then we export our bin directory as an environment variable, which is now accessible by bash.</p>
+
+<code>git hooks</code>
+
+<p>At this point, we can now run the command above, which delegates to Git, which looks for a file called git-hooks on the path it can execute. Git as a command has a bunch of sub-commands built into it, like commit, push, status etc. It can also be extended to have new sub commands by creating executables with the name 'git-nameOfCommand'. By having a file called 'git-hooks', we have created a sub command of Git, which we have run with the command <code>git hooks</code>. We could also have run <code>git-hooks</code> with the hyphen there too, but then we would be running the file directly, instead of as the Git sub command we created with it. So running it without the hyphen is important.</p>
+
+<img src="/assets/img/git-hooks.png" alt="screenshot of what the git hook command should display in bash">
+
+<code>git hooks --install</code>
+
+<p>The command above installs Git hook shim scripts against all of the actual Git hooks in the current repository. A shim script is a piece of code that intercepts API calls and provides a layer of abstraction. In this case, we intercept the default Git hook scripts and replace them with our own ones with the help of the Git hook script we downloaded.</p>
+
+<code>mkdir -p git_hooks/pre-commit</code>
+
+<p>Now we can create as many git hooks as we want inside of our project. To do this, we create a 'git_hooks' directory in the root of our project, with a sub folder called 'pre-commit' (above command). If you want to make post commit hook, change the folder name to 'post-commit', or to any of the available Git hooks.</p>
+
+<code>vim git_hooks/pre-commit/test</code>
+
+<pre>
+<code>
+#!/bin/sh
+npm run test-pa11y
+</code>
+</pre>
+
+<p>Then we added a file to the pre-commit hook folder, which contains the script we want to run at the 'pre-commit' stage. We called our file 'test', and the script that we are running is <code>npm run test-pa11y</code>, which runs our accessibility tests every time we try to commit. If any of the tests fails (you can configure pa11y to allow exceptions), then the commit is aborted. The first line of the file is like a html doctype in that it specifies what language the script is written in, which in this case is a bash script.</p>
+
+<code>chmod 755 git_hooks/pre-commit/test</code>
+
+<p>Finall, we set the permissions for the test script file we created in the same way that we did for the 'git-hooks' file earlier. Now your pre-commit Git hook is in use.</p>
+
+<code>git commit</code>
+
+<p>Now whenever you commit, the accessibility tests (and any other scripts you have configured), will run and have to pass in order for the commit to be authorised.</p>

@@ -1,0 +1,124 @@
+---
+layout: post
+---
+
+<p>This is my current live developer journal site:</p>
+
+<img src="/assets/img/current-journal.png" alt="screenshot of my current live dev journal with list of post links">
+
+<p>I really like it, but it's hard to find things in it, or to search through content by category. I also just feel like doing a whole new design, which'll be fun.</p>
+
+<h2>Set up dev environment</h2>
+
+<p>I created a new folder on my desktop called 'progressjournal'. I initialised that as a git repository with 'git init'.</p>
+
+<p>I then ran <code>bundle init</code> which creates a new Gemfile to list my projects dependencies, of which Jekyll will be one. If you don't have bundler installed before running this command, run <code>gem install jekyll bundler</code> to get it.</p>
+
+<p>To add jekyll as a dependency, I opened the Gemfile and added <code>gem "jekyll" to it.</p>
+
+<p>To check it worked okay, I ran <code>bundle exec jekyll serve</code> in the command line to open my newly created jekyll site, which showed me the directory because we don't have an index page yet.</p>
+
+<p>I then created a .gitignore file and added the jekyll cache to and auto generated jekyll site to it (which came up when I ran git status). The jekyll cache and site files auto generates on every file change, and are used to create the most current snapshot of our jekyll site. We don't need to commit these at all.</p>
+
+<code>vim .gitignore</code>
+
+<p>Inside the gitignore</p>
+
+<pre>
+<code>
+  .jekyll-cache/
+  _site/
+</code>
+</pre>
+
+<h2>Create an accessible html boilerplate</h2>
+
+<p>The next step was to create an index page, which will be my homepage. Inside of that index page, I added an accessible boilerplate, as follows:</p>
+
+<pre>
+<code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;A journal for tracking your progress in anything you're learning&quot;&gt;
+    &lt;meta name=&quot;keywords&quot; content=&quot;Jekyll, Blog, Journal, Diary&quot;&gt;
+
+    &lt;link rel=&quot;shortcut icon&quot; href=&quot;favicon.ico&quot; type=&quot;image/x-icon&quot;&gt;
+
+
+    &lt;title&gt;Progress Journal&lt;/title&gt;
+
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles.css&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+
+  &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
+
+<h2>Front Matter</h2>
+
+<p>Then, I replaced all of the hard-coded values in my boilerplate with front matter variable values, as shown below:</p>
+
+<pre>
+<code>
+---
+title: Progress Journal
+description: Track your progress towar
+ds your learning goals with this progress journal.
+keywords: Jekyll, Blog, Journal, Diary
+---
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;{{ page.description }}&quot;&gt;
+    &lt;meta name=&quot;keywords&quot; content=&quot;{{ page.keywords }}&quot;&gt;
+
+    &lt;link rel=&quot;shortcut icon&quot; href=&quot;favicon.ico&quot; type=&quot;image/x-icon&quot;&gt;
+
+
+    &lt;title&gt;{{ page.title }}&lt;/title&gt;
+
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles.css&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+
+    &lt;h1&gt;{{ page.title }}&lt;/h1&gt;
+
+    &lt;p&gt;{{ page.description }}&lt;/p&gt;
+
+  &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
+
+<h2>Default layout</h2>
+
+<p>I created a new folder in root called 'layouts', containing a new file called 'default.html'. In that file, I copied and pasted my boilerplate code from the home page, not including the front matter. I replaced the title and tagline content with {{ content }}.</p>
+
+<p>Then I added a new variable to the front matter called 'layout: default', which pulls in the boilerplate around all of the content. I deleted the boilerplate from the home page because it's being pulled in automatically now, and just kept the title and tagline content.</p>
+
+<h2>Post layout</h2>
+
+<p>To create a blog post layout, I added a new file to the layout directory called 'post.html'</p>
+
+<p>Inside the post file, I set the layout variable in the front matter to 'layout: default', so the post layout inherits from it.</p>
+
+<p>I then added the following to the content of the template:</p>
+
+<pre>
+<code>
+<h1>{{ page.title }}</h1>
+<p>{{ page.date | date_to_string }} - {{ page.author }}</p>
+
+{{ content }}
+</code>
+</pre>
+
+<p>Every post will then contain a title, the date it was published and the author of the page.</p>

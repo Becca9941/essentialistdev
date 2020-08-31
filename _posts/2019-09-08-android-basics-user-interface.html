@@ -1,0 +1,111 @@
+---
+layout: post
+title: android basics user interface
+---
+
+<p>Notes are based on <a href="https://www.udacity.com/course/android-basics-user-interface--ud834" target="_blank">Android Basics: User Interface</a> which is part of a free course created by Google. The entire course teaches you how to get started with building android apps in Kotlin.</p>
+
+<h2>Views</h2>
+
+<p>In android, a view is a rectangle on the screen that shows some content. It can be an image, text a button or anything else that the app can display.</p>
+
+<p>Combined, the individual views make up the layout of the screen. Everything that you see and interact with is known as the User Interface (UI).</p>
+
+<p>You can break down any app into the individual views that make it up. Just draw a rectangle around each of the individual pieces of content, then identify what kind of view it is.</p>
+
+<h2>XML - Extensible Markup Language</h2>
+
+<p>XML is ideal for describing the layout of a screen on an Android app. The layout always consists of one big view which may contain smaller views, which may contain even smaller views.</p>
+
+<p class="note">Wow am I glad to have spent a few years on front-end web development before branching into android. All of this is so much easier to understand.</p>
+
+<h3>Textview code example</h3>
+
+<p>This code displays text an the screen and has a purple background</p>
+
+<pre>
+<code>
+&lt;TextView
+  android:text="Happy Birthday!"
+  android:background="@android:color/darker_gray"
+  android:layout_width="150dp"
+  android:layout_height="75dp" /&gt;
+</code>
+</pre>
+
+<p>'dp' is a unit of measurement like centimeters or millemeters. We use it to describe the size of views as well as the distance between views.</p>
+
+<p>dp stands for <em>density-independent pixels</em> which keeps your views the same size across devices that may have different pixel resolutions.</p>
+
+<p><strong>Google developers on course recommend that buttons should be at least 48dps tall and wide</strong></p>
+
+<pre>
+<code>
+&lt;TextView
+    android:text="Happy Birthday, Berry Boo!"
+    android:background="@android:color/darker_gray"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="36sp"
+    android:textColor="@android:color/black"
+    android:padding="20dp"
+    /&gt;
+</code>
+</pre>
+
+<p>Setting the height and width to 'wrap_content' makes the rectangle around the view the same size as it's containing content.</p>
+
+<p>sp stands for scale independent pixels. This is also a unit of measurement, similar to dp. It makes the app look consistent across different devices. sp is only for fonts because it adjusts based on users preferences and setting for text size.</p>
+
+<h2>Typography</h2>
+
+<h3>Material design type scale</h3>
+
+<p>The following scale is from <a href="https://material.io/design/typography/#type-scale" target="_blank">Googles Material Design System</a>. It shows a combination of 13 text styles that are recommended for different text categories.</p>
+
+<img src="/assets/img/type-scale.png">
+
+<p>You can find a bunch of conversion tables that show you how to convert font-size and letter spacing units <a href="https://material.io/design/typography/#type-scale" target="_blank">here</a></p>
+
+<h2>Linear Layout</h2>
+
+<p>This layout lets you position elements in a horizontal or vertical sequence. The code below contains a parent view that uses the linear layout. The linear layout parent contains two text views which are displayed one on top of the other.</p>
+
+<pre>
+<code>
+&lt;LinearLayout
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"&gt;
+
+    &lt;TextView
+        android:text="Guest List"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" /&gt;
+
+    &lt;TextView
+        android:text="Berry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" /&gt;
+
+</LinearLayout>
+</code>
+</pre>
+
+<p>The default orientation for the linear layout is horizontal for a row, which can be denoted by the 0 value.</p>
+
+<p>To get a vertical, column based layout, you can change the orientation to 'vertical' which is denoted by the 1 value. In XML, for a vertical layout, you would add the following attribute to the layout view <code>androii:orientation="vertical"</code></p>
+
+<p>The first line in the code above names the android namespace, which specifies that all of the code belongs to android, which is why all of the attributes start with the word 'android'. This line should always be added as the first line of the root view for your layout.</p>
+
+<h3>Different widths</h3>
+
+<p>Setting different widths on child views can affect the final user interface layout.</p>
+
+<p>dp sets views to be a specific width. If the content is bigger then you run the risk of cutting the content short.</p>
+
+<p>Wrap content sets the width to match the size of the content inside of it.</p>
+
+<p>Match parent sets the width of the content te the same width as the parent view width.</p>
+
+<p>Whenever you see and attribute that starts with layout underscore 'layout_', these represent view group layout parameters. Attributes that do not start this way, like background and textSize for example, are handled by the view in terms of it's self instead of in relation to it's parent view.</p>

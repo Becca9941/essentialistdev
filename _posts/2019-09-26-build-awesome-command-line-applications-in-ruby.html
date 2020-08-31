@@ -1,0 +1,299 @@
+---
+layout: post
+title: Ruby koans
+---
+
+<p>Working through these <a href="http://rubykoans.com/" target="_blank">Ruby Koans</a></p>
+
+<p>The awesome thing about these 282 koans is that you have to pass them in the style of test-driven development. You open the koan course 'path_to_enlightenment.rb' file and it gives you a failing error message that you have to pass. The error tells you which file to open and what line the error is found on. Then you open that file and there will be a comment on that line with a hint of what to do.</p>
+
+<h2>1. About asserts: Truthiness</h2>
+
+<h3>Error message</h3>
+
+<code>Failed assertion</code>
+
+<h3>Code to change</h3>
+
+<pre>
+<code>
+  # We shall contemplate truth by testing reality, via asserts.
+  def test_assert_truth
+    assert false                # This should be true
+  end
+</code>
+</pre>
+
+<h3>Passing</h3>
+
+<pre>
+<code>
+  # We shall contemplate truth by testing reality, via asserts.
+  def test_assert_truth
+    assert true                # This should be true
+  end
+</code>
+</pre>
+
+<h3>Observations</h3>
+
+<ul>
+  <li>We use assert statements to test things. In this case we are testing for truthyness.</li>
+  <li>Tests are functions that start with 'test_'</li>
+</ul>
+
+<h2>2. About Asserts: Messages</h2>
+
+<h3>Error message</h3>
+
+<code>This should be true -- Please fix this</code>
+
+<h3>Code to change</h3>
+
+<pre>
+<code>
+  # Enlightenment may be more easily achieved with appropriate
+  # messages.
+  def test_assert_with_message
+    assert false, "This should be true -- Please fix this"
+  end
+</code>
+</pre>
+
+<h3>Passing</h3>
+
+<pre>
+<code>
+  # Enlightenment may be more easily achieved with appropriate
+  # messages.
+  def test_assert_with_message
+    assert true, "This should be true -- Please fix this"
+  end
+</code>
+</pre>
+
+<h3>Observations</h3>
+
+<ul>
+  </li>This confused me because of the name test assertions 'with messages'. I thought we could change the message text to true.</li>
+  </li>You can include a message with your assertions, but the message itself does not affect the test.</li>
+  </li>The test passes with or without the error message when the 'false' value was changed to 'true'.</li>
+</ul>
+
+
+<h2>3. About Asserts: equality</h2>
+
+<h3>Error message</h3>
+
+<code>true</code>
+
+<h3>Code to change</h3>
+
+<pre>
+<code>
+  # To understand reality, we must compare our expectations against
+  # reality.
+  def test_assert_equality
+    expected_value = __
+    actual_value = 1 + 1
+
+    assert expected_value == actual_value
+  end
+</code>
+</pre>
+
+<h3>Passing</h3>
+
+<pre>
+<code>
+  # To understand reality, we must compare our expectations against
+  # reality.
+  def test_assert_equality
+    expected_value = 2
+    actual_value = 1 + 1
+
+    assert expected_value == actual_value
+  end
+</code>
+</pre>
+
+<h3>Observations</h3>
+
+<ul>
+  </li>You can use assertions to test an expected value against an actual value.</li>
+  </li>We used an equality operator '==' to test for equality. I assume we won't be able to test objects in the same way because they are compared by their ids, which will be different even if the objects name and value are the same.</li>
+  <li>Uses 'assert'. API Dock says that assert tests whether something is true. If no message is provided, then a default message will be given. The message is helpful for explaining why something wasn't true. There is a good example where someone wanted to see if an array contained a 5, and used the message to print out the list contents using '"Some_list = #(some_list.inspect)"'. That way they could check the list and see that there wasn't a 5 in it.</li>
+</ul>
+
+
+<h2>4. About Asserts: better way of asserting equality.</h2>
+
+<h3>Error message</h3>
+
+<code>Expected "FILL ME IN" to equal 2</code>
+
+<h3>Code to change</h3>
+
+<pre>
+<code>
+  # Some ways of asserting equality are better than others.
+  def test_a_better_way_of_asserting_equality
+    expected_value = __
+    actual_value = 1 + 1
+
+    assert_equal expected_value, actual_value
+  end
+</code>
+</pre>
+
+<h3>Passing</h3>
+
+<pre>
+<code>
+  # Some ways of asserting equality are better than others.
+  def test_a_better_way_of_asserting_equality
+    expected_value = 2
+    actual_value = 1 + 1
+
+    assert_equal expected_value, actual_value
+  end
+</code>
+</pre>
+
+<h3>Observations</h3>
+
+<ul>
+  </li>Used 'assert_equal instead of 'assert'.</li>
+  </li>Expected value and actual value are seperated by commas this time instead of '=='.</li>
+  </li>API Dock says that this does the same as 'assert', but passes the expected and equal as arguments instead of with an '==' operator. It isn't clear why this is supposed to be better at this stage.</li>
+</ul>
+
+
+<h2>5. About Asserts: Fill in Values</h2>
+
+<h3>Error message</h3>
+
+<code>Expected "FILL ME IN" to equal 2</code>
+
+<h3>Code to change</h3>
+
+<pre>
+<code>
+  # Sometimes we will ask you to fill in the values
+  def test_fill_in_values
+    assert_equal __, 1 + 1
+  end
+</code>
+</pre>
+
+<h3>Passing</h3>
+
+<pre>
+<code>
+  # Sometimes we will ask you to fill in the values
+  def test_fill_in_values
+    assert_equal 2, 1 + 1
+  end
+</code>
+</pre>
+
+<h3>Observations</h3>
+
+<ul>
+  </li>In this case, we used actual values instead of storing them in expected and actual variables.</li>
+</ul>
+
+
+<h2>6. About Nill</h2>
+
+<h3>Error message</h3>
+
+<code>Unlike NULL in other languages.</code>
+
+<h3>Code to change</h3>
+
+<pre>
+<code>
+  def test_nil_is_an_object
+    assert_equal __, nil.is_a?(Object), "Unlike NULL in other languages"
+  end
+</code>
+</pre>
+
+<h3>Passing</h3>
+
+<pre>
+<code>
+  def test_nil_is_an_object
+    assert_equal true, nil.is_a?(Object), "Unlike NULL in other languages"
+  end
+</code>
+</pre>
+
+<h3>Observations</h3>
+
+<ul>
+  </li>Nil is an object, unlike in other languages where Nil is not an object..</li>
+  </li>You can call a method 'is_a?' on nil. is_a? returns true if whatever it is called on is an object, one of the superclasses of object, or one of the modules included in object.</li>
+  </li></li>
+</ul>
+
+
+<h2>7. About Nil</h2>
+
+<h3>Error message</h3>
+
+<code>Expected "FILL ME IN" to equal NoMethodError</code>
+
+<h3>Code to change</h3>
+
+<pre>
+<code>
+  def test_you_dont_get_null_pointer_errors_when_calling_methods_on_nil
+    # What happens when you call a method that doesn't exist.  The
+    # following begin/rescue/end code block captures the exception and
+    # makes some assertions about it.
+    begin
+      nil.some_method_nil_doesnt_know_about
+    rescue Exception => ex
+      # What exception has been caught?
+      assert_equal __, ex.class
+
+      # What message was attached to the exception?
+      # (HINT: replace __ with part of the error message.)
+      assert_match(/__/, ex.message)
+    end
+  end
+</code>
+</pre>
+
+<h3>Passing</h3>
+
+<pre>
+<code>
+
+  def test_you_dont_get_null_pointer_errors_when_calling_methods_on_nil
+    # What happens when you call a method that doesn't exist.  The
+    # following begin/rescue/end code block captures the exception and
+    # makes some assertions about it.
+    begin
+      nil.NoMethodError
+    rescue Exception => ex
+      # What exception has been caught?
+      assert_equal NoMethodError, ex.class
+
+      # What message was attached to the exception?
+      # (HINT: replace __ with part of the error message.)
+      assert_match(/NoMethodError/, ex.message)
+    end
+  end
+</code>
+</pre>
+
+<h3>Observations</h3>
+
+<ul>
+  </li>API Dock says that if you wish to rescue an exception for only parc of your method, use begin and end.</li>
+  </li>The exception that has been caught is that nil doesn't recognise the method that has been called on it.</li>
+  </li>The message attached to the exception was 'ex.message'.</li>
+</ul>

@@ -1,0 +1,43 @@
+---
+layout: post
+title: researching event storming
+---
+<p>Interested in learning more about event storming, so went onto the <a href="https://www.eventstorming.com/resources/" target="_blank">resourses</a> section of eventstorming.com, and am going to read through some of the articles listed and make notes on them.</p>
+
+<h2>Introducing Event Storming</h2>
+
+<p>Notes based on <a href="http://ziobrando.blogspot.com/2013/11/introducing-event-storming.html" target="_blank">Introducing event storming</a></p>
+
+<p>The author says that this is the orgininal article about Event Storming, but that it has evolved since then. So it will be interesting to compare the content of the other articles with this one to see if I can identify the parts that have evolved.</p>
+
+<p>Event storming is a way to explore complex business domains. Business domains refer to the real world aspects of the problem you want to explore (not the technical solutions you use to solve them).</p>
+
+<p>There are five basic steps of the original EventStorming format:</p>
+
+<ul>
+  <li>Invite the right people: The right people are those who know the right questions to ask or are interested in hearing the answers. My first impression as to who these kind of people are domain experts (know the right questions), who live and breath the problem. The people who are interested in the answers then could be the techies who will be implementing the solution to the problem. I think there would be a lot of role switching here.</li>
+  <li>Provide unlimited modelling space: Don't use a small whiteboard which restricts the amount of space available for ideas. So a large paper roll or a large blank wall that you can stick post-it notes to would work well.</li>
+  <li>Explore the domain starting from domain events: A domain event is something meaningful that happened in the domain. It can be translated to software, but is expressed in domain terms so that non-technical can understand them. It isn't really clear what makes a meaningful event here (for now, might be expanded upon later).</li>
+  <li>Explore the origin of domain events: Some events are the direct consequence of a user action. This action is represented as a <strong>command</strong>. Other events are the consequence of something that happened in an external system. In other cases, events may have been caused by other events. Again, this is a little fuzzy without concrete examples to illustrate.</li>
+  <li>Look for aggregates: An aggregate is the portion of the system that receives commands and decides whether to execute them or not, resulting in a domain event. Hmm, it seems that we are working from and event and tracing it back to the cause with these steps.</li>
+</ul>
+
+<p>There are also several bonus targets mentioned in this argument:</p>
+
+<ul>
+  <li>Exploring sub-domains: Some people might know more about some areas of the domain than others, and vise versa. This is a useful tool for mapping responsibilities.</li>
+  <li>Exploring bounded contexts: During the discussion, conflict may arise over the meaning of terms used. This is an opportunity to draw boundaries between multiple consistency models. This didn't make much sense to me, and researching consistency models (in distributing systems) didn't clear it up. Event sourcing seems to be targeted at experienced programmers. Though it would be useful if it was geared towards all levels.</li>
+  <li>Sketching user personas: When talking about commands (user actions), people tend to talk about the surrounding context, who acted and what were they trying to acheive (underlying goals).</li>
+  <li>Sketching key acceptance tests: If edge cases are discussed, this is a good opportunity to define a clear acceptance tests.</li>
+  <li>Sketching key read model artefacts: In some cases, what the user sees in more important than what the system does. If a graph or table etc is meaningful to them, sketch it and place it close to the command (user action) that it is associated with.</li>
+</ul>
+
+<h2>Event Storming Summit Summary</h2>
+
+<p>Notes based on <a href="https://medium.com/@wjptak/event-storming-summit-2018-9efd6c0b7d0d" target="_blank">EventStorming Summit 2018, a summary</a></p>
+
+<p>Event storming has its roots in Domain-Driven Design (DDD), which aims to build software that is a model of a real-world system or process (especially useful for complex projects). The key is for the techies to work <strong>closely</strong> with the domain experts who have insider knowledge of how the real-world system or process works.</p>
+
+<p>One of the biggest obstacles for this kind of approach, is learning how to communicate effectively accross domains, without both parties using a lot of jargon that the other side struggle to understand, on both sides.</p>
+
+<p>Ah, ran out of time to look at more of these articles, bookmarked for another time</p>

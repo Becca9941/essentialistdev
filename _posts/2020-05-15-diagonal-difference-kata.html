@@ -1,0 +1,53 @@
+---
+layout: post
+---
+<h2>Problem statement</h2>
+
+<p>Given a square matrix, calculate the absolute difference between the sums of its diagonals.</p>
+
+<h2>Solution</h2>
+
+<p>This was my first solution. I added the elements at hard-coded indexes together (arr[0][0] + arr[1][1] + arr[2][2]). Then I subtracted the smaller result from the bigger one. My solution relies on there only ever being three arrays with three elements, so it's not very flexible. The next step is to try and make it better.</p>
+
+<pre>
+<code>
+function diagonalDifference(arr) {
+    // Write your code here
+    console.log(arr);
+    const primary = arr[0][0] + arr[1][1] + arr[2][2];
+    const secondary = arr[0][2] + arr[1][1] + arr[2][0];
+    if(primary &gt; secondary) { return primary - secondary; }
+    return secondary - primary;
+}
+</code>
+</pre>
+
+<p>In order to calculate the diagonals from corner to corner, the matrix must be in the shape of a square. So the number of arrays must be the same as the number of elements each array contains.</p>
+
+<p>When we start counting the left diagonal, we start from the first element in the array (arr1[0]). Then we increment the index by one until the corner of the last array is reached. We reverse this process for the right diagonal.</p>
+
+<p>A map wouldn't be appropriate as we wont be creating a new array containing transformed elements, that match the length of the original array. A reduce seems more appropriate as we want to reduce each array down to it's sum. So maybe we want to loop through each element in the input array (containing the sub-array matrix) using a foreach.</p>
+
+<p>I'll try that.</p>
+
+<p>Interruption, yayy. Got feedback, and I learned about Math.abs, which does the difference calutation for you, so I replaced the conditional and return with one line:</p>
+
+<code>return Math.abs(primary-secondary);</code>
+
+<p>Then we did this:</p>
+
+<pre>
+<code>
+    return Math.abs(arr.reduce((difference_so_far,row,row_number) => {
+      const left_to_right_column = row_number;
+      const right_to_left_column = row.length - row_number - 1;
+      const left_to_right_value = row[left_to_right_column];
+      const right_to_left_value = row[right_to_left_column];
+
+      return difference_so_far + left_to_right_value - right_to_left_value;
+    }, 0));
+}
+</code>
+</pre>
+
+<p>I wrote a <a href="https://twitter.com/Becca9941/status/1261144526502064128" target="_blank">Tweet thread</a> about my experience learning about this solution. This is one step after that thread, where we broke everything down into variables to make it a little easier for me to understand.</p>

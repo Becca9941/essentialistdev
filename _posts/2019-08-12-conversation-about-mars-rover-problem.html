@@ -1,0 +1,70 @@
+---
+layout: post
+title: conversation about object-oriented mars rover solution
+categories: [programming problem]
+tags: [object-oriented, mars rover, kata, tdd]
+---
+
+<p>I just went to Lunch with <a href="https://twitter.com/AndyPalmer" target="_blank">Andy</a> and we talked about how to approach the Mars Rover problem from an Object-oriented perspective. The whole conversation blew my mind because when expressed in OO terms, the solution is actually rediculously simple. There are no conditionals or loops. There are three objects, the Rover, it's orientation and it's position. The orientation and position objects are given to the Rover who coordinates them.</p>
+
+<p>Below, I have written up my understanding of the object-oriented Rover solution based on what I learned from the conversation. I think I haven't grasped it entirely yet but what I do know from it has made me really excited about the possibilites with OO.</p>
+
+<p>Andy is going to read over my understanding and let me know if there are things I didn't quite get. Will refine my understanding again until I get it right. We are also going to pair program on it and actually build out this solution, which I'll also document here for other people who might find this really useful.</p>
+
+<p>The main message here is that it's okay to not get things right away, and that seeking feedback to refine your understanding as an iterative process is a really good way to learn.</p>
+
+<h2>My initial understanding of the Object-oriented Mars Rover solution</h2>
+
+<p>We have a Mars Rover, who is essentially a Darlek container that does nothing execept coordinate his friends. He is the project manager.</p>
+
+<p>The mars rover has two instance variables, an orientation and a position. Both of these instance variables accept either an orientation or a position object, which are seperate to the Rover itself.</p>
+
+<p>The orientation class is in charge of which way the rover faces. It can have an orientation of either 'North', 'East', 'South' or 'West', and it knows what is to the left, right, top and bottom to it.</p>
+
+<p>The orientation class has three messages (methods), left, right and forward. When the left message is sent, it turns 90 degrees to the left. So if he is facing North, he will turn to face West. When the right message is sent, it turns 90 degrees to the right, so if he is facing East, he will turn to face South.</p>
+
+<p>The forward message passes the orientation to the position object, which then returns the new position.</p>
+
+<p>The position object knows where the Rover is in terms of x and y coordinates.It also contains a forward message which moves the rover forward or backwards along the y axis if his orientation is North or South, or moves the rover left or righ along the x axis if he is facing East or West.</p>
+
+<h2>Okay, second round of understanding</h2>
+
+<p>My understanding the first time around was pretty close, but the position orientation relationship wasn't quite clear and the way I worded some of the explanation wasn't quite clear, I explained it better out loud.</p>
+
+<p>Okay, so we have a Mars Rover object who is the project manager for the orientation and position objects. The Mars Rover has an orientation instance variable, which accepts an orientation object. It also has a position instance variable which accepts a position object.</p>
+
+<p>The orientation object knows which way it is facing. It can be facing either 'North', 'South', 'East' or 'West'. The orientation object has an instance variable which can contain one of these values to start with. The orientation object has three messages (methods) that can change the orientation. These are 'left', 'right' and 'forward'.</p>
+
+<p>The 'left' message turns the orientation 90 degrees to the left. So if the orientation is 'North', it becomes 'West'. If the orientation is 'East', it becomes 'North'.</p>
+
+<p>The 'right' message turns the orientation 90 degrees to the right. So if the orientation is 'North', it becomes 'East'. If the orientation is 'East', it becomes 'South'.</p>
+
+<p>The 'forward' message asks the position object to tell the orientation object what is in front of the object, or what would the position be if the object were to move forward based on it's current orientation.</p>
+
+<p>The position object accepts the current orientation value. It also knows the current x and y coordinates of the Rover.</p>
+
+<p>The rover contains four messages: North, East, South, West. If the rover is facing North, the y value is incremented by one. If the rover is facing South, the y value is decremented by one. If the rover is facing East, the x value is incremented by 1. If the rover is facing West, the x value is decremented by one.</p>
+
+<h3>Third round of understanding</h3>
+
+<p>The orientation object does not have any instance variables. Instead, we can make four different instances of the orientation object, one each for 'North', 'East', 'South' and 'West'. We could make more instances if we wanted to for 'North East', 'South West' etc, but we are only interested in the four main compass points for this problem.</p>
+
+<p>The orientation object can give the position object it's current x and y coordinates as well as it's orientation. Depending on what the orientation is, the position object returns the new position by incrementing or decrementing the relevant x and y coordinates.</p>
+
+<p>Every time the orientation changes, the orientation instance variable inside of the rover is replaced with the result of the new orientation. So it gets a replaced with a new orientation object every time the orientation changes.</p>
+
+<h3>Fourth round of understanding</h3>
+
+<p>The orientation doesn't give it's orientation, it is an instance of an orientation.</p>
+
+<p>Whenever the position changes, the position instance variable in the Rover also gets replaced by a new position object.</p>
+
+<h3>Fifth round of understanding</h3>
+
+<p>The orientation is not an instance of an orientation class. There are four seperate orientation classes: North, East, South and West. Each class has the same methods but the methods do different things. Polymorphism.</p>
+
+<p>Okay, we are ready to start building it. My mind feels like it is being rewired. There's no way I would have been able to understand how to think like this without the help of someone who really knows how to. Objects are not easy, but once you get it it's the easiest thing ever. Looking forward to carrying on stumbling until I get there.</p>
+
+<p>In the next post, which I'll link to here, I'll document the process we took to build the Rover. Or at least I'll pair with Andy to build it, and then I'll build it again by myself documenting and explaining the process and refining it again like I did here if I misunderstood anything.</p>
+
+<p>This is FUN!</p>

@@ -1,0 +1,254 @@
+---
+layout: post
+title: Setting up ZSH (z shell) which adds some nice features to the terminal
+---
+
+<p>My colleagues use ZSH instead of bash, which has a lot of features that make it more pleasant/convenient to work from the command line. Here is an article outlining some of the <a href="https://www.howtogeek.com/362409/what-is-zsh-and-why-should-you-use-it-instead-of-bash/" target="_blank">features of ZSH.</a></p>
+
+<p>I'm going to set it up on my terminal because I like the look of it. Might explore alternatives down the line, but for now, here are the steps I took to set it up.</p>
+
+<p>The following instructions are written rough. I haven't explained what everything means as I usually do because a colleage helped me set this up and I quickly recorded steps as we went a long.</p>
+
+<code>brew install zsh</code>
+
+<p class="note">'brew cask install' is for applications like Firefox etc. 'brew install' is for terminal applications like Ruby, NodeJS (or zsh) etc.</p>
+
+<h2>Install zplug</h2>
+
+<code>git clone https://github.com/zplug/zplug ~/.zplug</code>
+
+<h2>Config files from colleague</h2>
+
+<code>vim ~/.zshrc</code>
+
+<pre>
+<code>
+source ~/.zplug/init.zsh
+
+if [ -z "$HISTFILE" ]; then
+    HISTFILE=$HOME/.zhistory
+fi
+
+HISTSIZE=10000
+SAVEHIST=10000
+
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_verify
+setopt share_history
+
+fh() { print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//') }
+alias vim=nvim
+
+eval "$(rbenv init -)"
+
+POWERLEVEL9K_MODE='nerdfont-complete'
+zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+
+zplug "chrissicool/zsh-256color"
+zplug "jreese/zsh-titles"
+
+eval "$(fasd --init auto)"
+zplug "wookayin/fzf-fasd"
+alias v='f -e vim'
+
+zplug "zdharma/fast-syntax-highlighting", defer:2
+
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zplug load --verbose
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.iterm2_shell_integration.zsh ] && source ~/.iterm2_shell_integration.zsh
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH:$HOME/bin"
+</code>
+</pre>
+
+<code>vim ~/.fzf.zsh</code>
+
+<pre>
+<code>
+# Auto-completion
+# ---------------
+# /usr/local/Cellar/fzf/0.17.4/shell
+[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
+
+# Key bindings
+# ------------
+source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+
+<code>
+</pre>
+
+<code>vim ~/.iterm2_shell_integration.zsh</code>
+
+<pre>
+<code>
+if [[ -o interactive ]]; then
+  if [ "$ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX""$TERM" != "screen" -a "$ITERM_SHELL_INTEGRATION_INSTALLED" = "" ]; then
+    ITERM_SHELL_INTEGRATION_INSTALLED=Yes
+    ITERM2_SHOULD_DECORATE_PROMPT="1"
+    # Indicates start of command output. Runs just before command executes.
+    iterm2_before_cmd_executes() {
+      printf "\033]133;C;\007"
+    }
+
+    iterm2_set_user_var() {
+      printf "\033]1337;SetUserVar=%s=%s\007" "$1" $(printf "%s" "$2" | base64 | tr -d '\n')
+    }
+
+    # Users can write their own version of this method. It should call
+    # iterm2_set_user_var but not produce any other output.
+    # e.g., iterm2_set_user_var currentDirectory $PWD
+    # Accessible in iTerm2 (in a badge now, elsewhere in the future) as
+    # \(user.currentDirectory).
+    whence -v iterm2_print_user_vars > /dev/null 2>&1
+    if [ $? -ne 0 ]; then
+      iterm2_print_user_vars() {
+      }
+    fi
+
+    iterm2_print_state_data() {
+      printf "\033]1337;RemoteHost=%s@%s\007" "$USER" "$iterm2_hostname"
+      printf "\033]1337;CurrentDir=%s\007" "$PWD"
+      iterm2_print_user_vars
+    }
+
+    # Report return code of command; runs after command finishes but before prompt
+    iterm2_after_cmd_executes() {
+      printf "\033]133;D;%s\007" "$STATUS"
+      iterm2_print_state_data
+    }
+
+    # Mark start of prompt
+    iterm2_prompt_mark() {
+      printf "\033]133;A\007"
+    }
+
+    # Mark end of prompt
+    iterm2_prompt_end() {
+      printf "\033]133;B\007"
+    }
+
+    # There are three possible paths in life.
+    #
+    # 1) A command is entered at the prompt and you press return.
+    #    The following steps happen:
+    #    * iterm2_preexec is invoked
+    #      * PS1 is set to ITERM2_PRECMD_PS1
+    #      * ITERM2_SHOULD_DECORATE_PROMPT is set to 1
+    #    * The command executes (possibly reading or modifying PS1)
+    #    * iterm2_precmd is invoked
+    #      * ITERM2_PRECMD_PS1 is set to PS1 (as modified by command execution)
+    #      * PS1 gets our escape sequences added to it
+    #    * zsh displays your prompt
+    #    * You start entering a command
+    #
+    # 2) You press ^C while entering a command at the prompt.
+    #    The following steps happen:
+    #    * (iterm2_preexec is NOT invoked)
+    #    * iterm2_precmd is invoked
+    #      * iterm2_before_cmd_executes is called since we detected that iterm2_preexec was not run
+    #      * (ITERM2_PRECMD_PS1 and PS1 are not messed with, since PS1 already has our escape
+    #        sequences and ITERM2_PRECMD_PS1 already has PS1's original value)
+    #    * zsh displays your prompt
+    #    * You start entering a command
+    #
+    # 3) A new shell is born.
+    #    * PS1 has some initial value, either zsh's default or a value set before this script is sourced.
+    #    * iterm2_precmd is invoked
+    #      * ITERM2_SHOULD_DECORATE_PROMPT is initialized to 1
+    #      * ITERM2_PRECMD_PS1 is set to the initial value of PS1
+    #      * PS1 gets our escape sequences added to it
+    #    * Your prompt is shown and you may begin entering a command.
+    #
+    # Invariants:
+    # * ITERM2_SHOULD_DECORATE_PROMPT is 1 during and just after command execution, and "" while the prompt is
+    #   shown and until you enter a command and press return.
+    # * PS1 does not have our escape sequences during command execution
+    # * After the command executes but before a new one begins, PS1 has escape sequences and
+    #   ITERM2_PRECMD_PS1 has PS1's original value.
+    iterm2_decorate_prompt() {
+      # This should be a raw PS1 without iTerm2's stuff. It could be changed during command
+      # execution.
+      ITERM2_PRECMD_PS1="$PS1"
+      ITERM2_SHOULD_DECORATE_PROMPT=""
+
+      # Add our escape sequences just before the prompt is shown.
+      if [[ $PS1 == *'$(iterm2_prompt_mark)'* ]]
+      then
+        PS1="$PS1%{$(iterm2_prompt_end)%}"
+      else
+        PS1="%{$(iterm2_prompt_mark)%}$PS1%{$(iterm2_prompt_end)%}"
+      fi
+    }
+
+    iterm2_precmd() {
+      local STATUS="$?"
+      if [ -z "$ITERM2_SHOULD_DECORATE_PROMPT" ]; then
+        # You pressed ^C while entering a command (iterm2_preexec did not run)
+        iterm2_before_cmd_executes
+      fi
+
+      iterm2_after_cmd_executes "$STATUS"
+
+      if [ -n "$ITERM2_SHOULD_DECORATE_PROMPT" ]; then
+        iterm2_decorate_prompt
+      fi
+    }
+
+    # This is not run if you press ^C while entering a command.
+    iterm2_preexec() {
+      # Set PS1 back to its raw value prior to executing the command.
+      PS1="$ITERM2_PRECMD_PS1"
+      ITERM2_SHOULD_DECORATE_PROMPT="1"
+      iterm2_before_cmd_executes
+    }
+
+    # If hostname -f is slow on your system, set iterm2_hostname prior to sourcing this script.
+    [[ -z "$iterm2_hostname" ]] && iterm2_hostname=`hostname -f 2>/dev/null`
+    # some flavors of BSD (i.e. NetBSD and OpenBSD) don't have the -f option
+    if [ $? -ne 0 ]; then
+      iterm2_hostname=`hostname`
+    fi
+
+    [[ -z $precmd_functions ]] && precmd_functions=()
+    precmd_functions=($precmd_functions iterm2_precmd)
+
+    [[ -z $preexec_functions ]] && preexec_functions=()
+    preexec_functions=($preexec_functions iterm2_preexec)
+
+    iterm2_print_state_data
+    printf "\033]1337;ShellIntegrationVersion=6;shell=zsh\007"
+  fi
+fi
+</code>
+</pre>
+
+<h2></h2>
+
+<code>brew install rbenv fzf fasd</code>
+<code>To use fzf in Vim, add the following line to your .vimrc: set rtp+=/usr/local/opt/fzf</code>
+
+<p>Don't need to do this because we are not using it in Vim.</p>
+
+<h2>Choose a font</h2>
+
+<a href="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/Medium/complete/Sauce%20Code%20Pro%20Medium%20Nerd%20Font%20Complete%20Mono.ttf" target="_blank">font</a>
+
+<p>Download, click to install, double click to open, click install font. Once installed, open the terminal preferences (CMD-,), select 'text', then select the font you downloaded. I ended up changing to a roboto font because yayy!</p>
+
+<code>zplug install</code>
+
+<p>Log out of ZSH by running CTRL-D, then run:</p>
+<code>zsh</code>
+
+<p>Open a file <code>vim/etc/shells</code> (etc is a directory naming convention in this case), and <code>/usr/local/zsh</code> to the file which lets you use zsh as a shell.</p>
+
+<code>chsh</code>
+
+<p>Change <code>shell: /bin/bash</code> to <code>/usr/local/bin/zsh</code>. Then when prompted to 'repeat password file?' enter 'no'</p>
+
+<p>This is what the terminal looks like when it's all up and running:</p>
+
+<img src="/assets/img/zsh.png" alt="screenshot of what zsh terminal with settings from this post looks like">

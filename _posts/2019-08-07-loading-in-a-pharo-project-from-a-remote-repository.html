@@ -1,0 +1,63 @@
+---
+layout: post
+title: Loading in a Pharo project from a remote repository
+categories: [developer environment]
+tags: [GitHub, repository, Pharo, Smalltalk]
+---
+
+<p>In the last two posts in this series, I documented my process for <a href="{{site.baseurl}}{% post_url 2019-08-01-committing-automating-tests-and-shipping-pharo-smalltalk-code %}">setting up an empty pharo project with version control</a> and <a href="{{ site.baseurl }}{% post_url 2019-08-06-writing-your-first-test-tdd-style-in-pharo %}">writing your first TDD style test in pharo.</a></p>
+
+<p>In this post, I'm going to quickly document how I load in a Pharo project from a remote repository. After finishing setting up tests in Pharo last time, I closed my project after saving to version control. When I reopened my Unicorn Rover Project from the Pharo Launcher, all of the code I had written was gone. Luckily it was all saved with version control though, so I can just pull it in again from my remote repository on GitHub.</p>
+
+<p>Again, I struggled to find any documentation on this, though after spending some time clicking around and hitting a bunch of roadblocks, I discovered a way that worked for me. Here it is.</p>
+
+<p>Once we have opened our image from the Pharo launcher, we will be met with a blank World as shown below.</p>
+
+<img src="/assets/img/new-pharo-world.png" class="medium-img" alt="new pharo world">
+
+<p>The first step is to open 'Iceberg', which is one of the built-in Pharo version control managers. The other one is 'Monticello', I chose Iceberg as a random starting point of the two, will explore the other one once I'm confident with this one.</p>
+
+<p>To open Iceberg, you can run the Command-OI command, or click on the world to bring up the 'World Menu', select 'Tools' from the dropdown menu and then select 'Iceberg' from the next dropdown menu, which is shown in the screenshot below.</p>
+
+<img src="/assets/img/open-iceberg2-pharo.png" class="medium-img" alt="opening iceberg in pharo">
+
+<p>When you have Iceberg open, you will see all of the repositories currently associated with your project. We are going to add our remote repository to this list by clicking on the green '+' button on the top right hand of the Repository toolbar spanning the top of the screen.</p>
+
+<p>Clicking on the '+' button will bring up a menu that allows you to specify whether you want to add a new local repository, import one from an existing clone or clone from several remote repository managers like GitHub, Gitlab, Bitbucket or another one entirely.</p>
+
+<p>I'm using Git to store my Rover Project at the moment, so I clicked on the 'Clone From github.com' option. I then entered my GitHub username and the name of my repository on GitHub. I also chose the 'HTTPS' protocol to clone my repo with but you can also use the 'SSH' protocol if that works better for you.</p>
+
+<img src="/assets/img/clone-github-repo-pharo.png" class="medium-img" alt="clonig remote pharo repository from GitHub">
+
+<p>Clicking the 'Ok' button prompted me to enter my GitHub login details. After entering those and clicking the 'Ok' button, I was told that I already had a local copy of this repository stored on my computer. So I went back and selected the 'Import from existing clone' option shown below.</p>
+
+<img src="/assets/img/import-existing-clone-pharo.png" class="medium-img" alt="importing existing cloned repository into pharo">
+
+<p>The interesting thing here is that Pharo knows that there is a local copy of our project on our computer, but that we have to be explicit about specifying the local directory we want to work from every time we use Pharo. Will have to look into this to see if there is a way to automatically open a project without having to manually specify the filepath.</p>
+
+<p>To specify the filepath of my local repository, I clicked on the little folder icon and navigated to my directory in the finder that popped up, which you can see below.</p>
+
+<img src="/assets/img/select-local-repo-to-clone-pharo.png" class="medium-img" alt="select local repository to clone into your pharo project">
+
+<p>After clicking on the 'Ok' button to confirm which local directory we want to clone from, our 'pharo-projects' repository is added to the list of repositories associated with our image. The status of our repository shows a 'Not loaded' message.</p>
+
+<img src="/assets/img/pharo-projects-repository-list.png" class="medium-img" alt="our pharo repo has been added to our repositories list">
+
+<p>To load our repository, we have to first double click on the repository name, which will bring up all of the packages that are inside of that repository. In this case, we have our Rover package and our test package for the Rover. We then have to right click on each of these packages individually and click the '+ load' option that appears in the drop-down menu.</p>
+
+<img src="/assets/img/load-classes-pharo.png" class="medium-img" alt="loading our pharo classes from our repository">
+
+<p>Once we have loaded our packages, we can close the window to see that the status next to our repository has changed from 'Not loaded' to 'Up to date'.</p>
+
+<p>We can confirm that our project has been successfully loaded into our Pharo project by opening the System Browser and Searching for our Packages in the package pane. The screenshot below shows that they are now available to start working on again.</p>
+
+<img src="/assets/img/our-packages-have-loaded-pharo.png" class="medium-img" alt="our packages have now been loaded into our Pharo project">
+
+<p>This concludes the first challenge set on the '<a href="https://online-training.jbrains.ca/p/wbitdd-01" target="_blank">World's Best Introduction To TDD</a>' course by J.B. Rainsberger, which was to:</p>
+
+<blockquote>Before reading any further, set up your working environment. Set up a new, empty project, write a single failing test, run the test and watch the test fail with at most a single keypress,
+ commit the failing test to version control, and publish your single failing test offsite.</blockquote>
+
+<p>While it seems like an easy challenge, there was actually a lot involved in just setting up an empty project with version control and a testing enviroment built in. It took me about a week outside of work to figure out how to get a new project up and running in Pharo, which is a language that I'm using for the first time. This process also taught me a lot about how Pharo works and introduced me to a lot of roadbumps that could have really made it difficult to find the cause of if there was more to work from.</p>
+
+<p>The next time I start an empty project in Pharo, it'll be a lot easier to hit the ground running, and I'll probably find more efficient ways of doing things. Yayy for finding out!</p>

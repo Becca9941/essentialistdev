@@ -1,0 +1,94 @@
+---
+layout: post
+title: Reading-notes - Test-Driven Development with Objects
+---
+
+<p class="note">Reading notes based on <a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627" target="_blank">Growing Object-Oriented Software, Guided by Tests</a> by Steve Freeman and Nat Pryce</p>
+
+<p class="note">Most of the concepts I have written about are covered in the book, but they are worded and illustrated using my own examples. I capture the things that stand out as being most important (from my own perspective). If you read the book (it's great!) then you are likely to get insights that are unique to you.</p>
+
+<h2>A web of objects</h2>
+
+<p>The most important thing about Object-oriented programming according to Alan Kay, is not the internal properties and behaviour of objects, but how they communicate with each other.</p>
+
+<p>Objects communicate by sending messages to each other. Alan Kay says he regrets calling Object-oriented programming a name that suggests the focus is on the objects, and not the messages themselves.</p>
+
+<p>An object can only recieve messages that it can understand. Messages are essentially the name of methods, but the method themselves is how the object carries out the message that they have received. The method itself should be private to the object itself. Other objects can give it a message telling it what it wants the object to do, but they do not know how the object carries out the message.</p>
+
+<p>An object-oriented system in a web of objects that work together by communicating with other objects in the system. The behaviour of the system is an end result of the communication between different objects, and this can look different depending on who the objects are collaborating with. Just like you might behave differently in a professional setting than you would with your close friends and family.</p>
+
+<p>An important consequence here is that we can <q>change the behaviour of a system by changing the composition of its objects-adding and removing instances, plugging different combinations together - rather than writing procedural code</q> (a recipe of step-by-step instructions).</p>
+
+<p>This approach is known as a declarative approach, because we tell the objects in the system what we want them to do instead of how to do it (unlike step-by-step instructions. This makes it easier to change the systems behaviour in the future because we can focus on changing who the objects communicate with.</p>
+
+
+<h2>Values and objects</h2>
+
+<p>In object-oriented programming, there is a difference between value instances and objects that have their own identity. This can be a confusing difference unless the distinction has been learned, because in object-oriented programming, everything is an object, including numbers and strings.</p>
+
+<p>Numbers and strings are examples of value instances. They do not have their own identity. To make this a little clearer, imagine you have a wallet of £5 notes and you are standing at a cash register. There is a long line of people behind you as you are trying to pay. You can use any of these £5 notes to pay for your shopping. It doesn't matter which one you use because while they are all different, they are all essentially the same thing and are interchangeable.</p>
+
+<p>Whereas objects that have their own identity are not interchangeable. While you might have two people with the name Andrew, they are fundementally different.</p>
+
+<p>Value objects are an important concept when it comes to testing object oriented programs. Most tests rely on comparing an expected result with an actual result. However, if you compare two instances of the same object with the same values, you will get a result saying that they are different, because all objects (even value objects) have their own id. Testing for object equality involves comparing their ids, so two £5 notes would be considered different. So it's important to put in place a mechanism that allows you to equate value objects as the same thing.</p>
+
+<h2>Follow the messages</h2>
+
+<p>In order for an object-oriented system to be easy to change, we must design our objects to be easily 'pluggable'. According to the authors, <q>this means that they follow common <em>communication patterns</em> and that the dependencies between them are made explicit.</p>
+
+<blockquote>A communication pattern is a set of rules that govern how a group of objects talk to each other: the roles they play, what messages they can send, and when, and so on.</blockquote>
+
+<p>OOOoo a really interesting thing mentioned in the book here is that the communication patterns include the <em>domain model</em>. My understanding is that the domain model is the language used by domain experts to talk about their domain. So the kinds of messages the objects send should reflect the same language that would be used by domain experts. This would make the program itself read a lot more like english. The book didn't outline this exact impression but triggered this click moment.</p>
+
+<p>Thinking about a system of objects in terms of the messages they use to communicate with each other is a significant shift from how most of us are taught when we are introduced to objects.</p>
+
+<p>In relation to this, the authors say that <q>tests and mock objects help us see the communication between our objects more clearly.</q> I'm looking forward to learning more about this later on in the book, yayyy.</p>
+
+<p>A useful way to think about objects is in terms of roles, responsibilities and collaborators (Wirfs-Brock and McKean, Kent Beck and Ward Cunningham).</p>
+
+<ul>
+  <li></strong>Roles:</strong>  A set of related responsibilities.</li>
+  <li></strong>Responsibilities:</strong>An obligation to perform a task or know information.</li>
+  <li></strong>Collaboration:</strong>An interaction of objects or roles (or both).</li>
+</ul>
+
+<p>It can be useful to use index cards to draw out your object's role, responsibilities and collaborators using a design tool called CRC cards. This allows you to explore the potential object structure of your system without getting stuck in detail or building yourself into a corner.</p>
+
+
+<h2>Tell, don't ask</h2>
+
+<p>When it comes to figuring out what the messages that objects send to other objects should say, we should let the <q>calling object define what it wants <em>in terms of the role</em> that it's neighbour plays, and let the called object decide how to make this happen.</p>
+
+<p>One benifit of this way of writing messages is that it is easy to swap out objects that play the same role. You're just telling them what you want to do but not how to do it. So if the object isn't there the calling object doesn't break, the message just does not get received.</p>
+
+<p>Another benefit of this approach is that it forces us to be very clear on exactly how we want the objects in our system to collaborate with each other. The behavior of each object is self-contained, they are in charge of the things they do. They can send messages to tell other objects that they want them to do something, but they don't actually do it for them. This makes a lot of sense, but is very different to the procedural way that most programmers are taught.</p>
+
+<h2>But sometimes ask</h2>
+
+<p>Sometimes, we do ask objects for information for access to their internal state (instead of telling them to do something and return the result). Some examples of this include creating new objects and getting information from values and collections (an array is one example of a collection).</p>
+
+<p>Asking objects for information can be called 'querying', and is something that we aim to do sparingly, with a clear name that makes it obvious what we are asking for. We do this sparingly because accessing an object's internal state makes the system a little more rigid. If you remove that object, then the query request becomes broken. Whereas a tell only message does not break if the receiver is removed, it just doesn't do anything.</p>
+
+<h2>Unit testing the collaborating objects</h2>
+
+<p>An object-oriented program consists of objects that can only interact with each other by sending messages to each other. </p>
+
+<p>When we have objects that only communicate with each other by sending messages to each other, the focus of unit testing changes to reflect that.</p>
+
+<p>The main focus of our test becomes making sure that objects communicate with each other as we expect them too. We can test this by making sure that it's collaborators have received the messages they are expecting to receive.</p>
+
+<p>As the focus is on testing how our target object communicates with each other, we don't actually need it's collaborators to exist inside of the unit tests themselves. Instead, we replace the collaborators with mock objects that implement only the behaviour that is needed to make the test pass.</p>
+
+<h2>Support for TDD with Mock Objects</h2>
+
+<p>The steps that are involved in writing a test with mock objects are:</p>
+
+<ul>
+  <li>Create any required mock objects</li>
+  <li>Create any real objects, including the target object</li>
+  <li>Specify how you <em>expect</em> the mock objects to be called by the target object.</li>
+  <li>Call the triggering method(s) on the target object.</li>
+  <li>Asserct that the resulting values are valid and that all the expected calls have been made.</li>
+</ul>
+
+<p>The authors say that the most important thing is making <q>clear the intention of every test, distinguishing between the tested functionality, the supporting infrastructure, and the object structure.</q></p>

@@ -1,0 +1,321 @@
+---
+layout: post
+title: How many hours are in a year TDD practice
+---
+
+<p>A couple years ago, I went through Chris Pine's <a href="https://pine.fm/LearnToProgram/chap_01.html" target="_blank">Learn to Program</a> tutorial, which is also published as a book (expanded version). I loved that there were lots of bitesized problems at the end of each chapter, and thought it would be fun to practice Test-Driven Development by going through them all again. I'm also a much better programmer than I was then, so it'll be interesting to see the difference. Here, I'll be documenting my approach to solving these problems.</p>
+
+<p>I'm using Ruby to solve these problems.</p>
+
+<h2>How many hours are in a year</h2>
+
+<p>All this program needs to do is return the number of hours that are in a year. The first step is to write a test. In my case, I opened a blank file called 'program_spec.rb'. I like to get started as quickly as possible, so use a generic name for my file until I know what I want to call it a little later. Writing the first test as fast as possible is my first priority.</p>
+
+<p>Inside of the program spec file, the first thing I write is the assertion statement, as follows:</p>
+
+<pre>
+<code>
+expect(year.how_many_hours_do_you_have?).to eql(8760)
+</code>
+</pre>
+
+<p>I write the assertion before the rest of the test because my entire focus is on expressing my intent, everything else just gets in the way. Once I have the object I want to send a message to, it's easy to fill in the Describe and It block information (RSpec test format).</p>
+
+<p>Before you can even write the first test, you need to know what the tiny, next most important step you need to take to move your program forward. To help you quantify what a baby step looks like in terms of production code, it will end up being less than 5 lines of code.</p>
+
+<p>Pretending that everything we know about the problem is limited to just the problem statement, the only timeframe we care about is a year, so we'll go with that as our object for now. We want the year to tell us how many hours it has, so the message (method) it knows how to accept will be 'how_many_hours_do_you_have?'.</p>
+
+<p>Ruby lets you add question marks to the end of methods. Conventionally, methods with question marks return boolean values only. I'm breaking that convention here to emphasize that the method is a message. I probably wouldn't do this at work though, just on my own code unless everyone else had a shared understanding of it's meaning and were happy to do the same.</p>
+
+<p>Imagine the year as a door that has a letter box, it only accepts letters that are addressed to someone called 'how_many_hours_do_you_have?' If it receives a message like that, it pushes out a cake with four letter-shaped birthday candles in it, spelling out '8760'. The person who sent the message doesn't care how the cake was made, just that he now has the result.</p>
+
+<p>Now that we have our intention clearly expressed, we can rename our file to 'year_spec.rb', and finish writing the rest of our test:</p>
+
+<pre>
+<code>
+describe 'Year should' do
+  it 'tell us how many hours it has' do
+    year = Year.new
+    expect(year.how_many_hours_do_you_have?).to eql(8760)
+  end
+end
+</code>
+</pre>
+
+<p>Now that we have our first test, we make a prediction as to whether it will fail or pass before we run it. We also give a reason why it will fail or pass. In this case, I predict that it will fail because we have no production code to make it pass. That prediction isn't good enough, because we could predict that for every single one of our tests, so we need to be more specific.</p>
+
+<p>A few months ago, my first prediction would be 'it will fail because it won't return 8760', but I will have been wrong. With a little more experience, I rightly predicted that it would fail because the year object doesn't exist. The actual error message was: 'NameError: uninitialized constant Year'.</p>
+
+<p>By making your prediction explicit before you run the test, you are really reaping the benefits that TDD has to offer, especially if you are a beginner at it. Every time you are wrong, which will happen a lot, you will get a much deeper understanding of why it went wrong. This will prime you to make less and less mistakes over time. It's pretty fun too.</p>
+
+<p>We then write just enough production code to make our error message pass:</p>
+
+<pre>
+<code>
+class Year
+end
+</code>
+</pre>
+
+<p>That's it. That's all we needed to do to make our error message pass. I actually wrote this class stub at the top of my test file. At this stage, it's too much effort to seperate the tests from the production code and keep switching between the two. I only split them out when it starts to get annoying (multiple classes or has at least four methods), which is just my way of doing things.</p>
+
+<p>The next step is to make another prediction, will my test fail or pass when I run it next? Again from experience, I can predict that it will fail because my year object doesn't know how to understand the message 'how_many_hours_do_you_have?'.</p>
+
+<p>Here was the error message: NoMethodError: undefined method `how_many_hours_do_you_have?'</p>
+
+<p>To make this test, all we need is a method stub, like this:</p>
+
+<pre>
+<code>
+class Year
+
+  def how_many_hours_do_you_have?
+  end
+
+end
+</code>
+</pre>
+
+<p>The error messages are doing all of our thinking for us. It's telling us exactly what we need to do next. As you get more experience, you can take bigger steps, as long as you feel confident in your predictions for the bigger steps. If you made the wrong prediction, you can then revert back to these baby steps again.</p>
+
+<p>This whole process is a tool to help you feel confident and in control of the entire build process. We want the majority of the thinking to be done before writing each of our tests, and during the refactoring phases.</p>
+
+<p>After that, we can predict that all of the compilation errors are out of the way and say that the test is failing because when called, the method won't return the number 8760 as expected. We would have gotten more brownie points if we had said it would have returned the object Nil instead.</p>
+
+<p>The error message we got this time was slightly different: Failure/Error: expected 8760, got nil. This is a true failing test which is failing for the 'right' reason. It is failing because the result we got was different from our expected result even though all the right messages were sent.</p>
+
+<p>Again, we write just enough production code to make the test pass as predicted:</p>
+
+<pre>
+<code>
+class Year
+
+  def how_many_hours_do_you_have?
+    8760
+  end
+
+end
+</code>
+</pre>
+
+<p>We have passed the test by literally hard-coding the expected result as the return value in our method. This might look lazy, but it is the bare minimum we need to pass the test. The fact that we can do this, suggests that we need more tests to force us from a specific, to a more generic answer.</p>
+
+<p>Now that we have a passing test, we ask ourselves whether the code we have written is the best we know how to make it, without changing the behaviour. This is a good time to look at the class and method names we have used, the internal workings of the methods, how the objects collaborate with each other etc.</p>
+
+<p>It's also a good time to get feedback from others both more or less experienced than you. Would they have done it differently? Do you agree? If so, now is a good time to address technical debt. If you don't have time to address it now (make sure it's a critical reason), note down what the debt payment is and schedule time to address it before it very quickly gets out of hand.</p>
+
+<p>At this point, we don't need to refactor. It's the start of our program, and everything is pretty concise in a human-friendly, readable way.</p>
+
+<p>We have also technically fullfilled the requirements of our program specification. All it asked us to do was to return the number of hours in a year, which we have done. However, there are a lot of unanswered questions:</p>
+
+<ul>
+  <li>Why do we want to calculate hours in a year? There might be another way to achieve the same outcome.</li>
+  <li>Do we only ever calculate how many hours are in a year, what about months, weeks, minutes, seconds etc?</li>
+  <li>Do we care what year it is? (leap years)</li>
+  <li>Do we want to know how to calculate how many hours are in a different timeframe (months,weeks,days etc)?</li>
+  <li>Lots more...</li>
+</ul>
+
+<p>Typically, these are the kinds of questions we would ask before writing our first test. However, some of these questions may only become apparent as you are building out a feature further along in your project. Most of the time, your probject is like a game where the only visible areas of the map are those you have visited before. An newly discovered area may unlock the knowledge you needed to solve a puzzle in an earlier part of the map. Which is what the refactoring step is for. You ask yourself, does the current system solve the right problem, based on our current understanding? If it does, then is it easy to change down the line if something changes. The more experience you have of change, the easier it will be to write more flexible software in the future.</p>
+
+<p>To move this program a little more interesting, we will make it return the number of hours in a leap year too.</p>
+
+<pre>
+<code>
+  it 'have 8784 hours if it is a leap year' do
+    year = Year.new 2020
+    expect(year.how_many_hours_do_you_have?).to eql(8784)
+  end
+</code>
+</pre>
+
+<p>My next test has the same assertion as the first test. However this time I decided to pass in the next leap year as a parameter to the new year (2020). Google tells me that there are 8784 hours in a leap year, so I expect the output to be the same.</p>
+
+<p>I predicted that this test would fail because it would return 8760 instead of 8784. I was wrong. The error message said: ArgumentError: wrong number of arguments (given 1, expected 0). My production code doesn't allow for a parameter to be given to the year. So that's the next thing to do.</p>
+
+<pre>
+<code>
+class Year
+  def initialize year
+    @year = year
+  end
+
+  def how_many_hours_do_you_have?
+    8760
+  end
+end
+</code>
+</pre>
+
+<p>To pass the test, I created an instance variable using the initialise method in Ruby as shown above.</p>
+
+<p>The next step was to return the right value for the leap year. I did this as quickly as possible by again hardcoding the value. It's ugly, but it works:</p>
+
+<pre>
+<code>
+class Year
+  def initialize year = 2019
+    @year = year
+  end
+
+  def how_many_hours_do_you_have?
+    if @year == 2020
+      8784
+    else
+      8760
+    end
+  end
+end
+</code>
+</pre>
+
+<p>As the year only knows it's a leap year when it is passed 2020 as an argument, I need a way to find out if any year is a leap year or not. Here is my next test:</p>
+
+<pre>
+<code>
+  it 'knows if it is not a leap year' do
+    year = Year.new 2019
+    expect(year.are_you_a_leap_year?).to eql(false)
+  end
+</code>
+</pre>
+
+<p>To pass this test I just create the method and return false. I then add a couple more expectations one by one until I am happy that my production code is robust enough:</p>
+
+<pre>
+<code>
+it 'knows if it is not a leap year' do
+  expect((Year.new 2019).are_you_a_leap_year?).to eql(false)
+  expect((Year.new 2009).are_you_a_leap_year?).to eql(false)
+  expect((Year.new 2000).are_you_a_leap_year?).to eql(false)
+end
+</code>
+</pre>
+
+<p>I ended up refactoring my production code so it read more like english:</p>
+
+<pre>
+<code>
+def are_you_a_leap_year?
+  @year.modulo(4).zero? and not @year.modulo(100).zero?
+end
+</code>
+</pre>
+
+<p>All of the leap year functionality done:</p>
+
+<pre>
+<code>
+class Year
+  def initialize year = 2019
+    @year = year
+  end
+
+  def how_many_hours_do_you_have?
+    are_you_a_leap_year? ? 8784 : 8760
+  end
+
+  def are_you_a_leap_year?
+    @year.modulo(4).zero? and not @year.modulo(100).zero? or @year.modulo(400).zero?
+  end
+end
+
+describe 'Year should' do
+  it 'have 8760 hours' do
+    year = Year.new
+    expect(year.how_many_hours_do_you_have?).to eql(8760)
+  end
+  it 'have 8784 hours if it is a leap year (2020)' do
+    year = Year.new 2020
+    expect(year.how_many_hours_do_you_have?).to eql(8784)
+  end
+  it 'knows if it is a leap year' do
+    expect((Year.new 2020).are_you_a_leap_year?).to eql(true)
+    expect((Year.new 2000).are_you_a_leap_year?).to eql(true)
+    expect((Year.new 2044).are_you_a_leap_year?).to eql(true)
+  end
+  it 'knows if it is not a leap year' do
+    expect((Year.new 2019).are_you_a_leap_year?).to eql(false)
+    expect((Year.new 2009).are_you_a_leap_year?).to eql(false)
+    expect((Year.new 2035).are_you_a_leap_year?).to eql(false)
+    expect((Year.new 1700).are_you_a_leap_year?).to eql(false)
+  end
+end
+</code>
+</pre>
+
+<h2>Final Tests and Production Code:</h2>
+
+<pre>
+<code>
+Require 'date'
+
+class Year
+  def initialize(year)
+    @year = year
+  end
+
+  def how_many_hours
+    return 8784 if leap
+    8760
+  end
+
+  def how_many_minutes
+    return 525600 + 1440 if leap
+    525600
+  end
+
+  def leap
+    Date.new(@year).leap?
+  end
+
+  def how_many_minutes_in_this_decade
+    minutes = 0
+    puts how_many_minutes
+    [*@year..@year+9].each do |year|
+      minutes += Year.new(year).how_many_minutes
+    end
+    minutes
+  end
+end
+
+describe 'Year should' do
+  it 'There are 8760 hours in a non-leap year' do
+    [2019, 1800, 2035, 2100, 1900, 1001].each do |year|
+      expect(Year.new(year).how_many_hours).to eql(8760)
+    end
+  end
+  it 'There are 8784 hours in a leap year' do
+    [2020, 1600, 2024, 2000, 2400, 2036].each do |year|
+      expect(Year.new(year).how_many_hours).to eql(8784)
+    end
+  end
+  it 'knows if it is a leap year' do
+    [2019, 1800, 2035, 2100, 1900, 1001].each do |year|
+      expect(Year.new(year).leap).to eql(false)
+    end
+  end
+  it 'knows if it is not a leap year' do
+    [2020, 1600, 2024, 2000, 2400, 2036].each do |year|
+      expect(Year.new(year).leap).to eql(true)
+    end
+  end
+  it 'There are 525600 minutes in a non-leap year' do
+    expect(Year.new(2019).how_many_minutes).to eql(525600)
+  end
+  it 'There are 527040 in a leap year' do
+    expect(Year.new(2020).how_many_minutes).to eql(527040)
+  end
+  it 'There are 5257440 mins in a decade with 1 leap year' do
+    expect(Year.new(1797).how_many_minutes_in_this_decade).to eql(5257440)
+  end
+  it 'There are 5258880 mins in a decade with 2 leap years' do
+    expect(Year.new(2001).how_many_minutes_in_this_decade).to eql(5258880)
+  end
+  it 'There are 5260320 mins in a decade with 3 leap years' do
+    expect(Year.new(2000).how_many_minutes_in_this_decade).to eql(5260320)
+  end
+end
+
+</code>
+</pre>

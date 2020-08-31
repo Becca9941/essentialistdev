@@ -1,0 +1,84 @@
+---
+layout: post
+---
+
+<p>Notes from <a href="https://www.poodr.com/" target="_blank">Practical Object-Oriented Design in Ruby</a></p>
+
+<p>In a world of objects, new arrangemnets of behaviour emerge naturally. You don't have to explicitly write code for the spouse_steps_on_cat procedure, all you need is a spouse object that takes steps and a cat object that does not like being stepped on. Put these two objects into a room together and unanticipated combinations of behaviour will appear.</p>
+
+<p>The first requirement for learning how to do object-oriented design is to immerse yourself in objects; once you acquire an object-oriented perspective the rest follows naturally.</p>
+
+<p>Change is unavoidable:</p>
+
+<ul>
+  <li>The customers didn't know what they wanted.</li>
+  <li>The customers didn't know what they meant.</li>
+  <li>You didn't understand their needs.</li>
+  <li>You've learned how do do something better etc.</li>
+</ul>
+
+<p>It is the need for change that makes design matter. Few difficult-to-change applications are pleasant to work on.</p>
+
+<p>Object-oriented applications are made up of parts that interact to produce the behaviour of the whole. The parts are objects; interactions are embodied in the messages that pass between them. Getting the right message to the correct target object requires that sender of the message to know things about the receiver. This knowledge creates dependencies between the two and these dependencies stand in the way of change.</p>
+
+<p>Object-oriented design is about <em>managing dependencies</em>. It's a set of coding techniques that arrange depenences such that objects can tolerate change.</p>
+
+<p>When objects know too much they have expectations about the world in which they reside. They're picky, they need things to be "just so." These expectations constrain them. The objects resist being reused in differente contexts; They're painful to test and susceptible to being duplicated.</p>
+
+<p>Every application is a collection of code; The code's arrangemnet is the <em>design.</em> Design is not an assemble line; it's a studio where like-minded artists sculpt custom applications. Design is the art of arranging code.</p>
+
+<p>Design is difficult because you not only have to write code for the feature you plan to deliver today, you must also create code that is amenable to being changed later.</p>
+
+<p>Your job is to combine an overall understanding of your application's requirements with knowledge of the costs and benefits of design alternatives and then devise an arrangement of code that is cost effective in the present and will continue to be so in the future.</p>
+
+<p>The future that design considers is not one in which you anticipate unknown requirements and preemptively choose one from among them to implement in the present. It doesn't anticipate what will change, but merely accepts that something will and that right now, you won't know what that is.</p>
+
+<p>During design you wander through a maze of requirements where every juncture represents a decision point that has consequences for the future.</p>
+
+<h2>Tools of Design</h2>
+
+<p>Just as a sculptor has chisels and files, an object-oriented designer has tools - principles and patterns.</p>
+
+<h3>Design principles</h3>
+
+<p>The SOLID actronym, represents five of the most well-known principles of object-oriented design:</p>
+
+<ul>
+  <li>Single Responsibility</li>
+  <li>Open-Closed</li>
+  <li>Liskov Substitution</li>
+  <li>Interface Segregation</li>
+  <li>Dependency Inversion</li>
+</ul>
+
+<p>Other principles include Andy Hunt and Dave Thomas's DRY (Don't Repeat Yourself) and the Law of Demeter (LoD) from the Demeter project at Northeastern University.</p>
+
+<h3>Design Patterns</h3>
+
+<p>Design patterns are described by the original authors (Gang of four) as <q>Simple and elegant solutions to specific problems in object-oriented software design that you can use to make your own designs more flexible, modular, reusable and understandable.</q></p>
+
+<h3>The Act of Design</h3>
+
+<p>Object-oriented software fails when the act of design is seperated from the act of programming. Design is a process of progressive discovery that relies on a feedback loop. This feedback loop should be timely and incremental.</p>
+
+<p>Agile believes that your customers can't define the software they want before seeing it, so it's best to show them sooner rather than later. Agile believes that the most cost-effective way to produce what customers really want is to collaborate with them, building software one small bit at a time, such that each delivered bit has the opportunity to alter ideas about the next.</p>
+
+<p>It's no surprise that some people are uncomfortable with Agile. "We don't know what we're doing" and "We don't know when we'll be done" can be a difficult sell. Big up-front design leads to an adversarial relationship between customers and programmers, because any big design created in advance of working software cannot be correct, to write the application as specified guarantees that it will not meet the customers needs. Customers discover this when they attempt to use it. Then they request changes. Programmers resist these changes because they have a schedule to meet. The project gradually becomes doomed as participants switch from working to make it succeed to striving to avoid being blamed for its failure.</p>
+
+<p>Big design up front is about completely specifying and totally documenting the anticipated future inner workings of all of the features of the proposed application. Whereas Object-Oriented Design is concerned with a much narrower domain. It's about arranging what code you have so it'll be easy to change.</p>
+
+<p>There are many Ruby gems that assess how well your code followes OOD principles. Metrics software works by scanning source code and counting things that predict quality. Running a metrics suite against your own code can be illuminating, humbling, and sometimes alarming. Seemingly well-designed applications can rack up impressive numbers of OOD violations.</p>
+
+<p>That being said, OOD metrics can't identify designs that do the wrong thing in the right way (i.e, beautiful design, but wrongly predicting the future).</p>
+
+<p>When the act of design prevents software from being delivered on time, you have lost.</p>
+
+<h3>Brief intro to Object-Oriented Programming</h3>
+
+<p>Object-oriented applications are made up of objects and the messages that pass between them.</p>
+
+<p>Objects have behaviour and may contain data, to which they alone control access. Objects invoke one another's behaviour by sending each other messages. Every object decides for itself how much, or how little, of its data to expose.</p>
+
+<p>You can invent your own classes. Each Object-oriented application becomes a unique programming language that is specifically tailored to your domain.</p>
+
+<p>The trick to getting the most bang for your design buck is to acquire an understanding of the theories of design and to apply these theories appropriately, at the right time, and in the right amounts. Design relies on your ability to translate theory into practice.</p>

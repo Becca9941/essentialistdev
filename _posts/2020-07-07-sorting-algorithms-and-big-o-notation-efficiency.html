@@ -1,0 +1,139 @@
+---
+layout: post
+---
+
+<h2>Bubble Sort</h2>
+
+<p>Bubble sort is a basic sorting algorithm, which starts by pointing at two consecutive items in an array (starting at the beginning two elements of an array), then compares the first item with the second one. If the two items are out of order (the left value is greater than the right value), swap them, or do nothing if they are in the right order.</p>
+
+<p>Then the pointers are moved one cell to the right and the same comparisons and swaps are made until the end of the array has been reached, and then we repeat this entire process until we can get to the end of the array without making any swaps (when it has been fully sorted).</p>
+
+<p>The sequence of moving the pointers, making a comparison and swapping is known as a passthrough, where we have "passed through" the primary steps of the algorithm and will repeat the same process until the array is fully sorted.</p>
+
+<p>Steps to sorting the following array:</p>
+
+<code>val list = mutableListof(4,2,7,1,3)</code>
+
+<h2>Passthrough 1</h2>
+
+<ol>
+  <li>Point to index 0 and 1</li>
+  <li>Compare values at index 0 and 1 (4 is greater than 2)</li>
+  <li>Swap index 0 (4) with index 1 (2) <code>2,4,7,1,3</code></li>
+  <li>Point to index 1 and 2</li>
+  <li>Compare values at index 1 and 2 (4 is not greater than 7)</li>
+  <li>Do nothing</li>
+  <li>Point to index 2 and 3</li>
+  <li>Compare values at index 2 and 3 (7 is greater than 1)</li>
+  <li>Swap index 2 (1) with index 3 (7) <code>2,4,1,7,3</code></li>
+  <li>Point to index 3 and 4</li>
+  <li>Compare values at index 3 and 4 (7 is greater than 3)</li>
+  <li>Swap index 3 (7) with index 4 (3) <code>2,4,1,3,7</code></li>
+</ol>
+
+<p>The largest number in the array (7) has bubbled all the way to the end of the array with this passthrough, which is why this is called a bubble sort.</p>
+
+<p>At the end of this pass through, we swapped values at least once, which means that we need to do another passthrough until the array has been sorted fully (no more swaps).</p>
+
+<h2>Passthrough 2</h2>
+
+<code>2,4,1,3,7</code>
+
+<ol>
+  <li>Point to index 0 and 1</li>
+  <li>Compare values at index 0 and 1 (2 is less than 4)</li>
+  <li>Do nothing</li>
+  <li>Point to index 1 and 2</li>
+  <li>Compare values at index 1 and 2 (4 is greater than 1)</li>
+  <li>Swap index 1 (4) with index 2 (1) <code>2,1,4,3,7</code></li>
+  <li>Point to index 2 and 3</li>
+  <li>Compare values at index 2 and 3 (4 is greater than 3)</li>
+  <li>Swap index 2 (4) with index 3 (3) <code>2,1,3,4,7</code></li>
+  <li>We don't have to compare the last two indices, because we know that 7 is already in the right place.</li>
+</ol>
+
+<p>We swapped values at least once this time through, so another passthrough is needed.</p>
+
+<h2>Passthrough 3</h2>
+
+<code>2,1,3,4,7</code>
+
+<ol>
+  <li>Point to index 0 and 1</li>
+  <li>Compare values at index 0 and 1 (2 is greater than 1)</li>
+  <li>Swap index 0 with index 1 <code>1,2,3,4,7</code></li>
+  <li>We know that 3, 4 and 7 are in the right place, so don't need to do any more comparisons.</li>
+</ol>
+
+<p>We swapped values at least once this time through, so another pas
+sthrough is needed.</p>
+
+<h2>Passthrough 4</h2>
+
+<code>1,2,3,4,7</code>
+
+<ol>
+  <li>Point to index 0 and 1</li>
+  <li>Compare values at index 0 and 1 (1 is less than 2)</li>
+  <li>Since the first two indices are now in the right order, and we know that everything else has been sorted correctly, we can stop sorting here.</li>
+</ol>
+
+<p>Our list has been successfully sorted using the bubble sort method.</p>
+
+<pre>
+<code>
+def bubble_sort(list):
+  unsorted_until_index = len(list) - 1
+  sorted = False
+
+  while not sorted:
+    sorted = True
+    for i in range(unsorted_until_index):
+      if list[i] &gt; list[i+1]:
+        sorted = False
+        list[i], list[i+1] = list[i+1], list[i]
+    unsorted_until_index = unsorted_until_index - 1
+list = [65, 55, 45, 35, 25, 15, 10] bubble_sort(list)
+print list
+</code>
+</pre>
+
+<ol>
+  <li>We keep track of up to which index is still unsorted with <code>unsorted_until_index = len(list) -1</code>. At the beginning, the array is totally unsorted, so we initialize this variable to be the final index in the array.</li>
+  <li>We also create a <code>sorted = False</code> variable which allows us to keep track whether the array is fully sorted. When we first run the code, it isn't</li>
+  <li>We begin a while loop that will last as long as the array is not sorted. Next, we preliminarily establish sorted to be True, but will change this back to False as soon as we make any swaps.</li>
+  <li>Withing the while loop, we begin a for loop that starts from the beginning of the array and goes until the index that has not been sorted yet. Within this loop, we compare every pair of adjacent values, and swap them if they're out of order. We also change sorted to false if we make a swap.</li>
+  <li>At the end of the sorted array <code>unsorted_until_index = unsorted_until_index - 1</code>, we can assume that the value we've bubbled up to the right is now in its correct position. Because of this, we decrement the unsorted_until_index by 1, because it has now been sorted.</li>
+  <li>Each round of the while loop represents another passthrough, and we run it until we know our array has been fully sorted.</li>
+</ol>
+
+<h2>The efficiency of Bubble Sort</h2>
+
+<p>The bubble sort contains two kinds of steps:</p>
+
+<ul>
+  <li>Comparisons: Two numbers are compared with each other to determine which is greater.</li>
+  <li>Swaps: Two numbers are swapped with one another in order to sort them.</li>
+</ul>
+
+<p>We'll start by determining how many comparisons take place in Bubble Sort.</p>
+
+<p>If an array has five elements, we have to make four comparisons between 2 sets of numbers. In our second passthrough, we only had to make 3 comparisons because we didn't have to compare the final two numbers. In our third passthrough, we made 2 comparisons and in our fourth passthrough we made just one comparison.</p>
+
+<p>4 + 3 + 2 + 1 = 10 comparisons</p>
+
+<p>To make it more general, we'd say that for N elements, we make (N - 1) + (N - 2) + (N - 3) ... + 1 comparisons.</p>
+
+<p>In terms of the swaps, in a worst-case scenario, where the array is not just randomly shuffled, but sorted in descending order (the exact opposite of what we want), we'd actually need a swap for each comparison. So we'd have 10 comparisons and 10 swaps in such a scenario for 20 swaps.</p>
+
+<p>With an array containing ten elements in reverse order, we'd have:</p>
+
+<p>9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 = 45 comparisons, and another 45 swaps, a total of 90 steps. With an array of twenty elements, we'd have 190 comparisons and approx 190 swaps, for a total of 380 steps.</p>
+
+<p>As the number of elements increase, the number of steps grows exponentially.</p>
+
+<p>The pattern of growth suggests that as N increases, the steps increase by approximately N2</p>
+
+<p>In Big O Notation, we would say that Bubble Sort has an efficiency of O(N<sup>2</sup>), also referred to as <em>quadratic time</em>.</p>
+
+<p>O(N<sup>2</sup>)</p> is the efficiency of algorithms in which nested loops are used. When you see a nested loop, O(N<sup>2</sup>) alarm bells should start going off in your head.</p>

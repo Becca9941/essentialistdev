@@ -1,0 +1,143 @@
+---
+layout: post
+title: Listening for changes in the DOM (Attributes, nodes, content etc) using the Mutation Observer in JavaScript
+categories: [web-development, code-snippets]
+tags: [JavaScript, code, mutation observer, attributes, DOM, childList,
+character data]
+---
+
+  <p>I am learning about the Mutation Observer for work so that we can re-draw
+  (render) information on the page when elements are added and removed
+  dynamically.</p>
+
+
+  <p>The MutationObserver is a JavaScript feature that is similar to an event
+  listener. It allows you to listen for changes in the DOM like when an
+  attribute is changed, when an element is added or removed or when content is
+  changed.</p>
+
+  <p>There are five main change scenarios that the Mutation Observer can be used
+  to listen for. These are:</p>
+
+  <ul>
+    <li><strong>Attributes</strong>: When an elements src, class, id, type etc
+      attribute is changed. Also listens for changes in custom defined
+      attributes like a counter or attributes used withing custom tags created
+      as a web component.</li>
+
+    <li><strong>CharacterData</strong>: When content such as innerHTML,
+      textContent within an element is changed.</li>
+
+    <li><strong>ChildList</strong>: When an element is added or removed from a
+      parent element like the DOM as a whole, or things like a div container or
+    lists etc.</li>
+
+    <li><strong>Subtree</strong>: Allows you to listen for changes to an element
+      and all of its descendents.</li>
+
+    <li><strong>AttributeOldValue</strong>: Lets you specify whether you want
+      the previous value of changed attributes to be stored for you to use.</li>
+
+    <li><strong>CharacterDataOldValue</strong>: Lets you specify whether you
+      want the previous value of changed text nodes to be stored for you to
+      use.</li>
+  </ul>
+
+  <p>Most of the tutorials on Mutation Observers are pretty complicated. They
+  show you how to listen for multiple change events at once, each with
+  a chain of behaviours associated with them.</p>
+
+  <p>So I've just written up a simple example that allows you to watch for
+  change events. Whenever a change occurs, two behaviours occur. The first is a
+  simple alert message, the second is a console log of all of the change events
+  that have happened so far, which the mutation observer tracks for you.</p>
+
+  <h2>Create an instance of the MutationObserver</h2>
+
+  <figure>
+    <figcaption>New mutation observer instance</figcaption>
+    <pre>
+      <code class="language-javascript">
+        const mutationObserver = new MutationObserver(function(mutations) {
+          alert("boo");
+          mutations.forEach(function(mutation) {
+            console.log(mutation);
+          });
+        });
+      </code>
+    </pre>
+  </figure>
+
+  <p>The first thing we do above is create a new instance of the
+  MutationObserver class and assign it to a variable called
+  mutationObserver.</p>
+
+  <p>The mutation observer accepts a callback function as a paramater. This
+  callback function also accepts an argument that I have called 'mutations'
+  (common name used), which stores all of the changes that we are looking for in
+  an array. Every time a new change occurs, the change is added to this mutations array argument.</p>
+
+  <p>The callback function contains the code that we want to execute whenever a
+  new change that we are watching for occurs. In this case, there are two
+  behaviours. The first behaviour is a simple message that pops up as an alert.  You can substitute the alert for your own behaviour. </p>
+
+  <p>The second behaviour displays all of the change events that have occurred
+  so far in the console. I used a forEach loop to do this. The mutation object
+  stores information about the change event itself, and also information about
+  the element that triggered the event.</p>
+
+  <h2>Watch for the changes you are interested in</h2>
+
+  <p>Now that we have our Mutation Observer object we can start listening for
+  changes using the built-in observe method. The observe method takes two
+  arguments. The first is the element you want to watch for changes. This can be
+  the body of the document, a div container, a list etc. The second argument is
+  a settings object. The settings object contains the change events you want to
+  listen for. You can listen to one, a few or all of them at a time. Here is
+  what the code for this looks like:</p>
+
+  <figure>
+    <figcaption>Setting what changes to observe</figcaption>
+    <pre>
+      <code class="language-javascript">
+        const taskList = document.querySelector('.task-list');
+
+        mutationObserver.observe(taskList, function({
+          attributes: true,
+          characterData: true,
+          childList: true,
+          subtree: true,
+          attributeOldValue: true,
+          characterDataOldValue: true
+        });
+      </code>
+    </pre>
+  </figure>
+
+  <p>If you don't want to watch for all of these changes, just include the
+  change events you do want to observe. Changing the value to false will not
+  stop them from being observed. For example, setting 'subtree' to false is
+  telling the observer to only watch the target element for changes instead of
+  all of its descendents.</p>
+
+  <h2>Stop watching changes</h2>
+
+  <p>To stop your MutationObserver from watching for change events and
+  triggering behaviour when they occur, you can use the disconnect method which
+  accepts no arguments, like this:
+  <code class="language-javascript">mutationObserver.disconnect();</code></p>
+
+  <div class="read-more-links">
+    <h4>Read More:</h4>
+    <ul>
+      <li><a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver">Mutation
+            Observer MDN</a></li>
+      <li><a
+            href="h3https://blog.sessionstack.com/how-javascript-works-tracking-changes-in-the-dom-using-mutationobserver-86adc7446401">How
+        JavaScript works: Tracking changes in the DOM using MutationObserver</a></li>
+      <li><a
+            href="https://eager.io/blog/three-real-world-use-cases-for-mutation-observer/">Three
+        Real-World uses for Mutation Observer</a></li>
+    </ul>
+  </div>

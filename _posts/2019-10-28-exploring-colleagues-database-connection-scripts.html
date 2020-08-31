@@ -1,0 +1,51 @@
+---
+layout: post
+title: Exploring colleagues database connection script
+---
+
+<p>Really awesome conversation with a colleague earlier. We were talking about impressions of different languages, why we were moving towards a different software architecture and lots more.</p>
+
+<p>One of my questions was, what kind of language would be good to learn to connect to databases, and display the information on a webpage. That was a very rookie question, one that many beginner programmers ask.</p>
+
+<p>The answer was, pretty much any language.</p>
+
+<p>For some reason, I had thought that there were only a select few languages that would let me connect and interact with a database from a web-page. This is probably because when searching for 'server-side languages for the web', the results tend to be a few languages that people defend to the death over all other languages. At the time of writing, these languages are PHP, Ruby on Rails, Node.js and Python.</p>
+
+<p>In reality, these are four of literally hundreds of languages that you could use. There is no reason to box yourself in. Some may argue that time resources are limited so there's no point focusing on a niche language that can't be found in mainstream job descriptions. I remember feeling this way when I was at the very start of my journey, and still fall into the same trap every now and again. The truth is, the <em>tool</em> you choose to use is not all that important, the concepts are.</p>
+
+<p>From a server side perspective, there will be lots of things you will be able to do across ALL of those languages, like connect to a database, display data, add to the database, edit information in the database etc. All fundemental concepts that are transferable across each language.</p>
+
+<p>Once you understand how to do each of these things in one language, it'll be retty trivial learning how to do them in other languages. Then you can start focusing on the really interesting stuff, like how does this language express this concept differently to this other language? Or, this language allows us to employ concepts I have never seen before, why do they use it, and is this something that proves to be an advantage over other languages, or a limitation? This is all part of the joy of programming for me.</p>
+
+<p>Okay, so after having this conversation, my colleague sent me a link to a server-side connection script he wrote for the software we are all working on. Looking at the code, I immediately have a bunch of questions that are worth exploring. At the end of this excursion, I hope to have a better understanding of the syntax used, but more importantly, an idea of what concepts are at play. I have a little experience with PHP, which should help make the concepts a little easier to identify, as there is an existing frame of reference.</p>
+
+<h2>Exploring database connection script</h2>
+
+<p>At the top of the file, I notice that this connection script is stored in a specific sub directory. The directory structure looks like this: app_name/REST/events/lib/event_database.js</p>
+
+<p>I know that the 'lib' directory stores production code... I just asked my colleague quickly and they said that this is a temporary folder to reflect a move towards the new system, which will have one lib folder.</p>
+
+<p>Instead of trying to research all of the questions I have one by one at the moment, I'm going to list the observations questions I have as placeholders. A lot of them will be things that are less important to focus on that some of the other things I am trying to get the hang of right now, but also want to capture them.</p>
+
+<ul>
+  <li>What are we requiring with 'require("fs")'?</li>
+  <li>We are requiring an object from a specific file into our file. I knew we could do this, my guess is that we are getting the data we want to submit in the database from this, so to me that seems like a good way to enforce seperation of concerns.</li>
+  <li>We are assigning luxon (a datetime formatter) to a global object with a custom method called 'luxon'. Is this an alternative to 'var' in the global scope, but encapsulated in an object?</li>
+  <li>We have a large object called 'EventDatabase'. The constructor for this object accepts a 'config' variable. Inside of the constructor, we assign a method called 'connection' which stores a mariadb object that calls two chained methods 'createPool(config).getConnection'.</li>
+  <li>What does 'createPool(config)' do. We are passing in our database configuration details and getting the connection to it, but what role does the pool play?</li>
+  <li>It also has a bunch of async methods. I think async means to update without refreshing. A quick Google: 1. Not existing or occuring at the same time, 2. Controlling the timing of operations by the use of pulses sent when the previous operation is completed rather than at regular intervals. So each of the async methods occur automatically only when the previous is finished executing? This would make sense because we wouldn't want to load something from the database that hasn't been inserted yet.</li>
+  <li>The release method closes the connection to the database. In PHP, it is written as 'mysqli.close()'.</li>
+  <li>The load item method loads an item only once a connection has been established to the database. Then in loads information about the item, as well as events associated with the item individually. Finally, it returns an object containing the item and its events, so they are encapsulated together.</li>
+  <li>The load_item_def function accepts a variable containing the database connection details, as well as the id of the item contained within the database. I'm assuming this id represents the id of the item in the database once it has been inserted. Inside of this function, we have an SQL select statement which returns all of the information associated with, and captured for the item with a specific id. At the moment, the item id selected appears to be hardcoded. Wait, no it's not hard-coded, it references the id instance variable inside the item that was returned earlier. We don't need string interpolation to include it in an SQL statement, which surprises me.</li>
+  <li>After selecting the item from the database, we store the query in a variable called 'rows'. I'm a little confused. It 'awaits' the sql select statement to have finished, and accepts the 'item_id' as a variable inside of an array. So does this return the details for however many items we want to retrieve the details for?</li>
+  <li>At the end of this function we return a JSON object with all of the details that we pulled from the database. So we are storing the item as a whole in the database, then pulling the data back out and storing it in a JSON object instead. Is this so that we can store it on the client-side, which is faster than making multiple calls to the database?</li>
+  <li>The load_events method selects all of the events, most recent first, stores it in a JSON object as well, and sets the time zone to 'utc'. Is this to ensure consistency across time zones? Our app is multi-national so having a consistent time could prevent data loss accidents.</li>
+  <li>We have an update method (rest of method name ommitted to censor private work code). This creates a milestone, gives it a name, and a time where time is equal to '?' (same as id). Hmm, does this mean, update these items where both the time and id are the same (but unknown at this stage)? I don't think it does, but not sure what it does instead. Maybe a placeholder, is the connection script fully working, if not that would make sense. We are in the process of moving over after all.</li>
+  <li>Similar method for updating a different time based function, also have to be obsure here.</li>
+  <li>Okay thats the end of what this object does. So the object handles adding stuff to the database and updating it. It also manages a few timer functions and transforms data pulled from the database into JSON, for (as I am guessing) caching purposes.</li>
+  <li>Some of the functions outside of the objects start with underscores, which means that it is a private function not intended to be used globally.</li>
+  <li>I think one of the functions checks to see if a file is an environment file inside of a directory (starts with /.env'). If it directory does not start with '/', add two dots to the end of it, which lets you go up a level to the parent directory. Then we return the parent directory of the environment file. I don't know what an environment file is yet, a guess is that it is some kind of bash script, or config file or something.</li>
+  <li>Another function allows us to read the environment file, and pull out the database config information using a regular expression. Ah, so the env file is private information needed to connect to the database.</li>
+  <li>The find_config file throws an error if the starting directory is not a directory. If it can't find the config file then it traverses up through the parent directories until it can find it. Then it returns the database config data. This is the only public function, you give it a starting directory and it'll give you db connection details.</li>
+  <li>Finally, we export the eventDatabase information to be used in the rest of the app (for displaying steps based on conditions), as well as the database connection details. So I assume we'll be wanting to connect to the database elsewhere too.</li>
+</ul>

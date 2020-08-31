@@ -1,0 +1,425 @@
+---
+layout: post
+title: SQL the sequel
+---
+
+<p>Notes based on <a href="https://www.oreilly.com/library/view/head-first-sql/9780596526849/" target="_blank">Head First SQL</a></p>
+
+<p>Scenario: We have a large bookshelf and a stack of movies. Our task is to group the movies together into categories with the help of an SQL table, which we will then use to know where to place our movies on the bookshelf (can also be scaled to a movie store). One of the problems we need to solve, is designing a table that works out how to group movies that belong to multiple categories.</p>
+
+<p>If a movie is placed into one of those categories, then it can be confusing if you expected to find it in a different category, or were unsure which category to look for in the first place.</p>
+
+<p>At the moment, we have a table that contains a movie title, and a column each for each of the categories a movie can belong to. If the movie does belong to a category, the value is 'T' for true, and if it doesn't, the value is set to 'F' for false.</p>
+
+<h2>Category column</h2>
+
+<p>Before addressing the which category should this movie be shelved inot, we are first going to write an SQL statement to make this table a little better</p>
+
+<p>We can use the CASE expression to check an existing column's value against a condition, if it meets the condition, then the new column is filled with a specified value.</p>
+
+<p>In our movie example, we will change the category of the movie from 'T' to the name of the category if it was marked as a 'T'. If no 'T' values are found, then we will set our category name to 'misc'.</p>
+
+<p>NOTE: I don't like the following case statement. It's hard coded, inflexible and has way too much duplication, so for me this is just a learning exercise and not something I'd do in a real project without a very good reason.</p>
+
+<pre>
+<code>
+UPDATE move_table
+SET category =
+CASE
+  WHEN drama = 'T' THEN 'drama'
+  WHEN comedy = 'T' THEN 'comedy'
+  WHEN action = 'T' THEN 'action'
+  WHEN gore = 'T' THEN 'horror'
+  WHEN scifi = 'T' THEN 'scifi'
+  WHEN for_kids = 'T' THEN 'family'
+  WHEN cartoon = 'T' THEN 'family'
+  ELSE 'misc'
+END;
+</code>
+</pre>
+
+<p>The order matters when using this approach, because the category the movie ends up in is the first one that has a 'T' value. If not in order, then a movie might be added to one category when a different one would be a better fit even though technically it belongs to both genres.</p>
+
+<p>Just writing out that explaination above makes me dislike this approach even more. We should make it so that the people adding the movies into the database don't have to think about it. There is too much room for error here. Better off adding it manually than doing it this way. It's also impractical to make the order matter when the order in which movies come and go are unpredictable.</p>
+
+<p>Another problem is that if we have an R-rated cartoon, then it might end up being categorised as a cartoon instead of a more appropriate (and kid friendly) category.</p>
+
+<p>Another problem (there are many) is that this approach makes it difficult to change things. So if we decide to introduce new categories where for example we want R-rated movies to be seperate from G and PG-rated movies within the same category, then this is difficult to make happen.</p>
+
+<p>OH GOOD, this was an example to show how not to do SQL, that's good. I thought it was odd as the rest of the book was pretty good. Happy to have picked up on all the 'ick' moments mentioned (ranted about).</p>
+
+<p>This is why a good table design is important, they can get out of hand pretty quickly.</p>
+
+<h2>Order by</h2>
+
+<p>The ORDER BY statement allows you to alphabetically order any column.</p>
+
+<pre>
+<code>
+SELECT title, category
+FROM movie_table
+WHERE
+category = 'family'
+ORDER BY title;
+</code>
+</pre>
+
+<p>The query above returns a list of movie titles that belong to the 'family category' in alphabetical order.</p>
+
+<h3>SQL rules of order</h3>
+
+<ul>
+  <li>Non-alphabet characters show up before and after numbers</li>
+  <li>Numbers show up before text characters</li>
+  <li>NULL values show up before numbers</li>
+  <li>NULL values show up before alphabet characters</li>
+  <li>Uppercase characters show up before lowercase characters</li>
+  <li>'A 1' will show up before 'A1'</li>
+</ul>
+
+<pre>
+<code>
+SELECT title, category, purchased
+FROM movie_table
+ORDER BY category, purchased, title;
+</code>
+</pre>
+
+<p>The query above returns a list of movie titles, the category they belong to as well as when they were purchased. The list is ordered by category in alphabetical order, and then the movies inside each category are ordered by oldest purchase. In other words, the query above shows the oldest to most recently purchased movies in each category.</p>
+
+<p>If there are two movies in the same category with the same purchase date, then the titles will be sorted alphabetically.</p>
+
+<h2>ASC and DESC sort order</h2>
+
+<p>By default, records are sorted in ascending order (A-Z) and 1-99,999, which is why the purchase dates are returned oldest to newest.</p>
+
+<p>To change the order that any column in sorted by, you can add the ASC or DESC keyword directly after the column name in your ORDER BY statement.</p>
+
+<p>The following query returns the purchase date of the movies from ascending (oldest) to descending (newest) order:</p>
+
+<pre>
+<code>
+SELECT title, purchased
+FROM movie_table
+ORDER BY title ASC, purchased DESC;
+</code>
+</pre>
+
+<h2>Adding totals</h2>
+
+<p>The sum function works by totalling the values in a column designated by parentheses.</p>
+
+
+<pre>
+<code>
+SELECT SUM(sales)
+FROM cookie_sales
+WHERE first_name = 'Nicole';
+</code>
+</pre>
+
+<p>The query above calculates the number of cookie sales that Nicole made. More technically, we use the sum function to add together all of the numeric values contained within the 'sales' column inside of the 'cookie_sales' table, where the first_name column contains the value (name) 'Nicole'.</p>
+
+<h2>Adding multiple totals</h2>
+
+<p>In the following query, we SUM each of the girl sprout sales at the same time. We do this by adding a GROUP BY to our SUM statement, which groups all of the first name values for each girl and totals the sales for this group.</p>
+
+<pre>
+<code>
+SELECT first_name, SUM(sales)
+FROM cookie_sales
+GROUP BY first_name
+ORDER BY SUM(sales) DESC;
+</code>
+</pre>
+
+<p>The query above returns a list of Girl Sprout names and the total cookie sales they made in order of who sold the most.</p>
+
+<h2>Total by highest average</h2>
+
+<pre>
+<code>
+SELECT first_name, AVG(sales)
+FROM cookie_sales
+GROUP BY first_name;
+</code>
+</pre>
+
+<p>In the query above, we add together each of the girl sprout girl sales and use the AVG function which then divides the sales by the total number of values to find the average values for that group.</p>
+
+<h2>MIN and MAX</h2>
+
+<pre>
+<code>
+SELECT first_name, MAX(sales)
+FROM cookie_sales
+GROUP BY first_name;
+</code>
+</pre>
+
+<p>In the query above, we use the MAX function to find the highest value in a column (the highest number of cookie sales in a day). We can use the MIN function to find the lowest value.</p>
+
+<h2>Count records that match a condition</h2>
+
+<pre>
+<code>
+SELECT COUNT(sale_date)
+FROM cookie_sales;
+</code>
+</pre>
+
+<p>The query above returns the number of days that cookies were sold on. If the value in this column is NULL, then it isn't counted. The problem with this is that if there are more than one records with the same date, then they will both be counted. So it won't be an accurate measure of how many days the cookies were sold on with this query alone.</p>
+
+<h2>Count records that match a condition - NO duplicates</h2>
+
+<pre>
+<code>
+SELECT DISTINCT sale_date
+FROM cookie_sales
+ORDER BY sale_date;
+</code>
+</pre>
+
+<p>In the query above, we return a list of dates that cookies were sold on, making sure that there are no duplicates. The dates are ordered from oldest to most recent sale date.</p>
+
+<pre>
+<code>
+SELECT COUNT(DISTINCT sale_date)
+FROM cookie_sales;
+</code>
+</pre>
+
+<p>The query above returns the number of days that cookies were sold on, without duplicates if there are more than one record sharing the same date that cookies were sold on.</p>
+
+<h2>Limit the number of results</h2>
+
+<pre>
+<code>
+SELECT first_name, SUM(sales)
+FROM cookie_sales
+GROUP BY first_name
+ORDER BY SUM(sales) DESC
+LIMIT 2;
+</code>
+</pre>
+
+<p>The query above returns a list of girl sprout names and their total cookie sale amounts from highest to lowest. The number of results listed have been limited to 2 using the LIMIT keyword. This is useful if you only want to know who won 2nd/3rd/4th/5th etc place. This is really useful when you are working with large amounts of data, for example a large music database where you only want to see the top 100 songs played in order of popularity.</p>
+
+<p>You can also make the limit more specific. If you only wanted to see the 2nd place winner and not the first, you would write <code>LIMIT 1,1</code> SQL starts counting at 0, which is why we have written 1,1 to get the second value. The first value is which record to start from (including itself), and the second value is which record to end on (including itself).</p>
+
+<h2>More about table design</h2>
+
+<p>Your table design should do the heavy lifting for you. Don't write convoluted queries to 'get around' badly designed tables.</p>
+
+<p><strong>Think outside of the single table</strong></p>
+
+<p>We need to move the non-atomic columns in our table into new tables. We need more tables that can work with the current table to allow us to associate each person with more than one interest.</p>
+
+<p>EXAMPLE: In our old clown tracking table, we stored the clown's information (name), name of location, last seen and activities all in one table.</p>
+
+<p>We can split this table into five seperate tables:</p>
+
+<ul>
+  <li>clown_info: id, name, gender, description (appearance)</li>
+  <li>info_activities: id, activity_id</li>
+  <li>activities: activity_id, activity</li>
+  <li>info_location: id, location_id, when</li>
+  <li>location: location_id, location</li>
+</ul>
+
+<h2>Database schema</h2>
+
+<p>A representation of all the structures, such as tables and columns, in your database, along with how they connect, is known as a schema. Creating a visual representation of your database can help you see how things connect when you're writing your queries. However, your schema can also be written in text format.</p>
+
+<h3>BEFORE</h3>
+
+<p>  🔑 = this column is a primary key</p>
+<p>✈️ 🔑 = this column is a foreign key</p>
+
+<table>
+  <tr><th>my_contacts</th></tr>
+  <tr><td>contact_id 🔑</td></tr>
+  <tr><td>last_name</td></tr>
+  <tr><td>first_name</td></tr>
+  <tr><td>phone</td></tr>
+  <tr><td>email</td></tr>
+  <tr><td>gender</td></tr>
+  <tr><td>birthday</td></tr>
+  <tr><td>profession</td></tr>
+  <tr><td>city</td></tr>
+  <tr><td>state</td></tr>
+  <tr><td>status</td></tr>
+  <tr><td>interests</td></tr>
+  <tr><td>seeking</td></tr>
+</table>
+
+<h3>Splitting a single big table into two tables.</h3>
+
+<ol>
+  <li>Move the interests column into a new table. It will hold all of the interests, each in an individual column, from the my_contacts table.</li>
+  <li>Add columns that will let us identify which interests belong to which person in the contacts table.</li>
+</ol>
+
+<table>
+  <tr><th>interests</th></tr>
+  <tr><td>int_id 🔑</td></tr>
+  <tr><td>interest</td></tr>
+  <tr><td>contact_id ✈️ 🔑</td></tr>
+</table>
+
+<h2>The foreign key</h2>
+
+<p>The FOREIGN KEY is a column in a table that references the primary key of another table. In this case, it tells you which interest belongs to each person in the my_contacts table.</p>
+
+<ul>
+  <li>A foreign key can have a different name than the primary key it came from.</li>
+  <li>The primary key used by a foreign key is also known as a parent key. The table where the primary key is from is known as a parent table.</li>
+  <li>The foreign key can be used to make sure that the rows in one table have corresponding rows in another table.</li>
+  <li>Foreign key vales can be null, even though primary key values can't. A NULL foreign key means that there is no matching primary key in the parent table.</li>
+  </li>Foreign keys don't have to be unique, the often are not.</li>
+</ul>
+
+<p>We can make sure that a foreign key contains a meaningful value, one that exists in the parent table, by using a <em>constraint</em>. Adding a foreign key gives you a few advantages, like getting error messages if you violate the rules, which will stop you doing anything accidentally to break the table.</p>
+
+<p>Adding a constrain means that you can only put values in the child table's foreign key that already exist in the parent table.</p>
+
+<h2>Creating a table with a foreign key</h2>
+
+<p>To create a table with a foreign key, you need to know the name of the primary key in the parent table as well as the name of the parent table.</p>
+
+<pre>
+<code>
+CREATE TABLE interests (
+int_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+interest VARCHAR(50) NOT NULL,
+contact_id INT NOT NULL,
+CONSTRAINT my_contacts_contact_id_fk
+FOREIGN KEY (contact_id)
+REFERENCES my_contacts (contact_id);
+</code>
+</pre>
+
+<ul>
+  <li>Adding the PRIMARY KEY to the line where you set it up in your create statement is a quicker way to designate it.</li>
+  <li>We create the foreign key just like we would any index column, we set it to INT and NOT NULL.</li>
+  <li>We're naming this CONSTRAINT in a way that tells us which table the key comes from (my_contacts), what we've named the key (contact_id), and that it's a foreign key (fk).</li>
+  <li>REFERENCES specifies where the foreign key came from and what it is called in the other table.</li>
+</ul>
+
+<p>When you enter <code>DESC interests;</code> to see the structure of a table that has a foreign key in it, you will see 'MUL' in the 'Key' column which means that multiple occurrences of the same value may be stored in this column. This is what allows us to keey track of multiple interests for each contact_id in my_contacts.</p>
+
+<p>The foreign key constraint makes sure that if you try to delete the row in a primary key table or change the primary key value, then you will get an error if the primary key value is a foreign key constraint in another table. To delete a row from your table that has a primary key if it shows up in another table as a foreign key, you must first remove it from the foreign key row first.</p>
+
+<h2>Other constraints besides the foreign key</h2>
+
+<ul>
+  <li>UNIQUE</li>
+  <li>CHECK: allows you to specify a condition that must be met on a column before you can insert a value into that column.</li>
+</ul>
+
+<h2>Relationships between tables</h2>
+
+<p>We need to associate lots of people with lots of interests. This is one of <em>three possible patterns</em> you will see again and again with your data: one-to-one, one-to-many and many-to-many. Once you have identified the pattern your data matches, coming up with the design of yur table is easy</p>
+
+<h3>One-to-one</h3>
+
+<p>In the one-to-one pattern, a record in table A can have at most ONE matching record in table B. One example of this is where table A contains your name, and table B contains your salary details and social security number to <em>isolate</em> them in order to keep them more secure.</p>
+
+<p>Both tables with contain your ID number. The employee_id in the parent table is a primary key, the employee_id in the child table is a foreign key.</p>
+
+<p>When to use one-to-one tables:</p>
+
+<ul>
+  <li>Pulling the data out may allow you to write faster queries. For example, if most of the time you need to query the SSN and not much else, yu could query just the smaller table.</li>
+  <li>If you have a column containing values you don't yet know, you can isolate it and avoid NULL values in your main table.</li>
+  <li>You may wish to make some of your data less accessible, isolating it can allow you to restrict access to it. For example, if you have a table of employees, you might want to keep their salary information out of the main table.</li>
+  <li>If you have a large piece of data, a BLOB type for example, you may want that large data in a seperate table.</li>
+</ul>
+
+<h3>One-to-many</h3>
+
+<p>One-to-many means that a record in table A may have many matching records in table B, but a record in table B can only match one record in table A.</p>
+
+<p>For example, in a contacts table (table A), each person has only one 'prof_id' (proffession id), but more than one person in the contacts list may have the same prof_id. For example, the prof id for Programmer may show up more than once in my_contacts, but each person in my contacts will only have one prof id.</p>
+
+<p>In this case, we moved the profession column to a new child table and changed the proffession column in the parent table to a foreign key called 'prof_id'. Since it's a one-to-many relationship, we can use the prof_id in both tabels to allow us to connect them.</p>
+
+<p>Because the prof id can repeat (have many matching records), this can't be a primary key, it is a foreign key because it references a key from another table.</p>
+
+<h2>Many-to-many</h2>
+
+<p>Many children own many toys. More than one child can have a toy that is of the same brand.</p>
+
+<p>To create a many-to-many table, we need two one-to-many tables that link to a <strong>junction table</strong>. A junction table contains the primary key columns of the two tables we want to relate to each other.</p>
+
+<p>The children table contains two columns, a 'child_id 🔑' column, and a 'child' column.</p>
+
+<p>The toy table also contains two columns, a 'toy_id 🔑' column and a 'toy_name' column.</p>
+
+<p>The junction table contains two columns, a 'child_id ✈️ 🔑' and a 'toy_id ✈️ 🔑' column.</p>
+
+<h2>Composite keys</h2>
+
+<p>Composite keys are like primary keys, but whereas the primary key uses only one column, a composite key uses multiple columns.</p>
+
+<p>So far, we have talked about how data in a table relates to other tables, but not how the columns in a table relate to each other.</p>
+
+<p>A composite key is a primary key composed of multiple columns, creating a unique key.</p>
+
+<p>While there may be duplicate data in each of the individual columns, the assumption is that together, both columns will form a unique pair.</p>
+
+<p>Imagine have a table of superheroes, where the columns are: name, power and weakness. We assume that when combined, the name and power columns will create a unique composite key.</p>
+
+<h2>Dependencies</h2>
+
+<h3>Functional dependencies</h3>
+
+<p>When a column's data must change when another column's data is modified, the first column is functionally dependent on the second.</p>
+
+<p>For example, if we have two columns, a name and an initial column, when we change one of them, we must change the other.</p>
+
+<p>A quick way to describe a function dependency is to write this: T.x -&gt;; T.y (a good idea to map dependencies in not SQL projects too - personal opinion).</p>
+
+<p>super_heroes.name -&gt;; super_heroes.initials. This means: In the super heroes relational table, the initial column in functionally dependent on the name column.</p>
+
+<h3>Non-dependent</h3>
+
+<p>A non-dependent column does not change if another colum changes, it stands alone.</p>
+
+<h3>Partial functional dependency</h3>
+
+<p>A partial functional dependency means that a non-key column is dependent on some, but not all of the columns in a composite primary key. In our superheroes table, the initials column is partially dependent on name, because if the superhero's name changes, the initials value will too, but if the power changes, and not the same, our superhero's initials will stay the same.</p>
+
+<h3>Transistive functional dependency</h3>
+
+<p>We also need to consider how each non-key column relates to the others. If an arch-enemy moves to a different city, it doesn't change his arch enemy id. If changing any of the non-key columns might cause any of the other columns to change, you have a transitive dependency.</p>
+
+<p>For example, if the arch enemy id changes, then the arch enemy city <em>could</em> but may not for definite change alnog with it.</p>
+
+<p>A transitive functional dependency is when any non-key column is related to any of the other non-key columns.</p>
+
+<h3>Recap 1NF, 2NF and 3NF rules that you want all of your tables to follow</h3>
+
+<p>1NF</p>
+
+<ol>
+  <li>Columns contain only atomic values</li>
+  <li>No repeating groups of data</li>
+</ol>
+
+<p>2NF</p>
+
+<ol>
+  <li>Be in 1NF</li>
+  <li>Have no partial or functional dependencies</li>
+</ol>
+
+<p>3NF</p>
+
+<ol>
+  <li>Be in 2NF</li>
+  <li>Have no transitive dependencies</li>
+</ol>
+
+<p>A table follows 1NF AND 2NF rules if ALL the columns in the table are part of the primary key OR it has a single column primary key.</p>
+

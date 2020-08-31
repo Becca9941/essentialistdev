@@ -1,0 +1,313 @@
+---
+layout: post
+title: Exploring Liquid templating language
+---
+
+<p><a href="https://shopify.github.io/liquid/" target="_blank">Liquid</a> is a templating language which I am exploring to figure out how to make my static website appear to be more dynamic.</p>
+
+<p>All liquid code can be categorised into 'objects', 'tags' and 'filters'. Objects tell liquid <em>where</em> to display content on the page: <code>&#123;&#123; page.title &#125;&#125;</code>. Tags create the <em>logic and control flow</em> for templates <code> &#123;% ... %&#125;</code>. Tags can be categorised into: Control flow, iteraton and variable assignments. Filters change the output of a Liquid object <code> &#123;&#123; "world!" | capitalize | prepend: "Hello, " &#125;&#125; </code>. Multiple filters can be used on one output, and they are applied from left to right.</p>
+
+<h2>Operators</h2>
+
+<ul>
+  <li><strong>==</strong> equals</li>
+  <li><strong>!=</strong> does not equal</li>
+  <li><strong>&gt;</strong> greater than</li>
+  <li><strong>&lt;</strong> less than</li>
+  <li><strong>&gt;=</strong> greater than or equal to</li>
+  <li><strong>&lt;=</strong> less than or equal to</li>
+  <li><strong>or</strong> logical or</li>
+  <li><strong>and</strong> logical and</li>
+</ul>
+
+<pre>
+<code>
+&#123;% if product.type == "Shirt" or product.type == "Shoes" %&#125;
+  This is a shirt or a pair of shoes.
+&#123;% endif %&#125;
+</code>
+</pre>
+
+<h2>Contains</h2>
+
+<p>Checks for the presense of a substring inside a string, or the presence of a string in an array of strings. It can only search strings.</p>
+
+<pre>
+<code>
+&#123;% if product.tags contains "Hello" %&#125;
+  This product has been tagged with "Hello".
+&#123;% endif %&#125;
+</code>
+</pre>
+
+<h2>Truthy or falsy</h2>
+
+<pre>
+<code>
+&#123;% if happy %&#125;
+  Happy and you know it!
+&#123;% endif %&#125;
+</code>
+</pre>
+
+<p>Even empty strings are truthy.</p>
+
+<h2>Types</h2>
+
+
+<p>You can initialize Liquid variables using the assign (creates a new variable) or capture (captures string inside of opening and closing tags and assigns it to a variable) tags.</p>
+<ul>
+  <li><strong>String:</strong>"This is a string"</li>
+  <li><strong>Number:</strong>25, 39.756</li>
+  <li><strong>Boolean:</strong>true, false</li>
+  <li><strong>Nil:</strong> empty value returned when Liquid code has no results.</li>
+  <li><strong>Array:</strong> holds a list of variables of any type.</li>
+</ul>
+
+<p>You can access items in an array using iteration tags:</p>
+
+<pre>
+<code>
+&lt;!-- if site.users = "Tobi", "Laura", "Tetsuro", "Adam" --&gt;
+&#123;% for user in site.users %&#125;
+  &#123;&#123; user &#125;&#125;
+&#123;% endfor %&#125;
+</code>
+</pre>
+
+<p>You can use bracket notation to access items in an array:</p>
+
+<pre>
+<code>
+&#123;&#123; site.users[0] &#125;&#125;
+&#123;&#123; site.users[1] &#125;&#125;
+&#123;&#123; site.users[2] &#125;&#125;
+</code>
+</pre>
+
+<p>You can't initialize arrays in Liquid, but you can use the <em>split</em> filter to break a string into an array of substrings.</p>
+
+<h2>Whitespace control</h2>
+
+<p>Use a hyphen to remove white space before or after strings (or both): <code>&#123;%- -%&#125;</code></p>
+
+<h2>Tags</h2>
+
+<h3>Comments</h3>
+
+<pre>
+<code>
+Anything you put between &#123;% comment %&#125; and &#123;% endcomment %&#125; tags
+is turned into a comment.
+</code>
+</pre>
+
+<h3>Control flow</h3>
+
+<h4>If</h4>
+
+<pre>
+<code>
+&#123;% if product.title == "Awesome Shoes" %&#125;
+  These shoes are awesome!
+&#123;% endif %&#125;
+</code>
+</pre>
+
+<h4>Unless</h4>
+
+<pre>
+<code>
+&#123;% unless product.title == "Awesome Shoes" %&#125;
+  These shoes are not awesome.
+&#123;% endunless %&#125;
+</code>
+</pre>
+
+<h4>elseif/else</h4>
+
+<pre>
+<code>
+&#123;% if customer.name == "kevin" %&#125;
+  Hey Kevin!
+&#123;% elsif customer.name == "anonymous" %&#125;
+  Hey Anonymous!
+&#123;% else %&#125;
+  Hi Stranger!
+&#123;% endif %&#125;
+</code>
+</pre>
+
+<h4>case/when</h4>
+
+<pre>
+<code>
+&#123;% assign handle = "cake" %&#125;
+&#123;% case handle %&#125;
+  &#123;% when "cake" %&#125;
+     This is a cake
+  &#123;% when "cookie" %&#125;
+     This is a cookie
+  &#123;% else %&#125;
+     This is not a cake nor a cookie
+&#123;% endcase %&#125;
+</code>
+</pre>
+
+<h3>Iteration</h3>
+
+<h4>For</h4>
+
+<pre>
+<code>
+&#123;% for product in collection.products %&#125;
+  &#123;&#123; product.title &#125;&#125;
+&#123;% endfor %&#125;
+</code>
+</pre>
+
+<h4>Else</h4>
+
+<pre>
+<code>
+&#123;% for product in collection.products %&#125;
+  &#123;&#123; product.title &#125;&#125;
+&#123;% else %&#125;
+  The collection is empty.
+&#123;% endfor %&#125;
+</code>
+</pre>
+
+<h4>Break</h4>
+
+<pre>
+<code>
+&#123;% for i in (1..5) %&#125;
+  &#123;% if i == 4 %&#125;
+    &#123;% break %&#125;
+  &#123;% else %&#125;
+    &#123;&#123; i &#125;&#125;
+  &#123;% endif %&#125;
+&#123;% endfor %&#125;
+</code>
+</pre>
+
+<h4>Continue</h4>
+
+<pre>
+<code>
+&#123;% for i in (1..5) %&#125;
+  &#123;% if i == 4 %&#125;
+    &#123;% continue %&#125;
+  &#123;% else %&#125;
+    &#123;&#123; i &#125;&#125;
+  &#123;% endif %&#125;
+&#123;% endfor %&#125;
+</code>
+</pre>
+
+<h4>For loop parameters</h4>
+
+<ul>
+  <li>Limit: &#123;% for item in array limit:2 %&#125;</li>
+  <li>Offset: &#123;% for item in array offset:2 %&#125;</li>
+  <li>Range: &#123;% for i in (3..5) %&#125;</li>
+  <li>Reversed: &#123;% for item in array reversed %&#125;</li>
+</ul>
+
+<h4>Cycle</h4>
+
+<pre>
+<code>
+&#123;% cycle "one", "two", "three" %&#125;
+&#123;% cycle "one", "two", "three" %&#125;
+&#123;% cycle "one", "two", "three" %&#125;
+&#123;% cycle "one", "two", "three" %&#125;
+
+output:
+one
+two
+three
+one
+</pre>
+</code>
+
+<p>Cycles can be used to apply odd/even classes to rows in a table. You can also use them to apply a unique class to the last product thumbnail in a row etc.</p>
+
+<h4>Tablerow</h4>
+
+<pre>
+<code>
+&lt;table&gt;
+&#123;% tablerow product in collection.products %&#125;
+  &#123;&#123; product.title &#125;&#125;
+&#123;% endtablerow %&#125;
+&lt;/table&gt;
+
+OUTPUT:
+&lt;table&gt;
+  &lt;tr class="row1"&gt;
+    &lt;td class="col1"&gt;
+      Cool Shirt
+    &lt;/td&gt;
+    &lt;td class="col2"&gt;
+      Alien Poster
+    &lt;/td&gt;
+    &lt;td class="col3"&gt;
+      Batman Poster
+    &lt;/td&gt;
+    &lt;td class="col4"&gt;
+      Bullseye Shirt
+    &lt;/td&gt;
+    &lt;td class="col5"&gt;
+      Another Classic Vinyl
+    &lt;/td&gt;
+    &lt;td class="col6"&gt;
+      Awesome Jeans
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</code>
+</pre>
+
+<p>Table row parameters:</p>
+
+<ul>
+  <li>cols: &#123;% tablerow product in collection.products cols:2 %&#125;</li>
+  <li>limit: &#123;% tablerow product in collection.products limit: 2 %&#125;</li>
+  <li>offset: &#123;% tablerow product in collection.products offset: 2 %&#125;</li>
+</ul>
+
+<h2>Variables</h2>
+
+<p>You can initialize Liquid variables using the assign (creates a new variable) or capture (captures string inside of opening and closing tags and assigns it to a variable) tags.</p>
+
+<h3>Increment</h3>
+
+<pre>
+<code>
+&#123;% increment my_counter %&#125;
+&#123;% increment my_counter %&#125;
+&#123;% increment my_counter %&#125;
+
+OUTPUT:
+0
+1
+2
+</code>
+</pre>
+
+<h3>Decrement</h3>
+
+<pre>
+<code>
+&#123;% decrement variable %&#125;
+&#123;% decrement variable %&#125;
+&#123;% decrement variable %&#125;
+
+OUTPUT:
+-1
+-2
+-3
+</code>
+</pre>

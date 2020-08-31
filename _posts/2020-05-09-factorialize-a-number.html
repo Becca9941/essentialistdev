@@ -1,0 +1,93 @@
+---
+layout: post
+title: factorialize a number with caching
+---
+
+<h2>Problem Statement</h2>
+
+<p>Return the factorial of the provided integer.</p>
+
+<p>If the integer is represented with the letter n, a factorial is the product of all positive integers less than or equal to n.</p>
+
+<p>Factorials are often represented with the shorthand notation n!</p>
+
+<p>For example: 5! = 1 * 2 * 3 * 4 * 5 = 120</p>
+
+<p>Only integers greater than or equal to zero will be supplied to the function.</p>
+
+<h2>Solution</h2>
+
+<p>I used recursion to solve this problem. The way recursion works is that you start with a question. Then you have to ask for help down the line until someone gets to the answer. Once they have an answer, they pass it back to you. When it gets back to you, you have your answer.</p>
+
+<p>So, you're the first person in the chain (the first time the recursive function is called). You are given the number 3. Your first task is to check to see if the number you were given was less than 1. It isn't, so you move on.</p>
+
+<p>The next task asks you to return your number (3) times the factorial of the number below 3, which is 2. You can't do this yourself, so you ask the person next to you to the number 2 (factorialize(2)) for you. This is the second call of the function.</p>
+
+<p>The second person checks to see if their number 2 is less than 1, it isn't, so they give the number 1 to the next person in the chain to factorialize. This is the third call of the function.</p>
+
+<p>The third person says, is my number 1 less than the number 1? It isn't, so they ask the next person to factorialise 0 for them. This is the fourth call of the function.</p>
+
+<p>The fourth person says, is my number 0 greater than the number 1? It is, so unlike all of the other people, person four has found the stopping condition, so they return 1, which they give to the third person (moving back up the chain).</p>
+
+<p>The third person can now return the result of their number 2 multiplied by the number just given to them by the first person (1). 2 * 1 is 2, so they pass the number 2 to the second person in the chain.</p>
+
+<p>The second person in the chain multiplies their number 2 with the number just given to them (1), and passes the result (2) to you, the first person in the chain.</p>
+
+<p>You then multiple your number (3) by the number just given to you (2) and get the answer 6. You are the last person in the chain, you the answer to the original question 'what is the factorial of 3?' is '6'.</p>
+
+<pre>
+<code>
+function factorialize(num) {
+  if(num &lt; 1) { return 1; }
+  return num * factorialize(num-1);
+}
+
+factorialize(5);
+</code>
+</pre>
+
+<p>I asked an experienced dev if he'd use recursion to solve this problem. He said yep but that he'd also add a cache into it. We worked through adding a cache to it and ohmygosh it blew my mind!</p>
+
+<pre>
+<code>
+const cache = {}
+
+function factorialize(num) {
+  if(num &lt;= 1) { return 1; }
+  if(cache[num]) { return cache[num] }
+  const result = num * factorialize(num-1);
+  cache[num] = result;
+  return result;
+}
+</code>
+</pre>
+
+<p>First, we created a cache object as a global variable.</p>
+
+<p>Then we added a new stopping condition, which is if the answer has already been calculated and stored in the cache, return that instead of calculating it all over again.</p>
+
+<p>The first time we run our factorial method with the number 3 (factorialize(3)), we check to see if our number is less than 1 (our first stopping condition). It isn't so we move onto the next stopping condition, we we check the cache to see if the factorial has already been calculated and stored for the number 3. It hasn't, so we move on and run our recursive function until we hit our base case and start to move back through our chain.</p>
+
+<p>As we move back up through our chain, we store the factorial of each number we calculate the factorial of in the cache as a key value pair.</p>
+
+<p>By the time we have finished calculating the factorial for 3, we will have 3 factorial results stored in our cache, as follows:</p>
+
+<pre>
+<code>
+const cache = {
+  '1': 1,
+  '2': 2,
+  '3': 6
+}
+</code>
+</pre>
+
+<p>As the cache is a global variable, it doesn't get reset every time we run our factorial function. If you only run the factorial once, the cache doesn't matter. The magic is when you run it more than once.</p>
+
+<p>Say we want to run the factorialize method for a second time, this time with the number 4.</p>
+
+<p>When we hit the first stopping condition and start going back up the chain, we ask ourselfs if the factorial for 1 has already been calculated by looking up the key '1' in the cache. We find that it has, so instead of calculating it again we just return that and move on. We can do the same for the numbers 2 and 3, which means that we only need to calculate the factorial of the number 4, which is one number out of 4.</p>
+
+<p>To test this out, I added a console log just after the cache stopping condition <code>console.log(`Calculating factorial for ${num}`);</code>. When I ran the factorial function for the first time, it console logged this for every number. When I ran it the second time, it only console logged it for the numbers that hadn't already been calculated, which is pretty awesome!</p>
+
+<p>Caching is great for factorials, because the values are unlikely to change. Caching can also save a lot of time if you run a function many times, and want to store data that rarely changes, or where they are run far more frequently than the data changes. However, for data that is expected to change, it's important to be mindful of resetting the cache periodically so that data can be updated.</p>

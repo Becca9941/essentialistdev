@@ -1,0 +1,217 @@
+---
+layout: post
+title: Even more SQL basics
+---
+<p>Notes based on <a href="https://www.oreilly.com/library/view/head-first-sql/9780596526849/" target="_blank">Head First SQL</a></p>
+
+<h2>Table design</h2>
+
+<p>SQL is known as a Relational Database Management System (RDBMS). The key word here is 'Relational'. To design a table well, it's important to think about how the columns in a table relate to each other.</p>
+
+<ol>
+  <li>What is the one thing you want your table to describe?</li>
+  <li>Make a list of the information you need to know about your one thing when you're using the table</li>
+  <li>Using the list, break down the information about your thing into pieces that you can use for organising your table.</li>
+</ol>
+
+<h2>Atomic Data</h2>
+
+<p>An atom is a little piece of information that can't or shouldn't be divided. Atomic data has been broken down into the smallest pieces of data that can't or shouldn't be divided.</p>
+
+<p>A pizza delivery guy only needs the order number and the address the order belongs to. He never needs to look for a single street number on it's own, so the entire address should be stored in a single column. Whereas a real estate agent may need the street number and street name to search all the houses for sale by a specific street name or number, so it makes sense to seperate these out. In both examples, the address data is atomic, even though it is seperated in one use case and not in the other.</p>
+
+<ol>
+  <li>What is the ONE thing your table describes?</li>
+  <li>How will you USE the table to get at the one thing?</li>
+  <li>Do your columns contain atomic data to make your queries short and to the point?</li>
+</ol>
+
+<p><strong>Making your data atomic means breaking it down into the smallest pieces that you need to create an efficient table, not just the smallest possible pieces you can.</strong></p>
+
+<h3>Atomic table rules</h3>
+
+<p>Making your data atomic is the <em>first</em> step in creating a <strong>normal</strong> table.</p>
+
+<ul>
+  <li>A column with atomic data can't have several values of the same type of data in that column (no lists of data in one column).</li>
+  <li>A table with atomic data can't have multiple columns with the same type of data</li>
+</ul>
+
+<h2>Normal tables</h2>
+
+<ul>
+  <li>Normal tables won't have duplicate data, which will reduce the size of your database.</li>
+  <li>With less data to search through, your queries will be faster</li>
+</ul>
+
+<p>There are two rules (in addition to the atomic rules) to make a table normal:</p>
+
+<ol>
+  <li>Each row of data must contain atomic values</li>
+  <li>Each row of data must have a unique identifier, known as a primary key.</li>
+</ol>
+
+<h2>Primary keys</h2>
+
+<p>A primary key is a column in your table that makes each record unique. They can't be NULL, they must be given a value when the record is inserted into the database, they must contain only the information they need to be unique and nothing more, and the primary key values can't be changed. If you have a table where none of the information in it is unique, you can make a column called 'id' that auto increments every time a new record is added.</p>
+
+<p>An 'id' primary key is called a 'synthetic' primary key, whilst columns that are naturally unique in your table are called 'natural' primary keys. There is a debate in the SQL community about which one should be used, but neither side is conclusive.</p>
+
+<h2>See the original table creation statement</h2>
+
+<code>SHOW CREATE TABLE my_table;</code>
+
+<p>The above code shows you the original create table statement that was used to create your table. You can copy it to make a new version of the table without any data in it, a blank slate.</p>
+
+<h2>Create a table with a primary key</h2>
+
+<p>To create a primary key, add the following line to the end of your create table statement, just before the closing brackets:</p>
+
+<code>PRIMARY KEY (column_name)</code>
+
+<p>If you want your primary key column to auto increment from the integer value 1 onwards, add the 'AUTO_INCREMENT' clause to your id column as follows:</p>
+
+<code>column_name INT NOT NULL AUTO_INCREMENT</code>
+
+<p>If you add a different value to the auto_incrementing column using the INSERT statement, then it will be ignored and auto_increment as usual.</p>
+
+<h2>Modify an existing table structure with ALTER</h2>
+
+<p>The ALTER command allows you to change almost everything in your table without having to reinsert your data. But if you change a column of one data type to a different one, you risk losing your data.</p>
+
+<pre>
+<code>
+ALTER TABLE my_contacts
+ADD COLUMN contact_id INT NOT NULL AUTO_INCREMENT FIRST,
+ADD PRIMARY KEY (contact_id);
+</code>
+</pre>
+
+<p>To add a primary column to an existing table, we can write the query above. The FIRST keyword at the end of the add column line adds the column as the first in the table before all of the other columns. As we used AUTO_INCREMENT, the column was automatically filled with auto incrementing numbers</p>
+
+<p>There are a few more keywords besides FIRST that you can use to specify where you want to add new columns to your table:</p>
+
+<ul>
+  <li>AFTER your_column</li>
+  <li>BEFORE your_column</li>
+  <li>LAST</li>
+  <li>SECOND</li>
+  <li>THIRD</li>
+  <li>FOURTH etc</li>
+</ul>
+
+<pre>
+<code>
+ALTER TABLE my_contacts
+ADD COLUMN phone VARCHAR(10)
+AFTER first_name;
+</code>
+</pre>
+
+<h2>More ways to alter data</h2>
+
+<ul>
+  <li>CHANGE both the name and data type of an existing column</li>
+  <li>MODIFY the data type or position of an existing column</li>
+  <li>ADD a column to your table - you pick the data type</li>
+  <li>DROP a column from your table</li>
+</ul>
+
+<h3>Renaming your tables</h3>
+
+<pre>
+<code>
+ALTER TABLE projekts
+RENAME TO project_list;
+</code>
+</pre>
+
+<h3>Change data types</h3>
+
+<pre>
+<code>
+ALTER TABLE project_list
+CHANGE COLUMN number proj_id INT NOT NULL AUTO_INCREMENT,
+ADD PRIMARY KEY ('proj_id');
+</code>
+</pre>
+
+<h3>Change two columns with one SQL statement</h3>
+
+<pre>
+<code>
+ALTER TABLE project_list
+CHANGE COLUMN descriptionofproj proj_dest VARCHAR(100),
+CHANGE COLUMN contractoronjob con_name VARCHAR(30);
+</code>
+</pre>
+
+<p>If the data you are changing is not compatible with the old data type, SQL will throw an error. If it is compatible, your data might be truncated. For example, going from VARCHAR(10) to char(1), your data will change from 'Unicorn' to just 'B'.</p>
+
+<h3>Change data type but not the name of the column</h3>
+
+<pre>
+<code>
+ALTER TABLE project_list
+MODIFY COLUMN proj_desc VARCHAR(120);
+</code>
+</pre>
+
+<p>The MODIFY keyword changes only the datatype of a column and leaves the name alone.</p>
+
+<h3>Deleting a column</h3>
+
+<p>It is good practice to have only the columns you need in your table. If you are not using a column, you can drop it and use ALTER to add it in again (you'll have to repopulate the data) if you need it in the future.</p>
+
+<pre>
+<code>
+ALTER TABLE project_table
+DROP COLUMN start_date;
+</code>
+</pre>
+
+<p>Once you drop a column, everything that was stored in it will be removed too. You can use a SELECT statement to 'try' out and see what the DELETE statement will target to make sure it's going to delete the right things before you make it permanent.</p>
+
+<h2>Select a specified number of characters from a column</h2>
+
+<code>SELECT RIGHT(location, 2) FROM my_contacts;</code>
+
+<p>The RIGHT keyword above accepts two parameters, a column name and a specified number of characters from the right of the column. In this case, we are selecting the last two characters in the column. We can use the LEFT keyword in the same way, to select characters starting from the left of the column.</p>
+
+<h2>Select everything in front of the comma</h2>
+
+<code>SELECT SUBSTRING_INDEX(location, ',', 1) FROM my_contacts;</code>
+
+<p>The SUBSTRING_INDEX accepts three parameters, the name of the column, a character or a string, in the example above the character we have specified is a comma, and the number which specifies the number of matches to start from. In this case, we are grabbing everything that comes after the first comma. If the number in the last argument was a 2, then we'd be grabbing everything after the second comma.</p>
+
+<h2>A few more functions</h2>
+
+<p>NOTE: string functions do NOT change the data stored in your table; They only return the altered strings as a result of your query</p>
+
+<ul>
+  <li>SUBSTRING(your_string, start_position, length) gives you part of your string, starting at the letter in the start position. Length is how much of the string you get back.</li>
+  <li>UPPER(your_string) and LOWER(your_string) will change everything in the string to uppercase or lowercase respectively.</li>
+  <li>REVERSE(your_string) will reverse the order of the letters in your string</li>
+  <li>LTRIM(your_string) and RTRIM(your_string) will return your string with extra spaces removed from before (to the left) or after (to the right) of your string.</li>
+  <li>LENGTH(your_string) will count how many characters are in your string.</li>
+</ul>
+
+<h2>Change the value of EVERY row in a column</h2>
+
+<pre>
+<code>
+UPDATE table_name
+SET column_name = newvalue;
+</code>
+</pre>
+
+<p>Each row in our table is set, one at a time to this new value.</p>
+
+<pre>
+<code>
+UPDATE my_contacts
+SET state = RIGHT(location, 2);
+</code>
+</pre>
+
+<p>The statement above grabs the last two characters from the old location column and puts them into the new state column</p>

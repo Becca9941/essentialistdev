@@ -1,0 +1,209 @@
+---
+layout: post
+title: Link can equip items, strategy design pattern in Java
+---
+
+<p>After reading the first chapter of <a href="" target="_blank">Head First Design Patterns</a>, I decided to try and implement the Strategy Pattern I learned about by writing my own program in Java. I haven't actually tested this in an editor yet because Java isn't set up on my computer. Literally just wrote this out here.</p>
+
+<h2>Character class</h2>
+
+<pre>
+<code>
+public abstract class Character {
+  Item item;
+  public character() {
+  }
+
+  public abstract void introduction();
+
+  public void sleep() {
+    System.out.println("zzzzzz");
+  }
+  public void eat() {
+    System.out.println("Omnomnom chicken omnom");
+  }
+
+  public void useItem() {
+    item.use();
+  }
+
+  public void equipItem(Item anItem) {
+    item anItem;
+  }
+}
+</code>
+</pre>
+
+<ul>
+  <li>First I created an abstract class called Character, that all of my Legend of Zelda characters will inherit from. One of the design principles (not patterns) is to favour composition over inheritance. I understand this to mean delegate the behaviour of your object to other objects as much as possible. In this case, all of my characters eat and sleep and introduce themselves, so it's better for them to inherit these because they never change (though will have to reconsider if I want a Navi character who can't eat).</li>
+  <li>I defined the introduction method as an abstract method. All of the characters will be introducing themselves differently, so the implementation code for the introduction method will be defined within their individual instances (polymorphism).</li>
+  <li>Now for the strategy pattern. The Character class has an instance variable called 'item', which accepts any object that has the type 'Item'. We also have a setter method which allows the character object to swap out the current item (if there is one) for a different item.</li>
+  <li>Finally, the character class has a method called 'useItem()', which gets the item currently stored in the 'item' instance variable and calls the 'use()' method on it. Just like each Character introduce themselves in unique ways, each item has it's own way of behaving when it is being used.</li>
+</ul>
+
+<h2>Link class</h2>
+
+<pre>
+<code>
+public class Link extends Character {
+  public Link() {
+    item = new Item();
+  }
+
+  public void introduction() {
+    System.out.println("Hyeeeh kyaaah hyaaaah haa hyet haa haa jum jum haaa");
+  }
+}
+</code>
+</pre>
+
+<ul>
+  <li>After creating the Character class, I created a new class called Link, which extends the character class. Link already knows how to eat and sleep. We give him a generic item. It doesn't do anything right now. We'll be swapping it out for something more interesting in the program itself.</li>
+  <li>I then added the introduction method to Link's class. We defined the introduction method as an abstract method in the Character class, so any class that extends the Character MUST also have and introduction method. Link introduces himself like this: "Hyeeeh kyaaah hyaaaah haa hyet haa haa jum jum haaa".</li>
+</ul>
+
+<h2>Zelda class</h2>
+
+<pre>
+<code>
+public class Zelda extends Character {
+  public Zelda() {
+    item = new Item();
+  }
+  public void introduction() {
+    System.out.println("But courage need not be remembered... For it is never forgotten.");
+  }
+}
+</code>
+</pre>
+
+<ul>
+  <li>I then created another new class, this one is called Zelda. Zelda also extends the character class, is given a default item and introduces herself. As you can see, creating new characters is pretty easy.</li>
+</ul>
+
+<h2>Item interface</h2>
+
+<pre>
+<code>
+public interface Item {
+  public void use();
+}
+</code>
+</pre>
+
+<ul>
+  <li>This is where the strategy pattern comes into play. We want our characters to have the ability to use items (or not), but we don't want all characters to be able to use all of the items. The items a character can use varies from character to character (unlike eating and sleeping). The items themselves are all related. They can all be used by the characters to accomplish something. So while we don't want some characters to use some items, theoretically, they could use them because they are all interchangable.</li>
+  <li>With link specifically, it would be great to let him equip items and use them multiple times during the run time of the game. Doing this dynamically would be much better than having to hard code the entire sequence. The state pattern is one way to achieve this.</li>
+  <li>Most of the time, we don't recognise behaviour that varies until requirements change a few times and we realise we are always modifying a few sets of behaviours. So this example is deceptively simple, but demonstrates the ideas well enough.</li>
+  <li>To create items that are interchangeable, we first need an interface called 'Item'. The interface is an abstraction that best describes the a related group of behaviours. In this case, all of the things our characters can 'use' are best represented by the abstraction 'Item' (helps that this is the language used in the game). Just like the abstract class and abstract methods, the interface contains no implementation code. It is a contract for what we want our implementation classes to do. In this case, we want all of our Items to be used, so we create a method called 'use()'. When called, it'll read 'item.use()', which reads pretty well.</li>
+</ul>
+
+<h2>Sword item class</h2>
+
+<pre>
+<code>
+public class Sword implements Item {
+  public void use() {
+    System.out.println("Swingy swingy sword sword");
+  }
+}
+</code>
+</pre>
+
+<ul>
+  <li>Now that we have our interface, we can start creating concrete classes (items that we are actually going to be using in the game). All of our concrete items 'implements' the Item interface. This word is used because the 'use()' method on this class actually implements the behaviour we want to happen when this method is called. In this case, when we use a Sword item, we get back a string that says "Swingy swingy sword sword" (as you can tell, I had a LOT of fun writing this haha).</li>
+  <li>I created concrete item classes for five items: Sword, Bomb, key, Boomerang and Chicken</li>
+</ul>
+
+<h2>Bomb item class</h2>
+
+<pre>
+<code>
+public class Bomb implements Item {
+  public void use() {
+    System.out.println("You the bomb, no YOU the bomb!");
+  }
+}
+</code>
+</pre>
+
+<h2>Key item class</h2>
+
+<pre>
+<code>
+public class Key implements Item {
+  public void use() {
+    System.out.println("da da da da DAAA");
+  }
+}
+</code>
+</pre>
+
+<h2>Chicken item class</h2>
+
+<pre>
+<code>
+public class Chicken implements Item {
+  public void use() {
+    System.out.println("Game over");
+  }
+}
+</code>
+</pre>
+
+<h2>Boomerang item class</h2>
+
+<pre>
+<code>
+public class Boomerang implements Item {
+  public void use() {
+    System.out.println("Ow, the back of my head");
+  }
+}
+</code>
+</pre>
+
+<h2>Game character simulator</h2>
+
+<pre>
+<code>
+public class GameCharacterSimulator {
+  public static void main(String[] args) {
+    Character link = new Link();
+    Character zelda = new Zelda();
+
+    zelda.introduction();
+    link.introduction();
+
+    link.equipItem(new Key());
+    link.useItem();
+
+    link.equipItem(new Sword());
+    link.useItem();
+
+    link.equipItem(new Boomerang());
+    link.useItem();
+
+    link.equipItem(new Bomb());
+    link.useItem();
+
+    link.equipItem(new Chicken());
+    link.useItem();
+  }
+}
+</code>
+</pre>
+
+<ul>
+  <li>In this final class called GameCharacterSimulator, we put our characters into play.</li>
+  <li>First we create a character called link (an instance variable containing an instance of the Link class), and a character called zelda (same thing).</li>
+  <li>Then we get Zelda to introduce herself. She says: "But courage need not be remembered... For it is never forgotten." Zelda likes to be a little philosophical.</li>
+  <li>Then it's Links turn, he says: "Hyeeeh kyaaah hyaaaah haa hyet haa haa jum jum haaa". After all the knocks on the back of the head from the boomerang and sword practice, it kind of had an effect...</li>
+  <li>We then tell link to equip an item. We could have given him any item to equip at this point, but it made sense to give him a key because poking the door with a sword wasn't really helping all that much, besides amusement levels. The key makes a "da da da da DAA" sound to indicate that the door has been unlocked.</li>
+  <li>We then tell link to equip the sword, there might be monsters waiting behind the door. The result is "Swingy swingy sword sword". Pats link on the head.</li>
+  <li>We then tell link to equip the boomberang, which ends up hitting him in the back of the head... again.</li>
+  <li>We tell link to equip the bomb, it has a pretty nice personality, but seems a little confused as to who da bomb really is (hehheh).</li>
+  <li>Finally, we tell link to equip the Chicken. We didn't really think that through because it caused an instant "Game over". Chickens are terrifying.</li>
+</ul>
+
+<p>Yesterday, I didn't have the first clue about design patterns, and very little experience in Java. Over the last hour, I wrote a custom Legend of Zelda program with a questionable link who is free to equip as many items as he wants. I wrote the program straight into this blog post, without touching a developer environment (besides the one used to write this). That is a huge leap in progress. The book is worth reading.</p>

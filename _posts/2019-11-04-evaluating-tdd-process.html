@@ -1,0 +1,190 @@
+---
+layout: post
+title: Reflecting on test-driven attempt at solving an old interview problem. 
+---
+
+<p>In earlier blog posts, I documented my process for building a test-driven solution to an old interview problem. The test files and matching production code files are shown below.</p>
+
+<p>Before attempting to solve this problem, I had been really struggling to learn TDD for a while. I wasn't sure if I'd get very far trying to test-drive the following code but was actually pleasantly surprised. Something clicked with TDD a bit more. I could see how it can help drive a design.</p>
+
+<p>The solution below is incomplete. I was able to test-drive all of the individual pieces that make up the solution. However, I am missing some object-oriented design skills which meant that I wasn't sure how to make the pieces all work together as collaborating objects without calling them in a procedural way.</p>
+
+<p>To get better, it could help to learn more about design patterns to get more exposure to object-oriented style solutions. So close to being able to do this all properly though, just got to keep at it!</p>
+
+<h2>spec/tetris_game_spec.rb</h2>
+
+<pre>
+<code>
+require_relative '../lib/tetris_game.rb'
+require_relative '../lib/block.rb'
+
+describe 'TetrisGame should:' do
+
+  it '- Have a block capacity.' do
+    tetris = TetrisGame.new 1
+    expect(tetris.block_capacity).to eql(1)
+  end
+  it '- Not have a block capacity less than 1.' do
+    tetris = TetrisGame.new -1
+    expect(tetris.block_capacity).to eql(nil)
+  end
+  it '- Have a starting tile' do
+    tetris = TetrisGame.new
+    expect(tetris.starting_tile).to eql(1)
+  end
+  it '- Confirm room for more blocks.' do
+    [3, 6, 12, 34, 3029, 199].each do |num|
+      tetris = TetrisGame.new 3500
+      expect(tetris.is_there_room_for_this(Block.new num)).to eql(true)
+    end
+  end
+  it '- Deny room for more blocks.' do
+    [33, 24, 43, 92, 103].each do |num|
+      tetris = TetrisGame.new 1
+      expect(tetris.is_there_room_for_this(Block.new num)).to eql(false)
+    end
+  end
+  it '- Reduce block capacity when a block is added.' do
+    tetris = TetrisGame.new 1
+    tetris.add_block(Block.new 1)
+    expect(tetris.block_capacity).to eql(0)
+  end
+  it '- Add blocks unless capacity is reached.' do
+    tetris = TetrisGame.new 20
+    block_sizes = [1, 2, 5, 15, 200, 30, 9, 19, 2, 1]
+
+    block_sizes.each do |num|
+      tetris.add_block(Block.new num)
+    end
+    expect(tetris.block_capacity).to eql(0)
+  end
+  it '- Show blocks added to the game.' do
+    tetris = TetrisGame.new 20
+    3.times { tetris.add_block(Block.new 1) }
+    expect(tetris.blocks.length).to eql(3)
+    expect(tetris.blocks[0].shape).to eql("Block")
+  end
+  it '- Show leftover blocks that wont fit.' do
+    tetris = TetrisGame.new 20
+    5.times { tetris.add_block(Block.new 10) }
+    expect(tetris.leftover_blocks.length).to eql(3)
+  end
+  it '- Show position, size and shape of each block' do
+    tetris = TetrisGame.new 10
+    tetris.add_block(Block.new 2)
+    tetris.add_block(Block.new 4)
+    expect(tetris.describe(tetris.blocks)).to eql(['1-2: Block 2','2-5: Block 4'])
+  end
+  it '- Change block size 3 to "golden"' do
+    tetris = TetrisGame.new 10
+    tetris.add_block(Block.new 3)
+    tetris.add_block(Block.new 2)
+    expect(tetris.describe(tetris.blocks)).to eql(['1-3: Block golden', '3-4: Block 2'])
+  end
+end
+</code>
+</pre>
+
+<h2>spec/block_spec.rb</h2>
+
+<pre>
+<code>
+tetris_game_spec.rb                                           74,1           Bot
+require_relative '../lib/block.rb'
+
+describe 'Block should:' do
+  it '- Be a specific size.' do
+    [1,2,3,5,10,200,36,42,19].each do |num|
+      block = Block.new num
+      expect(block.size).to eql(num)
+    end
+  end
+  it '- Not be smaller than a size 1.' do
+    block = Block.new -2
+    expect(block.size).to eql(nil)
+  end
+  it '- Have a shape.' do
+    block = Block.new
+    expect(block.shape).to eql('Block')
+  end
+  it '- Display information about itself.' do
+    block = Block.new 1
+    expect(block.display_info_about_itself).to eql('1 Block')
+  end
+
+end
+</code>
+</pre>
+
+<h2>lib/tetris_game.rb</h2>
+
+<pre>
+<code>
+class TetrisGame
+  attr_reader :block_capacity, :blocks, :leftover_blocks, :starting_tile
+
+  def initialize(block_capacity = 0, starting_tile = 1)
+    @starting_tile = starting_tile
+    @blocks = []
+    @leftover_blocks = []
+    if block_capacity > 0
+      @block_capacity = block_capacity
+    end
+  end
+
+  def is_there_room_for_this(block)
+    block.size <= @block_capacity
+  end
+
+  def add_block(block)
+    if is_there_room_for_this(block)
+      @block_capacity = @block_capacity - block.size
+      @blocks << block
+    else
+      @leftover_blocks << block
+    end
+  end
+
+  def describe(blocks)
+    blocks = []
+    @blocks.each do |block|
+        blocks << "#{@starting_tile}-#{@starting_tile + block.size - 1}: #{block.shape} #{block_size_formatter(block.size)}"
+        @starting_tile += block.size - 1
+    end
+    blocks
+  end
+
+  def block_size_formatter(size)
+    if size == 3
+      "golden"
+    else
+      size
+    end
+  end
+
+end
+</code>
+</pre>
+
+<h2>lib/block.rb</h2>
+
+<pre>
+<code>
+class Block
+
+  attr_reader :size, :shape
+
+  def initialize(size = 0, shape = 'Block')
+    if size > 0
+      @size = size
+    end
+    @shape = shape
+  end
+
+  def display_info_about_itself
+    "#{@size} #{@shape}"
+  end
+
+end
+</code>
+</pre>

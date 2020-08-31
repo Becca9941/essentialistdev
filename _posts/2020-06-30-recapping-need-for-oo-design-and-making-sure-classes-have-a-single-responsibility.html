@@ -1,0 +1,31 @@
+---
+layout: post
+---
+
+<p>The first requirement for learning how to do object-oriented design is to immerse yourself in objects; Once you acquire an object-oriented perspective the rest follows naturally.</p>
+
+<p>We need object-oriented design so that we can write code for today that is easy to change later, because change is inevitable.</p>
+
+<p>OOD is about arranging what code you have so that it will be easy to change.</p>
+
+<p>An object-oriented designer has tools, principles (SOLID, DRY, LoD) and patterns (common problems solved in common ways).</p>
+
+<p>Design is worth it if it pays off (e.g. if it takes half your time in the morning but pays off in the afternoon).</p>
+
+<p>Insist that it be simple. Your goal is to model your application using classes so that it does what it is supposed to do right now, and is easy to change later.</p>
+
+<p>It’s impossible correctly group methods into the right classes at the early stage of your project. You don’t know enough. So the only goal is to make things easy to change.</p>
+
+<p>A class should do the smallest possible useful thing; It should have a single responsibility.</p>
+
+<ul>
+  <li>Look through the description and look for nouns that represent objects in your domain.</li>
+  <li>Objects are those that have both data and behaviour.</li>
+  <li>Determine if a class has a single responsibility by rephrasing each of its methods as a question “Please Mr. Gear, what is your ratio?”</li>
+  <li>Or, describe the class in one sentence, if it has an “and” or an “or”, it’s doing other people’s work.</li>
+  <li>Depend on behaviour, not data. Every tiny bit of behaviour lives in only one place.</li>
+  <li>Hide instance variables by wrapping them in accessor methods (never directly refer to them, even in the class they belong to).</li>
+  <li>Hide data structures. You can use the Ruby Struct class to wrap a structure.</li>
+</ul>
+
+<p>An application that is easy to change is like a box of building blocks; you can select just the pieces you need and assemble them in unanticipated ways.</p>

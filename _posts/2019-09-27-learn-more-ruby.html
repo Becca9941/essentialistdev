@@ -1,0 +1,166 @@
+---
+layout: post
+title: Ruby function and files - quick programs to explore language
+---
+
+<p>Notes based on <a href="https://www.amazon.com/Learn-Ruby-Hard-Way-Computational/dp/032188499X" target="_blank">Learn Ruby the hard way.</a></p>
+
+<p>Most of the code examples are from the book. When I refactor some of them to make them better, I explain the reasons why. I remember reading this book a couple years ago and getting stuck a lot. Somewhere along the way I've picked up the ability to read them and identify a lot of the areas that feel wrong to me. This is a book for a total beginner so have been written with a lot of duplication to make the examples less overwhelming.</p>
+
+<h2>Function examples</h2>
+
+<pre>
+<code>
+def puts_two(*args)
+  arg1, arg2 = args
+  puts "arg1: #{arg1}, arg2: #{arg2}"
+end
+
+def puts_two_again(arg1, arg2)
+  puts "arg1: #{arg1}, arg2: #{arg2}"
+end
+
+def puts_one(arg1)
+  puts "arg1: #{arg1}"
+end
+
+def puts_none()
+  puts "I got nothin'."
+end
+
+puts_two("Rebecca", "Williams")
+puts_two_again("Rebecca", "Williams")
+puts_one("First!")
+puts_none()
+</code>
+</pre>
+
+<ul>
+  <li>We define functions in ruby using the 'def' key
+word</li>
+  <li>The * is the 'splat' operator, which means that
+ any number of arguments can be passed to the method and they will be 'splatted' into an array.</li>
+  <li>We unpack those arguments into two variables before printing them to the console. This is not the best way to do things, because there is no point letting the user add any number of arguments and then constrain them to the first two by shoehorning them into two variables.</li>
+  </li>So in the remaining functions we pass arguments as variables. The last function does not accept any arguments because none have been defined.</li>
+</ul>
+
+<h2>Functions and variables</h2>
+
+<pre>
+<code>
+def cheese_and_crackers(cheese_count, boxes_of_crackers)
+  puts "You have #{cheese_count} cheeses!"
+  puts "You have #{boxes_of_crackers} boxes of cracke
+rs!"
+  puts "Man, that's enough for a party!"
+  puts "Get a blanket."
+  puts # A blank line
+end
+
+puts "We can just give the function numbers directly:
+"
+cheese_and_crackers(20, 30)
+
+puts "OR, we can use variables from our script:"
+amount_of_cheese = 10
+amount_of_crackers = 50
+cheese_and_crackers(amount_of_cheese, amount_of_crackers)
+
+puts "We can even do math inside too:"
+cheese_and_crackers(10 + 20, 5 + 6)
+
+puts "And we can combine the two, variables and math:
+"
+cheese_and_crackers(amount_of_cheese + 100, amount_of_crackers + 1000)
+</code>
+</pre>
+
+<ul>
+  <li>There are a few ways we can give our function the values it needs. We can give it hard-coded values, mathimatical operations, or math and variables etc.</li>
+  <li>If you can assign something to a variable using the '=' operator, you can use it as an argument in your function.</li>
+</ul>
+
+<h2>Functions and Files</h2>
+
+<pre>
+<code>
+input_file = ARGV[0]
+
+def print_all(f)
+  puts f.read()
+end
+
+def rewind(f)
+  f.seek(0, IO::SEEK_SET)
+end
+
+def print_a_line(line_count, f)
+  puts "#{line_count} #{f.readline}"
+end
+
+current_file = File.open(input_file)
+
+puts "First let's print the whole file:"
+puts # A blank line
+
+print_all(current_file)
+
+puts "Now let's rewind, kind of like a tape."
+
+rewind(current_file)
+
+puts "let's print three lines:"
+
+current_line = 1
+print_a_line(current_line, current_file)
+
+current_line = current_line + 1
+print_a_line(current_line, current_file)
+
+current_line = current_line + 1
+print_a_line(current_line, current_file)
+</code>
+</pre>
+
+<ul>
+  <li>The IO class is the basis for all input and output in Ruby.</li>
+  <li>The seek method accepts an integer and an optional starting point. In this case, we seek the line at position 0 in our text document, which is the first line in the document (the line after that is line 1, then line 2 etc).</li>
+  <li>The starting point we specify in the seek function parameters is <code>IO::SEEK_SET</code>. The documentation says: ':set' or 'IO::SEEK_SET' seeks to the absolute location givin by _amount_. Not an easy to understand. It just means, go to the position set in the amount argument, which in this case is 0. The other options are 'IO::SEEK_CUR', which means go to the position specified in the amount argument. Then move forward by n number of lines, n being the line number we were on before running this command. 'IO::SEEK_END, which goes to position specified, then move forward by the number of the last line in the file (the docs confusingly says 'seeks to _amount_ plus end of stream - you probably want a negative value for amount). We need a negative number for amount because if your going forward by the total number of lines in a file then you'll end up outside of the file if it isn't a negative number.</li>
+</ul>
+
+<h2>Calculator</h2>
+
+<pre>
+<code>
+def add(a,b)
+  puts "ADDING #{a} + #{b}"
+  a + b
+end
+
+def subtract(a,b)
+  puts "SUBTRACTING #{a} - #{b}"
+  a - b
+end
+
+def multiply(a,b)
+  puts "MULTIPLYING #{a} #{b}"
+  a * b
+end
+
+def divide(a,b)
+  puts "DIVIDING #{a} / #{b}"
+  a / b
+end
+
+puts "Let's do some math with just functions!"
+
+age = add(30, 5)
+height = subtract(78,4)
+weight = multiply(90, 2)
+iq = divide(100, 2)
+
+puts "Age: #{age}, Height: #{height}, Weight: #{weight}, IQ: #{iq}"
+</code>
+</pre>
+
+

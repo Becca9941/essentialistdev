@@ -1,0 +1,229 @@
+---
+layout: post
+title: SQL queries within queries
+---
+<p>Notes based on <a href="https://www.oreilly.com/library/view/head-first-sql/9780596526849/" target="_blank">Head First SQL</a></p>
+
+<p>Sometimes, you need to ask your database more than one question, or take the result of one query and use it as the input to another query. This is where subqueries come in, they help you make your queries more dynamic and avoid duplicate data.</p>
+
+<p>SCENARIO: We want to pull out all of the developers with at least five years of experience, and who don't require a salary that is higher than 105,000.</p>
+
+<pre>
+<code>
+SELECT contacts.last_name, contacts.first_name, contacts.phone
+FROM contacts
+  NATURAL JOIN
+  job_desired
+WHERE job_desired.title = 'Web Developer'
+AND job_desired.salary_low &lt; 105000;
+</code>
+</pre>
+
+<p>The query above results in a table that shows the first name, last name and phone numbers of the people who desire a 'Web Developer' job AND whose lowest desired salary boundary is less than 105,000</p>
+
+<h2>Matching contacts with desired jobs</h2>
+
+<pre>
+<code>
+SELECT title
+FROM job_listings
+GROUP BY title
+ORDER BY title;
+</code>
+</pre>
+
+<p>The query above returns all of the available job titles in a table called 'job_listings'.</p>
+
+<pre>
+<code>
+SELECT contacts.first_name, contacts.last_name, contacts.phone, job_current.title
+FROM job_current
+NATURAL JOIN my_contacts
+WHERE job_current title IN ('cook', 'Hairdresser', 'Waiter', 'Web Developer');
+</code>
+</pre>
+
+<p>The above query results in a table containing the first name, last name, phone number and current job title of each contact in a contacts table, as well as a column containing their desired jobs ONLY if their desired jobs are contained in a list of open job listings - which are currently hard-coded. In other words, we can see a list of contacts whose desired jobs match current job openings.</p>
+
+<p>The problem with this query is that we are doing two queries at the same time, where the second query is not even a query because it is hard coded. The solution to this is as follows:</p>
+
+<h3>Subqueries</h3>
+
+<p><strong>A subquery is a query that is wrapped within another query, it's also called an INNER query.</strong></p>
+
+<p>To accomplish what two queries can do with just one query, we can add a sub-query into our query.</p>
+
+<pre>
+<code>
+SELECT some_column, another_column
+FROM table
+WHERE column = (SELECT column FROM table);
+</code>
+</pre>
+
+<p>Because the outer query uses an '=' operator, this subquery will return a single value, one row from one column (sometimes called a cell, but in SQL is known as a <em>scalar value</em>, which is compared to the columns in the WHERE clause</p>
+
+<h4>A real example</h4>
+
+<p>We can call the second query that we used to get the matches from the porfessions table the OUTER query, because it will wrap up inside of itself the INNER query.</p>
+
+<pre>
+<code>
+SELECT contacts.first_name, contacts.last_name, contacts.phone, job_current.title
+FROM job_current
+NATURAL JOIN my_contacts
+WHERE job_current title IN (SELECT title FROM job_listings);
+</code>
+</pre>
+
+<p>We don't need to retype all the professions from our first query anymore because the inner query (inside the parentheses on the last line) takes care of that for us.</p>
+
+<p>You can use joins in the place of many sub queries, but some people find it simpler to write sub queries, so you have a choice of syntax.</p>
+
+<pre>
+<code>
+SELECT mc.first_name AS firstname, mc.last_name AS lastname, mc.phone AS phone, jc.title AS jobtitle
+FROM job_current AS jc
+NATURAL JOIN my_contacts AS mc
+WHERE jobtitle IN (SELECT title FROM job_listings);
+</code>
+</pre>
+
+<p>In the query above, we have used table aliases to make it easier to write out the queries. For example, our alias for 'my_contacts' is 'mc', so that we don't have to write out the full name in the query every time we use it. We have also created column aliases, this is to make the output of our joined columns easier to understand. They columns have been given names that make sense in their original tables, but outside of that context, they can be a little unclear. Aliases are temporary names that don't affect the original data, but are used mainly for readable queries and readable query results.</p>
+
+<h3>Subquery rules</h3>
+
+<ul>
+  <li>A subquery is always a single SELECT statement</li>
+  <li>Subqueries are always inside parentheses</li>
+  <li>Subqueries do not get their own semicolon, one semicolon goes at the end of the entire query.</li>
+  <li>Subqueries can show up in four places in a query: select clause, select column list as one of the columns, from clause, and in a having clause.</li>
+  <li>Subqueries can be used with insert, delete, update and select.</li>
+</ul>
+
+<h3>Constructing subqueries</h3>
+
+<p>The hardest part about writing subqueries is not the structure of them, but figuring out what part of the query needs to be the subquery.</p>
+
+<p>Analysing queries is like figuring out word problems. You identify words in the question that match things you know, like table and column names and break things apart.</p>
+
+<p>An example question: Who makes the most money out of all of my contacts</p>
+
+<ol>
+  <li>Rephrase the question in terms of the tables and columns in your database. "Who" means you want a first and last name from your contacts table. "The most money" means you need a MAX value from your "Job_current" table.</li>
+  <li>Identify a query that answers part of the question: The MAX(salary) looks like a good candidate for our first query. <code>SELECT MAX(salary) FROM job_current;</code></li>
+  <li>The first part of the query is also easy, we just need to select the first and last names: <code>SELECT mc.first_name, mc.last_name FROM my_contacts AS mc;</code></li>
+  <li>Finally, we figure out how to link the two. We not only need names of people in our contacts table, but also their salaries so that we can compare them to our MAX(salary). We need a natural inner join to pull out the salary belonging to each person:</li>
+  <li>Finally, we need a WHERE clause to link the two.</li>
+</ol>
+
+<pre>
+<code>
+SELECT mc.first_name, mc.last_name, jc.salary
+FROM my_contacts AS mc
+NATURAL JOIN job_current AS jc
+WHERE jc.salary =
+(SELECT MAX(jc.salary) FROM job_current jc);
+</code>
+</pre>
+
+<p>We could have done this without the subquery, using a natural inner join and a LIMIT command. There are many cases in SQL where there are more than one way to do things.</p>
+
+<h3>A subquery as a SELECT column</h3>
+
+<p>If a subquery is used as a column expression in a SELECT statement, it can only return one value from one column.</p>
+
+<pre>
+<code>
+SELECT mc.first_name, mc.last_name,
+(SELECT state
+FROM zip_code
+WHERE mc.zip_code = zip_code) AS state
+FROM my_contacts mc;
+</code>
+</pre>
+
+<p>The query above goes through all of the rows in the contacts table. For each of those contacts, it pulls out the first name, last name and state (where we find the state by taking the zip code and matching it up with the correct state in the zip code table).</p>
+
+<pre>
+<code>
+SELECT jc.salary
+FROM my_contacts mc
+NATURAL JOIN job_current jc
+WHERE email = 'andy@weatherorama.com';
+</code>
+</pre>
+
+<p>The above query returns a single result, the salary of a single person whose email address matched the email address specified. We can turn this query into a sub query that allows us to compare it to other salaries, so that we can list the contacts who earn more than him.</p>
+
+<pre>
+<code>
+SELECT mc.first_name, mc.last_name, jc.salary
+FROM
+my_conctacts AS mc
+NATURAL JOIN job_current AS jc
+WHERE
+jc.salary &gt; (Single salary query goes here);
+</code>
+</pre>
+
+<h3>A noncorrelated subquery</h3>
+
+<p>If the subquery stands alone and doesn't reference anything from the outer query, it is a noncorrelated subquery.</p>
+
+<p>All of the subqueries we have written so far in this post are examples of noncorrelated subqueries. The inner query gets processed first, then the result is used in the WHERE condition of the outer query. The inner query does not in any way depend on values from the outer query, it can be run as a standalone query.</p>
+
+<h3>Knowing what queries to run</h3>
+
+<ul>
+  <li>Decide how to phrase and SQL query (there are lots of ways of phrasing queries, like joins and subqueries etc) based on how long it takes to get a result. The faster the better.</li>
+  <li>Cross joins are really really slow, and correlated subqueries are also slow. The best way to find out is to experiment with queries and testing the speed differences.</li>
+</ul>
+
+<h2>Noncorreclated subqueries with IN and NOT IN</h2>
+
+<p>A noncorrelated subquery uses IN or NOT IN to test if the values returnedin the subquery are members of a set or not.</p>
+
+<pre>
+<code>
+SELECT mc.first_name, mc.last_name, mc.phone, jc.title
+FROM job_current AS jc NATURAL JOIN my_contacts AS mc
+WHERE jc.title IN (SELECT title FROM job_listings);
+</code>
+</pre>
+
+<p>IN evaluates each row of each jc.title values against the entire set returned by the subquery</p>
+
+<p>Using NOT IN in this case lets you see job titles that don't match the job listings.</p>
+
+<h2>Correlated subqueries</h2>
+
+<p>A correlated subquery means that the inner query relies on the outer query before it can be resolved.</p>
+
+<pre>
+<code>
+SELECT mc.first_name, mc.last_name
+FROM my_contacts AS mc
+WHERE
+3 = (
+SELECT COUNT(*) FROM contact_interest
+WHERE contact_id = mc.contact_id
+);
+</code>
+</pre>
+
+<p>The query above counts the number of interests in the interest table for each person in my_contacts, then returns the first and last name of those people who have three interests</p>
+
+<p>The subquery depends on the outer query. It needs the value for contact_id from the outer query before the inner query can be processed.</p>
+
+<pre>
+<code>
+SELECT mc.first_name firstname, mc.last_name lastname, mc.email email
+FROM my_contacts mc
+WHERE NOT EXISTS
+(SELECT * FROM job_current jc
+WHERE mc.contact_id = jc.contact_id);
+</code>
+</pre>
+
+<p>Just like the IN and NOT IN, you can use both EXISTS and NOT EXISTS with your subqueries. THe query above returns data from my_contacts where the contact_ids do not show up at all in the contact_interest table.</p>

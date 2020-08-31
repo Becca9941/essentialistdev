@@ -1,0 +1,315 @@
+---
+layout: post
+title: SQL Joins and multi-table operations, yayy
+---
+<p>Notes based on <a href="https://www.oreilly.com/library/view/head-first-sql/9780596526849/" target="_blank">Head First SQL</a></p>
+
+<p>We have a table that contains a list of contacts, including an interest column which holds a list of each contacts interests. This data is difficult to query because we have to extract them individually first, and there are a lot of duplicates.</p>
+
+<p>To solve this problem, we are going to create a new table where each of the interests have their own category, and use a foreign id to link the interests to the person they belong to in the contacts field. We can achieve this in a series of small steps.</p>
+
+<p>It's good to know how to do this, so that if you come across a table that has this problem and you want to improve the design of it, you can do so without having to write the new tables and input all of their data from scratch.</p>
+
+<p>The first step is to create a new column in the contacts table, which stores the first interest mentioned in the contacts list of interests.</p>
+
+<pre>
+<code>
+UPDATE my_contacts
+SET interest1 = SUBSTRING_INDEX(interests, ',', 1);
+</code>
+</pre>
+
+<p>The query above updates the contacts table. It adds a new column to the table called 'interest1', and sets the value of that column to the characters that come before the first comma in the list, so the first word in the list.</p>
+
+<p>In the next step, we will remove the first interest from the list of interests now that we have a column for it.</p>
+
+<pre>
+<code>
+UPDATE my_contacts
+SET interests = SUBSTR(interests, LENGTH(interest1) +2)
+</code>
+</pre>
+
+<p>The query above overwrites the interests list column with only part of the original interests list. To get the part we are interested in, we use the SUBSTR function whic in this case has two arguments. The first argument is the column whose value we only want a part of, and the second is which character do we want to start recording from. In this case, we are saying, we want a copy of the interests list, minus the length of the first interest (from the 'interest1' column we created, minus another two characters. The extra two characters are taken off to remove the space and comma which seperates each interest in our list.</p>
+
+<p>Then we repeat the above two commands until we have one colums for each of the interests listed in our interests column.</p>
+
+<p>Now that all of the interests are seperated into their own columns, we can access them by running one of the following SELECT statements for each of these columns to extract their values, which will be useful for populating our seperate interests table (instead of having them as seperate columns in the main table like we have now):</p>
+
+<code>SELECT interest1 FROM my_contacts;</code>
+
+<h2>Many paths to one place</h2>
+
+<p>There are three ways to create and populate a new table with data with distinct, alphabetically ordered values. We will cover each of them below.</p>
+
+<h3>CREATE, SELECT and INSERT at (nearly) the same time</h3>
+
+<p>First, we create the profession table, with a primary key column and a VARCHAR column to hold the professions. Then we fill up the profession column with the values from the SELECT statement.</p>
+
+<pre>
+<code>
+CREATE TABLE profession
+(
+  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  profession varchar(20)
+);
+
+INSERT INTO profession(profession)
+  SELECT profession FROM my_contacts
+  GROUP BY profession
+  ORDER BY profession;
+</code>
+</pre>
+</code>
+</pre>
+
+<h2>CREATE TABLE with SELECT, then ALTER to add primary key</h2>
+
+<p>The second way is to create the profession table with one column, full of the values from the SELECT that grabs the values from the my_contacts table's profession column. Then we ALTER the table to add in the primary key field.</p>
+
+<pre>
+<code>
+CREATE TABLE profession AS
+  SELECT profession FROM my_contacts
+  GROUP BY profession
+  ORDER BY profession;
+
+ALTER TABLE profession
+ADD COLUMN id INT NOT NULL AUTO_INCREMENT FIRST,
+ADD PRIMARY KEY (id);
+</code>
+</pre>
+
+<p>The AS keyword is used to reference the results from one query to insert them into the new table.</p>
+
+<h2>CREATE, SELECT and INSERT at the same time</h2>
+
+<p>Here we create the profession table with both a primary key and a profession column, and fill the profession column with values from the SELECT. The id column automatically increments, which leaves only one column which is where the data goes.</p>
+
+<pre>
+<code>
+CREATE TABLE profession
+(
+  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  profession varchar(20)
+) AS
+  SELECT profession FROM my_contacts
+  GROUP BY profession
+  ORDER BY profession;
+</code>
+</pre>
+
+<h2>AS keyword</h2>
+
+<p>The AS keyword populates a new table with the result of the SELECT statement. If we hadn't specified that the new table have to columns with new names, AS would have created just one column, filled with the same name and data type as the column that's the result of the SELECT.</p>
+
+<h2>Column Aliases</h2>
+
+<p>The create profession table above uses the column name 'profession' five times, and while SQL knows what it is referencing, it can be difficult for humans to read (and thus maintain). To solve this problem, we can use alises in SQL to temporarily assign columns new names.</p>
+
+<pre>
+<code>
+SELECT profession AS mc_prof FROM my_contacts
+GROUP BY mc_prof
+ORDER BY mc_prof;
+</code>
+</pre>
+
+<p>To create an alias, we put it right after the initial use of the column name in our query with another AS to tell our software to refer to the profession column in my_contacts whenever it sees the alias name.</p>
+
+<p>While the alias changes the name of the column in the results, it doesn't change the original column name in any way. An alias is temporary.</p>
+
+<p>If we use the alias to create a new column with that name, the column name will be the same name as the column we are using the alias for, and not the column itself.</p>
+
+<p>If we use the alias to create a new column with that name, then the original column we are using the alias for will not change name, but the column that we are creating with the alias, will have the same name as the alias.</p>
+
+<h2>Table Aliases</h2>
+
+<p>Aliases makes it easier to select data from more than one table. You create table aliases in the same way that you create column aliases. Put the table alias after the initial use of the table name in the query with another AS to tell your software to refer to the original table whenever the alias table name is used</p>
+
+<pre>
+<code>
+SELECT profession AS mcprof
+FROM my_contacts AS mc
+GROUP BY mc_prof
+ORDER BY mc_prof;
+</code>
+</pre>
+
+<p>Table aliases are also called <em>correlation names</em></p>
+
+<p>You don't have to use the AS keyword to create table aliases, you can just leave it out and it will do the same thing, as long as the alias follows directly after the table or column name it is aliasing.</p>
+
+<p>Hmm, at the moment, it's more work to create the alias and use it in the query instead of the table or column name directly. So will be interested in seeing how the alias makes joining multiple table commands easier to understand.</p>
+
+<h2>Inner joins</h2>
+
+<p>The simplest type of join (which isn't a true join at all) is called the <strong>Cartesian join</strong>. It is also called the Cartesian product, cross product, cross join, and, 'no join'.</p>
+
+<p>If you have a table containing childrens names and another table containing toys, you can use a cartesian join to figure out which toys you can buy each child.</p>
+
+<pre>
+<code>
+SELECT t.toy, b.boy
+FROM toys AS t
+  CROSS JOIN
+  boys AS b;
+</code>
+</pre>
+
+<p>I wrote up notes for cartesian joins in my rocketbook notebook (endlessly reusable), which I got today to try it out. Here they are:</p>
+
+<img src="/assets/img/cartesian-join.jpg" alt="cartisian join sketch notes">
+
+<p>It's useful to know about Cartesian joins, because sometimes when you are messing around with table joins you might accidentally get Cartesian results. Also, they can be used to test the speed of your RDBMS and its configuration. The time they take is easier to detect and compare when you use a slow query.</p>
+
+<p>There is also a shorthand way to write the above cartesian join query. You can leave out the words CROSS JOIN and just use a comma there instead</p>
+
+<pre>
+<code>
+SELECT toys.toy, boys.boy
+FROM toys, boys;
+</code>
+</pre>
+
+<p>A cartesian join is a type of 'inner join'. An inner join is basically just a cartesian join where some result rows are removed by a condition in the query.</p>
+
+<h2>Inner joins</h2>
+
+<p>An INNER JOIN combines the records from two tables using comparison operators in a condition. Columns are returned only where the joined rows match the condition. Columns are returned only where the joined rows match the condition.</p>
+
+<pre>
+<code>
+SELECT somecolumns
+FROM table1
+  INNER JOIN
+  table2
+ON somecondition;
+</code>
+<pre>
+
+<p><strong>An INNER JOIN combines the records from two tables using comparison operators in a condition.</strong></p>
+
+<h3>The equijoin</h3>
+
+<p><strong>EQUIJOIN inner joins test for equality</strong></p>
+
+<p>We have two tables. One is a table called 'boys' which contains three columns: A boy_id, boy and a toy_id. The other table is called 'toys' which contains two columns: a toy_id and a toy. This is an example of a one-to-one relationship, where each boy only has one toy.</p>
+
+<p>We want to find out which toy each boy has:</p>
+
+<pre>
+<code>
+SELECT boys.boy, toys.toy
+FROM boys
+  INNER JOIN
+  toys
+ON boys.toy_id = toys.toy_id;
+</code>
+</pre>
+
+<p>The query above returns a table with two columns, a boy column and a toy column. Now we can easily see which toy belongs two which boy, having used an inner join to meld just the information we are interested in from the two tables together.</p>
+
+<pre>
+<code>
+SELECT my_contacts.email, profession.profession
+FROM my_contacts
+  INNER JOIN
+  proffession
+ON my_contacts.prof_id = profession.prof_id;
+</code>
+</pre>
+
+<p>The query above returns the email addresses and professions of each person in my_contacts.</p>
+
+<pre>
+<code>
+SELECT my_contacts.first_name, my_contacts.last_name, status.status
+FROM my_contacts
+  INNER JOIN
+  status
+ON my_contacts.status_id = status.status_id;
+</code>
+</pre>
+
+<p>The query above returns the first name, last name and status of each person in my_contacts.</p>
+
+<pre>
+<code>
+SELECT my_contacts.first_name, my_contacts.last_name, zip_code.state
+FROM my_contacts
+  INNER JOIN
+  zip_code
+ON my_contacts.zip_code = zip_code.zip_code;
+</code>
+</pre>
+
+<p>NOTE how the foreign key of the main table is connected to the id in the child table. <code>INNER JOIN profession ON my_contacts.prof_id = proffession.prof_id</code></p>
+
+<h3>The NON-equijoin</h3>
+
+<p>The non-equijoin returns any rows that are not equal. Say we have a table for boys and a table for toys. Using the non-equijoin, we can see exactly which toys each boy <em>doesn't</em> have.</p>
+
+<pre>
+<code>
+SELECT boys.boy, toys.toy
+FROM boys
+  INNER JOIN
+  toys
+ON boys.toy_id &lt;&gt; toys.toy_id
+ORDER BY boys.boy;
+</code>
+</pre>
+
+<p>Ordering our results will make them easier to read.</p>
+
+<p>The <strong>&lt;&gt;</strong> operator means 'not equal to'.</p>
+
+<h3>The natural join</h3>
+
+<p>Natural joins only work if the column you are joining by has the same name in both tables.</p>
+
+<p>Just as before, we want to know what toy each boy has. Our natural join will recognize the same column name in each table and return matching rows</p>
+
+<pre>
+<code>
+SELECT boys.boy, toys.toy
+FROM boys
+  NATURAL JOIN
+  toys;
+</code>
+</pre>
+
+<p>This query returns exactly the same results as our first equijoin, which displays a table containing two colums, one for each boy and one for the toy that belongs to each boy (boy and toy columns).</p>
+
+<pre>
+<code>
+SELECT my_contact.address, profession.profession
+  FROM my_contacts
+  NATURAL JOIN
+  profession;
+</code>
+</pre>
+
+<p>The above query returns the email addresses and professions of each person in my_contacts.</p>
+
+<pre>
+<code>
+SELECT my_contacts.first_name, my_contacts.last_name, status.status
+FROM my_contacts
+  NATURAL JOIN
+  status
+  ON my_contacts_status_id &lt;&gt; status.status_id;
+</code>
+</pre>
+
+<p>The above query returns the first name, last name and any status that each person in the contacts list is not</p>
+
+<pre>
+<code>
+SELECT my_contacts.first_name, my_contacts.last_name, zip_code.state
+FROM my_contacts
+  NATURAL JOIN
+  zip_code;
+</code>
+</pre>

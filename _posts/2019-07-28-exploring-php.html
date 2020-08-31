@@ -1,0 +1,48 @@
+---
+layout: post
+title: Exploring PHP - Web Sockets, HTTP, FTP and SSL
+---
+
+<h2>Goal of PHP</h2>
+
+<p>The main goal of the language is to allow web developers to write dynamically generated web pages quickly, but you can do that and much more with PHP. Here are some ideas based on the contextual options and parameters section (within the language reference) of the PHP documentation.</p>
+
+<a href="http://php.net/manual/en/langref.php" target="_blank">Documentation</a>
+
+<h2>What is HTTP?</h2>
+
+<p>HTTP (Hyper Text Transfer Protocol) is a type of communication protocol, that allows the client-side to request information from the server side of a computer. The way it works is that a client (browser) sends a request to the server asking for something like a HTML file, a CSS style sheet, an image, JavaScript code or data to name a few examples.</p>
+
+<p>After the request is sent, the server processes the response with the help of an application, then returns the output in the form of a HTTP response. Finally, the client receives the response.</p>
+
+<p>In PHP, there are two main HTTP request methods: GET sends a request (one of the most common HTTP methods) and POST submits data with the aim of creating or updating a resource that can then be requested.</p>
+
+<a href="http://tangledindesign.com/how-to-create-a-contact-form-using-html5-css3-and-php/" target="_blank">How to build a contact form using PHP post request</a>
+
+<h2>What are webSockets?</h2>
+
+<p>WebSockets are a type of communication protocol, that allows a two-way conversation to be held between both the client-side and server side of a computer. They are especially useful for building real-time applications like chat app and online multiplayer games, where messages are regularly passed from the server to the client-side.</p>
+
+<p>For example, if we were using HTTP/S for a chat app, the client-side would constantly have to ask the server if there was a new message before getting and displaying it to the user. To emulate real-time messages, we would have to send a new request every 0.2 milliseconds. Whereas webSockets allow the server-side to let the client-side know when they had a new message to share, eliminating the need for all of those requests.</p>
+
+<a href="https://www.sanwebe.com/2013/05/chat-using-websocket-php-socket" target="_blank">How to build a chat app using WebSockets in PHP</a>
+
+<h2>What is FTP?</h2>
+
+<p>FTP (File Transfer Protocol) is a way to transfer files between to computers over the internet or a network. You can use an FTP client to log into an FTP server, navigate the server’s folder structure, and exchange files.</p>
+
+<p>There are a number of FTP functions in PHP that allow you to open and close a connection to an FTP server, login to the FTP server as well as upload, download, rename, edit, delete, and get meta-data for files held on the file servers.</p>
+
+<p>Whilst looking for projects in PHP that use FTP, it turns out that it’s pretty obsolete (when used in conjunction with PHP). This is because FTP now comes as part of all browsers, which means that you can now connect to FTP servers directly from your browser. Connecting to the FTP with PHP is now unnecessary.</p>
+
+<h2>What is SSL?</h2>
+
+<p>SSL stands for Secure Lockets Layer, and it protects sensitive information such as bank card numbers and other personal data from being read or modified when it is being transferred between two systems.</p>
+
+<p>You can tell that a website uses a secure SSL (or TLS) connection because the URL will start with HTTPS:// (instead of just HTTP). It will also have a little padlock in the address bar.</p>
+
+<p>If your web hosting provider does not provide SSL support, then you can use PHP to enable SSL support.</p>
+
+<a href="https://ourcodeworld.com/articles/read/198/enabling-ssl-https-protocol-with-xampp-in-a-local-php-project" target="_blank">Enabling SSL support for the website you built from scratch</a>
+
+

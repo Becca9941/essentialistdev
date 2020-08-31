@@ -1,0 +1,232 @@
+---
+layout: post
+title: Building a skeleton web component with a shadow root
+category: [web development, code-snippets]
+tags: [web components, DOM, HTML, CSS, JavaScript, code]
+---
+
+<h2>Web Components</h2>
+
+<p>Web components are self-contained elements that have their own HTML, CSS and
+JavaScript associated them. They are useful for building reusable widgets that
+can be dropped into any page without the style or behavior effecting the
+surrounding page.</p>
+
+<p>Most of the tutorials on web components are pretty complicated. After
+learning about them for a while, I found that it is easy to get started with
+them when you build your understanding of them up in layers. So I wrote the bare
+minimum code needed to create a simple hello world component. This component is
+just a hello world heading element with a font family applied through the shadow
+DOM.</p>
+
+
+<h2>Web Component Skeleton</h2>
+
+<p>This is a web component skeleton that has a self contained DOM including HTML
+and styles that are not included in the flow of the light DOM. You can use the
+component in your main DOM by using the the tag we defined for it. In this case,
+the tag is <code class="language-html">&lt;bw-skeleton-component/&gt;</code>.
+
+<figure>
+  <figcaption>Skeleton Web Component</figcaption>
+  <pre>
+    <code class="language-javascript" contenteditable spellcheck="false">
+      class Component extends HTMLElement {
+        constructor() {
+          super();
+          this.attachShadow({ mode: 'open' });
+          this.shadowRoot.innerHTML = `
+            <style>
+                h1 {
+                  font-family: sans-serif;
+                }
+            </style>
+            <h1>Hello World!</h1>
+          `;
+        }
+      }
+
+      customElements.define('bw-skeleton-component');
+    </code>
+  </pre>
+</figure>
+
+<p>Before we create a web component, it is a good idea to think about how you
+want to use it before writing any code to build it. As this is just a simple
+hello world component, I'll just walk through what the code you need to create
+a skeleton component does.</p>
+
+<code class="lang-javascript">class Component extends HTMLElement { }</code>
+
+<p>The first thing we do is create a class with the name of our component. A
+class is like a car stamp that we use to stamp lots of little cars all over our
+page/s.</p>
+
+<p>It is a JavaScript convention to start our class name with an uppercase
+letter (PascalCase). We do this to make it easier to spot the difference between
+a class and a variable, which are usually named with lower case letters.</p>
+
+<p>In this case, we are creating a class as an extension of another class using
+he 'extends' keyword. Extending a class just means that your class contains all
+of the functionality of the class you are extending, which is in addition to any
+of the functionality that you define.</p>
+
+<p>The class that we are extending is the HTMLElement class. We need to extend
+this class so that we can create our own HTMLElement that we can use like any
+other HTMLElements (adding event listeners, targeting with CSS, JS etc).</p>
+
+<p>When creating a component, you can also extend classes that belong to
+existing HTML elements. For example, if you wanted to create a tip component
+that styles a paragraph element in a specific way, you could extend the
+HTMLParagraph element instead of the more generic HTMLElement class.</p>
+
+<p>In most cases, you are likely going to build web components that are nothing
+like existing HTML elements. A pop-up is a good example of the type of web
+component you are likely to want to build.</p>
+
+<code class="lang-javascript">constructor() { }</code>
+
+<p>Inside of our newly created component class, we have added a method called
+'constructor()'. This is one of four methods that make up a components
+lifecycle, and so they are called "Lifecycle methods". A brief explanation of
+each is included below.</p>
+
+<ul>
+  <li><strong>Constructor():</strong> The constructor method is called
+    automatically as soon as the constructor is created, but before the
+    component element has been attached to the DOM (before the component tag in
+    your HTML is rendered). This is where you set attributes that don't rely on
+    the DOM being rendered and for event listeners etc. It is also where you
+    create the shadow DOM.</li>
+  <li><strong>ConnectedCallback():</strong> The connected callback method is
+    called at the moment your web component has been attached to the DOM. In
+    this method, you can interact with the elements contained within or outside
+    of your web component. Such as getting data from elements or setting event
+    listeners on them etc.</li>
+  <li><strong>DisconnectedCallback():</strong> The disconnected callback method
+    is called whenever your component element is removed from the DOM. This is a
+    good place to remove any event listeners or cancel time-based events like
+    intervals.</li>
+  <li><strong>AttributeChangedCallback(name, oldValue, newValue)</strong>: The
+    attribute changed callback method is called every time an attribute that you
+    have added a watcher to changes. An attribute that is being watched is
+    called an observed attribute. To observe an attribute, you have to use a
+    getter method containing an array of one or more attributes you want to
+    watch for changes. An example of this is shown below:</li>
+
+  <figure>
+    <figcaption>Setting the attributes we want to observe</figcaption>
+    <pre>
+      <code class="lang-javascript">
+        static get observedAttributes() {
+          return ['src', 'class', 'customAttribute'];
+        }
+      </code>
+    </pre>
+  </figure>
+
+  <p>The reason I have used the constructor method in this skeleton component
+  example is because I want my component to contain a shadow DOM with it's own
+  self-contained element and styling.</p>
+
+  <code class="lang-javascript">super();</code>
+
+  <p>The first line of code inside any constructor method has to be a call to
+  the super method. In the MDN documentation, it says that we need to call super
+  to establish the correct prototype chain. This didn't make sense to me so I
+  asked for help understanding it.</p>
+
+  <p>This is how the super constructor was explained to me. When a component is
+  created, it inherits from another class. The constructor method initialises a
+  class so that it can be used. If no constructor is called within the web
+  component (we don't have to write one), then a constructor will initialise the
+  class behind the scenes. The constructor does not initialise the class that we
+  are inheriting from though (parent class), so we need the super method because
+  it is essentially a constructor that runs on the parent class.</p>
+
+  <code class="lang-javascript">this.attachShadow({ mode: 'open' });</code>
+
+  <p>After we have called our super method, we can then go on to do some of the
+  things that we are able to do using the constructor. In this case, I am going
+  to open a shadow DOM which will allow me to add my heading element and
+  associated styles (and JavaScript) to the component's internal DOM.</p>
+
+  <p>The 'this' keyword refers to the object that it belongs to. In this case,
+  the object is the component itself.</p>
+
+  <p>We attach the shadow DOM to the component by calling the built in method
+  'attachShadow', which accepts an object containing a mode property that you
+  can set to 'open' or 'closed'.</p>
+
+  <p class="note">For security reasons, you are not able to open a shadow DOM on
+  every element (e.g. anchor tags can not have a shadow root). A list of
+  elements you can attach a shadow DOM to can be found <a
+  href="https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow"
+  target="_blank">here</a>.</p>
+
+  <p>When you set the mode to open, you are able to access the shadow DOM from
+  within the web component, and outside of the web component using the
+  'shadowRoot' property that we will discuss next.</p>
+
+  <p>When you set the mode to closed, it is more difficult, but not impossible
+  to access the shadow DOM from outside of the component. There is not much
+  benifit to using this because it is easy to find out how to get around
+  this.</p>
+
+  <code class="lang-javascript">this.shadowRoot.innerHTML = ``;</code>
+
+  <p>After opening the shadow DOM, we can access it using the 'shadowRoot'
+  property as shown above. We can do anything that we can do with the normal DOM
+  here, like setting the innerHTML, adding event listeners, appending child
+  elements, querying for elements etc.</p>
+
+  <p>In this case, I have set the innerHTML of my web component to contain a
+  template literal. Which allows you to write a multi-line string that you
+  can use string interpolation with if you want to. String interpolation is
+  where you insert the value of a variable or code expression in your string.
+  Here I just added style tags containing CSS for styling a heading that I also
+  added to the template literal.</p>
+
+  <code
+    class="lang-javascript">customElements.define('bw-skeleton-component');</code>
+
+  <p>The final thing we need to do before we can use our web component is to
+  define it using the customElements.define() method. This method allows you to
+  set a tag name for your component, and then it teaches the browser what your
+  tag name means so that it can understand what to do with it.</p>
+
+  <p>The customElements.define() method accepts two arguments. The first is the
+  name of your tag, and the second is the name of your component class.</p>
+
+  <p>The tag for your component must include at least one hyphen. This is
+  because all of the built in HTML tags are one word, so a hyphen makes sure
+  that you don't overwrite an existing tag. It is also good practice to start
+  your component tag name with your initials or the inintials of your company.
+  This is so that if another person downloads and uses your component, that
+  there is less chance of the name being the same as a component they are using
+  that has not been written by you.</p>
+
+  <p>You can start using your component in your HTML by using the tag name as
+  you would for any other HTML element.</p>
+
+  <code class="lang-html">&lt;bw-skeleton-component/&gt;</code>
+
+  <p>There is a lot more to learn about web components. The purpose of this
+  entry was to make it easier for you to get started without having to puzzle
+  through all of the complicated tutorials like I did. Hopefully after reading
+  this, you will be better equipped to understand the external documentation and
+  tutorials listed below.</p>
+
+  <ul>
+    <li><a
+        href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements">Using
+      custom elements MDN</a></li>
+    <li><a
+        href="https://developers.google.com/web/fundamentals/web-components/">An
+      extensive guide to building web components</a></li>
+    <li><a
+          href="https://dev.to/thepassle/web-components-from-zero-to-hero-4n4m">Web
+      components: from zero to hero</a></li>
+    <li><a href="https://coherent-labs.com/posts/web-components/">What are web
+        components</a></li>
+  </ul>

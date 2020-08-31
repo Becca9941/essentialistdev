@@ -1,0 +1,65 @@
+---
+layout: post
+title: Binary Search In Kotlin, How and Why
+---
+
+<p>A binary search is useful for reducing the performance time (number of steps) of finding out the index of a value in an ordered array (whether or not the value is actually present).</p>
+
+<p>Say we have a list of 5 elements, and we want to find the index of the value 4:</p>
+
+<pre>
+<code>
+val mutableListOf(1,2,3,4,5)
+</code>
+</pre>
+
+<p>If we were using a linear search approach, we would start at index 0, and compare the value there with the value we are looking for until we find a match or exit when we encounter a value that is greater than we are looking for.</p>
+
+<ol>
+  <li>Index 0 contains 1, no match</li>
+  <li>Index 1 contains 2, no match</li>
+  <li>Index 2 contains 3, no match</li>
+  <li>Index 3 contains 4, match</li>
+</ol>
+
+<p>In this example, our linear search took 4 steps to complete.</p>
+
+<p>If we were using a binary approach, we would start at the midpoint of the array and check to see if the value it contains is either less than, greater than or the same as the value 4 we are looking for.</p>
+
+<p>In our array, the midpoint is index 2, which contains the value 3. 3 is less than 4, we can assume that the value 4 should be somewhere to its right. So we can eliminate all of the values to the left of 3, including 3.</p>
+
+<p>Then, we find the midpoint of the remaining elements in the array (4 at index 3, and 5 at index 4). The midpoint here would be index 3, which countains the value 4 we were looking for.</p>
+
+<ol>
+  <li>Index 2 contains 3, no match</li>
+  <li>Index 3 contains 4, match</li>
+</ol>
+
+<p>The binary search only took two steps to complete compared to the linear searches four steps.</p>
+
+<p>The difference doesn't matter much when it comes to small arrays, but when it comes to large arrays, the binary search can offer huge performance savings.</p>
+
+<p>If we had an array of 100 elements, and we were looking for a value that happened to be in the last index of the entire array, then the linear search would find the value in 100 steps, because it checks each index in turn, starting from index 0.</p>
+
+<p>Whereas, in a binary search, each guess we make eliminates half of the possible indexes we'd have to search.</p>
+
+<p>With an array size of 3, the maximum number of steps it would take to find something using binary seach is 2.</p>
+
+<p>If we double the number of cells in the array (and add one more to keep the number odd for simplicity's sake), there are 7 cells, and the maximum number of steps to find something using binary search is three.</p>
+
+<p>If we double it again (and add one), so that the ordered array contains 15 elements, the maximum number of steps to find something using binary search is four.</p>
+
+<p>The pattern here is that for every time we double the number of items in the ordered array, the maximum number of steps needed for binary search increases by just one.</p>
+
+<p>For every time we double the data, the binary search algorithm adds a maximum of just one more step.</p>
+
+<p>If we had an array of 10,000 elements, a linear search can take up to 10,000 steps, whereas a binary search takes up to a maximumm of just 13 steps. If we had ad array of 1 million elements, a linear search can take up to a million steps, whilst a binary search would take a maximum of 20 steps.</p>
+
+<p>In Kotlin, there is a binary_search method built into the language library for you to use.</p>
+
+<pre>
+<code>
+val list = mutableListOf('b', 'b', 'c', 'd', 'e')
+println(list.binarySearch('d')) // 3
+</code>
+</pre>

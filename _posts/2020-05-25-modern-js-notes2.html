@@ -1,0 +1,74 @@
+---
+layout: post
+title: JavaScript Rest Parameter, Spread Operator and Default Values
+---
+
+<p>Working through <a href="https://pragprog.com/book/ves6/rediscovering-javascript" target="_blank">Rediscovering JavaScript: Master ES6, ES7 and ES8</a>.</p>
+
+<h2>The Rest Parameter</h2>
+
+<p>The rest operator can be used as a placeholder for any number of arguments, like this: <code>...values</code>. Using this as an argument in a function means you can pass in any number of arguments, that then get stored in an array called values. You can use array methods on the values array. Example:</p>
+
+<pre>
+<code>
+const max = function(...values) {
+return values.reduce((large, e) =&gt; large &gt; e ? large : e, values[0]);
+};
+</code>
+</pre>
+
+<p>There must only be one rest parameter, and it must be the last one in the argument list if present. Rest parameters must also be empty arrays, we get an error if we try to give it a default value.</p>
+
+<h2>The Spread Operator</h2>
+
+<p>The spread operator looks exactly like the rest operator. While the spread operator gathers seperate values into an array, the spread operator breaks a collection into seperate values.</p>
+
+<p>You can also use the spread operator to copy an object, modify it's properties and add new properties, whilst leaving the original object untouched:</p>
+
+<pre>
+<code>
+const sam = { name: 'Sam', age: 2 };
+console.log(sam);
+console.log({...sam, age: 3});
+console.log({...sam, age: 4, height: 100 });
+console.log(sam);
+</code>
+</pre>
+
+
+<h2>Defining Default Values for Parameters</h2>
+
+<p>Advice in chapter not directly related to default values. The author sorted book titles by calling slice on the titles array before calling the sort method on in. This is because the sort method modifies the array it is called on, and it's bad practice to change the input given to a function.</p>
+
+<p>In the following code example, we can use a named parameter to make our sort titles function sort in descending order as well as descending order.</p>
+
+<pre>
+<code>
+const books = [
+{ title: 'Who Moved My Cheese' },
+{ title: 'Great Expectations' },
+{ title: 'The Power of Positive Thinking' }
+];
+
+const sortByTitle = function(books, ascending = true) {
+  const multiplier = ascending ? 1 : -1;
+
+  const byTitle = function(book1, book2) {
+    return book1.title.localeCompare(book2.title) * multiplier;
+  };
+
+  return books.slice().sort(byTitle);
+}
+
+console.log(sortByTitle(books));
+console.log(sortByTitle(books, false));
+</code>
+</pre>
+
+<p>Whenever you use default parameters, make them trail non-default parameters, to lessen the risk of them being undefined, like an argument called 'id'.</p>
+
+<p>Hmm, I don't like the thought of mixing default and non-default parameters...</p>
+
+<h2>Expressions as Default Values</h2>
+
+<p>We can also use expressions as default argument values. That's pretty cool, though I'm not sure I like that either. Seems like something the body of the function should handle, though there might be use-cases where it does come in handy, just don't know those yet.</p>

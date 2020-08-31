@@ -1,0 +1,71 @@
+---
+layout: post
+title: Setting up Pharo Smalltalk Developer Environment
+categories: [installation, dev environment]
+tags: [Smalltalk, Pharo, homebrew, tests]
+---
+
+<p>There are a few variations of the Smalltalk programming language. I chose
+Pharo for no particular reason than to get started with one of them. Pharo is a
+pure object-oriented programming language and a development environment.</p>
+
+<p class="note">Will be updating these instructions to include setting up test
+cases.</p>
+
+<p>The download instructions I am following can be found on Pharo's <a
+href="https://github.com/pharo-open-documentation/pharo-wiki/blob/master/General/SettingUpANewProject.md"
+                                                                      target="_blank">Setting
+                                                                      up a
+                                                                      project
+                                                                      Github
+                                                                      page</a></p>
+
+<h2>Install Pharo with Brew</h2>
+
+<code class="lang-bash">brew cask install
+  pharo-project/pharo/pharo-launcher</code>
+
+<img src="/assets/img/brew-install-pharo.png" alt="intallation result for pharo">
+
+<p>Search for PharoLauncher in finder and open it.</p>
+
+<img src="/assets/img/pharo-launcher.png" alt="pharo when it has been launched
+for the first time">
+
+<h2>In the Pharo launcher</h2>
+
+<ul>
+  <li>Click on the "Official distributions" drop-down menu in the left panel and double-click on the newest version of Pharo from the list. I chose "Pharo 7.0 - 64bit (development version)".</li>
+  <li>Enter a name for your Image. I called mine "HelloWorld". Your image should
+  now show up in the right pane in the development environment.</li>
+  <li>Launch the image by double-clicking on the image name. This launches the
+    Pharo virtual machine where you can write your program.</li>
+</ul>
+
+<p class="note">When you launch your image, Pharo gives you the option to select
+a white or dark theme. I nearly missed that.</p>
+
+<h2>Create a package and a class</h2>
+
+<p>To make your first package, click on the "Tools" option in the top menu bar,
+and then click on "System Browser". According to the tutorial, the System
+Browser is the main tool to develop a project in Pharo.</p>
+
+<p>The leftmost panel in the system browser shows all of the packages that
+already exist in your project. To create a new one, right click anywhere in the
+leftmost panel and choose the option "New package", which will open a new small
+window.</p>
+
+<p>Give your package a name and click 'ok'. I called mine "Hello-World", which
+follows the package naming convention I observed accross the other package
+names. Two capitalised words seperated by a hyphen.</p>
+
+<p>To create a class, click on your package name. You will see a class stub
+template in the panel that spans accross the bottom of the screen. Change the
+name of the class to your own name. In this case, I named my class 'HelloWorld'.
+The classname here is prefixed by a hash symbol. So when you replace the
+template name be sure to keep that in place.</p>
+
+<p>Save your class with command-s (for Mac). After doing this you will see the
+middle pane of your system browser now has 'ClassName !' in it, and the panel to
+the right will contain 'instance side'.</p>

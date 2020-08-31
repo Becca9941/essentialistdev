@@ -1,0 +1,110 @@
+---
+layout: post
+title: How to solve a difficult SQL problem by breaking it down and experimenting - a walkthrough
+---
+
+<p>The following SQL problem is marked as 'difficult'. The best way to approach a problem like this that has a lot going on, is to have fun taking it apart and experimenting with the pieces. Once you understand the pieces in isolation, you can start seeing what happens when you mesh them together with other pieces. To show you what I mean, I will take you through my process for solving it below:</p>
+
+<h2>Problem statement</h2>
+
+<p>Write a query to print total number of unique hackers who made at least submission each day (starting on the first day of the contest), and find the hacker_id and name of the hacker who made maximum number of submissions each day. If more than one such hacker has a maximum number of submissions, print the lowest hacker_id. The query should print this information for each day of the contest, sorted by the date. <a href="https://www.hackerrank.com/challenges/15-days-of-learning-sql/problem?h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen" target="_blank">Problem source</a></p>
+
+<p>Part of the reason why this problem is so difficult is because of how terribly it is worded. I chose this example anyway because you're not always going to get clear problem statements from your clients. So this is a useful example to work through.</p>
+
+<h2>Problem analysis</h2>
+
+<ol>
+  <li>Imagine the problem is a paragraph in a story, then break it down it down into a series of sentences that make sense on their own, out of context.</li>
+  <li>Now imagine that your sentence is a task list, identify all of the individual tasks that make up your task list.</li>
+  <li>Look at each of your tasks for two types of meaningful words: Words that are, or can be converted to SQL syntax, and words that represent data values.</li>
+  <li>Convert each of your tasks into individual select statements. Look at your SQL keywords and data values. How can you build a query that accomplishes the task. Note, these queries are throw-away. They are just to help you get comfortable exploring the data.</li>
+</ol>
+
+<h3>1. Paragraph to sentences</h3>
+
+<q>Print the total number of unique hackers who made at least one submission each day (starting on the first day of the contest).</q>
+
+<h3>2. Tasklist to tasks</h3>
+
+<ul>
+  <li>Print total number of unique hackers</li>
+  <li>Who made at least one submission each day</li>
+  <li>Starting on the first day of the contest</li>
+</ul>
+
+<h3>3. Tasks to meaningful words</h3>
+
+<h4>SQL Syntax</h4>
+
+<ul>
+  <li>COUNT</li>
+  <li>DISTINCT</li>
+  <li>&gt; 1?</li>
+</ul>
+
+<p>If you think something can be an SQL clause/function, feel free to Google. For example, to calculate the total there is a SUM function, but in this case we are counting people, so COUNT is more appropriate.</p>
+
+<h4>Data values</h4>
+
+<ul>
+  <li>hackers</li>
+  <li>submission</li>
+  <li>day (of the contest)</li>
+</ul>
+
+<p>After you have identified the data values you are interested in, figure out where you can get that data from. For example, hackers is not a column name in any of the tables in the database this example uses. However, there is a table called 'hackers' that has a 'hacker_id' and a 'name' column. This will help reduce the cognitive load when it comes to writing queries. You can just focus on how to express your intent instead of trying to hold placeholders for all of the missing data location/names you need to find out.</p>
+
+<h3>4. A series of SELECT statements</h3>
+
+<p><strong>COUNT the number of DISTINCT hackers in the <em>hackers</em> table by their <em>hackers_id</em>.</strong></p>
+
+<p>The next step is to convert each of our tasks into an SQL query. I like to convert all of them into SELECT statements where possible to begin with. This is just so that I can get familiar with getting the data in the specific formats I need. That way, if a SELECT statement isn't enough to achieve the format you are looking for, you can ask why, which is a great starting point for knowing which gaps to fill with say subqueries/joins for example.</p>
+
+<code>SELECT DISTINCT COUNT(hacker_id) FROM hackers</code>
+
+<p>The problem statement mentioned that the list of hackers returned must all be unique, so I used the DISTINCT keyword to enforce this constraint in the query above. However, as each hacker_id is unique and only appears once in the 'hackers' table, the DISTINCT keyword is redundant in this example, as there are no duplicates to remove. This is an important clue, at some point in the rest of the solution, we will end up with each hacker being displayed one or more times.</p>
+
+<p>The fact that they appear once in this table, suggests that the hackers table will have to be joined with another table to create duplicates (one to many relationship?). You might need more SQL experience to have this kind of thought process, but even just recognising it as a clue will give you a good starting point to explore and understand the problem and solution more deeply.</p>
+
+<p>We have the first tiny piece of the puzzle solved, we know how to count the number of unique hackers.</p>
+
+<p><strong>Who made &gt; 1 <em>submission</em> each <em>day</em></strong></p>
+
+<p>The next part of the puzzle is to figure out who made at least one submission per day. This is a loaded question that can be broken down even further, and then built back up again.</p>
+
+<p>The first question I'm going to figure out is 'what submissions were made by what hacker each day'. In the 'submissions' table, there is a 'submission_date' column and a 'hacker_id' column. I don't need to know the name of the hacker at this point, so these columns will do.<p>
+
+<p>In order for there to be a submission_date (in this example), a submission must have been made. So I'm going to start by listing each submission with the id of the hacker who made the submission, as follows:</p>
+
+<code>SELECT submission_date, hacker_id FROM submissions;</code>
+
+<p>The next step is to print the number of submissions made on each date. Solving this step requires a better understanding of SQL because we need to know what things like 'COUNT' and 'GROUP BY' do in order to acheive what we want. If you don't know how to do this, you can Google it or ask for help. If you do this, spend some time making sure you know what the solution does. Keep asking why until you understand.</p>
+
+<pre>
+<code>
+SELECT submission_date, hacker_id, COUNT(*) 
+FROM submissions
+GROUP BY submission_date, hacker_id;
+</code>
+</pre>
+
+<p>In the query above, we have used the COUNT(*) function. This counts the number of rows in our table. In this case, we have also specified two columns in our query, 'submission_date', and 'hacker_id'. If we didn't have a GROUP BY clause, then we would get back a table where each row contains a date, hacker_id and the number of rows in the table as a whole. When I tried to do this, an error was thrown. The total number of rows in a table is usually a standalone query.</p>
+
+<p>In this case, we are counting the number of rows in each category (after the rows have been sorted into each category). The categories are created using the GROUP BY statement. Here, we are saying: take all of the submissions that have the same date, and the same hacker_id associated with them and put them in their own group. Then return how many rows are in that group. So each row in our results table will contain a 'submission_date', a 'hacker_id', and the number of times the same submission date and hacker id appeared in our table. Each row will represent the whole group, so will only show the one row, where only the count is different.</p>
+
+<p>If this doesn't make sense yet, that's okay. It's a cue to find some GROUP BY exercises to play with until it does make sense. Which won't take long. Many people go years not really understanding stuff like this and just using it without really knowing how it works, only to find that a couple of hours experimenting changes leads to an 'aha' moment that has a cascading effect. For example, if you know how to use COUNT in conjunction with GROUP BY, then you know how to use SUM, AVG etc in the same way too.</p>
+
+<p>Okay, the next step is to only return the rows where hackers made <strong>at least</strong> 1 submission each day. This means we need to add a condition to our statement. We can't use a WHERE clause here because it only works for rows before they have been summarized into groups by the GROUP BY clause. So we need to use HAVING, which is just like the WHERE clause, but is applied after the rows have been summarized into groups, which is exactly our situation.</p>
+
+<pre>
+<code>
+SELECT submission_date, hacker_id, COUNT(*)
+FROM submissions
+GROUP BY submission_date, hacker_id
+HAVING COUNT(*) &gt;= 1;
+</code>
+</pre>
+
+<p>In the query above, we have added a condition that says, only include counts greater than or equal to 1. I could have also used '&gt;0', which does the same thing, but thought that 'greater than or equal to 1' reads much closer to the original problem statement which says 'at least 1', not 'bigger than zero'.</p>
+
+<p>So, now we have a query that shows us a list of hackers who made at least one submission per date. This isn't quite the solution our problem is looking for but we are much closer than we were. We are actually looking for hackers who made at least one submission EVERY day, not just on each day they submitted. We have also written a fairly complex (not complicated) query pretty easily, by taking very small, experimental baby steps. Hopefully you are now in a position to <a href="https://www.hackerrank.com/challenges/15-days-of-learning-sql/problem?h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen" target="_blank">continue solving this problem by yourself.</a></p>

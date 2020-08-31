@@ -1,0 +1,50 @@
+---
+layout: post
+---
+<h2>Problem Statement</h2>
+
+<p>Return the lowest index at which a value (second argument) should be inserted into an array (first argument) once it has been sorted. The returned value should be a number.</p>
+
+<p>For example, getIndexToIns([1,2,3,4], 1.5) should return 1 because it is greater than 1 (index 0), but less than 2 (index 1).</p>
+
+<p>Likewise, getIndexToIns([20,3,5], 19) should return 2 because once the array has been sorted it will look like [3,5,20] and 19 is less than 20 (index 2) and greater than 5 (index 1).</p>
+
+<h2>Solution</h2>
+
+<p>The first solution I came up with starts by sorting my array of numbers into smallest to biggest using the sort method. Then, if the number we are inserting is the same as one of the numbers in the array, I return the index of the matching number in the array, which is where we'll insert its match. If the number we want to insert is bigger than all of the numbers in our array, then we add it to the end of the array.</p>
+
+<p>If the number we are given is not bigger than any of the numbers in our array, and is not the same as any of the numbers in our array, then we map our original array into a new array, where each value is the difference between the number in the array and the number we want to insert. We then get rid of all of the minus numbers (which means any number that is smaller than our inserted number), and find the smallest difference (the closest number that is bigger than the number we want to insert). Then, we find the index of the smallest difference in the full difference array (with the negative values included), and return it's index, which will be the same as the index we want to insert our number into our original array.</p>
+
+<p>This one was pretty difficult for me to work out.</p>
+
+<pre>
+<code>
+function getIndexToIns(arr, num) {
+  arr.sort((a,b)=&gt; a-b);
+  if(arr.indexOf(num) &gt; -1) { return arr.indexOf(num); };
+  if(Math.max(...arr) &gt; num) { return arr.length; }
+
+  const diff = arr.map(e =&gt; e - num);
+  const min_diff = Math.min(...diff.filter(e =&gt; e &gt;= 0));
+  return diff.indexOf(min_diff);
+}
+
+getIndexToIns([3,10,5], 3);
+</code>
+</pre>
+
+<p>As always, I asked for feedback for my solution, and was able to shorten the solution using the findIndex function, which returns the index of the number that is greater than or equal to the size of the number we want to insert. If we get back a -1, this means that our number is bigger that the number we want to insert is bigger, so we add it to the end of the array. Otherwise, we return the index we want to insert it into. My solution did the same thing, but in a few more steps because I didn't know that the findIndex function existed. Fun!</p>
+
+<pre>
+<code>
+function getIndexToIns(arr, num) {
+  arr.sort((a,b)=&gt;a-b);
+  const index = arr.findIndex(e =&gt; e &gt;= num);
+  if (index === -1) { return arr.length; }
+
+  return index;
+}
+
+getIndexToIns([3,10,5], 3);
+</code>
+</pre>

@@ -1,0 +1,61 @@
+---
+layout: post
+title: Starting the TDD test-driving cycle 
+---
+
+<p class="note">Reading notes based on <a
+href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627"
+   target="_blank">Growing Object-Oriented Software, Guided by Tests</a> by
+ Steve Freeman and Nat Pryce</p>
+
+<p>Before we write any unit tests for our program, we must first write an acceptance test that runs end-to-end and give us feedback about the system's interface.</p>
+
+<p>In order for this acceptance test to be complete, we must first have deployed a whole test cycle. Doing this before you have anything in your system will help you encounter problems that could delay or prevent deployment later on in the system's development process.</p>
+
+<p>We want to know as early as possible whether we are moving in the right direction. Our first test provides us with our first feedback loop. Feedback is the fundemental tool of the software process, you want to aim to get as many different types of feedback loops in place that you can.</p>
+
+<p>Once you have written your first test, the subsequent tests will be easier to write.</p>
+
+<h2>First, Test a Walking Skeleton</h2>
+
+<p>The first test acceptance test that we write is the most difficult, because it is not easy to build the test environment as well as writing the test for the feature that we are testing at the same time.</p>
+
+<p>We can make this easier by first working out how to build, test and deploy <q>the thinnest possible slice of real functionality that we can automatically build, deploy and test end-to-end</q> (a walking skeleton).</p>
+
+<p>Then we can write the acceptance test for our first feature, and then go on to test-driving the rest of the system</p>
+
+<p>The deployment step in the testing process is critical because it will force us to encounter any set up issues early on. These are the kind of problems that it would be better to solve now before we start to build the system, than trying to solve them two weeks before delivery.</p>
+
+<p>Our first set of end-to-end tests will reflect our current understanding of the system, which at this stage will likely be incomplete. So think of them as temporary tests that will evolve along with your understanding of the system.</p>
+
+<p>Our first set of end-to-end tests are also likely to test dummy data like a dummy server or placeholder data. Though our aim will be to test the real server and data as soon as we can, so that we can deal with any surprises that will come up.</p>
+
+<h2>Deciding the shape of the walking skeleton</h2>
+
+<p>We have to have some idea of the overall structure of our system before we can deploy the first acceptance test. The authors say that you should be able to draw the design for the 'walking skeleton' in a few minutes, containing the <q>major system components that will be needed to support the first planned release and how they will communicate'.</q></p>
+
+<p>This design will include the smallest number of decisions necessary to start the TDD cycle. The ideas we have now are likely to be wrong, and will be refined as we learn more about the system from the feedback that we get along the way.</p>
+
+<h2>Build sources of feedback</h2>
+
+<p>As our initial ideas are likely to be wrong, we must do all we can to validate them as soon as possible. We can do this by building feedback loops into our process.</p>
+
+<ul>
+  <li>Release regularly to a real production system so that your users can respond to how well the system meets their needs.</li>
+  <li>Automate building and testing to get feedback on the qualities of the system (how easily can we make a new version and deploy a system? How good is the code?)</li>
+</ul>w
+
+<h2>Expose uncertainty early</h2>
+
+<p>Projects with late deployment start calmly but get into great difficulty at the end as the system is pulled together for the first time. Whereas incremental development front-loads the stress in a project so that the deployment cycles can happen as smoothly as possible.</p>
+
+<p>A difficulty here is that experienced stakeholders in your project may react badly to a stressful start, because their experience will suggest that the end will be much worse. So it's important to manage expectations here.</p>
+
+<p>If you are are joining a project where a system already exists, then you won't have the luxory of building a 'walking skeleton'. Instead, it will help to do the following:</p>
+
+<ul>
+  <li>Start the TDD process by automating the build and deployment process</li>
+  <li>Add end-to-end tests that cover the areas of code we need to change</li>
+  <li>Address internal quality issues by refactoring code and introducing unit tests as we add more functionality.</li>
+</ul>
+

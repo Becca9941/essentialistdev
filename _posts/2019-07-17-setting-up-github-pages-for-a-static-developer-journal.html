@@ -1,0 +1,257 @@
+---
+layout: post
+title: Setting up github for a static developer journal
+categories: [web development, code-snippets]
+tags: [github, github-pages, repository, terminal]
+---
+
+<h2>table of contents</h2>
+
+<h3><a href="#github-pages">Set up an empty Github pages repository on Githubi
+  </a></h3>
+  <ol>
+    <li><a href="#repo">Create a new Github pages repository</a></li>
+    <li><a href="#name">Name your repository</a></li>
+    <li><a href="#public">Mark your repository as public</a></li>
+  </ol>
+
+  <h3>Create a homepage and see it live on Github pages (terminal)</h3>
+
+  <ol>
+    <li><a href="#clone">Clone your repo pages repository</a></li>
+    <li><a href="#index">Add an index page to your repository</a></li>
+    <li><a href="#stage">Stage your index page to be committed</a></li>
+    <li><a href="#commit">Commit your index page</a></li>
+    <li><a href="#push">Push your index file to your upstream repository (**READ
+      THIS**)</a></li>
+    <li><a href="#access">Access your Github pages website</a></li>
+  </ol>
+
+  <section>
+    <h2 id="#github-pages">Set up a Github Pages repository on Github</h2>
+
+    <h3 id="repo">Create a new repository</h3>
+
+    <p>To create a new repository on Github, you can click on the '+' button next to your profile image on the top right hand side of the screen.</p>
+
+    <p>Then you can click the 'New repository' button which will bring you to
+    the page where you configure your new repository with a name and privacy
+    details etc.</p>
+
+    <h3 id="name">Name your repository like this: "username.github.io"</h3>
+
+    <p>Name your repository like this: 'username.github.io'
+Your username must exactly match the username associated with your Github account for this to work, case sensitive.</p>
+
+    <h3 id="public">Select the 'public' option to mark your repository as
+      public</h3>
+
+    <p>Your repo can be private, but the Github pages website itself will be
+    publicly accessible to anyone who knows the link, which is easy to find out
+    because it's just your username followed by github.io.</p>
+
+    <h3>Click on the green 'Create repository' button at the bottom of the page
+      to finish creating your Github pages repository</h3>
+
+    <p>inish creating your project.
+After creating your repository, you will be brought to your repositories home page. This page includes instructions for setting up your repository on your local machine.</p>
+
+    <p>The instructions in the following instruction shows you how to set up a
+    static webpage with version control. These instructions provide reasons for
+    why you may or may not want to do something, as well as a few tips that
+    should help make your life easier should you decide they could work for you.</p>
+
+  </section>
+
+  <section>
+    <h2 id="homepage">Create a homepage and see it live on Github Pages
+      (terminal)</h2>
+
+    <p class="note">I use the terminal, but you can also use the Github Desktop
+    client if you prefer. Here are <a href="https://pages.github.com"
+                                      target="_blank">instructions for both
+                                      cases</a>.</p>
+    <h3>Go to the folder where you want to store your repository on your
+      computer</h3>
+
+    <p class="note">
+  </section>
+
+  <section>
+    <h2 id="homepage">Create a homepage and see it live on Github Pages (terminal):</h2>
+
+    <p class="note">I use the terminal, but you can also use the Github Desktop
+    client if you prefer. here are <a href="https://pages.github.com/"
+                                      target="blank">instructions</a> for both
+                                    cases.</p>
+
+    <p>I store my project folders in the home directory. When you open up a
+    fresh terminal, you are automatically in the home directory so you don't
+    need to navigate anywhere else like the Desktop to find your folder.</p>
+
+    <p>If your are in any other folder, you can navigate directly to the home
+    directory by running the <code class="lang-bash">cd</code> command.</p>
+
+    <h3 id="clone">Clone your Github Pages repository to your chosen
+      folder</h3>
+
+    <code class="lang-bash">git clone
+      https://github.com/username/username.github.io</code>
+
+    <h3>Go inside your cloned folder</h3>
+
+    <code class="lang-bash">cd username.github.io</code>
+
+    <p class="tip">Instead of typing out the full name of the folder you want to
+    go inside, you can enter the first few characters and hit the 'Tab' key to
+    autocomplete it.</p>
+
+    <h3 id="index">Add and index.html page to your Github Pages repository.</h3>
+
+    <code class="lang-bash">touch index.html</code>
+
+    <p>The index file is the home page of your website. We call it an 'index'
+    file because it contains an index that people can use to look up places in
+    your website that they want to visit.</p>
+
+   <h3>Open your index.html file and add a title to it</h3>
+
+   <p>Your title can be anything. I wrote a standard 'Hello World!' message. You
+   can add the boilerplate setup later. We just want to see that the Github
+   pages site can display the webpage you have just created.</p>
+
+   <h3 id="stage">Stage your index.html file to be committed:</h3>
+
+   <code class="lang-bash">git add index.html</code>
+
+   <p>You could also have used `git add .` to add all of your files (in this
+   case there is only one) to be committed. Though I would advise against doing
+   this for two reasons:</p>
+
+   <ol>
+     <li>If you add files this way on bigger projects you might accidentally add
+       files that you don't want to commit.</li>
+     <li>Or you might end up committing a lot of files with a single commit
+       message, whereas committing them in smaller chunks will allow you to
+       write more meaningful commit messages that express what you were doing
+       better.</li>
+   </ol>
+
+   <h3 id="commit">Commit your file with a meaningful commit message:</h3>
+
+   <code class="lang-bash">git commit -m "home page available to start sharing
+     dev journal entries"</code>
+
+   <p>Most tutorials instruct you to write your first commit message as 'first
+   commit'. The same tutorials tell you that the best commit messages explain
+   why you have done something instead of how you did it, which is contradictory
+   considering the first commit message does not explain why you are making the
+   first commit.</p>
+
+   <p>The first commit message is an ideal place to start explaining why you are
+   starting your project. Again this is a personal preference, but one that
+   makes my commit messages read like an interesting story that evolves over
+   time with a meaningful narrative.</p>
+
+   <p class="tip">You can stage files and commit them in one step by combining
+   the commands with the '&&' operator like this:</p>
+
+   <code class="lang-bash">git add file.html && git commit -m "commit
+     message"</code>
+
+   <h3 id="push">Push your index.html homepage to your Github Pages website</h3>
+
+   <p><code class="lang-bash">git push origin master</code> NOT <code
+         class="lang-bash">git push -u origin master</code></p>
+
+   <p class="note">One of the reasons I document everything I learn as I learn
+   it is to make sure that other self-taught devs have access to the same
+   information that I am priviledged to have access to. Hence the detailed
+   explanations about 'why' we do things and what could go wrong with them.</p>
+
+   <p>At this point, most tutorials tell you to use `git push -u origin master`
+   to push your changes to the upstream repository, but this command can cause
+   unintended consequences that have been outlined below.</p>
+
+   <p>Before we look at the consequences, I'll explain what the `git push -u
+   origin master` command does. This explanation requires an understanding of
+   the difference between a downstream and an upstream repository.</p>
+
+   <ul>
+     <li>A downstream repository is a repository that we have copied, cloned or
+       checked out. By cloning a repository, the information contained within
+       the original repository has flowed downstream to us.</li>
+     <li>Whenever we make a change to our local repository that we want to share
+       with a main repository (usually hosted on a version control server), we
+       push our changes upstream.</li>
+   </ul>
+
+   <p>In the 'git push -u origin' command, we are saying:</p>
+
+   <blockquote>Push all of the changes we have made in our downstream repository (local copy) to our default upstream repository (that we are about to set).  We want our default upstream repository to be the origin of our master branch, or in other words the location where we cloned our repository from.</blockquote>
+
+   <p>The '-u' flag sets the default upstream repository to whatever location
+   (branch) is specified.</p>
+
+   <p>After we have set our default repository, we no longer need to specify the
+   repository that we want to push/pull our changes to/from. We can just use
+   `git push/pull` instead of `git push/pull origin [branch]`.</p>
+
+   <p>While setting the upstream repository seems convenient, it can cause
+      problems depending on what version of Git you are using (especially
+      versions < 2.0), and depending on how Git is configured in the git config
+      file/s.</p>
+
+   <p class="note">You can check how Git is configured you can run `git config
+   -l`. To find out what version of Git you are using, you can run `git
+   --version`.</p>
+
+   <p>In Git versions before git 2.0, the default settings for 'git push' is to
+   push all branches locally that have the same name on the upstream
+   repository.</p>
+
+   <section class="scenario">
+     <h4>Problem Scenario</h4>
+
+     <blockquote>
+       <p>You are on the master branch and you make a few changes only to
+       realise that you meant to be on a different branch. So you switch to a
+       different branch, make a few changes and push your changes. You forgot to
+       reset your master branch before you pushed. As the master branch is known
+       to the upstream repository, you have accidentally pushed changes. This is
+       pretty difficult to undo.</p>
+     </blockquote>
+   </section>
+
+   <p>The good news is that in Git versions 2.0 and after, the default settings
+   for 'git push' is to only push the branch you are currently working on (if it
+   has the same name on the upstream), which is much better.</p>
+
+   <p>That being said, even if the version is current, the Git config settings
+   may have set the default push settings to match an earlier version's way of
+   doing things (possibly because `git push/pull` appears to be more convenient
+   and most tutorials don't teach the problems).</p>
+
+   <p><strong>Chances are, you are not going to remember to check the version of
+     Git being used or the config file settings for all of the repositories you
+     are working on.</strong></p>
+
+   <p>The safe option then is to push your changes using the 'git push origin
+   [branch]' command.</p>
+
+   <p>Using this command means that you are always being explicit (and
+   intentional) about the changes you are pushing to your upstream
+   repository.</p>
+
+   <p>You have now pushed your markdown homepage to your Github Pages
+   repository.</p>
+
+   <h2 id="access">Access your live Github pages URL</h2>
+
+   <p>Open your browser and type in `https//username.github.io`</p>
+
+   <p>If you try to access your Github Pages website straight away, you are
+   likely to get a 404 error page. This is because it can take up to 10 minutes
+   for your site to be 'built' and made live by Github.</p>
+
+  </section>

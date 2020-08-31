@@ -1,0 +1,195 @@
+---
+layout: post
+title: TDD action list and gaps in knowledge
+---
+<p>I have been changing my approach to reading technical books lately, with a focus on addressing gaps in knowledge, and it has been helping massively. Will share a bit of the process here.</p>
+
+<p>I have been reading Kent Beck's Test Driven Development for some time now, playing with the ideas and generally doing my best to grasp and apply the concepts.</p>
+
+<p>This time, I read one of the chapters and took some notes as I usually do. This time paying attention to ideas and concepts that I could turn into an action plan.</p>
+
+<p>Once I had the notes, I wrote them up as an actual step-by-step action list which covers the process mentioned in the book. It took a lot of mental energy to do this. I had to really think about what counted as a step, and also found myself trying to skip over parts that I wasn't fully familiar or comfortable with yet.</p>
+
+<p>Whilst creating this action list, I also created a list of questions I had and gaps in knowledge (things that I kept trying to skip over and ignore).</p>
+
+<p>After creating this list, I focused on the gaps in knowledge. First, I rated them in terms of how difficult I think it will be for me to fill in those gaps in knowledge. I can consider whether that estimate was accurate afterwards.</p>
+
+<p>Then I ordered the gaps in knowledge into what I consider to be the most important ones to focus on first.</p>
+
+<p>Finally, I brainstormed ideas for things I can do to start filling in those gaps in knowledge. Whilst learning the things I need to to fill in those gaps, then I'll likely end up repeating this entire process for each of the sub-steps.</p>
+
+<h2>TDD Action List</h2>
+
+<ul>
+  <li>What are the stories you want to be able to tell about your system?</li>
+  <li>What functionality do you want to test? (Assertions come next).</li>
+  <li>Write a list of tests you <em>know</em> you will have to write.</li>
+  <ul>
+    <li>Put on the list examples of every operation you know you will need to implement.</li>
+    <li>For the operations that don't already exist, put the null version of that operation on the list.</li>
+    <li>List all of the refactorings that you think you will have to do in order to have clean code at the end of this session.</li>
+  </ul>
+  <li>Have a test list which expresses the things you intend to accomplish over <em>the next couple of hours</em>.</li>
+  <li>Have a similar list pinned to you wall with a weekly or montly scope.</li>
+  <li>Write your tests before writing any code.</li>
+  <li>Write your asserts first before writing the rest of your test.</li>
+  <ul>
+    <li>Where does the functionality belong? Same class, somewhere else?</li>
+    <li>What should the names be called?</li>
+    <li>Expected input and output.</li>
+    <li>Will we be testing multiple inputs in our real system? Do our tests need to reflect that?</li>
+    <li>What other tests does this test suggest?</li>
+  </ul>
+  <li>As you make the tests run, new tests will be implied, write the new tests down, do the same for any new refactorings.</li>
+  <li>Items left on the list when the session is done need to be taken care of. Do they stay on the current list or do they need to go on a later list?</li>
+  <li>If I ignore all tests and run a couple of random tests at a time, will they still pass? (Not dependent on other tests).</li>
+</ul>
+
+<h2>Questions/gaps in knowledge</h2>
+
+<ul>
+  <li><strong>Gap</strong>: Stories you want to be able to tell about the system.</li>
+  <li><strong>Gap</strong>: Identifying functionality (behaviour)</li>
+  <li><strong>Question</strong>: How do other people approach writing their test lists?</li>
+  <li><strong>Gap:</strong> Listing all the refactorings you think you'll have to do in order to have clean code.</li>
+  <li><strong>Question:</strong> How to break your problems into little orthogonal dimensions for isolated tests.</li>
+  <li><strong>Question:</strong> How to compose solutions out of highly cohesive, loosely coupled objects.</li>
+</ul>
+
+<h2>Plan for addressing gaps in knowledge</h2>
+
+<p>Now that we have the gaps in knowledge that we want to address, it's important to do two things. First, brainstorm some ideas for how you might go about addressing those gaps in knowledge. Then create a set of macro and micro goals for yourself. The micro goals are more important. They should be things that you can mark as done within just a couple of hours.</p>
+
+<p>Now that we have the gaps in knowledge that we want to address, it's time to create a realistic and manageble action plan. This is a three step process. Brainstorming, goals, assimilation.</p>
+
+<h3>Brainstorm solutions for addressing gaps in knowledge</h3>
+
+<p>The first thing we do is brainstorm our ideas for how we might go about filling in our gaps in knowledge.</p>
+
+<p>We also need to go one step further in this step, and make any resources that we list easy to access. Our aim is to make our future lives easier, by reducing cognitive load wherever possible. That way if you want to dive into one of these resources, you won't be put off by having to make the effort of finding them. I'd wait until ordering books and courses until you have completed the goals step, so that you know whether you really need them or not.</p>
+
+<p>It took a surprising amount of energy to do this, and it would have made it a lot harder to get started if I had to do the research at the same time that I wanted to spend learning and doing.</p>
+
+<h4>User Stories</h4>
+<ul>
+  <li><a href="https://www.mountaingoatsoftware.com/agile/user-stories" target="_blank">User Stories - Mike Cohn article.</a></li>
+  <li><a href="https://www.youtube.com/watch?v=6q5-cVeNjCE" target="_blank">User Stories - Mike Cohn video.</a></li>
+  <li><a href="https://learn.mountaingoatsoftware.com/200-user-stories-example/" target="_blank">User Stories - Mike Cohn - 200 user story examples.</a></li>
+  <li><a href=https://www.bookdepository.com/User-Stories-Applied-Mike-Cohn/9780321205681?redirected=true&selectCurrency=AUD&w=AF45AU9SF7MBBQA80T65&pdg=pla-293946777986:cmp-6919946397:adg-82581721111:crv-389775188388:pos-:dev-c&gclid=CjwKCAiAzanuBRAZEiwA5yf4uqvROwVY_sbMHm5EEqYqoxeOoIO93N2slNl8wVIEP7ZxhsTrotLmeRoC6x8QAvD_BwE" target="_blank">User Stories Applied: For Agile Software Development - Book by Mike Cohn</a></li>
+  <li><a href="https://www.industriallogic.com/blog/whole-stories-for-whole-teams/" target="_blank">Whole Stories for Whole Teams - Article by Industrial logic.</a></li>
+  <li><a href="https://martinfowler.com/bliki/UserStory.html" target="_blank">UserStory - Article by Martin Fowler</a></li>
+  <li><a href="https://ideas.riverglide.com/the-card-is-not-the-user-story-e7012cc03b5f" target="_blank">The card is not the User Story - Article by Andy Palmer and Antony Marcano</a></li>
+  <li><a href="http://antonymarcano.com/blog/tag/user-stories/" target="_blank">It starts with a story - Article by Antony Marcano</a></li>
+  <li><a href="http://antonymarcano.com/blog/2016/08/how-the-industry-broke-the-connextra-template/" target="_blank">Apples, oranges and user stories - Article by Antony Marcano</a><li>
+</ul>
+
+<h4>Identifying funtionality</h4>
+
+<p>I struggled to find resources that could help me with the process of breaking down user stories into functionality that we can then start test-driving. So I decided to tweet out my question, tagging Kent Beck (The author of TDD). The question is as follows:</p>
+
+<p>Reading @KentBeck 's TDD book and would really appreciate help. In the book, it mentions starting with stories,then the functionality you want to test. My question: How can you work with users to identify functionality from user stories (if they are conversation placeholders)?</p>
+
+<p>I don't know if that was a clear enough question, but will see if there are any responses and if it needs any further clarification.</p>
+
+<p>Oh woww, got some AMAZING responses to that question that really helped. Here is a link to the original <a href="https://twitter.com/Becca9941/status/1194449558752780288" target="_blank">question and thread</a>. I'll include the replies anonymously below though.</p>
+
+<h5>Person 1</h5>
+
+<p>The stories are about describing the problem (from a standpoint of having solved it), the functionality is a way to get to that outcome. E.g. Remember when we had trouble with that dragon terrorising the village. It's so nice and peaceful now (problem/outcome)</p>
+
+<p>"Yes, and all it required was our finest warrior and our finest blacksmith to create a sharp, pointy thing" (functionality/solution 1) "Yes, and who'd have thought he was just acting out because he needed a chat" (functionality/solution 2)</p>
+
+<p>Remember when we had to log all the temperatures with pen and paper? It took hours and was so boring Yes, and all it took was reading the regulations to realise that that wasn't even necessary Yes, and now we have a shiny device that logs it all for us automatically</p>
+
+<h5>Person 2</h5>
+
+<p>Not sure I understand your question exactly. Are you asking something like, "How do I learn about the story interspersed with building it using TDD?" Or am I way off?</p>
+
+<p>For your test list gap one thing I find helpful for a lot of people is this article, <a href="http://blog.wingman-sw.com/tdd-guided-by-zombies" target="_blank">TDD guided by Zombies</a>. In a way the test list is just a checklist of things to accomplish expressed as testable conditions.</p>
+
+<p>Thank you for elaborating. The classic XP way to do this is to ask the user to elaborate a bit on the story until you can create something small and ask the question, "Is this what you had in mind? Is it moving towards telling the story?". 1/3</p>
+
+<p>The thing you create could be a sketch or it could be code but it should be fairly quick. Then if the answer is No, you ask why and then repeat. If it is yes then either the next step is fairly obvious or you ask what is missing. Then you do that over and over. 2/3</p>
+
+<p>I tend to think of TDD as something you do with in the context of each of these small iterations. I will think some more about it and see if I have better answers tomorrow. Hopefully some of this is helpful. I will take another look at your list of gaps tomorrow if you want. 3/3</p>
+
+
+<h4>Writing Test Lists</h4>
+
+<ul>
+  <li><a href="https://online-training.jbrains.ca/courses/wbitdd-01/lectures/133490" target="_blank">How to write a test list - J.B Rainsberger Video Course Lesson.</a></li>
+</ul>
+
+<h4>Refactoring</h4>
+
+<ul>
+	<li><a href="http://blog.wingman-sw.com/in-the-beginning-there-was-no-code" target="_blank">In the beginning, there was no code - Article by James Grenning.</a></li>
+	<li><a href="http://blog.wingman-sw.com/archives/415" target="_blank">TDD ignores the design, yes it does, no it doesn't - Article by James Grenning.</a></li>
+	<li><a href="http://blog.wingman-sw.com/archives/96" target="_blank">Legacy Code Changes, a boy scout adds tests - Article by James Grenning.</a></li>
+	<li><a href="https://martinfowler.com/books/refactoring.html" target="_blank">Refactoring, Book by Martin Fowler</li>
+	<li><a href="https://refactoring.com/" target="_blank">Refactoring.com</a></li>
+</ul>
+
+<h4>Orthogonal Code</h4>
+
+<ul>
+  <li><a href="https://stackoverflow.com/questions/1527393/what-is-orthogonality" target="_blank">What is 'Orthogonality'? - Stack overflow answer</a></li>
+</ul>
+
+<h4>Loosely Coupled, highly cohesive</h4>
+
+<ul>
+  <li><a href="http://web.archive.org/web/20190226213310/http://wiki.c2.com/?CouplingAndCohesion" target="_blank">Coupling and Cohesion - C2 Wiki</a></li>
+  <li><a href="http://shop.oreilly.com/product/9780596007126.do" target="_blank">Head First Design Patterns - Book</a></li>
+  <li><a href="https://www.booktopia.com.au/design-patterns-erich-gamma/book/9780201633610.html?source=pla&n1=y&gclid=CjwKCAiAzanuBRAZEiwA5yf4un-aT7pAiH8MSJGmIBWsMmYkSj8TOep5s_1uC3lJ_aG2xQzyBsOLWRoCLtkQAvD_BwE" target="_blank">Design patterns - Book</a>
+</ul>
+
+
+<h2>Ideas</h2>
+
+<ul>
+  <li>I could try and build out a couple of Mike Cohn's user stories using the TDD style approach.</li> 
+  <li>I could reach out to Mike Cohn and ask for feedback about my own user stories.</li>
+</ul>
+
+<h2>Macro and Micro goals</h2>
+
+<p>I was thinking the other day about goals I have in mind when it comes to programming. My goals have been along the lines of "Learn Test-Driven Development", or "Learn Object-oriented programming". The problem with these goals is they are not specific enough to be useful. How exactly will I know that I have 'acheived' them, especially as these are lifelong skills that are going to grow and adapt along with my knowledge and experience.</p>
+
+<p>So, I needed to find a way to turn my fuzzy goals into measurable, acheivable outcomes. There are a few ways you can do this. You can set <a href="https://corporatefinanceinstitute.com/resources/knowledge/other/smart-goal/" target="_blank">SMART goals</a>. You could focus on process-based goals, which are essentially habitual practices you consistently do, which should allow you to hit goals by default, instead of actively working towards them. Both are great choices, but in this case I'll show you the goal setting approach I'm using right now (it could change next week).</p>
+
+<p>First thing to note. When I set a macro or micro goal, I don't follow through until that goal is met. They are not resolutions or targets that must be met. Instead, they are compasses.</p>
+
+<p>A compass usually contains a small magnetic pin, which is suspended so that it can spin freely inside of its casing and respond to the planets magetism. Its purpose is to provide explorers a constant sense of direction.</p>
+
+<p>I wrote a fictiony story to explain the compass part just for fun. The key point here is that the compass helps you know which direction to start walking, but the exact path you take to get there will vary.</p>
+
+
+<h2>True North</h2>
+
+
+<p>It was more beautiful than I could have imagined.</p>
+
+<p>In our village we have a tradition.</p>
+
+<p>On the 16th day of summer during our 17th year, we are each given a tiny package wrapped in a single, shining sycamore leaf - mottled green and yellow.</p>
+
+<p>The leaves had slowly unfurled themselves in my cupped hands, revealing what appeared to be a tiny copper compass. I noticed that its edges were worn smooth as if handled by a thousand people, even though I knew it had never before been handled.</p>
+
+<p>As you would expect, the compass contained a small magnetic pin which span freely inside of its casing. In non-magical compasses, this pin would respond to the planet's magnetic fields, providing explorers with a constant sense of direction.</p>
+
+<p>This compass was a little different. Without being told, I knew exactly what to do. Carefully, and admittedly a little shakily, I opened the glass casing. Curiously, my fingers left no prints. I watched as the small pin rose gently until it hovered above it's casing. Spinning gently in no particular direction.</p>
+
+<p>After a little while, the pin dipped twice as if it was prompting me to look down. My breath caught as I saw what looked to be trapped sunlight shining from a shallow pocket right where the pin was resting. There were dust motes dancing in the light, except that the dust motes were actually particles of unformed promises.</p>
+
+<p>So I told it my biggest dream, and watched as the particles formed into a question mark. It took me weeks to realise that the question mark was a simple question. Why?</p>
+
+<p>In this time, I was alone with my thoughts, observing the currents of my emotions, cautiously following their threads until a definitive point where all of the currents became one. The force of it so powerful that my ability to speak was gone. I had found my why, and the compass responded.</p>
+
+<p>The questionmark grew brighter until the light was blinding. There were flashes of purple and black and gold and silver, for this why was woven in threads of pain and joy. Then suddenly the light collapsed in on itself until a tiny sparkling gem remained.</p>
+
+<p>Slowly, the gem lowered itself through the dappled summer air until it very gently touched the surface of the magnetic pin and clicked in place. This process repeated itself until the pin clicked into the compass and the glass resealed itself. The pin stationary, pointing forwards.</p>
+
+<p>I knew that I would now return to the village, the same but qualitatively different. I knew that the younger ones would wonder what happened to me, why my footsteps were slightly firmer, why my gaze seemed older yet more free than it was in just a few short weeks.</p>
+
+<p>Never noticing the tiny, circular shape pressing against the inner lining of my breast pocket, home to my True North.</p>

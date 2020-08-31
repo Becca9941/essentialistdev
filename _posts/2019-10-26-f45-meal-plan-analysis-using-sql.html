@@ -1,0 +1,169 @@
+---
+layout: post
+title: Meal Plan analysis for F45 using SQL
+---
+
+<p>No notes with this article, just a few queries I played with to get a macro calculator database up and running based on a meal plan I'm following with F45</p>
+
+<code>CREATE database meal_plan_analysis;</code>
+<code>USE DATABASE meal_plan_analysis;</code>
+
+<pre>
+<code>
+CREATE TABLE meal_types (
+  id INT NOT NULL AUTO_INCREMENT,
+  meal_type VARCHAR(100) NOT NULL,
+  PRIMARY KEY (id)
+);
+</code>
+</pre>
+
+
+
+<pre>
+<code>
+INSERT INTO meal_types
+(meal_type)
+VALUES
+('Breakfast'),
+('Lunch'),
+('Dinner'),
+('Snack');
+</code>
+</pre>
+
+<code>SELECT * FROM meal_types;</code>
+
+<pre>
+<code>
+CREATE TABLE meal_plans (
+  id INT NOT NULL AUTO_INCREMENT,
+  meal_plan VARCHAR(150) NOT NULL,
+  duration_in_days INT,
+  PRIMARY KEY (id)
+);
+</code>
+</pre>
+
+<pre>
+<code>
+INSERT INTO meal_plans
+(meal_plan, duration_in_days)
+VALUES
+('Spring Training', 14),
+('Regular Season', 28),
+('World Series', 14);
+</code>
+</pre>
+
+<code>SELECT * FROM meal_plans;</code>
+
+<pre>
+<code>
+CREATE TABLE nutrition_info (
+  id INT NOT NULL AUTO_INCREMENT,
+  meal_plan_id INT,
+  meal_type_id INT,
+  calories INT NOT NULL,
+  protein DECIMAL(5,2) NOT NULL,
+  fat DECIMAL(5,2) NOT NULL,
+  carbohydrates DECIMAL(5,2) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (meal_plan_id) REFERENCES meal_plans(id),
+  FOREIGN KEY (meal_type_id) REFERENCES meal_types(id)
+);
+</code>
+</pre>
+
+<code>DESCRIBE nutrition_info</code>
+
+<pre>
+<code>
+INSERT INTO nutrition_info
+(
+  meal_plan_id,
+  meal_type_id,
+  calories,
+  protein,
+  fat,
+  carbohydrates
+)
+VALUES
+(1, 1, 344, 12.24, 27.34, 11.84),
+(1, 4, 125, 6.1, 8.6, 4.8),
+(1, 2, 349, 24.14, 21.92, 12.43),
+(1, 4, 124, 12.1, 5.3, 5.4),
+(1, 3, 335, 26.73, 21.30, 7.18);
+</code>
+</pre>
+
+<pre>
+<code>
+SELECT mt.meal_type AS meal,
+       ROUND((AVG(calories) / 1349) * 100) AS "Calories (%)",
+       ROUND(AVG(protein / (protein + fat + carbohydrates) * 100), 0) AS "Protein (%)",
+       ROUND(AVG(fat / (protein + fat + carbohydrates) * 100),0) AS "Fat (%)",
+       ROUND(AVG(carbohydrates / (protein + fat + carbohydrates) * 100),0) AS "Carbs (%)"
+  FROM nutrition_info ni
+ INNER JOIN meal_types mt
+    ON mt.id = ni.meal_type_id
+ WHERE meal_plan_id = 2
+ GROUP BY meal;
+</code>
+</pre>
+
+<img src="/assets/img/regular-season-1.png" alt="results of query">
+
+<h2>How many calories should you be eating?</h2>
+
+<pre>
+<code>
+CREATE TABLE regular_season_macro_percentages (
+  id INT NOT NULL AUTO_INCREMENT,
+  meal VARCHAR(150) NOT NULL,
+  calories INT NOT NULL,
+  protein INT NOT NULL,
+  fat INT NOT NULL,
+  carbs INT NOT NULL,
+  PRIMARY KEY (id)
+);
+</code>
+</pre>
+
+<pre>
+<code>
+INSERT INTO regular_season_macro_percentages
+(meal, calories, protein, fat, carbs)
+VALUES
+('Breakfast', 25, 42, 41, 17),
+('Snack 1', 11, 39, 21, 40),
+('Lunch', 26, 45, 17, 37),
+('Snack 2', 11, 39, 21, 40),
+('Dinner', 27, 47, 20, 32);
+</code>
+</pre>
+
+<pre>
+<code>
+SELECT
+       meal,
+       ROUND(1700 * (calories / 100)) AS calories,
+       ROUND(1700 * (calories / 100) * (protein / 100) / 4) AS "Protein (g)",
+       ROUND(1700 * (calories / 100) * (fat / 100) / 9) AS "Fat (g)",
+       ROUND(1700 * (calories / 100) * (carbs / 100) / 4) AS "Carbs (g)"
+  FROM regular_season_macro_percentages;
+</code>
+</pre>
+
+<pre>
+<code>
+SELECT
+       ROUND(SUM(1700 * (calories / 100))) AS calories,
+       ROUND(SUM(1700 * (calories / 100) * (protein / 100) / 4)) AS "Protein (g)",
+       ROUND(SUM(1700 * (calories / 100) * (fat / 100) / 9)) AS "Fat (g)",
+       ROUND(SUM(1700 * (calories / 100) * (carbs / 100) / 4)) AS "Carbs (g)"
+  FROM regular_season_macro_percentages;
+</code>
+</pre>
+
+<img src="/assets/img/meal-plan-sql.png" alt="meal plan query results">

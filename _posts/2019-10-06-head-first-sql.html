@@ -1,0 +1,107 @@
+---
+layout: post
+title: Exploring SQL
+---
+
+<p>Notes based on <a href="https://www.oreilly.com/library/view/head-first-sql/9780596526849/" target="_blank">Head First SQL</a></p>
+
+<ul>
+  <li>A database is a container that holds tables and other SQL structures related to those tables.</li>
+  <li>In diagrams and flow charts, databases are depicted as cylinders</li>
+  <li>A table is the structure inside you database that contains data, which is organised into columns and rows.</li>
+  <li>Each category becomes a column in your table.</li>
+  <li>A table row contains all the information about one object in your table.</li>
+  <li>All the tables in a database should be <em>connected</em> in some way.</li>
+</ul>
+
+<h2>Create a new database</h2>
+
+<code>CREATE DATABASE unicorn sightings;</code>
+
+<p>Use the database by running the command <code>USE unicorn_sightings</code> which now means that everything we do will happen inside of the database.</p>
+
+<ul>
+  <li>The SQL languade requires that all tables, even if you just have one to be in a database. A good reason for this is that it's easier to grant permissions to databases as a whole than individual tables.</li>
+  <li>You don't have to use uppercase letters for the commands because it is case insensitive. However it is helpful to follow this convention so that your SQL is easier to distinguish between commands and names.</li>
+</ul>
+
+<pre>
+<code>
+CREATE TABLE doughnut_list
+(
+  doughnut_name VARCHAR(10),
+  doughnut_type VARCHAR(6)
+);
+</code>
+</pre>
+
+<p>The code above creates a table called 'doughnut_list', and then adds two columns to that table, whilst specifying the type of data that will be contained within each of those columns. 'VARCHAR(10)' stands for 'VARiable CHARarter', and is used to hold textual information up to 10 characters long in the first column and 6 characters long in the second column.</p>
+
+<h2>Create a new table inside of a database</h2>
+
+<p>First, we'll create a new database and go inside it:</p>
+
+<code>CREATE DATABASE gregs_list</code>
+
+<code>USE gregs_list</code>
+
+<p>Then we'll create a table with multiple columns that each hold their own data that has a datatype specified</p>
+
+<pre>
+<code>
+CREATE TABLE my_contacts
+(
+last_name VARCHAR(30),
+first_name VARCHAR(20),
+email VARCHAR(50),
+birthday DATE,
+profession VARCHAR(50),
+location VARCHAR(50),
+status VARCHAR(20),
+interests VARCHAR(100),
+seeking VARCHAR(100)
+);
+</code>
+</pre>
+
+<p>To see how the data in the table looks, you can run the <code>DESC my_contacts</code> to view it. DESC is short for DESCRIBE.</p>
+
+<h3>Some data types you can use</h3>
+
+<ul>
+  <li><strong>CHAR or CHARACTER:</strong> are rigid and prefer their data to be a set length.</li>
+  <li><strong>INT or INTEGER:</strong> are for whole positive or negative numbers.</li>
+  <li><strong>BLOB:</strong> are for large gobs of text data.</li>
+  <li><strong>DATE:</strong> keeps track of dates but not times.</li>
+  <li><strong>TIME:</strong> keeps track of times but not dates.</li>
+  <li><strong>VARCHAR:</strong> holds text data up to 255 characters. This is a flexible datatype that can adapt to the length of your data up to the number of characters you specify.</li>
+  <li><strong>DATETIME or TIMESTAMP:</strong> keeps track of both the date and time.</li>
+  <li><strong>DEC or DECIMAL:</strong> gives you all of the decimal places you ask for until full.</li>
+</ul>
+
+<p>However, there are no universally accepted names for various data types, so your SQL relational databese might use different names for one or more of these types, so it is worth becoming familiar with these distinctions if there are any.</p>
+
+<h2>Deleting database tables</h2>
+
+<p>If you want to add a new column to your database, you'll have to delete <code>DROP TABLE my_contacts</code> and write your database again from scratch (that sounds pretty awful - not that great for the ETC (Easy To Change) principle).</p>
+
+<p>The DROP table command is irreversible. You won't be able to get the data stored in the table back again once you have deleted it this way.</p>
+
+<h2>Adding data to your tables</h2>
+
+<code>INSERT INTO your_table (column_name1, column_name2,...) VALUES ('value1', 'value2', ...);</code>
+
+<pre>
+<code>
+INSERT INTO my_contacts
+(last_name, first_name, email, gender, birthday, profession, location, status, interests, seeking)
+VALUES
+('Anderson', 'Jillian', 'jill_anderson@breakneckpizza.com', 'F', '1980-09-05', 'Technical Writer', 'Palo Alto, CA', 'Single', 'Kayaking, Reptiles', 'Relationship, Friends');
+</code>
+</pre>
+
+<p>When adding data to databases, the values need to be in the same order as the column names. Your columns don't have to be in the same order as the columns in your table, as long as the values are in the same order as your columns.</p>
+
+<p>You can leave out the list of column names and just add the values in the insert statement. However if you do this, then the values must be in the same order as the columns in your database.</p>
+
+<p>You can leave some columns out, as long as the values are in the same order as the columns you leave in your insert statement. You can add in missing data later if you need to.</p>

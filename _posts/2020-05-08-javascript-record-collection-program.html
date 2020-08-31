@@ -1,0 +1,159 @@
+---
+layout: post
+---
+
+<p>I'm working through the JavaScript algorithm section of <a href="https://www.freecodecamp.org/learn/" target="_blank">Free Code Camp</a>.</p>
+
+<h2>Problem Statement</h2>
+
+<p>You are given a JSON object representing a part of your musical album collection. Each album has several properties and a unique id number as its key. Not all albums have complete information.</p>
+
+<p>Write a function which takes an album's id (like 2548), a property prop (like "artist" or "tracks"), and a value (like "Addicted to Love") to modify the data in this collection.</p>
+
+<p>If prop isn't "tracks" and value isn't empty (""), update or set the value for that record album's property.</p>
+
+<p>Your function must always return the entire collection object.</p>
+
+<p>There are several rules for handling incomplete data:</p>
+
+<ul>
+  <li>If prop is "tracks" but the album doesn't have a "tracks" property, create an empty array before adding the new value to the album's corresponding property.</li>
+  <li>If prop is "tracks" and value isn't empty (""), push the value onto the end of the album's existing tracks array.</li>
+  <li>If value is empty (""), delete the given prop property from the album.</li>
+</ul>
+
+<h2>My solution</h2>
+
+<p>First I solved the problem, then I refactored the solution in a few iterations. I'll talk through the refactoring decisions one by one.</p>
+
+<p>Before we go into the refactoring details, here is my final solution to this problem:</p>
+
+<pre>
+<code>
+function updateRecords(id, prop, value) {
+  var album = collection[id];
+
+  if(value == "") { delete album[prop]; return collection; }
+  if(prop == "tracks") { album.tracks = [].concat(album.tracks).concat([value]); return collection; }
+
+  album[prop] = value;
+  return collection;
+}
+</code>
+</pre>
+
+<h3>Solution One</h3>
+
+<p>My only aim for this iteration was to get a working solution. So this is messy.</p>
+
+<pre>
+<code>
+// Only change code below this line
+function updateRecords(id, prop, value) {
+  if(prop != "tracks" && value != "") {
+    collection[id][prop] = value;
+  } else {
+    if(value == "") {
+      delete collection[id][prop];
+    } else {
+      if(collection[id].hasOwnProperty(prop)) {
+        collection[id].tracks.push(value);
+      } else {
+        collection[id].tracks = [];
+        collection[id].tracks.push(value);
+      }
+    }
+  }
+  
+  //console.log(collection[2468].tracks);
+  return collection;
+}
+</code>
+</pre>
+
+
+<h3>Solution Two</h3>
+
+<p>The first thing I wanted to do was remove the duplication around adding a new single to the tracks part of the album. In my first solution, I add a single if there is already a tracks property of the albumn. If there isn't, I create a tracks property and then add the value to it. In this second solution, I do it the other way around. I add a tracks property if there isn't already one, then I add the single to it in either case, instead of twice.</p>
+
+<pre>
+<code>
+function updateRecords(id, prop, value) {
+  if(prop != "tracks" && value != "") {
+    collection[id][prop] = value;
+  } else {
+    if(value == "") {
+      delete collection[id][prop];
+    } else {
+      if(!collection[id].hasOwnProperty(prop)) {
+        collection[id].tracks = [];
+      }
+      collection[id].tracks.push(value);
+    }
+  }
+  
+  //console.log(collection[2468].tracks);
+  return collection;
+}
+</code>
+</pre>
+
+<h3>Solution Three</h3>
+
+<p>This time, I wanted to make the code a little more readable. I realised that I used <code>collection[id]</code> everywhere. So I created a variable called 'album' to store it in, which helped a little.</p>
+
+<pre>
+<code>
+function updateRecords(id, prop, value) {
+  var album = collection[id];
+  if(prop != "tracks" && value != "") {
+    album[prop] = value;
+  } else {
+    if(value == "") {
+      delete album[prop];
+    } else {
+      if(!album.hasOwnProperty(prop)) {
+        album.tracks = [];
+      }
+      album.tracks.push(value);
+    }
+  }
+  
+  //console.log(collection[2468].tracks);
+  return collection;
+}
+</code>
+</pre>
+
+<h3>Final Solution</h3>
+
+<p>I got help for the final solution. While I had some issues with my solution, I didn't know how to fix them. I didn't like the look of the nested if statements. I thought about using guard clauses, but thought that I couldn't return anything if I did that. I don't know why I thought that.</p>
+
+<p>I asked <a href="https://twitter.com/AndyPalmer" target="_blank">Andy</a> if he could pair with me to refactor this.</p>
+
+<p>We turned the boundary cases into guard clauses. The boundary cases were:</p>
+
+<ul>
+  <li>if the value passed in is empty (an empty string), delete the albumn property also passed in, then return the final collection.</li>
+  <li>If the property passed in was 'tracks' add the value to it (create the tracks property if there wasn't one at the same time).</li>
+</ul>
+
+<p>The second guard clause here is my favourite part of this solution. Instead of creating a new tracks property if there wasn't one and adding a single to it in two seperate steps, we were able to do that all in one step by using the concat method. We start by merging an empty array onto tracks, which creates the property if there wasn't one, or does nothing if there was, then we merge in the single in the same step. Very cool!</p>
+
+<p>Finally, we update existing album property values to the passed in value if the property wasn't tracks, and the value wasn't empty.</p>
+
+<pre>
+<code>
+function updateRecords(id, prop, value) {
+  var album = collection[id];
+  
+  if(value == "") { delete album[prop]; return collection; }
+  if(prop == "tracks") { album.tracks = [].concat(album.tracks).concat([value]); return collection; }
+
+  album[prop] = value;
+  return collection;
+}
+</code>
+</pre>
+
+<p>This was fun!</p>
